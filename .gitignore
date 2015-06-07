@@ -5,5 +5,9 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
+# MacOS
 .DS_Store*
 *.swp
+
+# phpStorm
+.idea*
