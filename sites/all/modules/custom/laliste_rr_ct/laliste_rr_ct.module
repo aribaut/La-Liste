@@ -1,0 +1,166 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Restaurant Ranking Content Types feature.
+ */
+
+include_once 'laliste_rr_ct.features.inc';
+
+/**
+ * Implements hook_views_api().
+ */
+function laliste_rr_ct_views_api() {
+  return array(
+      'api' => 3,
+      'path' => drupal_get_path('module', 'laliste_rr_ct') . '/views',
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
+  if ( $form_id == 'restaurant_node_form') {
+    drupal_add_css(drupal_get_path('module', 'laliste_rr_ct') . '/css/restaurant_form.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+
+    $form['additional_settings']['#access'] = false;
+    $form['#after_build'][] = 'laliste_rr_ct_node_form_after_build';
+
+    $form['rankings'] = array(
+        '#type' => 'fieldset',
+        '#title' => 'GUIDE',
+        '#weight' => 0,
+    );
+
+    $form['rankings']['guides'] = array(
+        '#type' => 'select',
+        '#options' => laliste_rr_ct_get_tax_term_options('guides'),
+        '#required' => true,
+    );
+/*
+    $form['rankings']['core'] = array(
+        '#type' => 'fieldset',
+    );
+    $form['rankings']['core']['food'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Food',
+        '#size' => 12,
+    );
+    $form['rankings']['core']['wine'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Wine',
+        '#size' => 12,
+    );
+    $form['rankings']['core']['service'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Service',
+        '#size' => 12,
+    );
+    $form['rankings']['core']['atmosphere'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Atmosphere',
+        '#size' => 12,
+    );
+    $form['rankings']['core']['value'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Value',
+        '#size' => 12,
+    );
+    $form['rankings']['core']['votes'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Votes',
+        '#size' => 12,
+    );
+    $form['rankings']['add-new'] = array(
+        '#type' => 'submit',
+        '#value' => t('Add New'),
+    );
+*/
+    //dpm($form);
+    $form['actions']['submit']['#submit'][] = 'laliste_rr_ct_form_submit_callback';
+  }
+  return $form;
+}
+
+/**
+ * Implements a afterbuild form function to remove the body text format helper text
+ */
+function laliste_rr_ct_node_form_after_build($form) {
+  $form['body'][LANGUAGE_NONE]['0']['format']['#access'] = FALSE;
+  $form['field_phone'][LANGUAGE_NONE]['0']['format']['#access'] = FALSE;
+  return $form;
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ *
+ */
+function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, &$form_state, $context) {
+  if ($element['#entity_type'] != 'node' || $element['#entity']->type != 'restaurant') return;
+
+  // name not required
+  $element['name_block']['name_line']['#required'] = FALSE;
+  $element['name_block']['name_line']['#access'] = FALSE;
+  // company not required
+  $element['organisation_block']['organisation_name']['#access'] = FALSE;
+}
+
+/**
+ * Submit handler : redirect to the proper list view (guide)
+ * @param $form
+ * @param $form_state
+ */
+function laliste_rr_ct_form_submit_callback($form, &$form_state) {
+  $nid = $form_state['nid'];
+  $gid = $form_state['complete form']['rankings']['guides']['#value'];
+
+  // Get the guide name from taxonomy
+  $term = taxonomy_term_load($gid);
+  $guide = $term->name;
+
+  // Generate ranking row
+  $last_id = db_query('SELECT MAX(ranking_id) FROM {ranking}')->fetchField();
+
+  db_insert('ranking')
+      ->fields(array(
+          'ranking_id' => ++$last_id,
+          'created' => time(),
+          'updated' => time(),
+      ))
+      ->execute();
+
+  // Save guide into the lookup table
+  db_insert('restaurantguideranking')
+      ->fields(array(
+          'restaurant_id' => $nid,
+          'guide_id' => $gid,
+          'ranking_id' => $last_id,
+          'created' => time(),
+          'updated' => time(),
+      ))
+      ->execute();
+
+  // redirect to list view for the given guide
+  $form_state['redirect'] = 'restaurants/'.$guide.'/view';
+}
+
+/**
+ * helper function to get taxonomy term options for select widget
+ * @arguments string $machine_name: taxonomy machine name
+ * @return array of select options for form
+ */
+function laliste_rr_ct_get_tax_term_options($machine_name){
+  $options = array( '0' => 'Select One');
+
+  $vid = taxonomy_vocabulary_machine_name_load($machine_name)->vid;
+
+  $options_source = taxonomy_get_tree($vid);
+
+  foreach($options_source as $item ) {
+    $key = $item->tid;
+    $value = $item->name;
+    $options[$key] = $value;
+  }
+
+  return $options;
+}
