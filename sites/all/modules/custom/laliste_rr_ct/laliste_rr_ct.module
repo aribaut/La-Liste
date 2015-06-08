@@ -25,7 +25,7 @@ function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
 
     $form['additional_settings']['#access'] = false;
     $form['#after_build'][] = 'laliste_rr_ct_node_form_after_build';
-
+/*
     $form['rankings'] = array(
         '#type' => 'fieldset',
         '#title' => 'GUIDE',
@@ -34,10 +34,10 @@ function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
 
     $form['rankings']['guides'] = array(
         '#type' => 'select',
-        '#options' => laliste_rr_ct_get_tax_term_options('guides'),
+        '#options' => laliste_rr_ct_get_tax_term_options('laliste_taxonomy_guides'),
         '#required' => true,
     );
-/*
+
     $form['rankings']['core'] = array(
         '#type' => 'fieldset',
     );
@@ -101,6 +101,8 @@ function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, 
   // name not required
   $element['name_block']['name_line']['#required'] = FALSE;
   $element['name_block']['name_line']['#access'] = FALSE;
+  // country not required
+  $element['country']['name_line']['#access'] = FALSE;
   // company not required
   $element['organisation_block']['organisation_name']['#access'] = FALSE;
 }
@@ -111,37 +113,55 @@ function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, 
  * @param $form_state
  */
 function laliste_rr_ct_form_submit_callback($form, &$form_state) {
+  // Get last IDs
   $nid = $form_state['nid'];
-  $gid = $form_state['complete form']['rankings']['guides']['#value'];
-
-  // Get the guide name from taxonomy
-  $term = taxonomy_term_load($gid);
-  $guide = $term->name;
-
-  // Generate ranking row
   $last_id = db_query('SELECT MAX(ranking_id) FROM {ranking}')->fetchField();
 
-  db_insert('ranking')
-      ->fields(array(
-          'ranking_id' => ++$last_id,
-          'created' => time(),
-          'updated' => time(),
-      ))
-      ->execute();
+  $guides_values = $form_state['values']['field_restaurant_guides'][LANGUAGE_NONE];
+  // Get the guide name(s) from taxonomy
+  if(isset($guides_values)) {
+    foreach ($guides_values as $id => $gid) {
+      if(is_numeric($id) && is_numeric($gid['tid'])) {
+        // extract guide term name
+        $term = taxonomy_term_load($gid['tid']);
+        $guide = $term->name;
 
-  // Save guide into the lookup table
-  db_insert('restaurantguideranking')
-      ->fields(array(
-          'restaurant_id' => $nid,
-          'guide_id' => $gid,
-          'ranking_id' => $last_id,
-          'created' => time(),
-          'updated' => time(),
-      ))
-      ->execute();
+        // Does the guide already linked to this restaurant? If so, skip it
+        $result = db_query("
+          SELECT * FROM restaurantguideranking
+          WHERE restaurant_id = ".$nid."
+          AND guide_id = ".$gid['tid']
+        );
+
+        if ($result->rowCount() == 0) {
+
+          // we insert entry into the DB
+          db_insert('ranking')
+              ->fields(array(
+                  'ranking_id' => ++$last_id,
+                  'created' => time(),
+                  'updated' => time(),
+              ))
+              ->execute();
+
+          // Save guide into the lookup table
+          db_insert('restaurantguideranking')
+              ->fields(array(
+                  'restaurant_id' => $nid,
+                  'guide_id' => $gid['tid'],
+                  'ranking_id' => $last_id,
+                  'created' => time(),
+                  'updated' => time(),
+              ))
+              ->execute();
+
+          }
+      }
+    }
+  }
 
   // redirect to list view for the given guide
-  $form_state['redirect'] = 'restaurants/'.$guide.'/view';
+  $form_state['redirect'] = 'restaurants/all/view';
 }
 
 /**
