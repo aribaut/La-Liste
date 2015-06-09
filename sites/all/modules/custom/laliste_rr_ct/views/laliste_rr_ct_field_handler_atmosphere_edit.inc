@@ -50,10 +50,8 @@ class laliste_rr_ct_field_handler_atmosphere_edit extends views_handler_field {
       $form[$this->options['id']][$row_index] = array(
           '#type' => 'textfield',
           '#default_value' => $row->{$this->aliases['atmosphere']},
-          '#element_validate' => array('laliste_rr_ct_field_handler_atmosphere_edit_validate'),
+          '#element_validate' => array(),
           '#size' => 4,
-          //'#attributes' => array('disabled' => 'disabled'),
-          '#required' => TRUE,
       );
     }
 

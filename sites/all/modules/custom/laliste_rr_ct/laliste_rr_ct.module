@@ -95,8 +95,11 @@ function laliste_rr_ct_node_form_after_build($form) {
  * Implements hook_field_widget_WIDGET_TYPE_form_alter().
  *
  */
+
 function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, &$form_state, $context) {
-  if ($element['#entity_type'] != 'node' || $element['#entity']->type != 'restaurant') return;
+  if(is_object($element['#entity'])) {
+    if ($element['#entity']->type != 'node' && $element['#entity']->type != 'restaurant') return;
+  }
 
   // name not required
   $element['name_block']['name_line']['#required'] = FALSE;

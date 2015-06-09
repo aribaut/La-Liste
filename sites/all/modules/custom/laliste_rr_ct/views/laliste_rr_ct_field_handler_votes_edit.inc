@@ -50,10 +50,10 @@ class laliste_rr_ct_field_handler_votes_edit extends views_handler_field {
       $form[$this->options['id']][$row_index] = array(
           '#type' => 'textfield',
           '#default_value' => $row->{$this->aliases['votes']},
-          '#element_validate' => array('laliste_rr_ct_field_handler_votes_edit_validate'),
+          '#element_validate' => array(),
           '#size' => 4,
           //'#attributes' => array('disabled' => 'disabled'),
-          '#required' => TRUE,
+          //'#required' => TRUE,
       );
     }
 
