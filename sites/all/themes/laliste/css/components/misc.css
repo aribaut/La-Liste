@@ -90,8 +90,8 @@
 /* Logo image. */
 .header__logo-image {
   vertical-align: bottom;
-  width: 400px;
-  padding-left: 200px;
+    margin-top: -20px;
+  width: 336px;
 }
 
 /* Wrapper for website name and slogan. */
@@ -757,4 +757,13 @@ tr.selected td {
 .progress .filled {
   background-color: #0072b9;
   background-image: url('../../images/progress.gif');
+}
+
+/**
+ * Homepage
+ */
+div.content-home,
+div.content-home span,
+div.content-home div p {
+    font-family: 'Josefin Sans', '​sans-serif';
 }
