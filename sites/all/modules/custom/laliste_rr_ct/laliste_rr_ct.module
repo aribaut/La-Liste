@@ -20,6 +20,7 @@ function laliste_rr_ct_admin_paths() {
   $paths = array(
       'restaurants/*/view' => TRUE,
       'user' => TRUE,
+      'user/*' => TRUE,
   );
   return $paths;
 }
