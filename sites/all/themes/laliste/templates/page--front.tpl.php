@@ -7,25 +7,25 @@
  * @see https://drupal.org/node/1728148
  */
 ?>
-<div id="header" class="section clearfix" style="width : 100%;padding-left: 30px;padding-top: 40px; padding-bottom: 45px; background-color: black;line-height:1;">
+<div id="header" style="width : 100%;padding-left: 30px;padding-top: 40px; padding-bottom: 45px;line-height:1;">
   <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
       <div>
-      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight:100;font-size:20pt; color:white;">
+      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight:100;font-size:20pt;">
         DISTINGUER<br/>
       </span>
-      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-size: 20pt; font-weight:100; color:white;">
+      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-size: 20pt; font-weight:100;">
         LES MEILLEURS RESTAURANTS DU MONDE<br/>
       </span>
-      <span style="font-family: 'Josefin Sans', '​sans-serif'; color: white;">
+      <span style="font-family: 'Josefin Sans', '​sans-serif';">
         EN COMPILANT PLUS DE 200 GUIDES GASTRONOMIQUES EXISTANTS<br/>
         ET PLUSIEURS SITES EN LIGNE SELON UNE MÉTHODOLOGIE TRANSPARENTE<br/>
       </span>
 
-      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 100;font-size: 20pt; color:white;margin-top:5px;">
+      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 100;font-size: 20pt;">
         C'EST L’AMBITION DE<br/>
-        <span style="text-align: center; font-family: 'Josefin Sans', '​sans-serif'; color:white; font-weight: 300;">LA LISTE</span><br/>
+        <span style="text-align: center; font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300;">LA LISTE</span><br/>
       </span>
-      <span style="text-align: center; font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300; color:white">
+      <span style="text-align: center; font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300;">
         DONT LE PREMIER PALMARÈS SERA DÉVOILÉ CET AUTOMNE.
       </span>
       </div>
@@ -33,7 +33,7 @@
 
 <div id="page">
 
-  <div id="main">
+  <div id="main" style="padding-top:0;">
 
     <div id="content" class="column" role="main" style="padding-left:30px;">
 
@@ -55,17 +55,16 @@
   <?php print render($page['footer']); ?>
 
 </div>
-
-<div style="padding-left: 30px;padding-top: 40px; padding-bottom: 40px; background-color: black;">
-        <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300;font-size: 20pt; color: white;">
+<div style="padding-left: 30px;padding-top: 40px; padding-bottom: 40px;">
+        <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300;font-size: 20pt;">
           QUI SERA SUR<br/>
-          <span style="font-family: 'Josefin Sans', '​sans-serif'; color: white; font-weight: 600;">LA LISTE ?</span><br/>
+          <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 600;">LA LISTE ?</span><br/>
         </span>
-        <span style="font-family: 'Josefin Sans', '​sans-serif'; color: white;">
+        <span style="font-family: 'Josefin Sans', '​sans-serif';">
           RENDEZ-VOUS EN OCTOBRE POUR LE SAVOIR !<br/>
         </span>
-  <a style="font-family: 'Josefin Sans', '​sans-serif'; font-size: 11pt; color: white;" href="mailto:contact@la-liste.com">contact@la-liste.com</a>
-        <hr style="color:white;">
+  <a style="font-family: 'Josefin Sans', '​sans-serif'; font-size: 11pt;" href="mailto:contact@la-liste.com">contact@la-liste.com</a>
+
   <div style="margin-bottom:80px;"></div>
   <a
 </div>
