@@ -8,11 +8,6 @@
  */
 ?>
 
-<?php if ($logo): ?>
-
-
-      <?php endif; ?>
-
 <div style="width : 100%;padding-left: 30px;padding-top: 40px; padding-bottom: 45px; background-color: black;line-height:1;">
   <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
       <div>
@@ -39,15 +34,9 @@
 
 <div id="page">
 
-  <header class="header" id="header" role="banner">
-
-
-
-  </header>
-
   <div id="main">
 
-    <div id="content-home" class="column" role="main" style="padding-left:30px;">
+    <div id="content" class="column" role="main" style="padding-left:30px;">
 
       <div style="font-family: 'Josefin Sans', '​sans-serif'; width:800px;color:#666;">
         <p>Hier encore réservée à une élite, la gastronomie mondiale est en pleine mutation. Dans tous les pays, elle est entrée par le divertissement et l’image dans la vie quotidienne, tandis que de nouvelles cultures culinaires ne cessent d’émerger, renouvelant avec bonheur les codes du « plus ancien des arts ».</p>
