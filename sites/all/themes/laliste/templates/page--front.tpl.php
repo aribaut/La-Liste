@@ -7,7 +7,7 @@
  * @see https://drupal.org/node/1728148
  */
 ?>
-<div id="header" style="width : 100%;padding-left: 30px;padding-top: 40px; padding-bottom: 45px;line-height:1;">
+<div id="header" style="width : 100%;padding-left: 30px;padding-top: 40px;line-height:1;">
   <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
       <div>
       <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight:100;font-size:20pt;">
@@ -21,7 +21,7 @@
         ET PLUSIEURS SITES EN LIGNE SELON UNE MÉTHODOLOGIE TRANSPARENTE<br/>
       </span>
 
-      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 100;font-size: 20pt;">
+      <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 100;font-size: 20pt;line-height:1.1;">
         C'EST L’AMBITION DE<br/>
         <span style="text-align: center; font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300;">LA LISTE</span><br/>
       </span>
