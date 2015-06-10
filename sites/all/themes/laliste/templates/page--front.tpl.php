@@ -50,12 +50,8 @@
         <p style="font-family: 'Josefin Sans', '​sans-serif'; padding-bottom:20px;">Le palmarès final de <span style="font-weight: 600;">LA LISTE</span> sera dévoilé en octobre à Paris, lors d’une manifestation internationale où seront mises à l’honneur, à travers les chefs primés, les différentes pratiques culinaires qui font la richesse de la gastronomie mondiale.</p>
       </div>
     </div>
-  </div>
 
-  <?php print render($page['footer']); ?>
-
-</div>
-<div style="padding-left: 30px;padding-top: 40px; padding-bottom: 40px;">
+    <div style="padding-left: 30px; padding-bottom: 40px;">
         <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 300;font-size: 20pt;">
           QUI SERA SUR<br/>
           <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight: 600;">LA LISTE ?</span><br/>
@@ -63,10 +59,17 @@
         <span style="font-family: 'Josefin Sans', '​sans-serif';">
           RENDEZ-VOUS EN OCTOBRE POUR LE SAVOIR !<br/>
         </span>
-  <a style="font-family: 'Josefin Sans', '​sans-serif'; font-size: 11pt;" href="mailto:contact@la-liste.com">contact@la-liste.com</a>
+      <a style="font-family: 'Josefin Sans', '​sans-serif'; font-size: 11pt;" href="mailto:contact@la-liste.com">contact@la-liste.com</a>
 
-  <div style="margin-bottom:80px;"></div>
-  <a
+      <div style="margin-bottom:80px;"></div>
+      <a
+    </div>
+
+  </div>
+
+  <?php print render($page['footer']); ?>
+
 </div>
+
 
 <?php print render($page['bottom']); ?>
