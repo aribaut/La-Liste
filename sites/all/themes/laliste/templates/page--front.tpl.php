@@ -13,7 +13,7 @@
 
       <?php endif; ?>
 
-<div style="border: 1px solid red; width : 100%;padding-left: 30px;padding-top: 40px; padding-bottom: 45px; background-color: black;line-height:1;">
+<div style="width : 100%;padding-left: 30px;padding-top: 40px; padding-bottom: 45px; background-color: black;line-height:1;">
   <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a>
       <div>
       <span style="font-family: 'Josefin Sans', '​sans-serif'; font-weight:100;font-size:20pt; color:white;">
