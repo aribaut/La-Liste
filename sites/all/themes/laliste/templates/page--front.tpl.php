@@ -8,8 +8,8 @@
  */
 ?>
 <div id="header" style="text-align: center;padding-left: 30px;padding-top: 40px; padding-bottom: 20px;line-height:1;">
-  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="header__logo-image" /></a><br/>
-  <img style="padding-top:40px;padding-right:12%;width: 500px;" src="<?php print base_path() . path_to_theme(); ?>/images/title-logo.png">
+  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="header__logo" id="logo"><img src="<?php print $logo; ?>" alt="La Liste des 1000 meilleurs restaurants au monde" title="Objectively Delicious | Deliciously Objective" class="header__logo-image" /></a><br/>
+  <img style="padding-top:40px;padding-right:12%;width: 500px;" src="<?php print base_path() . path_to_theme(); ?>/images/title-logo.png" alt="Distinguer les meilleurs restaurants du monde, en compilant plus de 200 guides gastronomiques existants et plusieurs sites en ligne selon une methodologie transparente : c'est l'ambition de LA LISTE." title="Quel est le meilleur restaurant du monde?">
   <!--
   <div id="title__logo" style="text-align:center;padding-top: 60px;">
       <span font-family: 'Josefin Sans', '​sans-serif'; font-weight:100;font-size:20pt;">
