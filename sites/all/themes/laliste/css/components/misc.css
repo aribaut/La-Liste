@@ -82,15 +82,15 @@
 
 /* Wrapping link for logo. */
 .header__logo {
-  float: left; /* LTR */
+  text-align: center;
   margin: 0;
   padding: 0;
 }
 
 /* Logo image. */
 .header__logo-image {
+  padding-right:12%;
   vertical-align: bottom;
-    margin-top: -6px;
   width: 310px;
 }
 
