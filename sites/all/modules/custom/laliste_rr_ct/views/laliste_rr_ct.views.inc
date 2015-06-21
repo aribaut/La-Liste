@@ -32,6 +32,23 @@ function laliste_rr_ct_views_data_alter(&$data) {
           ),
       ),
   );
+  // Add the Bonus form field to the view
+  $data['ranking']['bonus'] = array(
+      'field' => array(
+          'title' => t('Bonus form field'),
+          'help' => t('Edit the node food'),
+          'handler' => 'laliste_rr_ct_field_handler_bonus_edit',
+          'relationship' => array(
+              'base' => 'restaurantguideranking', // Table we're joining to.
+              'base field' => 'ranking_id', // Field on the joined table.
+              'field' => 'bonus', // Real field name on the 'foo' table.
+              'handler' => 'views_handler_relationship',
+              'label' => t('Default label for relationship'),
+              'title' => t('Title seen when adding relationship'),
+              'help' => t('More information about relationship.'),
+          ),
+      ),
+  );
   // Add the Atmosphere form field to the view
   $data['ranking']['atmosphere'] = array(
       'field' => array(
@@ -66,7 +83,7 @@ function laliste_rr_ct_views_data_alter(&$data) {
           ),
       ),
   );
-  // Add the Service form field to the view
+  // Add the Wine form field to the view
   $data['ranking']['wine'] = array(
       'field' => array(
           'title' => t('Wine form field'),
@@ -83,7 +100,41 @@ function laliste_rr_ct_views_data_alter(&$data) {
           ),
       ),
   );
-  // Add the Service form field to the view
+  // Add the Panorama form field to the view
+  $data['ranking']['panorama'] = array(
+      'field' => array(
+          'title' => t('Panorama form field'),
+          'help' => t('Edit the node panorama'),
+          'handler' => 'laliste_rr_ct_field_handler_bonus_edit',
+          'relationship' => array(
+              'base' => 'restaurantguideranking', // Table we're joining to.
+              'base field' => 'ranking_id', // Field on the joined table.
+              'field' => 'panorama', // Real field name on the 'foo' table.
+              'handler' => 'views_handler_relationship',
+              'label' => t('Default label for relationship'),
+              'title' => t('Title seen when adding relationship'),
+              'help' => t('More information about relationship.'),
+          ),
+      ),
+  );
+  // Add the Quiet form field to the view
+  $data['ranking']['quiet'] = array(
+      'field' => array(
+          'title' => t('Quiet form field'),
+          'help' => t('Edit the node quiet'),
+          'handler' => 'laliste_rr_ct_field_handler_bonus_edit',
+          'relationship' => array(
+              'base' => 'restaurantguideranking', // Table we're joining to.
+              'base field' => 'ranking_id', // Field on the joined table.
+              'field' => 'quiet', // Real field name on the 'foo' table.
+              'handler' => 'views_handler_relationship',
+              'label' => t('Default label for relationship'),
+              'title' => t('Title seen when adding relationship'),
+              'help' => t('More information about relationship.'),
+          ),
+      ),
+  );
+  // Add the Value form field to the view
   $data['ranking']['value'] = array(
       'field' => array(
           'title' => t('Value form field'),
