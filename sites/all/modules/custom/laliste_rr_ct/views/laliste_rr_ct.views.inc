@@ -105,7 +105,7 @@ function laliste_rr_ct_views_data_alter(&$data) {
       'field' => array(
           'title' => t('Panorama form field'),
           'help' => t('Edit the node panorama'),
-          'handler' => 'laliste_rr_ct_field_handler_bonus_edit',
+          'handler' => 'laliste_rr_ct_field_handler_panorama_edit',
           'relationship' => array(
               'base' => 'restaurantguideranking', // Table we're joining to.
               'base field' => 'ranking_id', // Field on the joined table.
@@ -122,7 +122,7 @@ function laliste_rr_ct_views_data_alter(&$data) {
       'field' => array(
           'title' => t('Quiet form field'),
           'help' => t('Edit the node quiet'),
-          'handler' => 'laliste_rr_ct_field_handler_bonus_edit',
+          'handler' => 'laliste_rr_ct_field_handler_quiet_edit',
           'relationship' => array(
               'base' => 'restaurantguideranking', // Table we're joining to.
               'base field' => 'ranking_id', // Field on the joined table.
