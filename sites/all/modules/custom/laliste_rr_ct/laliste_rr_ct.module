@@ -32,60 +32,19 @@ function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
   if ( $form_id == 'restaurant_node_form') {
     drupal_add_css(drupal_get_path('module', 'laliste_rr_ct') . '/css/restaurant_form.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
 
+    // We force set the form variable (address_field bug?)
+    // address 1
+    $form['field_address'][LANGUAGE_NONE][0]['#address']['thoroughfare'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['thoroughfare'];
+    // address 2
+    $form['field_address'][LANGUAGE_NONE][0]['#address']['premise'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['premise'];
+    // postal code
+    $form['field_address'][LANGUAGE_NONE][0]['#address']['postal_code'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['postal_code'];
+    // city
+    $form['field_address'][LANGUAGE_NONE][0]['#address']['locality'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['locality'];
+
     $form['additional_settings']['#access'] = false;
     $form['#after_build'][] = 'laliste_rr_ct_node_form_after_build';
-/*
-    $form['rankings'] = array(
-        '#type' => 'fieldset',
-        '#title' => 'GUIDE',
-        '#weight' => 0,
-    );
 
-    $form['rankings']['guides'] = array(
-        '#type' => 'select',
-        '#options' => laliste_rr_ct_get_tax_term_options('laliste_taxonomy_guides'),
-        '#required' => true,
-    );
-
-    $form['rankings']['core'] = array(
-        '#type' => 'fieldset',
-    );
-    $form['rankings']['core']['food'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Food',
-        '#size' => 12,
-    );
-    $form['rankings']['core']['wine'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Wine',
-        '#size' => 12,
-    );
-    $form['rankings']['core']['service'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Service',
-        '#size' => 12,
-    );
-    $form['rankings']['core']['atmosphere'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Atmosphere',
-        '#size' => 12,
-    );
-    $form['rankings']['core']['value'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Value',
-        '#size' => 12,
-    );
-    $form['rankings']['core']['votes'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Votes',
-        '#size' => 12,
-    );
-    $form['rankings']['add-new'] = array(
-        '#type' => 'submit',
-        '#value' => t('Add New'),
-    );
-*/
-    //dpm($form);
     $form['actions']['submit']['#submit'][] = 'laliste_rr_ct_form_submit_callback';
   }
   return $form;
@@ -109,14 +68,6 @@ function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, 
   if(is_object($element['#entity'])) {
     if ($element['#entity']->type != 'node' && $element['#entity']->type != 'restaurant') return;
   }
-
-  // name not required
-  $element['name_block']['name_line']['#required'] = FALSE;
-  $element['name_block']['name_line']['#access'] = FALSE;
-  // country not required
-  $element['country']['name_line']['#access'] = FALSE;
-  // company not required
-  $element['organisation_block']['organisation_name']['#access'] = FALSE;
 }
 
 /**
