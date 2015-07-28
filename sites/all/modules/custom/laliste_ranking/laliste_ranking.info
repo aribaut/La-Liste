@@ -1,0 +1,6 @@
+name = LaListe Restaurant Ranking
+description = Provides Functionalities for Restaurant Ranking
+core = 7.x
+package = LA LISTE
+version = 7.x-1.0
+project = laliste_ranking

@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * Code for LaListe Ranking functionalities feature.
+ */
+
+
+/**
+ * Implements hook_cron().
+ */
+function laliste_ranking_cron() {
+  if (variable_get('process_ranking_during_cron', TRUE)) {
+    module_load_include('inc', 'laliste_ranking');
+    laliste_ranking_update();
+  }
+}
