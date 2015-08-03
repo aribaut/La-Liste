@@ -50,7 +50,7 @@ function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
       $form['field_address'][LANGUAGE_NONE][0]['#address']['locality'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['locality'];
     }
 
-    $form['additional_settings']['#access'] = false;
+    //$form['additional_settings']['#access'] = false;
     $form['#after_build'][] = 'laliste_rr_ct_node_form_after_build';
 
     $form['actions']['submit']['#submit'][] = 'laliste_rr_ct_form_submit_callback';
