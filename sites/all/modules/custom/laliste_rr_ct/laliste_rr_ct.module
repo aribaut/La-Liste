@@ -19,6 +19,7 @@ function laliste_rr_ct_views_api() {
 function laliste_rr_ct_admin_paths() {
   $paths = array(
       'restaurants/*/view' => TRUE,
+      'restaurant/*/view' => TRUE,
       'user' => TRUE,
       'user/*' => TRUE,
   );
