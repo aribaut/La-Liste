@@ -136,6 +136,18 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
   $form_state['redirect'] = 'restaurants/all/view';
 }
 
+function laliste_rr_ct_entity_info_alter(&$entity_info) {  
+    $entity_info['taxonomy_term']['uri callback'] = 'laliste_rr_ct_taxonomy_term_uri';
+}
+
+function laliste_rr_ct_taxonomy_term_uri($term) {
+  $guide = taxonomy_term_load($term->tid);
+    // change the path...
+    return array(
+        'path' => 'restaurants/'. $guide->name .'/view',
+    );
+}
+
 /**
  * helper function to get taxonomy term options for select widget
  * @arguments string $machine_name: taxonomy machine name
