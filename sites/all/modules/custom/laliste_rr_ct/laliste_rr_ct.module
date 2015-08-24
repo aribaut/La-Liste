@@ -144,9 +144,10 @@ function laliste_rr_ct_entity_info_alter(&$entity_info) {
 
 function laliste_rr_ct_taxonomy_term_uri($term) {
   $guide = taxonomy_term_load($term->tid);
+  $clean_name = preg_replace('#[ -]+#', '-', $guide->name);
     // change the path...
     return array(
-        'path' => 'restaurants/'. $guide->name .'/view',
+        'path' => 'restaurants/'. $clean_name .'/view',
     );
 }
 
