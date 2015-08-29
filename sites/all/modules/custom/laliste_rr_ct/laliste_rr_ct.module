@@ -133,9 +133,6 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
       }
     }
   }
-
-  // redirect to list view for the given guide
-  $form_state['redirect'] = 'restaurants/all/view';
 }
 
 function laliste_rr_ct_entity_info_alter(&$entity_info) {  
