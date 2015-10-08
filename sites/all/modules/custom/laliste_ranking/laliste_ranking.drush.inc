@@ -16,7 +16,7 @@ function laliste_ranking_drush_command() {
 }
 
 /**
-* Process user accounts.
+* Compute LA LISTE.
 */
 function drush_laliste_ranking_update_laliste($method = false) {
   module_load_include('inc', 'laliste_ranking');
