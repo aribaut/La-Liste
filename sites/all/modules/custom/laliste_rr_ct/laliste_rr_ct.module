@@ -30,6 +30,7 @@ function laliste_rr_ct_admin_paths() {
 
 /**
  * Implements hook_form_alter().
+ * For Restaurant node.
  */
 function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
   if ( $form_id == 'restaurant_node_form') {
@@ -129,6 +130,23 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
               ))
               ->execute();
 
+          }
+
+          //Find guide(s) that have been removed from this restaurant entry when editing the form          
+          //We identify the orphan entry from the restaurantguideranking table
+          $ranking_id = db_query("
+            SELECT ranking_id FROM restaurantguideranking WHERE CONCAT(restaurant_id,guide_id) NOT IN (SELECT CONCAT(entity_id,field_restaurant_guides_tid) FROM field_data_field_restaurant_guides) AND restaurant_id = ".$nid)->fetchField();
+
+          if(!empty($ranking_id)) {
+
+            //We delete the orphan entry from the ranking table
+            $result = db_query("
+              DELETE FROM ranking 
+              WHERE ranking_id = ".$ranking_id);
+
+            // We delete all entries for that restaurant not matched in the corresponding field table
+            $ranking_id = db_query("
+              DELETE FROM restaurantguideranking WHERE CONCAT(restaurant_id,guide_id) NOT IN (SELECT CONCAT(entity_id,field_restaurant_guides_tid) FROM field_data_field_restaurant_guides) AND restaurant_id = ".$nid);
           }
       }
     }
