@@ -92,15 +92,20 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
   // We have all recorded scores for a given restaurant, 
   // we insert them and we can compute the compunded scores with each guide's reliability factor
   foreach($scores as $score) {
-  	if(isset($score['method1']) && $score['method1']!=0) {
+  	if($score['method1']!=0) {
 
       // we get the guide's relaibility factor (trustworthiness) along with the guide type
   	  $guide_ranking = laliste_ranking_get_guide_factor($score['guide'],$method);
 
       // Default case for user review sites : We set their trust factor to 1
-      if (isset($guide_ranking) && !isset($guide_ranking['trust'])) {
+      if (isset($guide_ranking) && ($guide_ranking['type'] == 'user')) {
         $guide_ranking['trust'] = 1;
       }
+
+      // we don't count lists as they bonus is calculated after the counpounded total
+      if ($score['method1'] < 0) {
+        $n=$n-1;
+      }  
 
       // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply) 
       db_update('ranking')
@@ -123,7 +128,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
 
     // we select the max trust and apply same grade and trust to all other guides
     $dominant_ranking = db_query("
-      SELECT trust, score, popularity FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 5 ORDER BY trust DESC LIMIT 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
+      SELECT trust, score, popularity FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 5 AND score > 0 ORDER BY trust DESC LIMIT 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
     // We only consider a dominant guide who has a score equal or above 95
     if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 95) {
@@ -144,11 +149,31 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
     $compounded = db_query("
       SELECT SUM(score*trust) AS score, ROUND(SUM(popularity),1) AS popularity
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id 
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score IS NOT null", array(':restaurant_id' => $restaurant_id))->fetchObject();
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0", array(':restaurant_id' => $restaurant_id))->fetchObject();
+
+    // do we have a list bonus to add to the coupounded (pre-final) score?
+    $lists_bonus = db_query("
+      SELECT score 
+      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id 
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score < 0",array(':restaurant_id' => $restaurant_id));
+
+    // calculating the median score
+    $median = $compounded->score/$n;
+    $popularity = $compounded->popularity;
+
+    // calculating the bonus
+    foreach($lists_bonus as $bonus) {
+      switch ($bonus->score) {
+        case -3: $median += 0.03; $popularity += 1; break;
+        case -2: $median += 0.02; $popularity += 1; break;
+        case -1: $median += 0.01; $popularity += 1; break;
+      }
+    }
 
     // getting the median score value and sum of popularity score
-    $median_score['method1']    = $compounded->score/$n;
-    $median_score['popularity'] = $compounded->popularity;
+    $median_score = array();
+    $median_score['method1']    = $median;
+    $median_score['popularity'] = $popularity;
 
     // we now send back the rounded score to the main stat table
     return($median_score);
@@ -173,16 +198,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
     $scores['ranking_id'] = $ranking_id;
     
     switch($guide) {
-/*
-      case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
-        $score = ($food>=1 && $food <=20) ? 105 : 0;
-        $score = ($food>20 && $food <=50) ? 103 : 0;
-        $score = ($food>50 && $food <=100) ? 101 : 0;
+
+      case '50 Best': case 'Opiniated about dining': case 'Elite Traveler': case 'Vacay.ca':
+        $score = ($food>=1 && $food <=20) ? -3 : 0;
+        $score += ($food>20 && $food <=50) ? -2 : 0;
+        $score += ($food>50 && $food <=100) ? -1 : 0;
         $scores['method1'] = $scores['method2'] = $score;
-      break;
-*/
-      case '50 Mejores Restaurantes de América Latina':
-        // Not used for algorithm
       break;
 
       case 'The AA Restaurant Guide Automobile Association':
@@ -532,7 +553,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Maclean’s Canada’s best restaurant':
-        // TBD - bonus national level?
+        $score = -1;
+        $scores['method1'] = $scores['method2'] = $score;
       break;
 
       case 'Michelin' :
@@ -541,7 +563,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	$score1 += ($food == 2 ? 70 : 0);
       	$score1 += ($food == 1 ? 60 : 0);
       	$score1 += ($food == '0,5' ? 50 : 0); // Bib gourmand notation
-        $score1 += ($food == 0 ? 40 : 0);
+        if ($score1 == 0 || $score1 == null || $score1='') { // we count all variations of no stars
+          $food = 40;
+        }
       	$score1 += ($wine == 1 ? 5 : 0);
       	$score1 += ($bonus == 1 ? $atmosphere*3 : $atmosphere*2);
       	$scores['method1'] = $score1;
@@ -703,18 +727,18 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Where to eat in Canada':
-          $score =  ($food == 3 ? 100 : 0);
-          $score +=  ($food == 2 ? 80 : 0);
-          $score +=  ($food == 1 ? 60 : 0);
-          $scores['method1'] = $scores['method2'] = $score;
-      break;
-
-      case 'Vacay.ca':
-        // TBD - bonus au niveau national?
+        $score =  ($food == 3 ? 100 : 0);
+        $score +=  ($food == 2 ? 80 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
+        $scores['method1'] = $scores['method2'] = $score;
       break;
 
       case 'White Guide':
-        // TBD
+        $score = $bonus;
+        $tmp = $food - ($bonus+$service); // complicated calculation!
+        $score += $tmp * 4/7; // for wine
+        $score += $tmp * 3/7; // for ambiance
+        $scores['method1'] = $scores['method2'] = $score;
       break;
 
       case 'Zagat':
@@ -750,13 +774,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 function laliste_ranking_get_guide_factor($guide_name, $method) {
   // get the guide relaibility factor from survey results (default) or from fixed 'bonus' method from drush cmd line.
   switch($guide_name) {
-/*
+
   case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
     $guide_data['type']   = 'list';
-  break;
-*/
-  case '50 Mejores Restaurantes de América Latina':
-    // Not used for algorithm
   break;
 
   case 'The AA Restaurant Guide Automobile Association':
@@ -932,12 +952,12 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'Lekker':
-    $guide_data['trust'] = ($method == 'bonus' ? 1 : 0); // ouch!
+    $guide_data['trust'] = ($method == 'bonus' ? 1 : 0.5); // ouch!
     $guide_data['type']   = 'guide';
   break;
 
   case 'Maclean’s Canada’s best restaurant':
-    // TBD
+    $guide_data['type']   = 'list';
   break;
 
 	case 'Michelin':
@@ -965,7 +985,7 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'Philippine Tatler':
-    //TBD
+    $guide_data['type']   = 'guide';
   break;
 
   case 'Queremos comer':
@@ -982,7 +1002,7 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'Rossouw\'s Restaurants':
-    //TBD
+    $guide_data['type']   = 'guide';
   break;
 
   case 'Schlemmer Atlas':
@@ -991,11 +1011,11 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'Singapore Tatler':
-    // TBD
+    $guide_data['type']   = 'guide';
   break;
 
   case 'The Sydney Morning Herald Good Food Guide':
-    // TBD
+    $guide_data['type']   = 'guide';
   break;
 
   case 'Tabelog':
@@ -1003,7 +1023,7 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'Thailand Tatler Best restaurants':
-    // TBD
+    $guide_data['type']   = 'guide';
   break;
 
   case 'Timeout Mexico':
@@ -1036,7 +1056,7 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'Vacay.ca':
-    // TBD
+    $guide_data['type']   = 'list';
   break;
 
   case 'Viajeros':
@@ -1044,7 +1064,7 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   break;
 
   case 'White Guide':
-    // TBD
+    $guide_data['type']   = 'guide';
   break;
 
 	case 'Zagat':
@@ -1064,6 +1084,9 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
     case 'list' :        $guide_data['popularity'] = 1;   break;
     case 'user' :        $guide_data['popularity'] = 0.2; break;
   }
-  // Let's return all results
+  // Let's return all results and mark not set trust to -1 for debug
+  if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
+    $guide_data['trust'] = -1;
+  }
   return $guide_data;
 }
