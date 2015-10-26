@@ -24,6 +24,8 @@ function laliste_rr_ct_admin_paths() {
       'countries' => TRUE,
       'user' => TRUE,
       'user/*' => TRUE,
+      'search' => TRUE,
+      'search/*' => TRUE,
   );
   return $paths;
 }
