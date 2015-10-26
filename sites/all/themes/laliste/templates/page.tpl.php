@@ -75,6 +75,7 @@
 
     <header>
       <?php print render($page['header']); ?>
+      <strong>Header</strong>
     </header>
 
     <?php if ($main_menu || $secondary_menu): ?>
@@ -104,18 +105,21 @@
         <?php print $feed_icons; ?>
       </main>
 
-      <?php if ($page['sidebar_first']): ?>
+      <?php //if ($page['sidebar_first']): ?>
         <nav class="HolyGrail-nav">
           <?php print render($page['sidebar_first']); ?>
+          <strong>Navigation</strong>
         </nav>
-      <?php endif; ?>
+      <?php //endif; ?>
 
-      <?php if ($page['sidebar_second']): ?>
+      <?php //if ($page['sidebar_second']): ?>
         <aside class="HolyGrail-ads">
           <?php print render($page['sidebar_second']); ?>
+          <strong>Advertisements</strong>
         </aside>
-      <?php endif; ?>
+      <?php //endif; ?>
 
     <div class="HolyGrail-footer">
       <?php print render($page['footer']); ?>
+      <strong>Footer</strong>
     </div>
