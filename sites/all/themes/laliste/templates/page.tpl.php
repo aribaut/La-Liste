@@ -78,12 +78,6 @@
       <strong>Header</strong>
     </header>
 
-    <?php if ($main_menu || $secondary_menu): ?>
-      <div id="navigation">
-        <?php //print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
-      </div>
-    <?php endif; ?>
-
     <?php if ($breadcrumb): ?>
       <div id="breadcrumb"><?php print $breadcrumb; ?></div>
     <?php endif; ?>
@@ -99,8 +93,7 @@
         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
         <?php if ($page['content']): ?>
         <article class="HolyGrail-content">
-          <?php print render($page['content']); ?>
-          Incondita ad ante beate gloriosam incondita splendor non enim magnificus tamquam beate splendor magnificus laeditur sed vieturo levitate beate vitiis ubi non sed laeditur non nati paucorum patriam enim laeditur vieturo nati beate reputantium incondita levitate ante incondita esse magnificus levitate ad errores vieturo sed sunt sed laeditur magnificus non magnificus vitiis ubi docet ratione paucorum alia alia convenit paucorum reputantium sed gloriosam enim patriam docet non Simonides alia sed esse perfecta esse ad levitate lapsorum lapsorum splendor reputantium convenit non lapsorum reputantium nati Simonides reputantium ac ad tamquam beate tamquam patriam vitiis patriam hic esse magnificus reputantium esse convenit.. Incondita ad ante beate gloriosam incondita splendor non enim magnificus tamquam beate splendor magnificus laeditur sed vieturo levitate beate vitiis ubi non sed laeditur non nati paucorum patriam enim laeditur vieturo nati beate reputantium incondita levitate ante incondita esse magnificus levitate ad errores vieturo sed sunt sed laeditur magnificus non magnificus vitiis ubi docet ratione paucorum alia alia convenit paucorum reputantium sed gloriosam enim patriam docet non Simonides alia sed esse perfecta esse ad levitate lapsorum lapsorum splendor reputantium convenit non lapsorum reputantium nati Simonides reputantium ac ad tamquam beate tamquam patriam vitiis patriam hic esse magnificus reputantium esse convenit.  
+          <?php print render($page['content']); ?>  
         </article>
         <?php endif; ?>
         <?php print $feed_icons; ?>
@@ -109,6 +102,9 @@
           <nav class="HolyGrail-nav">
             <?php print render($page['sidebar_first']); ?>
             <strong>Navigation</strong>
+            <?php if ($main_menu || $secondary_menu): ?>
+              <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
+            <?php endif; ?>
           </nav>
         <?php //endif; ?>
 
