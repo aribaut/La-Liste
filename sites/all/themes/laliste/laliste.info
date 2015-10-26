@@ -5,7 +5,6 @@ version = VERSION
 core = 7.x
 
 stylesheets[all][] = css/main.css
-stylesheets[all][] = css/style.css
 
 regions[header] = Header
 regions[content] = Content

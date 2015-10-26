@@ -75,12 +75,12 @@
 
     <header>
       <?php print render($page['header']); ?>
-    </header> <!-- /#header -->
+    </header>
 
     <?php if ($main_menu || $secondary_menu): ?>
       <div id="navigation">
         <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
-      </div> <!-- /#navigation -->
+      </div>
     <?php endif; ?>
 
     <?php if ($breadcrumb): ?>
@@ -89,29 +89,33 @@
 
     <?php print $messages; ?>
 
-      <main class="HolyGrail-content">
+      <main class="HolyGrail-body">
         <?php print render($title_prefix); ?>
         <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
         <?php print render($title_suffix); ?>
         <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
         <?php print render($page['help']); ?>
         <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-        <?php print render($page['content']); ?>
+        <?php if ($page['content']): ?>
+        <article class="HolyGrail-content">
+          <?php print render($page['content']); ?>
+        </article>
+        <?php endif; ?>
         <?php print $feed_icons; ?>
-      </main> <!-- /#HolyGrail-content -->
+      </main>
 
       <?php if ($page['sidebar_first']): ?>
         <nav class="HolyGrail-nav">
           <?php print render($page['sidebar_first']); ?>
-        </nav> <!-- /#HolyGrail-nav -->
+        </nav>
       <?php endif; ?>
 
       <?php if ($page['sidebar_second']): ?>
         <aside class="HolyGrail-ads">
           <?php print render($page['sidebar_second']); ?>
-        </aside> <!-- /#HolyGrail-ads -->
+        </aside>
       <?php endif; ?>
 
     <div class="HolyGrail-footer">
       <?php print render($page['footer']); ?>
-    </div> <!-- /#footer -->
+    </div>
