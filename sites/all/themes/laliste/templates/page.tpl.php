@@ -103,21 +103,21 @@
         </article>
         <?php endif; ?>
         <?php print $feed_icons; ?>
+
+        <?php //if ($page['sidebar_first']): ?>
+          <nav class="HolyGrail-nav">
+            <?php print render($page['sidebar_first']); ?>
+            <strong>Navigation</strong>
+          </nav>
+        <?php //endif; ?>
+
+        <?php //if ($page['sidebar_second']): ?>
+          <aside class="HolyGrail-ads">
+            <?php print render($page['sidebar_second']); ?>
+            <strong>Advertisements</strong>
+          </aside>
+        <?php //endif; ?>
       </main>
-
-      <?php //if ($page['sidebar_first']): ?>
-        <nav class="HolyGrail-nav">
-          <?php print render($page['sidebar_first']); ?>
-          <strong>Navigation</strong>
-        </nav>
-      <?php //endif; ?>
-
-      <?php //if ($page['sidebar_second']): ?>
-        <aside class="HolyGrail-ads">
-          <?php print render($page['sidebar_second']); ?>
-          <strong>Advertisements</strong>
-        </aside>
-      <?php //endif; ?>
 
     <div class="HolyGrail-footer">
       <?php print render($page['footer']); ?>
