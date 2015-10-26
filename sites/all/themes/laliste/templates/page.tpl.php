@@ -74,17 +74,15 @@
 ?>
 
     <header class="HolyGrail-header">
+      <?php print $messages; ?>
       <?php print render($page['header']); ?>
       <strong>Header</strong>
     </header>
 
-    <?php if ($breadcrumb): ?>
-      <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-    <?php endif; ?>
-
-    <?php print $messages; ?>
-
       <main class="HolyGrail-body">
+        <?php if ($breadcrumb): ?>
+          <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+        <?php endif; ?>
         <?php print render($title_prefix); ?>
         <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
         <?php print render($title_suffix); ?>
