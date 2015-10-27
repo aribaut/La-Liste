@@ -1074,7 +1074,7 @@ strong {
     }
 }
 
-.HolyGrail {
+.laliste {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1087,14 +1087,14 @@ strong {
     flex-direction: column
 }
 
-.HolyGrail-footer, .HolyGrail-header {
+.laliste-footer, .laliste-header {
     -webkit-box-flex: 0;
     -webkit-flex: none;
     -ms-flex: none;
     flex: none
 }
 
-.HolyGrail-body {
+.laliste-body {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1111,18 +1111,18 @@ strong {
     padding: 1.5em
 }
 
-.HolyGrail-content {
+.laliste-content {
     margin-top: 1.5em
 }
 
-.HolyGrail-nav {
+.laliste-nav {
     -webkit-box-ordinal-group: 0;
     -webkit-order: -1;
     -ms-flex-order: -1;
     order: -1
 }
 
-.HolyGrail-ads, .HolyGrail-nav {
+.laliste-ads, .laliste-nav {
     padding: 1em;
     border-radius: 3px;
     background: #93806c;
@@ -1130,7 +1130,7 @@ strong {
 }
 
 @media (min-width:768px) {
-    .HolyGrail-body {
+    .laliste-body {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
         -webkit-flex-direction: row;
@@ -1138,7 +1138,7 @@ strong {
         flex-direction: row
     }
 
-    .HolyGrail-content {
+    .laliste-content {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
         -ms-flex: 1;
@@ -1147,7 +1147,7 @@ strong {
         margin: 0
     }
 
-    .HolyGrail-ads, .HolyGrail-nav {
+    .laliste-ads, .laliste-nav {
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 12em;
         -ms-flex: 0 0 12em;

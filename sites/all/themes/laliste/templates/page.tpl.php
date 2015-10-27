@@ -73,44 +73,48 @@
  */
 ?>
 
-    <header class="HolyGrail-header">
+    <header class="laliste-header">
       <?php print $messages; ?>
       <?php print render($page['header']); ?>
       <strong>Header</strong>
     </header>
 
-      <main class="HolyGrail-body">
-        <?php print render($title_prefix); ?>
-        <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-        <?php print render($title_suffix); ?>
-        <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-        <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-        <?php if ($page['content']): ?>
-        <article class="HolyGrail-content">
-          <?php print render($page['content']); ?>  
-        </article>
-        <?php endif; ?>
-        <?php print $feed_icons; ?>
+      <main class="laliste-body">
+        <div class="Container">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
+          <?php print render($title_prefix); ?>
+          <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+          <?php print render($title_suffix); ?>
+          <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+          <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+          <?php if ($page['content']): ?>
+          <article class="laliste-content">
+            <?php print render($page['content']); ?>
+          </article>
+          <?php endif; ?>
+          <?php print $feed_icons; ?>
 
-        <?php //if ($page['sidebar_first']): ?>
-          <nav class="HolyGrail-nav">
-            <?php print render($page['sidebar_first']); ?>
-            <strong>Navigation</strong>
-            <?php if ($main_menu || $secondary_menu): ?>
-              <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
-            <?php endif; ?>
-          </nav>
-        <?php //endif; ?>
+          <?php if ($page['sidebar_first']): ?>
+            <nav class="laliste-nav">
+              <?php print render($page['sidebar_first']); ?>
+              <strong>Navigation</strong>
+              <?php if ($main_menu || $secondary_menu): ?>
+                <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
+              <?php endif; ?>
+            </nav>
+          <?php endif; ?>
 
-        <?php //if ($page['sidebar_second']): ?>
-          <aside class="HolyGrail-ads">
-            <?php print render($page['sidebar_second']); ?>
-            <strong>Advertisements</strong>
-          </aside>
-        <?php //endif; ?>
+          <?php if ($page['sidebar_second']): ?>
+            <aside class="laliste-ads">
+              <?php print render($page['sidebar_second']); ?>
+              <strong>Advertisements</strong>
+            </aside>
+          <?php endif; ?>
+        </div>
       </main>
 
-    <footer class="HolyGrail-footer">
+    <footer class="laliste-footer">
       <strong>Footer</strong>
       <?php print render($page['footer']); ?>
     </footer>
