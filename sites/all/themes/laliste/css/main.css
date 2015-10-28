@@ -473,7 +473,7 @@ strong {
 }
 
 .Container {
-    max-width: 50em;
+    width: 100%;
     margin: 0 auto
 }
 
@@ -1108,11 +1108,15 @@ strong {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    padding: 1.5em
+    padding: 1.5em;
+    padding-left: 6%;
+    padding-right: 6%;
 }
 
 .laliste-content {
-    margin-top: 1.5em
+    margin-top: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .laliste-nav {
@@ -1129,6 +1133,28 @@ strong {
     background: hsla(31, 15%, 50%, .1)
 }
 
+.laliste-box {
+    margin: 4px;
+    width: 100%;
+    font-weight: bold;
+}
+/*
+.laliste-box-height-short {
+    height: 166px;
+}
+
+.laliste-box-height-med {
+    height: 194px;
+}
+
+.laliste-box-height-tall {
+    height: 279px;
+}
+*/
+.laliste-box-bg {
+    background-color: #EEE;
+}
+
 @media (min-width:768px) {
     .laliste-body {
         -webkit-box-orient: horizontal;
@@ -1143,7 +1169,6 @@ strong {
         -webkit-flex: 1;
         -ms-flex: 1;
         flex: 1;
-        padding: 0 2em;
         margin: 0
     }
 
@@ -1408,7 +1433,7 @@ strong {
 }
 
 .u-1of3 {
-    width: 33.3333% !important
+    width: 40% !important
 }
 
 .u-1of3, .u-2of3 {
@@ -1419,7 +1444,7 @@ strong {
 }
 
 .u-2of3 {
-    width: 66.6667% !important
+    width: 60% !important
 }
 
 .u-1of4 {
@@ -1454,7 +1479,7 @@ strong {
     }
 
     .u-small-1of3 {
-        width: 33.3333% !important
+        width: 40% !important
     }
 
     .u-small-1of3, .u-small-2of3 {
@@ -1465,7 +1490,7 @@ strong {
     }
 
     .u-small-2of3 {
-        width: 66.6667% !important
+        width: 60% !important
     }
 
     .u-small-1of4 {
@@ -1501,7 +1526,7 @@ strong {
     }
 
     .u-med-1of3 {
-        width: 33.3333% !important
+        width: 40% !important
     }
 
     .u-med-1of3, .u-med-2of3 {
@@ -1512,7 +1537,7 @@ strong {
     }
 
     .u-med-2of3 {
-        width: 66.6667% !important
+        width: 60% !important
     }
 
     .u-med-1of4 {
@@ -1548,7 +1573,7 @@ strong {
     }
 
     .u-large-1of3 {
-        width: 33.3333% !important
+        width: 40% !important
     }
 
     .u-large-1of3, .u-large-2of3 {
@@ -1559,7 +1584,7 @@ strong {
     }
 
     .u-large-2of3 {
-        width: 66.6667% !important
+        width: 60% !important
     }
 
     .u-large-1of4 {
