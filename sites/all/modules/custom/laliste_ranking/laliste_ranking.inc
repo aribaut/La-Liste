@@ -10,7 +10,7 @@
 function laliste_ranking_update($method) {
 	// for all restaurants, compute their scores
 	$results = db_query("
-	SELECT nid  
+	SELECT nid
 	FROM {node}
 		");
 
@@ -64,7 +64,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
 
   // for all ranking rows, calculate the score according to guide rule and update row
   $results = db_query("
-    SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id, food, bonus, wine, service, atmosphere, panorama, quiet, value, votes 
+    SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id, food, bonus, wine, service, atmosphere, panorama, quiet, value, votes
     FROM {ranking}
     LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
     WHERE {restaurantguideranking}.restaurant_id = :restaurant_id", array(':restaurant_id' => $restaurant_id));
@@ -76,25 +76,25 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
   	  $scores[] = generate_score(
   	  	$row->ranking_id,
   	  	$row->guide_id,
-  	  	$row->food+0, 
-  	  	$row->bonus+0, 
-  	  	$row->wine+0, 
-  	  	$row->service+0, 
-  	  	$row->atmosphere+0, 
-  	  	$row->panorama+0, 
-  	  	$row->quiet+0, 
-  	  	$row->value+0, 
+  	  	$row->food+0,
+  	  	$row->bonus+0,
+  	  	$row->wine+0,
+  	  	$row->service+0,
+  	  	$row->atmosphere+0,
+  	  	$row->panorama+0,
+  	  	$row->quiet+0,
+  	  	$row->value+0,
   	  	$row->votes+0
   	  );
   	  $n=$n+1;
   	}
   }
-  // We have all recorded scores for a given restaurant, 
+  // We have all recorded scores for a given restaurant,
   // we insert them and we can compute the compunded scores with each guide's reliability factor
   foreach($scores as $score) {
   	if($score['method1']!=0) {
 
-      // we get the guide's relaibility factor (trustworthiness) along with the guide type
+      // we get the guide's reliability factor (trustworthiness) along with the guide type
   	  $guide_ranking = laliste_ranking_get_guide_factor($score['guide'],$method);
 
       // Default case for user review sites : We set their trust factor to 1
@@ -105,9 +105,9 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
       // we don't count lists as they bonus is calculated after the counpounded total
       if ($score['method1'] < 0) {
         $n=$n-1;
-      }  
+      }
 
-      // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply) 
+      // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
       db_update('ranking')
         ->fields(array(
           'score' => floatval($score['method1']),
@@ -133,12 +133,12 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
     // We only consider a dominant guide who has a score equal or above 95
     if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 95) {
       db_query("
-        UPDATE {ranking} 
-        LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id 
-        SET score = :score, trust = :trust 
-        WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score >= :score AND popularity = 5", 
+        UPDATE {ranking}
+        LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
+        SET score = :score, trust = :trust
+        WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score >= :score AND popularity = 5",
         array(
-          ':score' => $dominant_ranking->score, 
+          ':score' => $dominant_ranking->score,
           ':trust' => $dominant_ranking->trust,
           ':restaurant_id' => $restaurant_id,
           )
@@ -148,13 +148,13 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $metho
     // compounded scores & popularity via MySQL!
     $compounded = db_query("
       SELECT SUM(score*trust) AS score, ROUND(SUM(popularity),1) AS popularity
-      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id 
+      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
     // do we have a list bonus to add to the coupounded (pre-final) score?
     $lists_bonus = db_query("
-      SELECT score 
-      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id 
+      SELECT score
+      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score < 0",array(':restaurant_id' => $restaurant_id));
 
     // calculating the median score
@@ -196,7 +196,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
   	// We set the guide to calculate the associated coefficient upon return to function call
     $scores['guide'] = $guide;
     $scores['ranking_id'] = $ranking_id;
-    
+
     switch($guide) {
 
       case '50 Best': case 'Opiniated about dining': case 'Elite Traveler': case 'Vacay.ca':
@@ -310,7 +310,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $scores['method1'] = $scores['method2'] = $score;
       break;
 
-      case 'Espresso': 
+      case 'Espresso':
         $score = $food*5;
         $scores['method1'] = $scores['method2'] = $score;
       break;
@@ -563,9 +563,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	$score1 += ($food == 2 ? 70 : 0);
       	$score1 += ($food == 1 ? 60 : 0);
       	$score1 += ($food == '0,5' ? 50 : 0); // Bib gourmand notation
-        if ($score1 == 0 || $score1 == null || $score1='') { // we count all variations of no stars
+        /*if ($score1 == 0 || $score1 == null || $score1='') { // we count all variations of no stars
           $food = 40;
-        }
+        }*/
       	$score1 += ($wine == 1 ? 5 : 0);
       	$score1 += ($bonus == 1 ? $atmosphere*3 : $atmosphere*2);
       	$scores['method1'] = $score1;
@@ -754,15 +754,15 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $scores['method2'] = $score2;
       break;
 
-      case 'Der Feinschmecker': 
-      case 'Five Diamond Awards': 
-      case 'Forbes Travel Guide': 
-      case 'Resto.be': 
-      case 'Yelp': 
-      case 'Zomato': 
+      case 'Der Feinschmecker':
+      case 'Five Diamond Awards':
+      case 'Forbes Travel Guide':
+      case 'Resto.be':
+      case 'Yelp':
+      case 'Zomato':
       	$score = $food*20;
       	$scores['method1'] = $scores['method2'] = $score;
-      break; 
+      break;
     }
   }
   return $scores;
@@ -968,7 +968,7 @@ function laliste_ranking_get_guide_factor($guide_name, $method) {
   case 'Michelin Restaurants (DE)':
     $guide_data['trust'] = ($method == 'bonus' ? 1 : 0.7);
     $guide_data['type']   = 'guide';
-  break; 
+  break;
 
   case 'Michelin Restaurants (FR)':
     $guide_data['trust'] = ($method == 'bonus' ? 1 : 0.695);
