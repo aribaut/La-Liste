@@ -220,7 +220,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
     switch($guide) {
 
-      case '50 Best': case 'Opiniated about dining': case 'Elite Traveler': case 'Vacay.ca':
+      case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
+      case 'Vacay.ca': case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
         $score = ($food>=1 && $food <=20) ? -3 : 0;
         $score += ($food>20 && $food <=50) ? -2 : 0;
         $score += ($food>50 && $food <=100) ? -1 : 0;
@@ -403,6 +404,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 15 ? 60 : 0);
       break;
 
+      case 'Google Reviews':
+        $score = $food*20;
+      break;
+
       case 'Guia Repsol':
         $score = ($food == 3 ? 100 : 0);
         $score += ($food == 2 ? 80 : 0);
@@ -569,6 +574,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*5;
       break;
 
+      case 'Traveltipz.ru':
+        $score = $food*20;
+      break;
+
       case 'Tripadvisor':
         if(isset($votes) && $votes >= 50) {
         	// raw
@@ -648,7 +657,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   // get the guide relaibility factor from survey results (default) or from fixed 'bonus' method from drush cmd line.
   switch($guide_name) {
 
-  case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
+  case '50 Best': case 'Opiniated about dining': case 'Elite Traveler': case 'Vacay.ca':
+  case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
     $guide_data['type']  = 'list';
   break;
 
@@ -779,6 +789,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Google Reviews':
+    $guide_data['type']  = 'user';
+  break;
+
   case 'Guía Gourmet':
     $guide_data['type']  = 'user';
   break;
@@ -902,6 +916,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Traveltipz.ru':
+    $guide_data['type'] = 'user';
+  break;
+
 	case 'Tripadvisor':
     $guide_data['type']  = 'user';
 	break;
@@ -922,10 +940,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Yelp':
     $guide_data['type']  = 'user';
-  break;
-
-  case 'Vacay.ca':
-    $guide_data['type']  = 'list';
   break;
 
   case 'Viajeros':
