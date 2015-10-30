@@ -168,7 +168,23 @@ function laliste_rr_ct_views_data_alter(&$data) {
           ),
       ),
   );
-
+  // Add the Link form field to the view
+  $data['ranking']['link'] = array(
+      'field' => array(
+          'title' => t('Link form field'),
+          'help' => t('Edit the restaurant link (url)'),
+          'handler' => 'laliste_rr_ct_field_handler_link_edit',
+          'relationship' => array(
+              'base' => 'restaurantguideranking', // Table we're joining to.
+              'base field' => 'ranking_id', // Field on the joined table.
+              'field' => 'link', // Real field name
+              'handler' => 'views_handler_relationship',
+              'label' => t('Default label for relationship'),
+              'title' => t('Title seen when adding relationship'),
+              'help' => t('More information about relationship.'),
+          ),
+      ),
+  );
 }
 
 /**

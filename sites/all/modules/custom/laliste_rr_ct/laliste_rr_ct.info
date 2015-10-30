@@ -28,3 +28,4 @@ files[] = views/laliste_rr_ct_field_handler_panorama_edit.inc
 files[] = views/laliste_rr_ct_field_handler_quiet_edit.inc
 files[] = views/laliste_rr_ct_field_handler_value_edit.inc
 files[] = views/laliste_rr_ct_field_handler_votes_edit.inc
+files[] = views/laliste_rr_ct_field_handler_link_edit.inc
