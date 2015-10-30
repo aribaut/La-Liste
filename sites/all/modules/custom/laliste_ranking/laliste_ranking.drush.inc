@@ -18,7 +18,7 @@ function laliste_ranking_drush_command() {
 /**
 * Compute LA LISTE.
 */
-function drush_laliste_ranking_update_laliste($method = false) {
+function drush_laliste_ranking_update_laliste($val = false) {
   module_load_include('inc', 'laliste_ranking');
-  laliste_ranking_update($method);
+  laliste_ranking_update($val);
 }
