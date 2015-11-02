@@ -962,8 +962,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   // We calculate the popularity publication score
   switch ($guide_data['type']) {
     case 'guide' :       $guide_data['popularity'] = 5;   break;
-    case 'publication' : $guide_data['popularity'] = 1;   break;
     case 'list' :        $guide_data['popularity'] = 1;   break;
+    case 'publication' : $guide_data['popularity'] = 0.3;   break;
     case 'user' :        $guide_data['popularity'] = 0.2; break;
   }
   // Let's return all results and mark not set trust to -1 for debug
