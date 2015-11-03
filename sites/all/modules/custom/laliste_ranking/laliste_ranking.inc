@@ -383,6 +383,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 1 ? 55 : 0);
       break;
 
+      case 'Gault-Millau (JP)':
+        $score = $food*20;
+      break;
+
       case 'Gault-Millau (NL)':
         $score +=  ($food == 19.5 ? 80 : 0);
         $score +=  ($food == 19 ? 77 : 0);
@@ -773,6 +777,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
 		$guide_data['trust'] =	0.709;
     $guide_data['type']  = 'guide';
 	break;
+
+  case 'Gault-Millau (JP)':
+    $guide_data['trust'] =  0.7; // arbitrary
+    $guide_data['type']  = 'guide';
+  break;
 
   case 'Gault-Millau (NL)':
     $guide_data['trust'] = 0.7; // arbitrary
