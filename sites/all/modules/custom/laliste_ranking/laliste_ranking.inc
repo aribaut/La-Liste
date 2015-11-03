@@ -567,7 +567,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*8;
         $score += $wine/2;
         $score += $atmosphere/2;
-        $score += $service*2;
+        $score += $service;
       break;
 
       case 'Timeout Mexico':
