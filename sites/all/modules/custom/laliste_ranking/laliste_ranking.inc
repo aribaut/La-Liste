@@ -59,7 +59,7 @@ function laliste_ranking_update($val) {
 	}
   $score_errors = db_query("SELECT count(*) FROM {ranking} WHERE score > 100")->fetchField();
 	echo "LALISTE RANKING IS UP TO DATE!\n";
-  echo "================================\natcasesort(array)";
+  echo "================================\n";
   echo "Number of score ranking errors : ".$score_errors."\n";
 }
 
