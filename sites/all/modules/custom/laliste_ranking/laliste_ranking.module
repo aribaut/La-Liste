@@ -9,7 +9,7 @@
  * Implements hook_cron().
  */
 function laliste_ranking_cron() {
-  if (variable_get('process_ranking_during_cron', TRUE)) {
+  if (variable_get('process_ranking_during_cron', FALSE)) {
     module_load_include('inc', 'laliste_ranking');
     laliste_ranking_update();
   }
