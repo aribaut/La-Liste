@@ -1,0 +1,51 @@
+.Footer {
+    padding: 24px;
+    padding: 1.5rem;
+    background: #404040;
+    color: #999;
+    font-size: .85em;
+    text-align: center
+}
+
+.Footer a {
+    padding-bottom: 1px;
+    border: 0;
+    color: #e5e5e5
+}
+
+.Footer a:active, .Footer a:focus, .Footer a:hover {
+    color: #fff;
+    text-decoration: underline
+}
+
+.Footer-credits {
+    margin: 0;
+    padding: 0
+}
+
+.Footer-credit {
+    display: block;
+    margin: 0
+}
+
+.Footer-creditSeparator {
+    display: none
+}
+
+.Footer-social a, .Footer-social iframe {
+    display: inline-block;
+    margin: 0 0 1em;
+    vertical-align: top
+}
+
+@media (min-width:576px) {
+    .Footer-credit {
+        display: inline-block;
+        margin: 0 .25em
+    }
+
+    .Footer-creditSeparator {
+        display: inline-block;
+        padding: 0 .25em
+    }
+}

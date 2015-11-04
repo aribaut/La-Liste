@@ -83,7 +83,8 @@
 <div class="Grid Grid--center Grid--full large-Grid--fit u-textCenter">
   <div class="Grid-cell Grid-cell--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
     <?php //if ($content['field_rank']): ?>
-        <?php //render($content['field_rank']); ?><strong>37e/1000</strong>
+        <?php //render($content['field_rank']); ?>
+        <p class="rank"><span class="score">37<sup>e</sup></span>/1000</p>
     <?php //endif; ?>
   </div>
   <div class="Grid-cell laliste-box laliste-box-bg laliste-box-height-med u-textLeft">

@@ -45,8 +45,9 @@
 ?><!DOCTYPE html>
 <html lang="<?php print $language->language; ?>">
 <head>
-  <?php print $head; ?>
   <title><?php print $head_title; ?></title>
+  <?php print $head; ?>
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
   <meta name=HandheldFriendly content=True>
   <meta name=MobileOptimized content=320>
   <meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1">
