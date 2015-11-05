@@ -178,13 +178,9 @@ h2, h3 {
 }
 
 h3 {
-    font-size: 1em
-}
-
-h3, p, pre {
+    font-size: 1em;
     margin: 0 0 1.5em
 }
-
 
 a {
     border-bottom: 1px dashed rgba(70, 185, 128, .5);
@@ -226,11 +222,12 @@ strong {
     @include flex-wrap(wrap);
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
+    justify-content: center;
 }
 
 .Grid-cell {
-    @include box-stretch(1);
+    @include flex(1);
 }
 
 .Grid--top {
@@ -262,92 +259,92 @@ strong {
 }
 
 .Grid-cell--autoSize {
-    @include box-stretch(0);
+    @include flex(0);
 }
 
 .Grid--fit>.Grid-cell {
-    @include box-stretch(1);
+    @include flex(1);
 }
 
 .Grid--full>.Grid-cell {
-    @include box-stretch-percentage(0,0,100%);
+    @include flex(0,0,100%);
 }
 
 .Grid--1of2>.Grid-cell {
-    @include box-stretch-percentage(0,0,50%);
+    @include flex(0,0,50%);
 }
 
 .Grid--1of3>.Grid-cell {
-    @include box-stretch-percentage(0,0,33.3333%);
+    @include flex(0,0,33.3333%);
 }
 
 .Grid--1of4>.Grid-cell {
-    @include box-stretch-percentage(0,0,25%);
+    @include flex(0,0,25%);
 }
 
 @media (min-width:384px) {
     .small-Grid--fit>.Grid-cell {
-        @include box-stretch(1);
+        @include flex(1);
     }
 
     .small-Grid--full>.Grid-cell {
-        @include box-stretch-percentage(0,0,100%);
+        @include flex(0,0,100%);
     }
 
     .small-Grid--1of2>.Grid-cell {
-        @include box-stretch-percentage(0,0,50%);
+        @include flex(0,0,50%);
     }
 
     .small-Grid--1of3>.Grid-cell {
-        @include box-stretch-percentage(0,0,33.3333%);
+        @include flex(0,0,33.3333%);
     }
 
     .small-Grid--1of4>.Grid-cell {
-        @include box-stretch-percentage(0,0,25%);
+        @include flex(0,0,25%);
     }
 }
 
 @media (min-width:576px) {
     .med-Grid--fit>.Grid-cell {
-        @include box-stretch(1);
+        @include flex(1);
     }
 
     .med-Grid--full>.Grid-cell {
-        @include box-stretch-percentage(0,0,100%);
+        @include flex(0,0,100%);
     }
 
     .med-Grid--1of2>.Grid-cell {
-        @include box-stretch-percentage(0,0,50%);
+        @include flex(0,0,50%);
     }
 
     .med-Grid--1of3>.Grid-cell {
-        @include box-stretch-percentage(0,0,33.3333%);
+        @include flex(0,0,33.3333%);
     }
 
     .med-Grid--1of4>.Grid-cell {
-        @include box-stretch-percentage(0,0,25%);
+        @include flex(0,0,25%);
     }
 }
 
 @media (min-width:768px) {
     .large-Grid--fit>.Grid-cell {
-        @include box-stretch(1);
+        @include flex(1);
     }
 
     .large-Grid--full>.Grid-cell {
-        @include box-stretch-percentage(0,0,100%);
+        @include flex(0,0,100%);
     }
 
     .large-Grid--1of2>.Grid-cell {
-        @include box-stretch-percentage(0,0,50%);
+        @include flex(0,0,50%);
     }
 
     .large-Grid--1of3>.Grid-cell {
-        @include box-stretch-percentage(0,0,33.3333%);
+        @include flex(0,0,33.3333%);
     }
 
     .large-Grid--1of4>.Grid-cell {
-        @include box-stretch-percentage(0,0,25%);
+        @include flex(0,0,25%);
     }
 }
 
@@ -358,16 +355,20 @@ strong {
 }
 
 .laliste-footer, .laliste-header {
-    @include box-stretch(0);
+    @include flex(0);
 }
 
 .laliste-body {
+    @include flex(1);
+    @include flex-direction(column);
+    min-height: 100vh;
     padding: 1.5em;
     padding-left: 6%;
     padding-right: 6%;
 }
 
 .laliste-content {
+    @include flex(1);
     margin-top: 1.5em;
     margin-left: 0;
     margin-right: 0;
@@ -392,42 +393,54 @@ strong {
     width: 100%;
     font-weight: bold;
 }
-/*
-.laliste-box-height-short {
-    height: 166px;
-}
 
-.laliste-box-height-med {
-    height: 194px;
-}
 
-.laliste-box-height-tall {
-    height: 279px;
-}
-*/
 .laliste-box-bg {
     background-color: $light_grey;
 }
 
-.laliste-empty-lcell {
-    @extend .Grid-cell;
-    @extend .u-med-full;
-    @extend .u-large-1of3;
-    @extend .laliste-box;
-}
-
 @media (min-width:768px) {
     .laliste-body {
+        @include flex(1);
         @include flex-direction(row);
     }
 
     .laliste-content {
-        @include box-stretch-percentage(1);
-        margin: 0
+        @include flex(1);
+        margin: 0 !important
     }
 
     .laliste-ads, .laliste-nav {
-        @include box-stretch-percentage(0,0,12em);
+        @include flex(0,0,12em);
+    }
+
+    .laliste-box-height-short {
+        height: 166px !important;
+    }
+
+    .laliste-box-height-med {
+        height: 194px !important;
+    }
+
+    .laliste-box-height-tall {
+        height: 279px !important;
+    }
+
+    .restaurant-info {
+        padding-left : 30px !important;
+        font-size: 1.3em !important;
+    }
+
+    .restaurant-user-actions {
+        font-size: 3em !important;
+    }
+
+    p.rank {
+        font-size: 3em !important;
+    }
+
+    h1.title {
+        font-size: 3em !important;
     }
 }
 
@@ -449,6 +462,34 @@ strong {
 
     .Image--tiny {
         width: 40px
+    }
+
+    .laliste-box-height-short {
+        height: 125px;
+    }
+
+    .laliste-box-height-med {
+        height: 125px;
+    }
+
+    .laliste-box-height-tall {
+        height: 125px;
+    }
+
+    .restaurant-info {
+        font-size: 1.1em;
+    }
+
+    .restaurant-user-actions {
+        font-size: 2em;
+    }
+
+    p.rank {
+        font-size: 2em;
+    }
+
+    h1.title {
+        font-size: 2em;
     }
 }
 
@@ -656,9 +697,16 @@ h1.title {
 }
 
 p.rank {
-    font-size: 3em;
-    font-weight: bold;
     font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
+
+.restaurant-info {
+    padding-left : 30px;
+}
+
+.restaurant-user-actions {
+    font-family: "Mrs Eaves Bold Italic", Serif;
 }
 
 sup {

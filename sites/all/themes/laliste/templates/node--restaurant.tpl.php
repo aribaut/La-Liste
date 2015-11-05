@@ -80,16 +80,16 @@
  * @ingroup themeable
  */
 ?>
-<div class="Grid Grid--center Grid--full large-Grid--fit u-textCenter">
-  <div class="Grid-cell Grid-cell--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
+<div class="Grid Grid--full large-Grid--fit">
+  <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
     <?php //if ($content['field_rank']): ?>
         <?php //render($content['field_rank']); ?>
-        <p class="rank"><span class="score">37<sup>e</sup></span>/1000</p>
+        <p class="rank">37<sup>e</sup></p>
     <?php //endif; ?>
   </div>
-  <div class="Grid-cell laliste-box laliste-box-bg laliste-box-height-med u-textLeft">
+  <div class="Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-med u-textLeft">
     <?php //print render($content); ?>
-    <div>
+    <div class="restaurant-info">
       Type de cuisine: Japonaise avec influence francaise</br>
       Site internet: http://www.google.com</br>
       Telephone: +81 534 23543</br>
@@ -97,17 +97,20 @@
     </div>
   </div>
 </div>
-<div class="Grid  Grid--center Grid--full large-Grid--fit u-textCenter">
-   <div class="Grid-cell u-small-full u-med-full u-large-1of3 laliste-box laliste-box-height-short"></div>
-   <div class="Grid-cell laliste-box laliste-box-height-short u-textLeft">
-    <div>Yelp Michelin La Fourchette</br>TripAdvisor</br>Gault et Milau</div>
+<div class="Grid Grid--full large-Grid--fit">
+   <div class="Grid Grid-cell Grid--center laliste-box laliste-box-height-short">
+      <div class="Grid Grid-cell Grid--center">Yelp</div>
+      <div class="Grid Grid-cell Grid--center">Michelin</div>
+      <div class="Grid Grid-cell Grid--center">La Fourchette</div>
+      <div class="Grid Grid-cell Grid--center">TripAdvisor</div>
+      <div class="Grid Grid-cell Grid--center">Gault et Milau</div>
    </div>
 </div>
-<div class="Grid  Grid--center Grid--full large-Grid--fit u-textCenter">
-   <div class="Grid-cell Grid--center u-small-full u-med-full u-large-1of3  laliste-box laliste-box-bg laliste-box-height-tall">
-    <div>Partager</div>
+<div class="Grid Grid--full large-Grid--fit">
+   <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-tall">
+    <p class="restaurant-user-actions">Partager</p>
    </div>
-   <div class="Grid-cell laliste-box laliste-box-bg laliste-box-height-tall">
-    <div>Ajouter à ma liste</div>
+   <div class="Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-tall">
+    <p class="restaurant-user-actions">Ajouter à ma liste</p>
    </div>
 </div>
