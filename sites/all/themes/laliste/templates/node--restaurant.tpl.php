@@ -87,7 +87,7 @@
         <p class="rank">37<sup>e</sup></p>
     <?php //endif; ?>
   </div>
-  <div class="Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-med u-textLeft">
+  <div class="Grid Grid-cell Grid--center laliste-box no-hcenter laliste-box-bg laliste-box-height-med u-textLeft">
     <?php //print render($content); ?>
     <div class="restaurant-info">
       Type de cuisine: Japonaise avec influence francaise</br>

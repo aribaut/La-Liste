@@ -427,7 +427,7 @@ strong {
     }
 
     .restaurant-info {
-        padding-left : 30px !important;
+        padding-left : 50px !important;
         font-size: 1.3em !important;
     }
 
@@ -691,6 +691,10 @@ strong {
     }
 }
 
+.no-hcenter {
+    justify-content: left !important;
+}
+
 
 h1.title {
     font-family: "Mrs Eaves Bold Italic", Serif;
@@ -702,7 +706,7 @@ p.rank {
 }
 
 .restaurant-info {
-    padding-left : 30px;
+    padding-left : 20px;
 }
 
 .restaurant-user-actions {
