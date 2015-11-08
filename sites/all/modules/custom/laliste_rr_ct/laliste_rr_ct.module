@@ -132,7 +132,7 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
 
           }
 
-          //Find guide(s) that have been removed from this restaurant entry when editing the form          
+          //Find guide(s) that have been removed from this restaurant entry when editing the form
           //We identify the orphan entry from the restaurantguideranking table
           $ranking_id = db_query("
             SELECT ranking_id FROM restaurantguideranking WHERE CONCAT(restaurant_id,guide_id) NOT IN (SELECT CONCAT(entity_id,field_restaurant_guides_tid) FROM field_data_field_restaurant_guides) AND restaurant_id = ".$nid)->fetchField();
@@ -141,7 +141,7 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
 
             //We delete the orphan entry from the ranking table
             $result = db_query("
-              DELETE FROM ranking 
+              DELETE FROM ranking
               WHERE ranking_id = ".$ranking_id);
 
             // We delete all entries for that restaurant not matched in the corresponding field table
@@ -153,7 +153,31 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
   }
 }
 
-function laliste_rr_ct_entity_info_alter(&$entity_info) {  
+function laliste_rr_ct_node_delete($node) {
+
+  if(isset($node->nid)) {
+    // let's find the ranking record
+    $ranking_id = db_query("
+      SELECT ranking_id FROM {restaurantguideranking}
+      WHERE restaurant_id = ".$node->nid)->fetchField();
+    // we delete the existing restaurant record in the stats table
+    db_delete("restaurant_stats")
+      ->condition('restaurant_id', $node->nid)
+      ->execute();
+    // now we delete the lookup table entry
+    db_delete("restaurantguideranking")
+      ->condition('restaurant_id', $node->nid)
+      ->execute();
+    // now on to deleting the ranking itself
+    if(isset($ranking_id)) {
+      db_delete("ranking")
+        ->condition('ranking_id', $ranking_id)
+        ->execute();
+    }
+  }
+}
+
+function laliste_rr_ct_entity_info_alter(&$entity_info) {
     $entity_info['taxonomy_term']['uri callback'] = 'laliste_rr_ct_taxonomy_term_uri';
 }
 
