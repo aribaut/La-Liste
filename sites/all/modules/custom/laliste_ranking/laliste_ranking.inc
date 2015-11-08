@@ -5,6 +5,10 @@
  */
 
 /*
+ * Mettre un coefficient de fiabilité de 0.5 pour tout les sites participatifs des restaurants qui n'ont que des sites participatifs comme source
+ */
+
+/*
 ** Update all restaurant scores from today's date
 *  $val is not presently used.
 */
@@ -147,7 +151,20 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
           ':restaurant_id' => $restaurant_id,
           )
         );
-    }
+    }/* elseif($dominant_ranking->popularity == 0.2) {
+      // Restaurants have no guides! We apply a trust of 0.5 to all the sites and upgrade them to status of guides. Raally? :)
+      db_query("
+        UPDATE {ranking}
+        LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
+        SET score = :score, trust = 0.5
+        WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 0.2",
+        array(
+          ':score' => $dominant_ranking->score,
+          ':trust' => $dominant_ranking->trust,
+          ':restaurant_id' => $restaurant_id,
+          )
+        );
+    }*/
 
     // compounded scores & popularity via MySQL! for guides only
     $compounded_pro = db_query("
@@ -184,9 +201,9 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
     // calculating the bonus
     foreach($lists_bonus as $bonus) {
       switch ($bonus->score) {
-        case -3: $median += 0.03; $popularity += 1; break;
-        case -2: $median += 0.02; $popularity += 1; break;
-        case -1: $median += 0.01; $popularity += 1; break;
+        case -3: $median += 0.03; $popularity += 0.15; break;
+        case -2: $median += 0.02; $popularity += 0.15; break;
+        case -1: $median += 0.01; $popularity += 0.15; break;
       }
     }
 
@@ -973,10 +990,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   }
   // We calculate the popularity publication score
   switch ($guide_data['type']) {
-    case 'guide' :       $guide_data['popularity'] = 5;   break;
-    case 'list' :        $guide_data['popularity'] = 1;   break;
-    case 'publication' : $guide_data['popularity'] = 0.3;   break;
-    case 'user' :        $guide_data['popularity'] = 0.2; break;
+    case 'guide' :       $guide_data['popularity'] = 5;    break;
+    case 'list' :        $guide_data['popularity'] = 1;    break;
+    case 'user' :        $guide_data['popularity'] = 0.2;  break;
+    case 'publication' : $guide_data['popularity'] = 0.15; break;
   }
   // Let's return all results and mark not set trust to -1 for debug
   if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
