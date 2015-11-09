@@ -138,7 +138,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
     $dominant_ranking = db_query("
       SELECT trust, score, popularity FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 5 AND score > 0 ORDER BY trust DESC LIMIT 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
-    // We only consider a dominant guide who has a score equal or above 95
+    // We only consider a dominant guide who has a score equal or above 93
     if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 93) {
       db_query("
         UPDATE {ranking}
@@ -176,7 +176,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
     $compounded_pub = db_query("
       SELECT SUM(score*trust) AS score_pub, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity < 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 AND popularity >= 0.2 AND popularity < 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
     // do we have a list bonus to add to the coupounded (pre-final) score?
     $lists_bonus = db_query("
@@ -889,7 +889,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case "New York Times":
     $guide_data['trust'] = 0.741;
-    $guide_data['type']  = 'publication';
+    $guide_data['type']  = 'guide';
   break;
 
   case 'OpenTable':
