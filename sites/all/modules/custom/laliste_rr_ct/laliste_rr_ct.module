@@ -157,23 +157,25 @@ function laliste_rr_ct_node_delete($node) {
 
   if(isset($node->nid)) {
     // let's find the ranking record
-    $ranking_id = db_query("
+    $result = db_query("
       SELECT ranking_id FROM {restaurantguideranking}
-      WHERE restaurant_id = ".$node->nid)->fetchField();
+      WHERE restaurant_id = ".$node->nid);
     // we delete the existing restaurant record in the stats table
     db_delete("restaurant_stats")
       ->condition('restaurant_id', $node->nid)
       ->execute();
+    // now on to deleting the ranking itself
+    if(isset($result)) {
+      foreach($result as $row) {
+        db_delete("ranking")
+          ->condition('ranking_id', $row->ranking_id)
+          ->execute();
+      }
+    }
     // now we delete the lookup table entry
     db_delete("restaurantguideranking")
       ->condition('restaurant_id', $node->nid)
       ->execute();
-    // now on to deleting the ranking itself
-    if(isset($ranking_id)) {
-      db_delete("ranking")
-        ->condition('ranking_id', $ranking_id)
-        ->execute();
-    }
   }
 }
 
