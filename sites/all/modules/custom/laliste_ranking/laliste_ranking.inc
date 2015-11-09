@@ -663,6 +663,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Der Feinschmecker':
       case 'Five Diamond Awards':
       case 'Forbes Travel Guide':
+      case 'OpenTable':
       case 'Resto.be':
       case 'Yelp':
       case 'Zomato':
@@ -889,6 +890,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case "New York Times":
     $guide_data['trust'] = 0.741;
     $guide_data['type']  = 'publication';
+  break;
+
+  case 'OpenTable':
+    $guide_data['type']  = 'user';
   break;
 
   case 'Opiniated about dining':
