@@ -433,9 +433,11 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Guia Repsol':
-        $score = ($food == 3 ? 100 : 0);
-        $score += ($food == 2 ? 80 : 0);
+        $score =  ($food == 3 ? 80 : 0);
+        $score += ($food == 2 ? 70 : 0);
         $score += ($food == 1 ? 60 : 0);
+        $score += $wine*2;
+        $score += $service*2;
       break;
 
       case 'The Good Food Guide':
@@ -534,8 +536,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         if (is_null($score) || empty($score)) { // we count all variations of no stars
           $food += 40;
         }
-      	$score += ($wine == 1 ? 5 : 0);
-      	$score += ($bonus == 1 ? $atmosphere*3 : $atmosphere*2);
+      	$score += ($wine == 1 ? 10 : 0);// was 5
+      	$score += ($bonus == 1 ? $atmosphere*2 : $atmosphere*1);
       break;
 
       case 'Michelin Restaurants (FR)': case 'Michelin Restaurants (DE)':
