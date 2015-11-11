@@ -111,9 +111,11 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
         }
 
         // we only count user sites with 50+ reviews or votes are not present
-        if($guide_ranking['type'] == 'user' && $ranking_score['votes'] < 50 && $ranking_score['votes'] != null) {
-          $ranking_score['score'] = null;
-          $n=$n-1;
+        if($guide_ranking['type'] == 'user') {
+         if($ranking_score['votes'] < 50) {
+            $ranking_score['score'] = null;
+            $n=$n-1;
+          }
         }
 
         // we don't count lists as there bonus is calculated after the counpounded total
