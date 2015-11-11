@@ -110,6 +110,12 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
           $guide_ranking['trust'] = 1;
         }
 
+        // we only count user sites with 50+ reviews or votes are not present
+        if($guide_ranking['type'] == 'user' && $ranking_score['votes'] < 50 && $ranking_score['votes'] != null) {
+          $ranking_score['score'] = null;
+          $n=$n-1;
+        }
+
         // we don't count lists as there bonus is calculated after the counpounded total
         if ($ranking_score['score'] < 0) {
           $n=$n-1;
@@ -196,7 +202,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
     $popularity = $compounded_pro->popularity + $compounded_pub->popularity;
 
     // calculating the global score : combining 60% professional score with 40% public score
-    $median = $median_pro * 0.6 + $median_pub * 0.4;
+    $median = $median_pro * 0.65 + $median_pub * 0.35;
 
     // calculating the bonus
     foreach($lists_bonus as $bonus) {
@@ -605,12 +611,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Tripadvisor':
-        if(isset($votes) && $votes >= 50) {
         	// raw
         	$score = $food*16;
         	$score += $service*2;
         	$score += $atmosphere*2;
-        }
       break;
 
       case 'Varta-Führer':
@@ -656,9 +660,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Yelp':
-        if(isset($votes) && $votes >= 50) {
           $score = $food*20;
-        }
       break;
 
       case 'Zagat':
