@@ -655,6 +655,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $tmp * 3/7; // for ambiance
       break;
 
+      case 'Yelp':
+        if(isset($votes) && $votes >= 50) {
+          $score = $food*20;
+        }
+      break;
+
       case 'Zagat':
         // raw
         $score = $food*2.666;
@@ -667,7 +673,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Forbes Travel Guide':
       case 'OpenTable':
       case 'Resto.be':
-      case 'Yelp':
       case 'Zomato':
       	$score = $food*20;
       break;
