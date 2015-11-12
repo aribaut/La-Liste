@@ -110,34 +110,28 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
           $guide_ranking['trust'] = 1;
         }
 
-        // we only count user sites with 50+ reviews or votes are not present
-        if($guide_ranking['type'] == 'user') {
-         if($ranking_score['votes'] < 50) {
-            $ranking_score['score'] = null;
-            $n=$n-1;
-          }
-        }
-
         // we don't count lists as there bonus is calculated after the counpounded total
         if ($ranking_score['score'] < 0) {
           $n=$n-1;
         }
 
-        // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
-        db_update('ranking')
-          ->fields(array(
-            'score' => floatval($ranking_score['score']),
-            'trust' => $guide_ranking['trust'],
-            'popularity' => $guide_ranking['popularity'],
-            'updated' => time(),
-            )
-          )
-          ->condition('ranking_id', intval($ranking_score['ranking_id']))
-          ->execute();
+        // calculate the float score
+        $score =  floatval($ranking_score['score']);
       }
       else {
         $n=$n-1;
       }
+      // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
+      db_update('ranking')
+        ->fields(array(
+          'score' => $score,
+          'trust' => $guide_ranking['trust'],
+          'popularity' => $guide_ranking['popularity'],
+          'updated' => time(),
+          )
+        )
+        ->condition('ranking_id', intval($ranking_score['ranking_id']))
+        ->execute();
   	}
   }
   // We now divide to obtain the median score with the associated popularity.
@@ -204,7 +198,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
     $popularity = $compounded_pro->popularity + $compounded_pub->popularity;
 
     // calculating the global score : combining 60% professional score with 40% public score
-    $median = $median_pro * 0.65 + $median_pub * 0.35;
+    $median = $median_pro * 0.6 + $median_pub * 0.4;
 
     // calculating the bonus
     foreach($lists_bonus as $bonus) {
@@ -681,6 +675,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	$score = $food*20;
       break;
     }
+  }
+  // we only count user sites with 50+ reviews. Discard the rest
+  if(($votes > 0 && $votes < 50)) {
+    $score = null;
   }
   $ranking['score'] = $score;
   return $ranking;
