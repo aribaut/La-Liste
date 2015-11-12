@@ -724,9 +724,45 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Openrice':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Eesti Maitsed':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'James Beard Awards':
+    $guide_data['type']  = 'publication';
+  break;
+
+  case 'Afisha.ru':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Burpple':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Poland 100 best restaurants':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Alpha Guide':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Athinorama':
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'The Brisbane Times Good Food':
     $guide_data['trust'] = 0.493;
-    $guide_data['type']  = 'publication';
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'De Danske Spiseguiden':
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Guide Delta':
@@ -779,7 +815,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
 	case 'Forbes Travel Guide':
-    $guide_data['type']  = 'publication';
+    $guide_data['type']  = 'guide';
 	break;
 
   case 'Foursquare':
@@ -854,7 +890,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Guía Summum':
-    $guide_data['type']  = 'user';
+    $guide_data['type']  = 'guide';
   break;
 
 	case 'Guia Repsol':
@@ -900,13 +936,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
   case 'Michelin Restaurants (DE)':
-    $guide_data['trust'] = 0.741;
-    $guide_data['type']  = 'guide';
+    $guide_data['type']  = 'user';
   break;
 
   case 'Michelin Restaurants (FR)':
-    $guide_data['trust'] = 0.693;
-    $guide_data['type']  = 'guide';
+    $guide_data['type']  = 'user';
   break;
 
   case "New York Times":
@@ -969,7 +1003,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Timeout Mexico':
-    $guide_data['type']  = 'user';
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Traveltipz.ru':
@@ -1021,6 +1055,9 @@ function laliste_ranking_get_guide_factor($guide_name) {
     case 'list' :        $guide_data['popularity'] = 1;    break;
     case 'user' :        $guide_data['popularity'] = 0.2;  break;
     case 'publication' : $guide_data['popularity'] = 0.15; break;
+  }
+  if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
+    $guide_data['trust'] = 0.5;
   }
   // Let's return all results and mark not set trust to -1 for debug
   if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
