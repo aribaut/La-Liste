@@ -10,9 +10,9 @@
 
 /*
 ** Update all restaurant scores from today's date
-*  $val is not presently used.
+*  $pro corresponds to the professional score weight (default to 60%)
 */
-function laliste_ranking_update($val) {
+function laliste_ranking_update($pro) {
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
@@ -21,7 +21,7 @@ function laliste_ranking_update($val) {
 
 	foreach($results as $row) { //Guides 60%, Sites sociaux 40%, publications ?% (à essayer)
 		$scores = array();
-		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid);
+		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
 		// We ONLY treat scores where we have existing business rules
 		if($scores != -1) {
 			// Do we have a corresponding restaurant in the stats table?
@@ -70,7 +70,7 @@ function laliste_ranking_update($val) {
 /*
 ** Calculate the score for each ranking record.
 */
-function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
+function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) {
 
   // for all ranking rows, calculate the score according to guide rule and update row
   $restaurant_rankings = db_query("
@@ -197,8 +197,14 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
 
     $popularity = $compounded_pro->popularity + $compounded_pub->popularity;
 
-    // calculating the global score : combining 60% professional score with 40% public score
-    $median = $median_pro * 0.6 + $median_pub * 0.4;
+    // calculating the global score : user generated professional score
+    if(isset($pro) && $pro > 0 && $pro <= 1) {
+      $pub = 1 - $pro;
+      $median = $median_pro * $pro + $median_pub * $pub;
+    } else {
+      // combining 60% professional score with 40% public score
+      $median = $median_pro * 0.6 + $median_pub * 0.4;
+    }
 
     // calculating the bonus
     foreach($lists_bonus as $bonus) {
