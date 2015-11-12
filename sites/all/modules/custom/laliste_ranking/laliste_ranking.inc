@@ -198,13 +198,19 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     $popularity = $compounded_pro->popularity + $compounded_pub->popularity;
 
     // calculating the global score : user generated professional score
-    if(isset($pro) && $pro > 0 && $pro <= 1) {
+    /*
+    echo 'pro = '.$pro;
+    if(isset($pro) && $pro >= 0) {
+      echo 'i am not here'; die();
       $pub = 1 - $pro;
       $median = $median_pro * $pro + $median_pub * $pub;
     } else {
+      echo 'i am here'; die();
       // combining 60% professional score with 40% public score
       $median = $median_pro * 0.6 + $median_pub * 0.4;
     }
+    */
+    $median = $median_pro * 0.8 + $median_pub * 0.2;
 
     // calculating the bonus
     foreach($lists_bonus as $bonus) {
