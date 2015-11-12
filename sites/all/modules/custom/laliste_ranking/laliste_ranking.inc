@@ -273,13 +273,23 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food;
       break;
 
+      case 'Alpha Guide': case 'Athinorama':
+        $score =   ($food == 20 ? 100 : 0);
+        $score +=  ($food == 18 ? 90 : 0);
+        $score +=  ($food == 17 ? 80 : 0);
+        $score +=  ($food == 16.5 ? 75 : 0);
+        $score +=  ($food == 16 ? 70 : 0);
+        $score +=  ($food == 15.5 ? 65 : 0);
+        $score +=  ($food == 15 ? 60 : 0);
+      break;
+
       case 'Blue Ribbon':
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
         $score +=  ($food == 1 ? 60 : 0);
       break;
 
-      case 'The Brisbane Times Good Food': // to be adjusted cleaned up
+      case 'The Brisbane Times Good Food':
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
         $score +=  ($food == 1 ? 60 : 0);
@@ -294,6 +304,14 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($atmosphere == 1 ? 8 : 0);
         $score += ($quiet == 1 ? 2 : 0);
         $score += ($value == 1 ? 2 : 0);
+      break;
+
+      case 'De Danske Spiseguiden':
+        $score =   ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4 ? 90 : 0);
+        $score +=  ($food == 3 ? 80 : 0);
+        $score +=  ($food == 2 ? 70 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
       break;
 
       case 'Degusta':
@@ -339,6 +357,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =  $food*8;
         $score += $atmosphere;
         $score += $service;
+      break;
+
+      case 'Eesti Maitsed':
+        //TBD
       break;
 
       case 'Espresso':
@@ -480,7 +502,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Guía Summum':
-        //TBD
+        $score = $food*10;
       break;
 
       case 'Guia4rodas':
@@ -522,6 +544,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service*2;
       break;
 
+      case 'James Beard Awards': case 'Afisha.ru':
+        $score = $food*10;
+      break;
+
       case 'La Suisse Gourmande':
         $score =  ($food == 100 ? 100 : 0);
         $score +=  ($food == 90 ? 90 : 0);
@@ -556,7 +582,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Michelin Restaurants (FR)': case 'Michelin Restaurants (DE)':
-        // raw
         $score = $food*16;
         $score += $service*2;
         $score += $atmosphere*2;
@@ -564,6 +589,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case "New York Times":
         $score = $food*25;
+      break;
+
+      case 'Poland 100 best restaurants':
+        $score =  ($food == 3 ? 100 : 0);
+        $score +=  ($food == 2 ? 80 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
       break;
 
       case 'Queremos comer':
@@ -607,7 +638,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service;
       break;
 
-      case 'Timeout Mexico':
+      case 'Timeout' : case 'Timeout Mexico':
         $score = $food*20;
       break;
 
@@ -682,6 +713,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Der Feinschmecker':
       case 'Five Diamond Awards':
       case 'Forbes Travel Guide':
+      case 'Openrice':
       case 'OpenTable':
       case 'Resto.be':
       case 'Zomato':
