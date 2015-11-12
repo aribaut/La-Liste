@@ -13,6 +13,8 @@
 *  $pro corresponds to the professional score weight (default to 60%)
 */
 function laliste_ranking_update($pro) {
+  // let's clear the ranking scores and popularity
+  $clear = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
@@ -114,24 +116,23 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
         if ($ranking_score['score'] < 0) {
           $n=$n-1;
         }
-
         // calculate the float score
         $score =  floatval($ranking_score['score']);
+        // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
+        db_update('ranking')
+          ->fields(array(
+            'score' => $score,
+            'trust' => $guide_ranking['trust'],
+            'popularity' => $guide_ranking['popularity'],
+            'updated' => time(),
+            )
+          )
+        ->condition('ranking_id', intval($ranking_score['ranking_id']))
+        ->execute();
       }
       else {
         $n=$n-1;
       }
-      // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
-      db_update('ranking')
-        ->fields(array(
-          'score' => $score,
-          'trust' => $guide_ranking['trust'],
-          'popularity' => $guide_ranking['popularity'],
-          'updated' => time(),
-          )
-        )
-        ->condition('ranking_id', intval($ranking_score['ranking_id']))
-        ->execute();
   	}
   }
   // We now divide to obtain the median score with the associated popularity.
@@ -210,7 +211,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
       $median = $median_pro * 0.6 + $median_pub * 0.4;
     }
     */
-    $median = $median_pro * 0.8 + $median_pub * 0.2;
+    $median = $median_pro * 0.7 + $median_pub * 0.3;
 
     // calculating the bonus
     foreach($lists_bonus as $bonus) {
