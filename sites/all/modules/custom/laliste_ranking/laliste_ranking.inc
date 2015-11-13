@@ -210,7 +210,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
         $median_pro += $bonus->score_trusted; $popularity += 1; break;
     }
     // combining the pro and public scores for a LA LISTE score
-    $median = $median_pro * 0.7 + $median_pub * 0.3;
+    $median = $median_pro * 0.75 + $median_pub * 0.25;
     // assigning scores values and sum of popularity score to the stats table
     $median_score = array();
     $median_score['global']     = $median;
