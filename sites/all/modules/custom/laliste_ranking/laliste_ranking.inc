@@ -14,7 +14,7 @@
 */
 function laliste_ranking_update($pro) {
   // let's clear the ranking scores and popularity
-  $clear = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
+  //$clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
@@ -169,24 +169,28 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
         );
     }*/
 
-    // compounded scores & popularity via MySQL! for guides only
+    // compounded scores & popularity via MySQL! for * guides * only
     $compounded_pro = db_query("
       SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity = 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
-    // compounded scores & popularity via MySQL! for guides only
+    // compounded scores & popularity via MySQL! for * public sites * only
     $compounded_pub = db_query("
       SELECT SUM(score*trust) AS score_pub, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 AND popularity >= 0.2 AND popularity < 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 AND popularity >= 0.2 AND popularity < 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
-    // do we have a list bonus to add to the coupounded (pre-final) score?
-    $lists_bonus = db_query("
-      SELECT score
+    // do we have a list bonus to add to the coupounded pro score?
+    $list_bonus = db_query("
+      SELECT score as score_list
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score < 0",array(':restaurant_id' => $restaurant_id));
-
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score > 0 AND popularity >= 1.5 AND popularity < 5",array(':restaurant_id' => $restaurant_id));
+    // do we have a trusted publication bonus to add to the coupounded pro score?
+    $trusted_bonus = db_query("
+      SELECT score AS score_trusted
+      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score > 0 AND popularity >= 1 AND popularity < 1.5",array(':restaurant_id' => $restaurant_id));
     // calculating the median score
     if($compounded_pro->n > 0) {
       $median_pro = $compounded_pro->score_pro/$compounded_pro->n;
@@ -195,43 +199,25 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     if($compounded_pub->n > 0) {
       $median_pub = $compounded_pub->score_pub/$compounded_pub->n;
     }
-
+    // calculating the sum of all popularities
     $popularity = $compounded_pro->popularity + $compounded_pub->popularity;
-
-    // calculating the global score : user generated professional score
-    /*
-    echo 'pro = '.$pro;
-    if(isset($pro) && $pro >= 0) {
-      echo 'i am not here'; die();
-      $pub = 1 - $pro;
-      $median = $median_pro * $pro + $median_pub * $pub;
-    } else {
-      echo 'i am here'; die();
-      // combining 60% professional score with 40% public score
-      $median = $median_pro * 0.6 + $median_pub * 0.4;
+    // calculating the lists bonuses that adds to the pro score
+    foreach($list_bonus as $bonus) {
+        $median_pro += $bonus->score_list; $popularity += 1.5; break;
     }
-    */
+    // calculating the trusted publications bonuses that adds to the pro score
+    foreach($trusted_bonus as $bonus) {
+        $median_pro += $bonus->score_trusted; $popularity += 1; break;
+    }
+    // combining the pro and public scores for a LA LISTE score
     $median = $median_pro * 0.7 + $median_pub * 0.3;
-
-    // calculating the bonus
-    foreach($lists_bonus as $bonus) {
-      switch ($bonus->score) {
-        case -3: $median += 0.03; $popularity += 0.15; break;
-        case -2: $median += 0.02; $popularity += 0.15; break;
-        case -1: $median += 0.01; $popularity += 0.15; break;
-      }
-    }
-
-    // getting the median score value and sum of popularity score
+    // assigning scores values and sum of popularity score to the stats table
     $median_score = array();
     $median_score['global']     = $median;
     $median_score['pro']        = $median_pro;
     $median_score['pub']        = $median_pub;
     $median_score['popularity'] = $popularity;
-
-    // we now send back the rounded score to the main stat table
     return($median_score);
-
   }
   else return -1; // no guide rule setup for this dataset
 }
@@ -257,9 +243,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
       case 'Vacay.ca': case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
-        $score = ($food>=1 && $food <=20) ? -3 : 0;
-        $score += ($food>20 && $food <=50) ? -2 : 0;
-        $score += ($food>50 && $food <=100) ? -1 : 0;
+        $score = ($food>=1 && $food <=20) ? 0.03 : 0;
+        $score += ($food>20 && $food <=50) ? 0.02 : 0;
+        $score += ($food>50 && $food <=100) ? 0.01 : 0;
       break;
 
       case 'The AA Restaurant Guide Automobile Association':
@@ -643,7 +629,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
-        $score = $food*5;
+        $score =  ($food == 3 ? 100 : 0);
+        $score +=  ($food == 2 ? 80 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
       break;
 
       case 'Traveltipz.ru':
@@ -684,6 +672,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*16;
         $score += $service*2;
         $score += $atmosphere*2;
+      break;
+
+      case 'Wine Spectator (trusted source)':
+        $score = ($wine==3) ? 0.3 : 0;
+        $score += ($wine==2) ? 0.2 : 0;
+        $score += ($wine==1) ? 0.1 : 0;
       break;
 
       case 'Where to eat in Canada':
@@ -1068,6 +1062,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Wine Spectator (trusted source)':
+    $guide_data['type']  = 'publication';
+  break;
+
   case 'White Guide':
     $guide_data['trust'] = 0.733;
     $guide_data['type']  = 'guide';
@@ -1083,10 +1081,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   }
   // We calculate the popularity publication score
   switch ($guide_data['type']) {
-    case 'guide' :       $guide_data['popularity'] = 5;    break;
-    case 'list' :        $guide_data['popularity'] = 1;    break;
-    case 'user' :        $guide_data['popularity'] = 0.2;  break;
-    case 'publication' : $guide_data['popularity'] = 0.15; break;
+    case 'guide' :       $guide_data['popularity'] = 5;   break;
+    case 'list' :        $guide_data['popularity'] = 1.5; break;
+    case 'publication' : $guide_data['popularity'] = 1;   break;
+    case 'user' :        $guide_data['popularity'] = 0.2; break;
   }
   if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
     $guide_data['trust'] = 0.5;
