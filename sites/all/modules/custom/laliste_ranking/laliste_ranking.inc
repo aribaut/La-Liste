@@ -76,7 +76,16 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
 
   // for all ranking rows, calculate the score according to guide rule and update row
   $restaurant_rankings = db_query("
-    SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id, food, bonus, wine, service, atmosphere, panorama, quiet, value, votes
+    SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id,
+    REPLACE(CAST(food AS CHAR), ',', '.'),
+    REPLACE(CAST(bonus AS CHAR), ',', '.'),
+    REPLACE(CAST(wine AS CHAR), ',', '.'),
+    REPLACE(CAST(service AS CHAR), ',', '.'),
+    REPLACE(CAST(atmosphere AS CHAR), ',', '.'),
+    REPLACE(CAST(panorama AS CHAR), ',', '.'),
+    REPLACE(CAST(quiet AS CHAR), ',', '.'),
+    value,
+    votes
     FROM {ranking}
     LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
     WHERE {restaurantguideranking}.restaurant_id = :restaurant_id", array(':restaurant_id' => $restaurant_id));
@@ -548,7 +557,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = -1;
       break;
 
-      case 'Michelin' :
+      case 'Michelin' : case 'Michelin (JP)'
       	// raw
       	$score =  ($food == 3 ? 80 : 0);
       	$score += ($food == 2 ? 70 : 0);
@@ -666,6 +675,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere*2;
       break;
 
+      case 'Via restó':
+        $score = $food*8;
+        $score += $service;
+        $score += $atmosphere;
+      break;
+
       case 'Wine Spectator (trusted source)':
         $score = ($wine==3) ? 0.3 : 0;
         $score += ($wine==2) ? 0.2 : 0;
@@ -702,6 +717,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Openrice':
       case 'OpenTable':
       case 'Resto.be':
+      case 'Salir a Comer':
       case 'Zomato':
       	$score = $food*20;
       break;
@@ -966,6 +982,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
 	break;
 
+  case 'Michelin (JP)':
+    $guide_data['trust'] =  0.85; // arbitrary - test only
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Michelin Restaurants (DE)':
     $guide_data['type']  = 'user';
   break;
@@ -1007,6 +1028,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['trust'] = 0.46;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+  break;
+
+  case 'Salir a Comer':
+    $guide_data['type']  = 'user';
   break;
 
   case 'Schlemmer Atlas':
@@ -1066,6 +1091,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Viajeros':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Via restó':
     $guide_data['type']  = 'user';
   break;
 
