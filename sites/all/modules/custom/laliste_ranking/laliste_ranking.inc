@@ -1102,7 +1102,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   }
   // default trust factor to 0.5
   if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
-    $guide_data['trust'] = 0.5;
+    $guide_data['trust'] = 0.7;
   }
   // Let's return all results and mark not set trust to -1 for debug
   if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
