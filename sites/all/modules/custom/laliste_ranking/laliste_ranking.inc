@@ -14,7 +14,7 @@
 */
 function laliste_ranking_update($pro) {
   // let's clear the ranking scores and popularity
-  //$clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
+  $clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
@@ -723,8 +723,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
     }
   }
-  // we only count user sites with 50+ reviews. Discard the rest
-  if(($votes > 0 && $votes < 50)) {
+  // we only count user sites with 30+ reviews. Discard the rest
+  if(($votes > 0 && $votes < 30)) {
     $score = null;
   }
   $ranking['score'] = $score;
