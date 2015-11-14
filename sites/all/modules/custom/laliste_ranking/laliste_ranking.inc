@@ -159,14 +159,12 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     $compounded_pro = db_query("
       SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity = 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
-
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity >= 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
     // compounded scores & popularity via MySQL! for * public sites * only
     $compounded_pub = db_query("
       SELECT SUM(score*trust) AS score_pub, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 AND popularity >= 0.2 AND popularity < 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
-
     // do we have a list bonus to add to the coupounded pro score?
     $list_bonus = db_query("
       SELECT score as score_list
@@ -177,11 +175,11 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
       SELECT score AS score_trusted
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score > 0 AND popularity >= 1 AND popularity < 1.5",array(':restaurant_id' => $restaurant_id));
-    // calculating the median score
+    // calculating the pro median score
     if($compounded_pro->n > 0) {
       $median_pro = $compounded_pro->score_pro/$compounded_pro->n;
     }
-
+    // calculating the public median score
     if($compounded_pub->n > 0) {
       $median_pub = $compounded_pub->score_pub/$compounded_pub->n;
     }
@@ -420,6 +418,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Gault-Millau (JP)':
         $score = $food*20;
+      break;
+
+      case 'Gault-Millau (MA)':
+        // TBD
       break;
 
       case 'Gault-Millau (NL)':
@@ -802,6 +804,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Dianping':
     $guide_data['trust'] =  0.7; // arbitrary
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -887,6 +890,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Gault-Millau (MA)':
+    $guide_data['trust'] =  0.7; // arbitrary
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Gault-Millau (NL)':
     $guide_data['trust'] = 0.7; // arbitrary
     $guide_data['type']  = 'guide';
@@ -915,6 +924,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Guía Summum':
+    $guide_data['trust'] = 0.7; // arbitrary
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -1028,6 +1039,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Timeout Mexico':
+    $guide_data['trust'] = 0.7;
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -1078,13 +1091,16 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
 	break;
   }
-  // We calculate the popularity publication score
-  switch ($guide_data['type']) {
-    case 'guide' :       $guide_data['popularity'] = 5;   break;
-    case 'list' :        $guide_data['popularity'] = 1.5; break;
-    case 'publication' : $guide_data['popularity'] = 1;   break;
-    case 'user' :        $guide_data['popularity'] = 0.2; break;
+  // We calculate the popularity publication score if not set
+  if (!isset($guide_data['popularity'])) {
+    switch ($guide_data['type']) {
+      case 'guide' :       $guide_data['popularity'] = 5;   break;
+      case 'list' :        $guide_data['popularity'] = 1.5; break;
+      case 'publication' : $guide_data['popularity'] = 1;   break;
+      case 'user' :        $guide_data['popularity'] = 0.2; break;
+    }
   }
+  // default trust factor to 0.5
   if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
     $guide_data['trust'] = 0.5;
   }
