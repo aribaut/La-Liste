@@ -77,13 +77,13 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
   // for all ranking rows, calculate the score according to guide rule and update row
   $restaurant_rankings = db_query("
     SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id,
-    REPLACE(CAST(food AS CHAR), ',', '.'),
-    REPLACE(CAST(bonus AS CHAR), ',', '.'),
-    REPLACE(CAST(wine AS CHAR), ',', '.'),
-    REPLACE(CAST(service AS CHAR), ',', '.'),
-    REPLACE(CAST(atmosphere AS CHAR), ',', '.'),
-    REPLACE(CAST(panorama AS CHAR), ',', '.'),
-    REPLACE(CAST(quiet AS CHAR), ',', '.'),
+    REPLACE(CAST(food AS CHAR), ',', '.') AS food,
+    REPLACE(CAST(bonus AS CHAR), ',', '.') AS bonus,
+    REPLACE(CAST(wine AS CHAR), ',', '.') AS wine,
+    REPLACE(CAST(service AS CHAR), ',', '.') AS service,
+    REPLACE(CAST(atmosphere AS CHAR), ',', '.') AS atmosphere,
+    REPLACE(CAST(panorama AS CHAR), ',', '.') AS panorama,
+    REPLACE(CAST(quiet AS CHAR), ',', '.') AS quiet,
     value,
     votes
     FROM {ranking}
@@ -557,7 +557,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = -1;
       break;
 
-      case 'Michelin' : case 'Michelin (JP)'
+      case 'Michelin' : case 'Michelin (JP)':
       	// raw
       	$score =  ($food == 3 ? 80 : 0);
       	$score += ($food == 2 ? 70 : 0);
