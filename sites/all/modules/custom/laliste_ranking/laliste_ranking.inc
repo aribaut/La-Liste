@@ -738,7 +738,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Blue Ribbon':
-    $guide_data['trust'] = 0.6; // arbitrary
     $guide_data['type']  = 'guide';
   break;
 
@@ -803,7 +802,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
   case 'Dianping':
-    $guide_data['trust'] =  0.7; // arbitrary
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
@@ -891,13 +889,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (MA)':
-    $guide_data['trust'] =  0.7; // arbitrary
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
   case 'Gault-Millau (NL)':
-    $guide_data['trust'] = 0.7; // arbitrary
     $guide_data['type']  = 'guide';
   break;
 
@@ -924,7 +920,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Guía Summum':
-    $guide_data['trust'] = 0.7; // arbitrary
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
@@ -993,7 +988,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Philippine Tatler':
-    $guide_data['trust'] = 0.6; // arbitrary
     $guide_data['type']  = 'guide';
   break;
 
@@ -1011,6 +1005,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Rossouw\'s Restaurants':
     $guide_data['trust'] = 0.46;
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
