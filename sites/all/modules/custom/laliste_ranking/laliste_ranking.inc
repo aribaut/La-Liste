@@ -319,7 +319,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere*2;
       break;
 
-      case 'Diningcity.cn':
+      case 'Dianping':
         $score =  ($food == 3 ? 100 : 0);
         $score += ($food == 2 ? 80 : 0);
         $score += ($food == 1 ? 60 : 0);
@@ -630,15 +630,13 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*20;
       break;
 
-      case 'Tripadvisor':
-        	// raw
+      case 'Tripadvisor': case 'Diningcity.cn':
         	$score = $food*16;
         	$score += $service*2;
         	$score += $atmosphere*2;
       break;
 
       case 'Varta-Führer':
-      	// raw
       	if ($bonus) {
       	  $score =  ($food == 5 ? 80 : 0);
       	  $score +=  ($food == 4 ? 70 : 0);
@@ -802,11 +800,16 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
 	break;
 
-  case 'Diningcity.cn':
-    $guide_data['type']  = 'user';
+  case 'Dianping':
+    $guide_data['trust'] =  0.7; // arbitrary
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Dining City':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Diningcity.cn':
     $guide_data['type']  = 'user';
   break;
 
