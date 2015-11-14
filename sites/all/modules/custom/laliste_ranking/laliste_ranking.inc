@@ -154,21 +154,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
           ':restaurant_id' => $restaurant_id,
           )
         );
-    }/* elseif($dominant_ranking->popularity == 0.2) {
-      // Restaurants have no guides! We apply a trust of 0.5 to all the sites and upgrade them to status of guides. Raally? :)
-      db_query("
-        UPDATE {ranking}
-        LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-        SET score = :score, trust = 0.5
-        WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 0.2",
-        array(
-          ':score' => $dominant_ranking->score,
-          ':trust' => $dominant_ranking->trust,
-          ':restaurant_id' => $restaurant_id,
-          )
-        );
-    }*/
-
+    }
     // compounded scores & popularity via MySQL! for * guides * only
     $compounded_pro = db_query("
       SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
@@ -331,6 +317,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*16;
         $score += $service*2;
         $score += $atmosphere*2;
+      break;
+
+      case 'Diningcity.cn':
+        $score =  ($food == 3 ? 100 : 0);
+        $score += ($food == 2 ? 80 : 0);
+        $score += ($food == 1 ? 60 : 0);
       break;
 
       case 'Dubai Eating':
@@ -809,6 +801,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
 		$guide_data['trust'] =	0.41;
     $guide_data['type']  = 'guide';
 	break;
+
+  case 'Diningcity.cn':
+    $guide_data['type']  = 'user';
+  break;
 
   case 'Dining City':
     $guide_data['type']  = 'user';
