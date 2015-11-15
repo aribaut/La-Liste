@@ -13,6 +13,8 @@
 *  $pro corresponds to the professional score weight (default to 60%)
 */
 function laliste_ranking_update($pro) {
+  // let's clear the restaurant stats
+  $clear_restaurant_stats = db_query("DELETE * FROM {restaurant_stats}");
   // let's clear the ranking scores and popularity
   $clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
