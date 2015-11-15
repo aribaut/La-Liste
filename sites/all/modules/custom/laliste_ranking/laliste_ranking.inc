@@ -5,10 +5,18 @@
  */
 
 /*
+ * Mettre un coefficient de fiabilité de 0.5 pour tout les sites participatifs des restaurants qui n'ont que des sites participatifs comme source
+ */
+
+/*
 ** Update all restaurant scores from today's date
-*  $val is not presently used.
+*  $pro corresponds to the professional score weight (default to 60%)
 */
-function laliste_ranking_update($val) {
+function laliste_ranking_update($pro) {
+  // let's clear the restaurant stats
+  $clear_restaurant_stats = db_query("DELETE FROM {restaurant_stats}");
+  // let's clear the ranking scores and popularity
+  $clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
@@ -17,7 +25,7 @@ function laliste_ranking_update($val) {
 
 	foreach($results as $row) { //Guides 60%, Sites sociaux 40%, publications ?% (à essayer)
 		$scores = array();
-		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid);
+		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
 		// We ONLY treat scores where we have existing business rules
 		if($scores != -1) {
 			// Do we have a corresponding restaurant in the stats table?
@@ -66,11 +74,20 @@ function laliste_ranking_update($val) {
 /*
 ** Calculate the score for each ranking record.
 */
-function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
+function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) {
 
   // for all ranking rows, calculate the score according to guide rule and update row
   $restaurant_rankings = db_query("
-    SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id, food, bonus, wine, service, atmosphere, panorama, quiet, value, votes
+    SELECT {restaurantguideranking}.guide_id, {ranking}.ranking_id,
+    REPLACE(CAST(food AS CHAR), ',', '.') AS food,
+    REPLACE(CAST(bonus AS CHAR), ',', '.') AS bonus,
+    REPLACE(CAST(wine AS CHAR), ',', '.') AS wine,
+    REPLACE(CAST(service AS CHAR), ',', '.') AS service,
+    REPLACE(CAST(atmosphere AS CHAR), ',', '.') AS atmosphere,
+    REPLACE(CAST(panorama AS CHAR), ',', '.') AS panorama,
+    REPLACE(CAST(quiet AS CHAR), ',', '.') AS quiet,
+    value,
+    votes
     FROM {ranking}
     LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
     WHERE {restaurantguideranking}.restaurant_id = :restaurant_id", array(':restaurant_id' => $restaurant_id));
@@ -110,18 +127,19 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
         if ($ranking_score['score'] < 0) {
           $n=$n-1;
         }
-
+        // calculate the float score
+        $score =  floatval($ranking_score['score']);
         // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
         db_update('ranking')
           ->fields(array(
-            'score' => floatval($ranking_score['score']),
+            'score' => $score,
             'trust' => $guide_ranking['trust'],
             'popularity' => $guide_ranking['popularity'],
             'updated' => time(),
             )
           )
-          ->condition('ranking_id', intval($ranking_score['ranking_id']))
-          ->execute();
+        ->condition('ranking_id', intval($ranking_score['ranking_id']))
+        ->execute();
       }
       else {
         $n=$n-1;
@@ -134,8 +152,8 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
     $dominant_ranking = db_query("
       SELECT trust, score, popularity FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 5 AND score > 0 ORDER BY trust DESC LIMIT 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
-    // We only consider a dominant guide who has a score equal or above 95
-    if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 95) {
+    // We only consider a dominant guide who has a score equal or above 93
+    if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 93) {
       db_query("
         UPDATE {ranking}
         LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
@@ -148,58 +166,53 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id) {
           )
         );
     }
-
-    // compounded scores & popularity via MySQL! for guides only
+    // compounded scores & popularity via MySQL! for * guides * only
     $compounded_pro = db_query("
       SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity = 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
-
-    // compounded scores & popularity via MySQL! for guides only
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity >= 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
+    // compounded scores & popularity via MySQL! for * public sites * only
     $compounded_pub = db_query("
       SELECT SUM(score*trust) AS score_pub, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity < 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
-
-    // do we have a list bonus to add to the coupounded (pre-final) score?
-    $lists_bonus = db_query("
-      SELECT score
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 AND popularity >= 0.2 AND popularity < 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
+    // do we have a list bonus to add to the coupounded pro score?
+    $list_bonus = db_query("
+      SELECT score as score_list
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
-      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score < 0",array(':restaurant_id' => $restaurant_id));
-
-    // calculating the median score
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score > 0 AND popularity >= 1.5 AND popularity < 5",array(':restaurant_id' => $restaurant_id));
+    // do we have a trusted publication bonus to add to the coupounded pro score?
+    $trusted_bonus = db_query("
+      SELECT score AS score_trusted
+      FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
+      WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND score > 0 AND popularity >= 1 AND popularity < 1.5",array(':restaurant_id' => $restaurant_id));
+    // calculating the pro median score
     if($compounded_pro->n > 0) {
       $median_pro = $compounded_pro->score_pro/$compounded_pro->n;
     }
-
+    // calculating the public median score
     if($compounded_pub->n > 0) {
       $median_pub = $compounded_pub->score_pub/$compounded_pub->n;
     }
-
+    // calculating the sum of all popularities
     $popularity = $compounded_pro->popularity + $compounded_pub->popularity;
-
-    // calculating the global score : combining 60% professional score with 40% public score
-    $median = $median_pro * 0.6 + $median_pub * 0.4;
-
-    // calculating the bonus
-    foreach($lists_bonus as $bonus) {
-      switch ($bonus->score) {
-        case -3: $median += 0.03; $popularity += 1; break;
-        case -2: $median += 0.02; $popularity += 1; break;
-        case -1: $median += 0.01; $popularity += 1; break;
-      }
+    // calculating the lists bonuses that adds to the pro score
+    foreach($list_bonus as $bonus) {
+        $median_pro += $bonus->score_list; $popularity += 1.5; break;
     }
-
-    // getting the median score value and sum of popularity score
+    // calculating the trusted publications bonuses that adds to the pro score
+    foreach($trusted_bonus as $bonus) {
+        $median_pro += $bonus->score_trusted; $popularity += 1; break;
+    }
+    // combining the pro and public scores for a LA LISTE score
+    $median = $median_pro * 0.75 + $median_pub * 0.25;
+    // assigning scores values and sum of popularity score to the stats table
     $median_score = array();
     $median_score['global']     = $median;
     $median_score['pro']        = $median_pro;
     $median_score['pub']        = $median_pub;
     $median_score['popularity'] = $popularity;
-
-    // we now send back the rounded score to the main stat table
     return($median_score);
-
   }
   else return -1; // no guide rule setup for this dataset
 }
@@ -225,9 +238,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
       case 'Vacay.ca': case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
-        $score = ($food>=1 && $food <=20) ? -3 : 0;
-        $score += ($food>20 && $food <=50) ? -2 : 0;
-        $score += ($food>50 && $food <=100) ? -1 : 0;
+        $score = ($food>=1 && $food <=20) ? 0.03 : 0;
+        $score += ($food>20 && $food <=50) ? 0.02 : 0;
+        $score += ($food>50 && $food <=100) ? 0.01 : 0;
       break;
 
       case 'The AA Restaurant Guide Automobile Association':
@@ -238,7 +251,20 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'A la Carte':
-        $score = $food;
+        $score =  $atmosphere-20;
+        $score += ($wine == 3 ? 20 : 0);
+        $score += ($wine == 2 ? 10 : 0);
+        $score += ($wine == 1 ? 6.7 : 0);
+      break;
+
+      case 'Alpha Guide': case 'Athinorama':
+        $score =   ($food == 20 ? 100 : 0);
+        $score +=  ($food == 18 ? 90 : 0);
+        $score +=  ($food == 17 ? 80 : 0);
+        $score +=  ($food == 16.5 ? 75 : 0);
+        $score +=  ($food == 16 ? 70 : 0);
+        $score +=  ($food == 15.5 ? 65 : 0);
+        $score +=  ($food == 15 ? 60 : 0);
       break;
 
       case 'Blue Ribbon':
@@ -247,7 +273,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 1 ? 60 : 0);
       break;
 
-      case 'The Brisbane Times Good Food': // to be adjusted cleaned up
+      case 'The Brisbane Times Good Food':
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
         $score +=  ($food == 1 ? 60 : 0);
@@ -262,6 +288,14 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($atmosphere == 1 ? 8 : 0);
         $score += ($quiet == 1 ? 2 : 0);
         $score += ($value == 1 ? 2 : 0);
+      break;
+
+      case 'De Danske Spiseguiden':
+        $score =   ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4 ? 90 : 0);
+        $score +=  ($food == 3 ? 80 : 0);
+        $score +=  ($food == 2 ? 70 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
       break;
 
       case 'Degusta':
@@ -297,6 +331,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere*2;
       break;
 
+      case 'Dianping':
+        $score =  ($food == 3 ? 100 : 0);
+        $score += ($food == 2 ? 80 : 0);
+        $score += ($food == 1 ? 60 : 0);
+      break;
+
       case 'Dubai Eating':
         $score = $food*8;
         $score += $service;
@@ -309,12 +349,17 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service;
       break;
 
+      case 'Eesti Maitsed':
+        //TBD
+      break;
+
       case 'Espresso':
         $score = $food*5;
       break;
 
       case 'Falstaff':
-        $score = $food;
+        $score = $food-20;
+        $score += $atmosphere*4;
       break;
 
       case 'Foursquare':
@@ -390,6 +435,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*20;
       break;
 
+      case 'Gault-Millau (MA)':
+        // TBD
+      break;
+
       case 'Gault-Millau (NL)':
         $score +=  ($food == 19.5 ? 80 : 0);
         $score +=  ($food == 19 ? 77 : 0);
@@ -416,9 +465,11 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Guia Repsol':
-        $score = ($food == 3 ? 100 : 0);
-        $score += ($food == 2 ? 80 : 0);
+        $score =  ($food == 3 ? 80 : 0);
+        $score += ($food == 2 ? 70 : 0);
         $score += ($food == 1 ? 60 : 0);
+        $score += $wine*2;
+        $score += $service*2;
       break;
 
       case 'The Good Food Guide':
@@ -446,7 +497,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Guía Summum':
-        //TBD
+        $score = $food*10;
       break;
 
       case 'Guia4rodas':
@@ -488,6 +539,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service*2;
       break;
 
+      case 'James Beard Awards': case 'Afisha.ru':
+        $score = $food*10;
+      break;
+
       case 'La Suisse Gourmande':
         $score =  ($food == 100 ? 100 : 0);
         $score +=  ($food == 90 ? 90 : 0);
@@ -508,7 +563,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = -1;
       break;
 
-      case 'Michelin' :
+      case 'Michelin' : case 'Michelin (JP)':
       	// raw
       	$score =  ($food == 3 ? 80 : 0);
       	$score += ($food == 2 ? 70 : 0);
@@ -517,12 +572,11 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         if (is_null($score) || empty($score)) { // we count all variations of no stars
           $food += 40;
         }
-      	$score += ($wine == 1 ? 5 : 0);
-      	$score += ($bonus == 1 ? $atmosphere*3 : $atmosphere*2);
+      	$score += ($wine == 1 ? 10 : 0);// was 5
+      	$score += ($bonus == 1 ? $atmosphere*2 : $atmosphere*1);
       break;
 
       case 'Michelin Restaurants (FR)': case 'Michelin Restaurants (DE)':
-        // raw
         $score = $food*16;
         $score += $service*2;
         $score += $atmosphere*2;
@@ -530,6 +584,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case "New York Times":
         $score = $food*25;
+      break;
+
+      case 'Poland 100 best restaurants':
+        $score =  ($food == 3 ? 100 : 0);
+        $score +=  ($food == 2 ? 80 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
       break;
 
       case 'Queremos comer':
@@ -573,29 +633,27 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service;
       break;
 
-      case 'Timeout Mexico':
+      case 'Timeout' : case 'Timeout Mexico':
         $score = $food*20;
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
-        $score = $food*5;
+        $score =  ($food == 3 ? 100 : 0);
+        $score +=  ($food == 2 ? 80 : 0);
+        $score +=  ($food == 1 ? 60 : 0);
       break;
 
       case 'Traveltipz.ru':
         $score = $food*20;
       break;
 
-      case 'Tripadvisor':
-        if(isset($votes) && $votes >= 50) {
-        	// raw
+      case 'Tripadvisor': case 'Diningcity.cn':
         	$score = $food*16;
         	$score += $service*2;
         	$score += $atmosphere*2;
-        }
       break;
 
       case 'Varta-Führer':
-      	// raw
       	if ($bonus) {
       	  $score =  ($food == 5 ? 80 : 0);
       	  $score +=  ($food == 4 ? 70 : 0);
@@ -623,6 +681,18 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere*2;
       break;
 
+      case 'Via restó':
+        $score = $food*8;
+        $score += $service;
+        $score += $atmosphere;
+      break;
+
+      case 'Wine Spectator (trusted source)':
+        $score = ($wine==3) ? 0.3 : 0;
+        $score += ($wine==2) ? 0.2 : 0;
+        $score += ($wine==1) ? 0.1 : 0;
+      break;
+
       case 'Where to eat in Canada':
         $score =  ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
@@ -636,6 +706,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $tmp * 3/7; // for ambiance
       break;
 
+      case 'Yelp':
+          $score = $food*20;
+      break;
+
       case 'Zagat':
         // raw
         $score = $food*2.666;
@@ -646,12 +720,18 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Der Feinschmecker':
       case 'Five Diamond Awards':
       case 'Forbes Travel Guide':
+      case 'Openrice':
+      case 'OpenTable':
       case 'Resto.be':
-      case 'Yelp':
+      case 'Salir a Comer':
       case 'Zomato':
       	$score = $food*20;
       break;
     }
+  }
+  // we only count user sites with 20+ reviews. Discard the rest
+  if(($votes > 0 && $votes < 20)) {
+    $score = null;
   }
   $ranking['score'] = $score;
   return $ranking;
@@ -680,13 +760,48 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Blue Ribbon':
-    $guide_data['trust'] = 0.6; // arbitrary
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Openrice':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Eesti Maitsed':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'James Beard Awards':
+    $guide_data['type']  = 'publication';
+  break;
+
+  case 'Afisha.ru':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Burpple':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Poland 100 best restaurants':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Alpha Guide':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Athinorama':
     $guide_data['type']  = 'guide';
   break;
 
   case 'The Brisbane Times Good Food':
     $guide_data['trust'] = 0.493;
-    $guide_data['type']  = 'publication';
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'De Danske Spiseguiden':
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Guide Delta':
@@ -708,7 +823,16 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
 	break;
 
+  case 'Dianping':
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Dining City':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Diningcity.cn':
     $guide_data['type']  = 'user';
   break;
 
@@ -739,7 +863,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
 	case 'Forbes Travel Guide':
-    $guide_data['type']  = 'publication';
+    $guide_data['type']  = 'guide';
 	break;
 
   case 'Foursquare':
@@ -752,7 +876,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (AT)':
-    $guide_data['trust'] = 0.788;
+    $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
   break;
 
@@ -786,8 +910,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Gault-Millau (MA)':
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Gault-Millau (NL)':
-    $guide_data['trust'] = 0.7; // arbitrary
     $guide_data['type']  = 'guide';
   break;
 
@@ -814,7 +942,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Guía Summum':
-    $guide_data['type']  = 'user';
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
   break;
 
 	case 'Guia Repsol':
@@ -859,19 +988,26 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
 	break;
 
-  case 'Michelin Restaurants (DE)':
-    $guide_data['trust'] = 0.741;
+  case 'Michelin (JP)':
+    $guide_data['trust'] =  0.85; // arbitrary - test only
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Michelin Restaurants (DE)':
+    $guide_data['type']  = 'user';
+  break;
+
   case 'Michelin Restaurants (FR)':
-    $guide_data['trust'] = 0.693;
-    $guide_data['type']  = 'guide';
+    $guide_data['type']  = 'user';
   break;
 
   case "New York Times":
     $guide_data['trust'] = 0.741;
-    $guide_data['type']  = 'publication';
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'OpenTable':
+    $guide_data['type']  = 'user';
   break;
 
   case 'Opiniated about dining':
@@ -879,7 +1015,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Philippine Tatler':
-    $guide_data['trust'] = 0.6; // arbitrary
     $guide_data['type']  = 'guide';
   break;
 
@@ -897,7 +1032,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Rossouw\'s Restaurants':
     $guide_data['trust'] = 0.46;
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+  break;
+
+  case 'Salir a Comer':
+    $guide_data['type']  = 'user';
   break;
 
   case 'Schlemmer Atlas':
@@ -925,7 +1065,9 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Timeout Mexico':
-    $guide_data['type']  = 'user';
+    $guide_data['trust'] = 0.7;
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Traveltipz.ru':
@@ -958,6 +1100,14 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Via restó':
+    $guide_data['type']  = 'user';
+  break;
+
+  case 'Wine Spectator (trusted source)':
+    $guide_data['type']  = 'publication';
+  break;
+
   case 'White Guide':
     $guide_data['trust'] = 0.733;
     $guide_data['type']  = 'guide';
@@ -971,12 +1121,18 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
 	break;
   }
-  // We calculate the popularity publication score
-  switch ($guide_data['type']) {
-    case 'guide' :       $guide_data['popularity'] = 5;   break;
-    case 'list' :        $guide_data['popularity'] = 1;   break;
-    case 'publication' : $guide_data['popularity'] = 0.3;   break;
-    case 'user' :        $guide_data['popularity'] = 0.2; break;
+  // We calculate the popularity publication score if not set
+  if (!isset($guide_data['popularity'])) {
+    switch ($guide_data['type']) {
+      case 'guide' :       $guide_data['popularity'] = 5;   break;
+      case 'list' :        $guide_data['popularity'] = 1.5; break;
+      case 'publication' : $guide_data['popularity'] = 1;   break;
+      case 'user' :        $guide_data['popularity'] = 0.2; break;
+    }
+  }
+  // default trust factor to 0.5
+  if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
+    $guide_data['trust'] = 0.7;
   }
   // Let's return all results and mark not set trust to -1 for debug
   if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
