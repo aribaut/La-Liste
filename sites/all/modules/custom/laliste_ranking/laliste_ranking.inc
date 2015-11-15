@@ -357,11 +357,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*5;
       break;
 
-      case 'Falstaff':
-        $score = $food-20;
-        $score += $atmosphere*4;
-      break;
-
       case 'Foursquare':
         $score = $food*10;
       break;
@@ -857,10 +852,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
 		$guide_data['trust'] =	0.61;
     $guide_data['type']  = 'guide';
 	break;
-
-  case 'Falstaff':
-    $guide_data['type']  = 'user';
-  break;
 
 	case 'Forbes Travel Guide':
     $guide_data['type']  = 'guide';
