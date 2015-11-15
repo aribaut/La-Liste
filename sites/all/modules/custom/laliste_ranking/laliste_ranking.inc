@@ -251,7 +251,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'A la Carte':
-        $score = $food;
+        $score = $atmosphere-20;
+        $score +=   ($wine == 3 ? 20 : 0);
+        $score +=  ($wine == 2 ? 10 : 0);
+        $score +=  ($wine == 1 ? 6.7 : 0);
       break;
 
       case 'Alpha Guide': case 'Athinorama':
