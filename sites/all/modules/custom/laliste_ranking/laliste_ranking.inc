@@ -876,7 +876,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (AT)':
-    $guide_data['trust'] = 0.788;
+    $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
   break;
 
