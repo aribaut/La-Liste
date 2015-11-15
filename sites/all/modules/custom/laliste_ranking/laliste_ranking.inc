@@ -1055,8 +1055,13 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Timeout':
+    $guide_data['trust'] = 0.6;
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Timeout Mexico':
-    $guide_data['trust'] = 0.7;
+    $guide_data['trust'] = 0.5;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
