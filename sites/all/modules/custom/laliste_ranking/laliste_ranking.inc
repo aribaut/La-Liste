@@ -24,16 +24,19 @@ function laliste_ranking_update($pro) {
 		");
 
 	foreach($results as $row) {
+    $$guide_not_present = 0;
+    $inserted = 0;
+    $updated = 0;
 		$scores = array();
 		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
 		// We ONLY treat scores where we have existing business rules
 		if($scores != -1) {
 			// Do we have a corresponding restaurant in the stats table?
-			$nid = db_query("
-			SELECT restaurant_id FROM {restaurant_stats} WHERE restaurant_id = :nid
-				", array(':nid' => $row->nid))->fetchField();
+			$stats = db_query("
+			SELECT * FROM {restaurant_stats} WHERE restaurant_id = :nid
+				", array(':nid' => $row->nid))->fetchObject();
 			// We insert if no records exist
-			if(!$nid) {
+			if(!$stats->restaurant_id) {
 			  db_insert('restaurant_stats')
 	    	  ->fields(array(
 	      		'restaurant_id' => $row->nid,
@@ -47,8 +50,8 @@ function laliste_ranking_update($pro) {
 	    	  ->execute();
           $inserted++;
 			}
-			else {
-			  // If record already exists, we update it
+      // we update records only if the score is changed
+			elseif($stats->score_laliste != floatval($scores['global'])) {
 			  db_update('restaurant_stats')
 	  		  ->fields(array(
 	    	    'score_laliste' => floatval($scores['global']),
@@ -66,6 +69,8 @@ function laliste_ranking_update($pro) {
 	 else {
 	    	// guide catch error counter
         $guide_not_present++;
+        //$guide = db_query("select name from taxonomy_term_data ttd LEFT join restaurantguideranking rgr on rgr.guide_id=ttd.tid where rgr.restaurant_id=:nid", array(':nid' => $row->nid))->fetchObject();
+        //echo $guide->name."\n";
 	 }
 	}
   $score_errors = db_query("SELECT count(*) FROM {ranking} WHERE score > 100")->fetchField();
@@ -244,6 +249,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
       case 'Vacay.ca': case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
+      case 'Maclean’s Canada’s best restaurant':
         $score = ($food>=1 && $food <=20) ? 0.3 : 0;
         $score += ($food>20 && $food <=50) ? 0.2 : 0;
         $score += ($food>50 && $food <=100) ? 0.1 : 0;
@@ -474,6 +480,18 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($service == 1 ? 10 : 0); // coup de coeur
       break;
 
+      case 'Gault-Millau (PL)':
+        $score =   ($food == 19 ? 100 : 0);
+        $score =   ($food == 18.5 ? 95 : 0);
+        $score +=  ($food == 18 ? 90 : 0);
+        $score +=  ($food == 17.5 ? 85 : 0);
+        $score +=  ($food == 17 ? 80 : 0);
+        $score +=  ($food == 16.5 ? 75 : 0);
+        $score +=  ($food == 16 ? 70 : 0);
+        $score +=  ($food == 15.5 ? 66 : 0);
+        $score +=  ($food == 15 ? 60 : 0);
+      break;
+
       case 'Gayot.com':
         $score +=  ($food == 19 ? 100 : 0);
         $score +=  ($food == 18 ? 90 : 0);
@@ -583,10 +601,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
       */
 
-      case 'Maclean’s Canada’s best restaurant':
-        $score = -1;
-      break;
-
       case 'Michelin' : case 'Michelin (JP)':
       	// raw
       	$score =  ($food == 3 ? 80 : 0);
@@ -639,7 +653,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($service == 1 ? 15 : 0);
       break;
 
-      case 'Singapore Tatler': case 'Philippine Tatler': case 'Malaysia Tatler': case 'Hong Kong Tatler':
+      case 'Singapore Tatler': case 'Philippines Tatler': case 'Malaysia Tatler': case 'Hong Kong Tatler':
         $score = $food*16;
         $score += $wine;
         $score += $atmosphere;
@@ -808,10 +822,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
-  case 'Burpple':
-    $guide_data['type']  = 'user';
-  break;
-
   case 'Poland 100 best restaurants':
     $guide_data['type']  = 'guide';
   break;
@@ -949,6 +959,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Gault-Millau (PL)':
+    $guide_data['type']  = 'guide';
+  break;
+
 	case 'Gayot.com':
 		$guide_data['trust'] =	0.586;
     $guide_data['type']  = 'guide';
@@ -1046,7 +1060,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
      $guide_data['type'] = 'list';
   break;
 
-  case 'Philippine Tatler':
+  case 'Philippines Tatler':
     $guide_data['type']  = 'guide';
   break;
 
@@ -1062,7 +1076,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
-  case 'Rossouw\'s Restaurants':
+  case "Rossouw's Restaurants":
     $guide_data['trust'] = 0.46;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
