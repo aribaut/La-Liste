@@ -238,9 +238,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
       case 'Vacay.ca': case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
-        $score = ($food>=1 && $food <=20) ? 0.03 : 0;
-        $score += ($food>20 && $food <=50) ? 0.02 : 0;
-        $score += ($food>50 && $food <=100) ? 0.01 : 0;
+        $score = ($food>=1 && $food <=20) ? 0.3 : 0;
+        $score += ($food>20 && $food <=50) ? 0.2 : 0;
+        $score += ($food>50 && $food <=100) ? 0.1 : 0;
       break;
 
       case 'The AA Restaurant Guide Automobile Association':
@@ -370,7 +370,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Falstaff':
-        $score = $food-6;
+        $score = $food;
       break;
 
       case 'Foursquare':
