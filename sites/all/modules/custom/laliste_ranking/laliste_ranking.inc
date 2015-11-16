@@ -267,6 +267,18 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 15 ? 60 : 0);
       break;
 
+      case 'AndyHayler.com (trusted source)':
+        $score = ($bonus==20) ? 100 : 0;
+        $score += ($bonus==19) ? 95 : 0;
+        $score += ($bonus==18) ? 90 : 0;
+        $score += ($bonus==17) ? 85 : 0;
+        $score += ($bonus==16) ? 80 : 0;
+        $score += ($bonus==15) ? 75 : 0;
+        $score += ($bonus==14) ? 70 : 0;
+        $score += ($bonus==13) ? 65 : 0;
+        $score += ($bonus==12) ? 60 : 0;
+      break;
+
       case 'Blue Ribbon':
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
@@ -343,7 +355,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere;
       break;
 
-      case 'Eatability': // mise a jour guide document v1.45
+      case 'Eatability':
         $score =  $food*8;
         $score += $atmosphere;
         $score += $service;
@@ -368,13 +380,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  $service/2;
       break;
 
-      case 'Gault-Millau (AT)':
-        // raw
-        $score =   ($food == 19 ? 80 : 0);
-        $score +=  ($food == 18 ? 75 : 0);
-        $score +=  ($food == 17 ? 70 : 0);
-        $score +=  ($food == 16 ? 65 : 0);
-        $score +=  ($food == 15 ? 60 : 0);
+      case 'Gault-Millau (AT)': // ranked out of 95 only
+        $score =   ($food == 19 ? 75 : 0);
+        $score +=  ($food == 18 ? 70 : 0);
+        $score +=  ($food == 17 ? 65 : 0);
+        $score +=  ($food == 16 ? 60 : 0);
+        $score +=  ($food == 15 ? 55 : 0);
         $score += ($service == 1 ? 20 : 0);
       break;
 
@@ -754,6 +765,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'AndyHayler.com (trusted source)':
+    $guide_data['trust'] = 0.7;
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Blue Ribbon':
     $guide_data['type']  = 'guide';
   break;
@@ -867,7 +883,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (AT)':
-    $guide_data['trust'] = 0.7;
+    $guide_data['trust'] = 0.788;
     $guide_data['type']  = 'guide';
   break;
 
