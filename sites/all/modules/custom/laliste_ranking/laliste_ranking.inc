@@ -369,6 +369,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*5;
       break;
 
+      case 'Falstaff':
+        $score = $food-6;
+      break;
+
       case 'Foursquare':
         $score = $food*10;
       break;
@@ -380,7 +384,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  $service/2;
       break;
 
-      case 'Gault-Millau (AT)': // ranked out of 95 only
+      case 'Gault-Millau (AT)': // 95 max
         $score =   ($food == 19 ? 75 : 0);
         $score +=  ($food == 18 ? 70 : 0);
         $score +=  ($food == 17 ? 65 : 0);
@@ -864,6 +868,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Falstaff':
+    $guide_data['type']  = 'user';
+  break;
+
 	case 'Five Diamond Awards':
 		$guide_data['trust'] =	0.61;
     $guide_data['type']  = 'guide';
@@ -883,7 +891,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (AT)':
-    $guide_data['trust'] = 0.788;
+    $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
   break;
 
