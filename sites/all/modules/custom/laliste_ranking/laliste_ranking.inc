@@ -464,7 +464,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault-Millau (MA)':
-        // TBD
+        $score +=  ($food == 16.5 ? 75 : 0);
+        $score +=  ($food == 16 ? 70 : 0);
       break;
 
       case 'Gault-Millau (NL)':
