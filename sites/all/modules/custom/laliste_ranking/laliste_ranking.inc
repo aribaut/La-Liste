@@ -558,6 +558,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 90 ? 90 : 0);
       break;
 
+      /*
       case 'Lekker':
         $score =  ($food == 1 ? 100 : 0);
         $score += (($food > 1 && $food <= 5) ? 98 : 0);
@@ -568,6 +569,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += (($food >= 61 && $food <= 80) ? 75 : 0);
         $score += (($food >= 81 && $food <= 100) ? 70 : 0);
       break;
+      */
 
       case 'Maclean’s Canada’s best restaurant':
         $score = -1;
@@ -816,6 +818,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'De Danske Spiseguiden':
+    $guide_data['trust'] = 0.5;
     $guide_data['type']  = 'guide';
   break;
 
@@ -989,10 +992,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  /*
   case 'Lekker':
     $guide_data['trust'] = 0; // ouch!
     $guide_data['type']  = 'guide';
   break;
+  */
 
   case 'Maclean’s Canada’s best restaurant':
     $guide_data['type']  = 'list';
