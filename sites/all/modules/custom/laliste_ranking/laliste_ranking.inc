@@ -442,7 +442,13 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault-Millau (JP)':
-        $score = $food*20;
+        $score =  ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4.5 ? 95 : 0);
+        $score +=  ($food == 4 ? 90 : 0);
+        $score +=  ($food == 3.5 ? 85 : 0);
+        $score +=  ($food == 3 ? 80 : 0);
+        $score +=  ($food == 2 ? 70 : 0);
+        $score +=  ($food == 1 ? 55 : 0);
       break;
 
       case 'Gault-Millau (MA)':
