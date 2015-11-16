@@ -14,16 +14,16 @@
 */
 function laliste_ranking_update($pro) {
   // let's clear the restaurant stats
-  $clear_restaurant_stats = db_query("DELETE FROM {restaurant_stats}");
+  //$clear_restaurant_stats = db_query("DELETE FROM {restaurant_stats}");
   // let's clear the ranking scores and popularity
-  $clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
+  //$clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
 	FROM {node}
 		");
 
-	foreach($results as $row) { //Guides 60%, Sites sociaux 40%, publications ?% (à essayer)
+	foreach($results as $row) {
 		$scores = array();
 		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
 		// We ONLY treat scores where we have existing business rules
@@ -45,6 +45,7 @@ function laliste_ranking_update($pro) {
 	      		'updated' => time(),
 	    	  ))
 	    	  ->execute();
+          $inserted++;
 			}
 			else {
 			  // If record already exists, we update it
@@ -59,16 +60,21 @@ function laliste_ranking_update($pro) {
 	  		  )
 	  		  ->condition('restaurant_id', $row->nid)
 	  		  ->execute();
+          $updated++;
 		    }
 		}
-	    else {
-	    	// implement a guide catch error?
-	    }
+	 else {
+	    	// guide catch error counter
+        $guide_not_present++;
+	 }
 	}
   $score_errors = db_query("SELECT count(*) FROM {ranking} WHERE score > 100")->fetchField();
 	echo "LALISTE RANKING IS UP TO DATE!\n";
   echo "================================\n";
-  echo "Number of score ranking errors : ".$score_errors."\n";
+  echo "Number of score ranking over 100 : ".$score_errors."\n";
+  echo "Number of new records added : ".$inserted."\n";
+  echo "Number of records updated : ".$updated."\n";
+  echo "Number of records having no food guide entry : ".$guide_not_present."\n";
 }
 
 /*
