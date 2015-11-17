@@ -621,8 +621,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         if (is_null($score) || empty($score)) { // we count all variations of no stars
           $food += 40;
         }
-      	$score += ($wine == 1 ? 7.5 : 0);
-      	$score += ($bonus == 1 ? $atmosphere*2.5 : $atmosphere*2);
+      	$score += ($wine == 1 ? 10 : 0);
+      	$score += ($bonus == 1 ? $atmosphere*2 : $atmosphere*1);
       break;
 
       case 'Michelin Restaurants (FR)': case 'Michelin Restaurants (DE)':
