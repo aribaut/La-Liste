@@ -73,47 +73,41 @@
  */
 ?>
 
-    <header class="laliste-header">
+<main class="laliste-body" style="border: 1px solid blue;">
+  <div class="Container">
+    <header class="laliste-header logo-header" style="border: 1px solid red;">
       <?php print $messages; ?>
       <?php print render($page['header']); ?>
-      <strong>Header</strong>
     </header>
-
-      <main class="laliste-body">
-        <div class="Container">
-        <center>
-            <?php print render($title_prefix); ?>
-            <?php if ($title): ?><h1 class="title" id="page-title"><?php print 'Narisawa'//$title; ?></h1><?php endif; ?>
-            <?php print render($title_suffix); ?>
-            <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-            <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-            <?php if ($page['content']): ?>
-            <article class="laliste-content">
-              <?php print render($page['content']); ?>
-            </article>
-            <?php endif; ?>
-            <?php print $feed_icons; ?>
-        </center>
-          <?php if ($page['sidebar_first']): ?>
-            <nav class="laliste-nav">
-              <?php print render($page['sidebar_first']); ?>
-              <strong>Navigation</strong>
-              <?php if ($main_menu || $secondary_menu): ?>
-                <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
-              <?php endif; ?>
-            </nav>
-          <?php endif; ?>
-
-          <?php if ($page['sidebar_second']): ?>
-            <aside class="laliste-ads">
-              <?php print render($page['sidebar_second']); ?>
-              <strong>Advertisements</strong>
-            </aside>
-          <?php endif; ?>
-        </div>
-      </main>
-
-    <footer class="laliste-footer">
-      <strong>Footer</strong>
-      <?php print render($page['footer']); ?>
-    </footer>
+    <?php print render($title_prefix); ?>
+    <?php if ($title): ?><h1 class="title" id="page-title"><?php print 'Narisawa'//$title; ?></h1><?php endif; ?>
+    <?php print render($title_suffix); ?>
+    <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+    <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+    <?php if ($page['content']): ?>
+      <article class="laliste-content">
+        <?php print render($page['content']); ?>
+      </article>
+    <?php endif; ?>
+    <?php print $feed_icons; ?>
+    <?php if ($page['sidebar_first']): ?>
+      <nav class="laliste-nav">
+        <?php print render($page['sidebar_first']); ?>
+        <strong>Navigation</strong>
+        <?php if ($main_menu || $secondary_menu): ?>
+          <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
+        <?php endif; ?>
+      </nav>
+    <?php endif; ?>
+    <?php if ($page['sidebar_second']): ?>
+      <aside class="laliste-ads">
+        <?php print render($page['sidebar_second']); ?>
+        <strong>Advertisements</strong>
+      </aside>
+    <?php endif; ?>
+  </div>
+</main>
+<footer class="laliste-footer" style="border: 1px solid red;">
+  <strong>Footer</strong>
+  <?php print render($page['footer']); ?>
+</footer>
