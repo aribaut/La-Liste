@@ -256,10 +256,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'The AA Restaurant Guide Automobile Association':
-        $score =   ($food == 5 ? 80 : 0);
-        $score +=  ($food == 4 ? 70 : 0);
-        $score +=  ($food == 3 ? 60 : 0);
-        $score += ($wine == 1 ? 20 : 0);
+        $score =   ($food == 5 ? 90 : 0);
+        $score +=  ($food == 4 ? 80 : 0);
+        $score +=  ($food == 3 ? 70 : 0);
+        $score += ($wine == 1 ? 10 : 0);
       break;
 
       case 'A la Carte':
@@ -514,15 +514,15 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'The Good Food Guide':
-        $score =  ($food == 10 ? 80 : 0);
-        $score += ($food == 9 ? 75 : 0);
-        $score += ($food == 8 ? 70 : 0);
-        $score += ($food == 7 ? 65 : 0);
-        $score += ($food == 6 ? 60 : 0);
-        $score += ($food == 5 ? 55 : 0);
-        $score += ($food == 4 ? 50 : 0);
-        $score += ($food == 3 ? 45 : 0);
-        $score += ($wine == 1 ? 20 : 0);
+        $score =  ($food == 10 ? 90 : 0);
+        $score += ($food == 9 ? 85 : 0);
+        $score += ($food == 8 ? 80 : 0);
+        $score += ($food == 7 ? 75 : 0);
+        $score += ($food == 6 ? 70 : 0);
+        $score += ($food == 5 ? 65 : 0);
+        $score += ($food == 4 ? 60 : 0);
+        $score += ($food == 3 ? 50 : 0);
+        $score += ($wine == 1 ? 10 : 0);
       break;
 
       case 'Guía Gourmet':
@@ -589,6 +589,17 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 90 ? 90 : 0);
       break;
 
+      case "La fourchette":
+        $score = $food*10;
+      break;
+
+      case "L'Internaute":
+        $score = $food*16;
+        $score += $atmosphere;
+        $score += $bonus;
+        $score += $service*2;
+      break;
+
       /*
       case 'Lekker':
         $score =  ($food == 1 ? 100 : 0);
@@ -603,7 +614,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       */
 
       case 'Michelin' : case 'Michelin (JP)':
-      	// raw
       	$score =  ($food == 3 ? 80 : 0);
       	$score += ($food == 2 ? 70 : 0);
       	$score += ($food == 1 ? 60 : 0);
@@ -611,8 +621,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         if (is_null($score) || empty($score)) { // we count all variations of no stars
           $food += 40;
         }
-      	$score += ($wine == 1 ? 10 : 0);// was 5
-      	$score += ($bonus == 1 ? $atmosphere*2 : $atmosphere*1);
+      	$score += ($wine == 1 ? 7.5 : 0);
+      	$score += ($bonus == 1 ? $atmosphere*2.5 : $atmosphere*2);
       break;
 
       case 'Michelin Restaurants (FR)': case 'Michelin Restaurants (DE)':
@@ -1017,6 +1027,14 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'La Suisse Gourmande':
     $guide_data['trust'] = 0.63;
     $guide_data['type']  = 'guide';
+  break;
+
+  case "La fourchette":
+    $guide_data['type']  = 'user';
+  break;
+
+  case "L'Internaute":
+    $guide_data['type']  = 'user';
   break;
 
   /*
