@@ -5,7 +5,7 @@
 @import "footer";
 
 // colors
-$light_grey: #eee;
+$light_grey: #f0f0f0;
 
 $gray: #808080;
 $color_cape_cod_approx: #404040;
@@ -421,6 +421,7 @@ header.laliste-header {
 
 header > div.region.region-header {
     @include flexbox;
+    margin-right: 4px;
 }
 
 @media (min-width:768px) {
@@ -767,6 +768,9 @@ input#edit-search-block-form--2 {
     font-size:24px;
     padding-left: 0.3em;
     padding-right: 1.4em;
+    background: $light_grey;
+    border: 0;
+    color : $gray;
 }
 
 input#edit-submit.form-submit {
