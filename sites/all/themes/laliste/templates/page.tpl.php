@@ -75,8 +75,8 @@
 
 <main class="laliste-body" style="border: 1px solid blue;">
   <div class="Container">
-    <header class="laliste-header logo-header" style="border: 1px solid red;">
-      <?php print $messages; ?>
+    <header class="laliste-header logo-header">
+      <div class="logo-div"></div>
       <?php print render($page['header']); ?>
     </header>
     <?php print render($title_prefix); ?>
@@ -86,7 +86,8 @@
     <?php if ($action_links): ?><ul class="action-links"><?php //print render($action_links); ?></ul><?php endif; ?>
     <?php if ($page['content']): ?>
       <article class="laliste-content">
-        <?php //print render($page['content']); ?>
+        <?php print $messages; ?>
+        <?php print render($page['content']); ?>
       </article>
     <?php endif; ?>
     <?php print $feed_icons; ?>

@@ -356,6 +356,7 @@ strong {
 }
 
 .laliste-footer, .laliste-header {
+    @include flexbox;
     @include flex(0);
 }
 
@@ -407,12 +408,20 @@ header.laliste-header {
 }
 
 .logo-header {
+
+}
+
+.logo-div {
   background-image: url("../img/logo_header.png");
   background-repeat: no-repeat;
   margin-top: 20px;
+  width: 100%;
   z-index: 80;
 }
 
+header > div.region.region-header {
+    @include flexbox;
+}
 
 @media (min-width:768px) {
     .laliste-body {
@@ -736,25 +745,37 @@ sup {
  * User login block in footer.
  */
 #block-user-login, #block-search-form {
-  margin: 2em auto;
+  //margin: 2em auto;
+  width: 100%;
   text-align: center;
+  padding-top: 29px;
 }
 #block-user-login .block-title,
 #block-search-form .block-title {
-  display: inline-block;
   margin-bottom: 0.5em;
   text-align: center;
 }
 #block-user-login .content *,
 #block-search-form .content * {
-  display: inline;
+  @include flexbox;
 }
-#block-user-login .form-item,
-#block-search-form .form-item {
-  margin-left: 1em;
+
+input#edit-search-block-form--2 {
+    width: 238px;
+    height: 42px;
+    font-family: 'Mrs Eaves Italic';
+    font-size:24px;
+    padding-left: 0.3em;
+    padding-right: 1.4em;
 }
-#block-user-login .form-actions,
-#block-search-form .form-actions,
-#block-search-form .form-actions .form-wrapper {
-  margin-left: 1em;
+
+input#edit-submit.form-submit {
+    margin-left: -28px;
+    padding-top: 7px;
+    height: 50%;
+}
+
+// hide the search form title
+h2.element-invisible {
+    display: none !important;
 }
