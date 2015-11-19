@@ -785,9 +785,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
     }
   }
   // we only count user sites with 20+ reviews. Discard the rest
-  //if(!isset($votes) || ($votes = 0)) {
-    //$score = null;
-  //}
+  if($votes > 0 && $votes < 20)) {
+    $score = null;
+  }
   $ranking['score'] = $score;
   return $ranking;
 }
@@ -965,7 +965,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
   case 'Gault-Millau (JP)':
-    $guide_data['trust'] =  0.785; // arbitrary
+    $guide_data['trust'] =  0.765; // arbitrary
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
