@@ -852,7 +852,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'The Brisbane Times Good Food':
-    $guide_data['trust'] = 0.493;
+    $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
   break;
 
@@ -939,7 +939,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (AU)':
-    $guide_data['trust'] = 0.628;
+    $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
   break;
 
@@ -1127,7 +1127,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'The Sydney Morning Herald Good Food Guide':
-    $guide_data['trust'] = 0.615;
+    $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
   break;
 
