@@ -785,9 +785,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
     }
   }
   // we only count user sites with 20+ reviews. Discard the rest
-  if(($votes > 0)) {
-    $score = null;
-  }
+  //if(!isset($votes) || ($votes = 0)) {
+    //$score = null;
+  //}
   $ranking['score'] = $score;
   return $ranking;
 }
