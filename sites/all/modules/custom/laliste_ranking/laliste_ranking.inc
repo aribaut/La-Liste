@@ -292,6 +292,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
         $score +=  ($food == 1 ? 60 : 0);
+        $score += $bonus;
       break;
 
       case 'The Brisbane Times Good Food':
@@ -458,6 +459,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 3 ? 80 : 0);
         $score +=  ($food == 2 ? 70 : 0);
         $score +=  ($food == 1 ? 55 : 0);
+        $score += $bonus;
       break;
 
       case 'Gault-Millau (MA)':
@@ -881,6 +883,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Dianping':
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] =  0.7;
   break;
 
   case 'Dining City':
