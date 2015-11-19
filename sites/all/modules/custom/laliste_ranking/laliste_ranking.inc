@@ -965,7 +965,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
   case 'Gault-Millau (JP)':
-    $guide_data['trust'] =  0.82; // arbitrary
+    $guide_data['trust'] =  0.785; // arbitrary
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
@@ -1067,7 +1067,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
   case 'Michelin (JP)':
-    $guide_data['trust'] =  0.8; // arbitrary - test only
+    $guide_data['trust'] =  0.791; // arbitrary - test only
     $guide_data['type']  = 'guide';
   break;
 
