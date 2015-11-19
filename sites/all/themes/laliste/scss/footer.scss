@@ -1,20 +1,32 @@
+
 .Footer {
+    height: 383px;
     padding: 24px;
     padding: 1.5rem;
-    background: #404040;
+    background: black;
     color: #999;
     font-size: .85em;
     text-align: center
 }
 
-.Footer a {
-    padding-bottom: 1px;
-    border: 0;
-    color: #e5e5e5
+.insider-footer {
+    max-width: 1408px;
+    max-height: 236px;
+    height: 100%;
+    background: white;
+    margin: 69px 0 69px 0;
+    justify-content: space-around;
+}
+
+a.footer-link {
+    font-size: 4em;
+    font-weight: 300;
+    color: #5d5d5d;
+    padding: 10px;
 }
 
 .Footer a:active, .Footer a:focus, .Footer a:hover {
-    color: #fff;
+    color: #5d5d5d;
     text-decoration: underline
 }
 

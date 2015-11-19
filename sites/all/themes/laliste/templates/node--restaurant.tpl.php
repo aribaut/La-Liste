@@ -86,7 +86,7 @@
     <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
   </div>
 </div>
-<div class="Grid Grid--full large-Grid--fit">
+<div class="Grid Grid--full large-Grid--fit restaurant-info-container">
   <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
     <?php //if ($content['field_rank']): ?>
         <?php //render($content['field_rank']); ?>
@@ -106,7 +106,7 @@
   </div>
 </div>
 <div class="Grid Grid--full large-Grid--fit">
-   <div class="Grid Grid-cell Grid--center laliste-box Grid--1of5 food-box-container">
+   <div class="Grid Grid-cell Grid--center Grid--1of5 food-box-container">
       <a class="food-guide-box" href="#">Yelp</a>
       <a class="food-guide-box" href="#">Michelin</a>
       <a class="food-guide-box" href="#">La Fourchette</a>
@@ -117,7 +117,7 @@
       <a class="food-guide-box" href="#">Gault et Milau</a>
    </div>
 </div>
-<div class="Grid Grid--full large-Grid--fit">
+<div class="Grid Grid--full large-Grid--fit restaurant-info-container">
    <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-tall">
     <p class="restaurant-user-actions">Partager</p>
    </div>
