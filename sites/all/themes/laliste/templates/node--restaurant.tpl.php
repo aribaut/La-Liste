@@ -80,6 +80,12 @@
  * @ingroup themeable
  */
 ?>
+<div class="Grid Grid--full large-Grid--fit" style="position: relative;">
+  <img class="restaurant-media" src="<?php print base_path() . path_to_theme(); ?>/img/photo-restaurant.png">
+  <div class="restaurant-overlay">
+    <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
+  </div>
+</div>
 <div class="Grid Grid--full large-Grid--fit">
   <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
     <?php //if ($content['field_rank']): ?>
@@ -90,20 +96,25 @@
   <div class="Grid Grid-cell Grid--center laliste-box no-hcenter laliste-box-bg laliste-box-height-med u-textLeft">
     <?php //print render($content); ?>
     <div class="restaurant-info">
-      Type de cuisine: Japonaise avec influence francaise</br>
-      Site internet: http://www.google.com</br>
-      Telephone: +81 534 23543</br>
-      Mots-clefs: japon | francais | poisson | contemporain
+      <ul>
+        <li><span class="info-title">Type de cuisine:</span> <span class="info-content">Japonaise avec influence francaise</span></li>
+        <li><span class="info-title">Site internet:</span> <span class="info-content">http://www.google.com</span></li>
+        <li><span class="info-title">Telephone:</span> <span class="info-content">+81 534 23543</span></li>
+        <li><span class="info-title">Mots-clefs:</span> <span class="info-content">japon | francais | poisson | contemporain</span></li>
+      </ul>
     </div>
   </div>
 </div>
 <div class="Grid Grid--full large-Grid--fit">
-   <div class="Grid Grid-cell Grid--center laliste-box laliste-box-height-short">
-      <div class="Grid Grid-cell Grid--center">Yelp</div>
-      <div class="Grid Grid-cell Grid--center">Michelin</div>
-      <div class="Grid Grid-cell Grid--center">La Fourchette</div>
-      <div class="Grid Grid-cell Grid--center">TripAdvisor</div>
-      <div class="Grid Grid-cell Grid--center">Gault et Milau</div>
+   <div class="Grid Grid-cell Grid--center laliste-box Grid--1of5 food-box-container">
+      <a class="food-guide-box" href="#">Yelp</a>
+      <a class="food-guide-box" href="#">Michelin</a>
+      <a class="food-guide-box" href="#">La Fourchette</a>
+      <a class="food-guide-box" href="#">TripAdvisor</a>
+      <a class="food-guide-box" href="#">Gault et Milau</a>
+      <a class="food-guide-box" href="#">La Fourchette</a>
+      <a class="food-guide-box" href="#">TripAdvisor</a>
+      <a class="food-guide-box" href="#">Gault et Milau</a>
    </div>
 </div>
 <div class="Grid Grid--full large-Grid--fit">
