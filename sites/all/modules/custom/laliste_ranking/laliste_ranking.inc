@@ -13,6 +13,7 @@
 *  $pro corresponds to the professional score weight (default to 60%)
 */
 function laliste_ranking_update($pro) {
+  $guide_not_present = $inserted = $updated = 0;
   // let's clear the restaurant stats
   //$clear_restaurant_stats = db_query("DELETE FROM {restaurant_stats}");
   // let's clear the ranking scores and popularity
@@ -22,11 +23,7 @@ function laliste_ranking_update($pro) {
 	SELECT nid
 	FROM {node}
 		");
-
 	foreach($results as $row) {
-    $$guide_not_present = 0;
-    $inserted = 0;
-    $updated = 0;
 		$scores = array();
 		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
 		// We ONLY treat scores where we have existing business rules
