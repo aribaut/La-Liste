@@ -531,6 +531,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere*2;
       break;
 
+      case 'Guia Josimar Melo':
+        $score =  ($food == 3 ? 100 : 0);
+        $score += ($food == 2 ? 80 : 0);
+        $score += ($food == 1 ? 60 : 0);
+      break;
+
       case 'Guía Prestigio':
         $score = $food*8;
         $score += $service;
@@ -773,6 +779,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'OpenTable':
       case 'Resto.be':
       case 'Salir a Comer':
+      case 'Veja':
       case 'Zomato':
       	$score = $food*20;
       break;
@@ -992,6 +999,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Guia Josimar Melo':
+    $guide_data['type']  = 'user';
+  break;
+
   case 'Guía Prestigio':
     $guide_data['type']  = 'user';
   break;
@@ -1166,6 +1177,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Veja':
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Viajeros':
     $guide_data['type']  = 'user';
   break;
@@ -1202,7 +1217,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   }
   // default trust factor to 0.5
   if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
-    $guide_data['trust'] = 0.7;
+    $guide_data['trust'] = 0.5;
   }
   // Let's return all results and mark not set trust to -1 for debug
   if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
