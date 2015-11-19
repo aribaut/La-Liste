@@ -997,7 +997,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Guia Josimar Melo':
-    $guide_data['type']  = 'user';
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Guía Prestigio':
