@@ -69,6 +69,20 @@ function laliste_ranking_update($pro) {
         //echo $guide->name."\n";
 	 }
 	}
+  // we calculate all the ranks
+  $ranks = db_query("
+    SELECT @curRank := @curRank + 1 AS rank, restaurant_id FROM (SELECT @curRank := 0) r, restaurant_stats LEFT JOIN node ON node.nid = restaurant_stats.restaurant_id  WHERE popularity >= 10 ORDER BY score_laliste DESC LIMIT 1000");
+  // we update the stats table
+  foreach($ranks as $row) {
+    db_update('restaurant_stats')
+    ->fields(array(
+      'rank' => $row->rank,
+      )
+    )
+    ->condition('restaurant_id', $row->restaurant_id)
+    ->execute();
+  }
+  // error handling
   $score_errors = db_query("SELECT count(*) FROM {ranking} WHERE score > 100")->fetchField();
 	echo "LALISTE RANKING IS UP TO DATE!\n";
   echo "================================\n";
