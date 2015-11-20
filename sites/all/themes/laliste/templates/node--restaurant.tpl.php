@@ -118,8 +118,9 @@
           <li><span class="info-title"><?php print t('Téléphone');?>:</span> <span class="info-content"><?php print $phone; ?></span></li>
         <?php endif; ?>
         <?php if (isset($tags)): ?>
+          <?php $n = count($tags); $i=0; ?>
           <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span> <span class="info-content">
-          <?php foreach($tags as $tag): ?><?php print t($tag); ?> | <?php endforeach; ?></span></li>
+          <?php foreach($tags as $tag): ?><?php print t($tag); $i++; ?> <?php if ($i<$n): ?><?php print '|' ?><?php endif; ?> <?php endforeach; ?></span></li>
         <?php endif; ?>
       </ul>
     </div>
