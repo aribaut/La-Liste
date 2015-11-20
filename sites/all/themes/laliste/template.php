@@ -86,4 +86,59 @@ function laliste_form_search_block_form_alter(&$form, &$form_state, $form_id) {
     // Alternative (HTML5) placeholder attribute instead of using the javascript
     $form['search_block_form']['#attributes']['placeholder'] = t('Search');
 }
-?>
+
+function laliste_preprocess_node(&$variables) {
+  if($variables['type'] == 'restaurant') {
+    //dpm($variables);
+    // Addresses
+    if(!empty($variables['field_address'][0]['thoroughfare'])) {
+      $variables['address1'] = $variables['field_address'][0]['thoroughfare'];
+    }
+    if(!empty($variables['field_address'][0]['premise'])) {
+      $variables['address2'] = $variables['field_address'][0]['premise'];
+    }
+    if(!empty($variables['field_address'][0]['postal_code'])) {
+      $variables['postal_code'] = $variables['field_address'][0]['postal_code'];
+    }
+    if(!empty($variables['field_address'][0]['locality'])) {
+      $variables['city'] = $variables['field_address'][0]['locality'];
+    }
+    if(!empty($variables['field_address'][0]['country'])) {
+      include_once DRUPAL_ROOT . '/includes/locale.inc';
+      $country_code = $variables['field_address'][0]['country'];
+      $countries = country_get_list();
+      $variables['country_name'] = $countries[$country_code];
+      $variables['country_icon'] = theme('countryicons_icon', array('code' =>  $country_code, 'iconset' =>  'gosquared_flat_large'));
+    }
+    // Other infos
+    if(!empty($variables['field_cooking_type'][0]['url'])) {
+      $variables['cooking_type'] = $variables['field_cooking_type'][0]['value'];
+    }
+    if(!empty($variables['field_website'][0]['url'])) {
+      $variables['website'] = $variables['field_website'][0]['url'];
+    }
+    if(!empty($variables['field_phone'][0]['value'])) {
+      $variables['phone'] = $variables['field_phone'][0]['value'];
+    }
+    // extracting tags
+    if(!empty($variables['field_restaurant_tags'][0])) {
+      foreach($variables['field_restaurant_tags'] as $key => $tag) {
+        $tids[] = $tag['tid'];
+      }
+      $terms = taxonomy_term_load_multiple($tids);
+      foreach ($terms as $term) {
+        $variables['tags'][] = $term->name;
+      }
+    }
+    // extracting food guides
+    if(!empty($variables['field_restaurant_guides'][0])) {
+      foreach($variables['field_restaurant_guides'] as $key => $guide) {
+        $guides[] = $guide['tid'];
+      }
+      $terms = taxonomy_term_load_multiple($guides);
+      foreach ($terms as $term) {
+        $variables['guides'][] = $term->name;
+      }
+    }
+  }
+}

@@ -83,7 +83,19 @@
 <div class="Grid Grid--full large-Grid--fit" style="position: relative;">
   <img class="restaurant-media" src="<?php print base_path() . path_to_theme(); ?>/img/photo-restaurant.png">
   <div class="restaurant-overlay">
+    <hr class="half-length"><span class="tiny-rank">37<sup>e</sup></span><hr class="half-length">
     <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
+    <div class="Grid Grid--full large-Grid--fit restaurant-country">
+      <div class="country"><?php if (isset($country_icon)): ?><?php print $country_icon; ?><?php endif; ?></div>
+      <div class="restaurant-address">
+        <?php if (isset($address1)): ?><span><?php print $address1; ?></br></span><?php endif; ?>
+        <?php if (isset($address2)): ?><span><?php print $address2; ?></br></span><?php endif; ?>
+        <?php if (isset($postal_code)): ?><span><?php print $postal_code; ?></span><?php endif; ?>
+        <?php if (isset($city)): ?><span><?php print $city; ?></br></span><?php endif; ?>
+        <?php if (isset($country_name)): ?><span><?php print $country_name; ?></span><?php endif; ?>
+      </div>
+    </div>
+    <hr class="full-length">
   </div>
 </div>
 <div class="Grid Grid--full large-Grid--fit restaurant-info-container">
@@ -94,27 +106,32 @@
     <?php //endif; ?>
   </div>
   <div class="Grid Grid-cell Grid--center laliste-box no-hcenter laliste-box-bg laliste-box-height-med u-textLeft">
-    <?php //print render($content); ?>
     <div class="restaurant-info">
       <ul>
-        <li><span class="info-title">Type de cuisine:</span> <span class="info-content">Japonaise avec influence francaise</span></li>
-        <li><span class="info-title">Site internet:</span> <span class="info-content">http://www.google.com</span></li>
-        <li><span class="info-title">Telephone:</span> <span class="info-content">+81 534 23543</span></li>
-        <li><span class="info-title">Mots-clefs:</span> <span class="info-content">japon | francais | poisson | contemporain</span></li>
+        <?php if (isset($cooking_type)): ?>
+        <li><span class="info-title"><?php print t('Type de cuisine');?>:</span> <span class="info-content"><?php print t($cooking_type); ?></span></li>
+        <?php endif; ?>
+        <?php if (isset($website)): ?>
+          <li><span class="info-title"><?php print t('Site Internet');?>:</span> <span class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></span></li>
+        <?php endif; ?>
+        <?php if (isset($phone)): ?>
+          <li><span class="info-title"><?php print t('Téléphone');?>:</span> <span class="info-content"><?php print $phone; ?></span></li>
+        <?php endif; ?>
+        <?php if (isset($tags)): ?>
+          <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span> <span class="info-content">
+          <?php foreach($tags as $tag): ?><?php print t($tag); ?> | <?php endforeach; ?></span></li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>
 </div>
 <div class="Grid Grid--full large-Grid--fit">
    <div class="Grid Grid-cell Grid--center Grid--1of5 food-box-container">
-      <a class="food-guide-box" href="#">Yelp</a>
-      <a class="food-guide-box" href="#">Michelin</a>
-      <a class="food-guide-box" href="#">La Fourchette</a>
-      <a class="food-guide-box" href="#">TripAdvisor</a>
-      <a class="food-guide-box" href="#">Gault et Milau</a>
-      <a class="food-guide-box" href="#">La Fourchette</a>
-      <a class="food-guide-box" href="#">TripAdvisor</a>
-      <a class="food-guide-box" href="#">Gault et Milau</a>
+   <?php if (isset($guides)): ?>
+      <?php foreach($guides as $guide): ?>
+      <a class="food-guide-box" href="#"><?php print $guide; ?></a>
+      <?php endforeach; ?>
+   <?php endif; ?>
    </div>
 </div>
 <div class="Grid Grid--full large-Grid--fit restaurant-info-container">

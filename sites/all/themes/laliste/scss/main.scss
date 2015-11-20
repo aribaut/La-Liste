@@ -7,6 +7,7 @@
 // colors
 $light_grey: #f0f0f0;
 $dark_grey : #5d5d5d;
+$dark_gold : #93806c;
 $gray: #808080;
 $color_cape_cod_approx: #404040;
 $black: #000;
@@ -463,7 +464,11 @@ header > div.region.region-header {
 
 
 .restaurant-info ul li .info-content{
-    color: $dark_grey;
+    color: $dark_gold;
+}
+
+span.info-content > a {
+   color: $dark_gold;
 }
 
 .food-guide-box {
@@ -487,19 +492,23 @@ a.food-guide-box.last{
     margin-right: 0px;
 }
 
-a.food-guide-box:link {
+a.food-guide-box:link,
+span.info-content > a {
     text-decoration: none;
 }
 
-a.food-guide-box:visited {
+a.food-guide-box:visited,
+span.info-content > a {
     text-decoration: none;
 }
 
-a.food-guide-box:hover {
+a.food-guide-box:hover,
+span.info-content > a {
     text-decoration: underline;
 }
 
-a.food-guide-box:hover {
+a.food-guide-box:hover,
+span.info-content > a {
     text-decoration: underline;
 }
 
@@ -811,7 +820,9 @@ a.food-guide-box:hover {
 
 
 h1#node-title {
-    font-family: "Mrs Eaves Bold Italic", Serif;
+    font-family: "Mrs Eaves Italic", Serif;
+    margin-top: -1%;
+    margin-bottom: 4%;
 }
 
 p.rank {
@@ -883,4 +894,50 @@ h2.element-invisible {
   width: 34%;
   height: 76%;
   z-index: 80;
+  padding-top: 5%;
+  color: white;
 }
+
+.restaurant-overlay hr.half-length,
+.restaurant-overlay hr.full-length {
+    display: inline-block;
+    padding: 0;
+    color: white;
+    border-width: 1px;
+}
+
+.restaurant-overlay hr.half-length {
+    width: 30%
+}
+
+.restaurant-overlay hr.full-length {
+    width: 66%
+}
+
+.restaurant-overlay .tiny-rank {
+    font-weight: 100;
+    margin: 5px;
+    font-size: 1.2em;
+    position: relative;
+    top: -0.15em;
+}
+
+img.countryicon.iconset-gosquared_flat_large {
+    margin-top: 12%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.restaurant-address {
+    line-height: 110%;
+    font-weight: 300;
+    font-size: 1.2em;
+    width: 53%;
+    text-align: left;
+    padding-left: 5%;
+    margin-bottom: 2%;
+}
+
+

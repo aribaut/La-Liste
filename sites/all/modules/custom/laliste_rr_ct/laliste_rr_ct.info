@@ -8,6 +8,7 @@ dependencies[] = addressfield
 dependencies[] = features
 dependencies[] = link
 dependencies[] = text
+dependencies[] = locale
 features[features_api][] = api:2
 features[field_base][] = body
 features[field_base][] = field_address
