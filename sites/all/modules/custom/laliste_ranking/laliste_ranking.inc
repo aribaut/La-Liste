@@ -13,11 +13,11 @@
 *  $pro corresponds to the professional score weight (default to 60%)
 */
 function laliste_ranking_update($pro) {
-  $guide_not_present = $inserted = $updated = 0;
+  $guide_not_present = $inserted = 0;
   // let's clear the restaurant stats
   //$clear_restaurant_stats = db_query("DELETE FROM {restaurant_stats}");
   // let's clear the ranking scores and popularity
-  //$clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
+  $clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
 	// for all restaurants, compute their scores
 	$results = db_query("
 	SELECT nid
@@ -48,7 +48,7 @@ function laliste_ranking_update($pro) {
           $inserted++;
 			}
       // we update records only if the score is changed
-			elseif($stats->score_laliste != floatval($scores['global'])) {
+			else {
 			  db_update('restaurant_stats')
 	  		  ->fields(array(
 	    	    'score_laliste' => floatval($scores['global']),
@@ -60,7 +60,6 @@ function laliste_ranking_update($pro) {
 	  		  )
 	  		  ->condition('restaurant_id', $row->nid)
 	  		  ->execute();
-          $updated++;
 		    }
 		}
 	 else {
@@ -75,7 +74,6 @@ function laliste_ranking_update($pro) {
   echo "================================\n";
   echo "Number of score ranking over 100 : ".$score_errors."\n";
   echo "Number of new records added : ".$inserted."\n";
-  echo "Number of records updated : ".$updated."\n";
   echo "Number of records having no food guide entry : ".$guide_not_present."\n";
 }
 
@@ -244,8 +242,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
     switch($guide) {
 
-      case '50 Best': case 'Opiniated about dining': case 'Elite Traveler':
-      case 'Vacay.ca': case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
+      case '50 Best':
+      case 'Opiniated about dining':
+      case 'Elite Traveler':
+      case 'Vacay.ca':
+      case 'The Daily Meal - 101 best restaurants':
+      case 'James Beard Awards':
       case 'Maclean’s Canada’s best restaurant':
         $score = ($food>=1 && $food <=20) ? 0.03 : 0;
         $score += ($food>20 && $food <=50) ? 0.02 : 0;
@@ -253,10 +255,11 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'The AA Restaurant Guide Automobile Association':
-        $score =   ($food == 5 ? 90 : 0);
-        $score +=  ($food == 4 ? 80 : 0);
-        $score +=  ($food == 3 ? 70 : 0);
-        $score += ($wine == 1 ? 10 : 0);
+        $score =   ($food == 5 ? 95 : 0);
+        $score +=  ($food == 4 ? 85 : 0);
+        $score +=  ($food == 3 ? 75 : 0);
+        $score +=  ($food == 2 ? 65 : 0);
+        $score +=  ($wine == 1 ? 5 : 0);
       break;
 
       case 'A la Carte':
@@ -512,15 +515,15 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'The Good Food Guide':
-        $score =  ($food == 10 ? 90 : 0);
+        $score =  ($food == 10 ? 95 : 0);
         $score += ($food == 9 ? 85 : 0);
-        $score += ($food == 8 ? 80 : 0);
-        $score += ($food == 7 ? 75 : 0);
-        $score += ($food == 6 ? 70 : 0);
-        $score += ($food == 5 ? 65 : 0);
-        $score += ($food == 4 ? 60 : 0);
+        $score += ($food == 8 ? 75 : 0);
+        $score += ($food == 7 ? 70 : 0);
+        $score += ($food == 6 ? 65 : 0);
+        $score += ($food == 5 ? 60 : 0);
+        $score += ($food == 4 ? 55 : 0);
         $score += ($food == 3 ? 50 : 0);
-        $score += ($wine == 1 ? 10 : 0);
+        $score += ($wine == 1 ? 5 : 0);
       break;
 
       case 'Guía Gourmet':
@@ -584,7 +587,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service*2;
       break;
 
-      case 'James Beard Awards': case 'Afisha.ru':
+      case 'James Beard Awards':
+      case 'Afisha.ru':
         $score = $food*10;
       break;
 
@@ -617,7 +621,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
       */
 
-      case 'Michelin' : case 'Michelin (JP)':
+      case 'Michelin' :
+      case 'Michelin (JP)':
       	$score =  ($food == 3 ? 80 : 0);
       	$score += ($food == 2 ? 70 : 0);
       	$score += ($food == 1 ? 60 : 0);
@@ -629,7 +634,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	$score += ($bonus == 1 ? $atmosphere*2 : $atmosphere*1);
       break;
 
-      case 'Michelin Restaurants (FR)': case 'Michelin Restaurants (DE)':
+      case 'Michelin Restaurants (FR)':
+      case 'Michelin Restaurants (DE)':
         $score = $food*16;
         $score += $service*2;
         $score += $atmosphere*2;
@@ -668,7 +674,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($service == 1 ? 15 : 0);
       break;
 
-      case 'Singapore Tatler': case 'Philippines Tatler': case 'Malaysia Tatler': case 'Hong Kong Tatler':
+      case 'Singapore Tatler':
+      case 'Philippines Tatler':
+      case 'Malaysia Tatler':
+      case 'Hong Kong Tatler':
         $score = $food*16;
         $score += $wine;
         $score += $atmosphere;
@@ -686,7 +695,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service;
       break;
 
-      case 'Timeout' : case 'Timeout Mexico':
+      case 'Timeout' :
+      case 'Timeout Mexico':
         $score = $food*20;
       break;
 
@@ -700,7 +710,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*20;
       break;
 
-      case 'Tripadvisor': case 'Diningcity.cn':
+      case 'Tripadvisor':
+      case 'Diningcity.cn':
         	$score = $food*16;
         	$score += $service*2;
         	$score += $atmosphere*2;
@@ -784,7 +795,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
     }
   }
   // we only count user sites with 20+ reviews. Discard the rest
-  if($votes < 20) {
+  if($votes > 0 && $votes < 20) {
     $score = null;
   }
   $ranking['score'] = $score;
