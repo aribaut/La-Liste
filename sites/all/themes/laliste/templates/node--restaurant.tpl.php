@@ -83,7 +83,7 @@
 <div class="Grid Grid--full large-Grid--fit" style="position: relative;">
   <img class="restaurant-media" src="<?php print base_path() . path_to_theme(); ?>/img/photo-restaurant.png">
   <div class="restaurant-overlay">
-    <hr class="half-length"><span class="tiny-rank">37<sup>e</sup></span><hr class="half-length">
+    <hr class="half-length"><?php if ($rank): ?><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><?php endif; ?><hr class="half-length">
     <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
     <div class="Grid Grid--full large-Grid--fit restaurant-country">
       <div class="country"><?php if (isset($country_icon)): ?><?php print $country_icon; ?><?php endif; ?></div>
@@ -102,7 +102,7 @@
   <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
     <?php //if ($content['field_rank']): ?>
         <?php //render($content['field_rank']); ?>
-        <p class="rank">37<sup>e</sup></p>
+        <?php if ($rank): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
     <?php //endif; ?>
   </div>
   <div class="Grid Grid-cell Grid--center laliste-box no-hcenter laliste-box-bg laliste-box-height-med u-textLeft">

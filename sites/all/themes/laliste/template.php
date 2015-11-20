@@ -90,6 +90,10 @@ function laliste_form_search_block_form_alter(&$form, &$form_state, $form_id) {
 function laliste_preprocess_node(&$variables) {
   if($variables['type'] == 'restaurant') {
     //dpm($variables);
+    // getting restaurant rank
+    $variables['rank'] = db_query("
+      SELECT rank FROM {restaurant_stats}
+      WHERE restaurant_id = ".$variables['nid'])->fetchField();
     // Addresses
     if(!empty($variables['field_address'][0]['thoroughfare'])) {
       $variables['address1'] = $variables['field_address'][0]['thoroughfare'];
