@@ -376,8 +376,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Dianping':
         $score =  ($food == 3 ? 100 : 0);
-        $score += ($food == 2 ? 80 : 0);
-        $score += ($food == 1 ? 60 : 0);
+        $score += ($food == 2 ? 90 : 0);
+        $score += ($food == 1 ? 80 : 0);
       break;
 
       case 'Dubai Eating':
@@ -737,6 +737,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Timeout Food Awards Doha':
       case 'Timeout Abu Dhabi Restaurant Awards':
       case 'Timeout Food Awards Dubai':
+      case 'Timeout Israel Eating & Drinking Awards':
       case 'Timeout KL Food Awards':
       case 'Timeout Melbourne Food Awards':
       case 'Timeout Sidney Food Awards':
@@ -1249,6 +1250,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Timeout Abu Dhabi Restaurant Awards':
   case 'Timeout Food Awards Dubai':
   case 'Timeout KL Food Awards':
+  case 'Timeout Israel Eating & Drinking Awards':
   case 'Timeout Melbourne Food Awards':
   case 'Timeout Sidney Food Awards':
   case 'Timeout Food & Drink Awards Istanbul':
