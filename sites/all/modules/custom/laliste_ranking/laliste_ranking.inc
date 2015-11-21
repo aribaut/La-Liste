@@ -815,7 +815,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'White Guide':
-      case 'White Guide (DK)':
         $score =  ($bonus == 39 ? 80 : 0);
         $score += ($bonus == 38 ? 75 : 0);
         $score += ($bonus == 37 ? 70 : 0);
@@ -823,6 +822,22 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($bonus == 35 ? 60 : 0);
         $score += ($bonus == 34 ? 55 : 0);
         $score += ($bonus == 33 ? 50 : 0);
+        if($score) {
+          $score += $service/2.5;
+          $tmp = $food - ($bonus+$service); // complicated calculation!
+          $score += ($tmp * 4/7)/4; // for wine
+          $score += ($tmp * 3/7)/3; // for ambiance
+        }
+      break;
+
+      case 'White Guide (DK)':
+        $score =  ($bonus == 39 ? 80 : 0);
+        $score += ($bonus == 38 ? 70 : 0);
+        $score += ($bonus == 37 ? 60 : 0);
+        $score += ($bonus == 36 ? 50 : 0);
+        $score += ($bonus == 35 ? 45 : 0);
+        $score += ($bonus == 34 ? 44 : 0);
+        $score += ($bonus == 33 ? 43 : 0);
         if($score) {
           $score += $service/2.5;
           $tmp = $food - ($bonus+$service); // complicated calculation!
