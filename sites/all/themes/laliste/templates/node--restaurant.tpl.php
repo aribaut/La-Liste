@@ -95,7 +95,6 @@
         <?php if (isset($country_name)): ?><span><?php print $country_name; ?></span><?php endif; ?>
       </div>
     </div>
-    <hr class="full-length">
   </div>
 </div>
 <div class="restaurant-info-container">

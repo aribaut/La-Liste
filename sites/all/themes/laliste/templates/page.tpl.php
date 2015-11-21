@@ -75,9 +75,11 @@
 
 <main class="laliste-body">
   <div class="container-main">
-    <header class="laliste-header logo-header">
-      <div class="logo-div"></div>
-      <?php print render($page['header']); ?>
+    <header class="Grid laliste-header">
+      <div class="Grid Grid-cell Grid--full logo u-small-full u-med-full u-large-2of3"></div>
+      <div class="Grid Grid-cell Grid--full u-small-full u-med-full u-large-1of3">
+        <?php print render($page['header']); ?>
+      </div>
     </header>
     <?php print render($title_prefix); ?>
     <?php if (false): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
@@ -111,7 +113,7 @@
 <footer class="laliste-footer">
   <div class="insider-footer">
   <?php //print render($page['footer']); ?>
-    <a class="footer-link" href="#">À PROPOS</a>
+    <a class="footer-link" href="#">À&nbsp;PROPOS</a>
     <a class="footer-link" href="#">L'ÉQUIPE</a>
     <a class="footer-link" href="#">CONTACT</a>
     <a class="footer-link" href="#">FAQ</a>
