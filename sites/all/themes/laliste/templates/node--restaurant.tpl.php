@@ -129,8 +129,12 @@
 <div class="Grid Grid--full large-Grid--fit">
    <div class="Grid Grid-cell Grid--center Grid--1of5 food-box-container">
    <?php if (isset($guides)): ?>
-      <?php foreach($guides as $guide): ?>
-      <a class="food-guide-box" href="#"><?php print $guide; ?></a>
+      <?php foreach($guides as $guide_name => $guide_url): ?>
+        <?php if (isset($guide_url)): ?>
+          <a class="food-guide-box" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?></a>
+        <?php else: ?>
+          <div class="food-guide-box"><?php print $guide_name; ?></div>
+        <?php endif; ?>
       <?php endforeach; ?>
    <?php endif; ?>
    </div>

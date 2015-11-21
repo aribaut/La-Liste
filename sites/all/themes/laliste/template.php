@@ -89,7 +89,6 @@ function laliste_form_search_block_form_alter(&$form, &$form_state, $form_id) {
 
 function laliste_preprocess_node(&$variables) {
   if($variables['type'] == 'restaurant') {
-    //dpm($variables);
     // getting restaurant rank
     $variables['rank'] = db_query("
       SELECT rank FROM {restaurant_stats}
@@ -135,14 +134,16 @@ function laliste_preprocess_node(&$variables) {
       }
     }
     // extracting food guides
-    if(!empty($variables['field_restaurant_guides'][0])) {
-      foreach($variables['field_restaurant_guides'] as $key => $guide) {
-        $guides[] = $guide['tid'];
-      }
-      $terms = taxonomy_term_load_multiple($guides);
-      foreach ($terms as $term) {
-        $variables['guides'][] = $term->name;
-      }
+    // let's get all the guide_ids and url for this restaurant
+    $links = db_query("
+      SELECT guide_id, link FROM ranking r LEFT JOIN restaurantguideranking rgr
+      ON rgr.ranking_id=r.ranking_id WHERE restaurant_id=".$variables['nid']."
+      AND score IS NOT NULL ORDER BY guide_id")->fetchAllKeyed();
+    // we now get the taxonomy term names
+    $terms = taxonomy_term_load_multiple(array_keys($links));
+    // we load everything together : the terms and the url in one variable
+    foreach ($links as $tid => $link) {
+      $variables['guides'][$terms[$tid]->name] = $link;
     }
   }
 }
