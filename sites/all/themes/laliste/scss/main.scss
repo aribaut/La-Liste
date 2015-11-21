@@ -184,13 +184,16 @@ h3 {
 }
 
 a {
-    //border-bottom: 1px dashed rgba(149, 136, 82, .5);
     color: #999966;
     text-decoration: none
 }
 
+a:link, a:visited {
+    text-decoration: none;
+}
+
 a:focus, a:hover {
-    //border-bottom: 1px solid #999966; //999966
+    text-decoration: underline;
 }
 
 ol, ul {
@@ -211,45 +214,17 @@ strong {
     font-weight: 600
 }
 
+/*
+ * Flexbox grid structure
+ **/
 
-.Container {
-    max-width: 1408px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.Grid,
-.food-guide-box {
+.Grid {
     @include flexbox;
     @include flex-wrap(wrap);
     list-style: none;
     margin: 0;
     padding: 0;
     justify-content: center;
-}
-
-.insider-footer {
-    justify-content: space-around;
-}
-
-.restaurant-media {
-    width: 100%;
-    height: 100%;
-}
-
-.food-box-container {
-    height: 100%;
-    @include justify-content(flex-start);
-}
-
-.food-box-container > :first-child,
-.restaurant-info-container > :first-child {
-    margin-left: 0px;
-}
-
-.food-box-container > :nth-child(8n+8),
-.restaurant-info-container > :last-child {
-    margin-right : 0px;
 }
 
 .Grid-cell {
@@ -264,8 +239,7 @@ strong {
     @include align-items(flex-end);
 }
 
-.Grid--center,
-.food-guide-box {
+.Grid--center {
     @include align-items(center);
 }
 
@@ -309,11 +283,10 @@ strong {
     @include flex(0,0,25%);
 }
 
-.Grid--1of5>.food-guide-box
+.Grid--1of5>.Grid-cell
  {
-    @include flex(0,0,169px);
+    @include flex(0,0,169px); // guide-box
 }
-
 
 @media (min-width:384px) {
     .small-Grid--fit>.Grid-cell {
@@ -334,6 +307,11 @@ strong {
 
     .small-Grid--1of4>.Grid-cell {
         @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,80px); // guide-box
     }
 }
 
@@ -357,6 +335,11 @@ strong {
     .med-Grid--1of4>.Grid-cell {
         @include flex(0,0,25%);
     }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,120px); // guide-box
+    }
 }
 
 @media (min-width:768px) {
@@ -379,9 +362,16 @@ strong {
     .large-Grid--1of4>.Grid-cell {
         @include flex(0,0,25%);
     }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,150px); // guide-box
+    }
 }
 
-/* Site Specific */
+/*
+ * Site Specific
+ **/
 
 .laliste {
     height: 100%;
@@ -391,6 +381,19 @@ strong {
 .laliste-footer, .laliste-header {
     @include flexbox;
     @include flex(0);
+}
+
+.laliste-footer {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+}
+
+.insider-footer {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of4;
 }
 
 .laliste-body {
@@ -411,10 +414,7 @@ strong {
 }
 
 .laliste-nav {
-    -webkit-box-ordinal-group: 0;
-    -webkit-order: -1;
-    -ms-flex-order: -1;
-    order: -1
+    @include order(-1);
 }
 
 .laliste-ads, .laliste-nav {
@@ -453,17 +453,119 @@ header > div.region.region-header {
     margin-right: 0px;
 }
 
-.restaurant-info ul li {
+.container-main {
+    max-width: 1408px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.restaurant-top-section {
+    @extend .Grid;
+    @extend .Grid--full;
+    @extend .large-Grid--fit;
+    position: relative;
+}
+
+.restaurant-media {
+    width: 100%;
+    height: 100%;
+}
+
+.restaurant-info-container {
+    @extend .Grid;
+}
+
+.restaurant-user-actions-container {
+    @extend .Grid;
+}
+
+.restaurant-user-action-share,
+.restaurant-user-action-add-list {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .laliste-box;
+    @extend .laliste-box-bg;
+    @extend .row-height-tall;
+}
+
+.restaurant-user-action-share {
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of3;
+}
+
+//Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-tall
+
+.guides-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of5;
+    height: 100%;
+    @include justify-content(flex-start);
+}
+
+.guide-box {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of5;
+}
+
+.guides-container > :first-child,
+.restaurant-info-container > :first-child,
+.restaurant-user-actions-container > :first-child {
+    margin-left: 0px;
+}
+
+.guides-container > :nth-child(8n+8),
+.restaurant-info-container > :last-child,
+.restaurant-user-actions-container > :last-child {
+    margin-right : 0px;
+}
+
+.insider-footer {
+    justify-content: space-around;
+}
+
+.restaurant-country {
+    @extend .Grid;
+}
+
+.restaurant-rank-big {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full ;
+    @extend .u-large-1of3;
+    @extend .row-height-med;
+    @extend .laliste-box;
+    background-color: $light_grey;
+}
+
+.restaurant-details-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .laliste-box;
+    @extend .no-hcenter;
+    @extend .laliste-box-bg;
+    @extend .row-height-med;
+    @extend .u-textLeft;
+}
+
+.restaurant-details ul li {
      line-height: 1em;
      height: auto;
 }
 
-.restaurant-info ul li .info-title{
+.restaurant-details ul li .info-title{
     font-weight: 300;
 }
 
-
-.restaurant-info ul li .info-content{
+.restaurant-details ul li .info-content{
     color: $dark_gold;
 }
 
@@ -471,50 +573,110 @@ span.info-content > a {
    color: $dark_gold;
 }
 
-.food-guide-box {
+.guide-box {
     color: $white;
     background: $black;
     height: 169px;
-    width: 169px;
+    width: auto;
     padding: 10px;
 }
 
-.food-guide-box {
+.guide-box {
     margin: 4px 8px 4px 0px;
     font-weight: 300;
 }
 
-.food-guide-box.first{
+.guide-box.first{
     margin-left: 0px;
 }
 
-.food-guide-box.last{
+.guide-box.last{
     margin-right: 0px;
 }
 
-a.food-guide-box:link,
-span.info-content > a {
-    text-decoration: none;
+/* Site specific Media Queries */
+
+@media screen and (min-width: 384px) {
+
+    .row-height-med {
+        height: 60px;
+    }
+
+    .row-height-tall {
+        height: 90px;
+    }
+
+    .restaurant-details {
+        font-size: 0.8em;
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 1.5em;
+    }
+
+    span.tiny-rank {
+        font-size: 0.5em !important;
+    }
+
+    p.rank {
+        font-size: 1.5em;
+    }
+
+    .restaurant-address span {
+        font-size: 0.6em !important;
+    }
+
+    h1#node-title {
+        font-size: 1.5em;
+    }
+
+    .guide-box {
+        font-size: 0.8em;
+        height: 80px;
+    }
 }
 
-a.food-guide-box:visited,
-span.info-content > a {
-    text-decoration: none;
+@media screen and (min-width: 576px) {
+
+    .row-height-med {
+        height: 100px;
+    }
+
+    .row-height-tall {
+        height: 180px;
+    }
+
+    .restaurant-details {
+        font-size: 1.1em;
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 2em;
+    }
+
+    span.tiny-rank {
+        font-size: 0.8em !important;
+    }
+
+    p.rank {
+        font-size: 2em;
+    }
+
+    .restaurant-address span {
+        font-size: 0.8em !important;
+    }
+
+    h1#node-title {
+        font-size: 2em;
+    }
+
+    .guide-box {
+        font-size: 1em;
+        height: 120px;
+    }
 }
 
-a.food-guide-box:hover,
-span.info-content > a {
-    text-decoration: underline;
-}
-
-a.food-guide-box:hover,
-span.info-content > a {
-    text-decoration: underline;
-}
-
-/* Media Queries */
-
-@media (min-width:768px) {
+@media screen and (min-width: 768px) {
     .laliste-body {
         @include flex(1);
         @include flex-direction(row);
@@ -529,32 +691,87 @@ span.info-content > a {
         @include flex(0,0,12em);
     }
 
-    .laliste-box-height-short {
+    .row-height-med {
+        height: 150px !important;
+    }
+
+    .row-height-tall {
+        height: 240px !important;
+    }
+
+    .restaurant-details {
+        width: 96%;
+        padding-top: 30px;
+        font-size: 1.2em !important;
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 3em !important;
+    }
+
+    span.tiny-rank {
+        font-size: 1em !important;
+    }
+
+    p.rank {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 4em !important;
+        font-weight: 600;
+    }
+
+    .restaurant-address span {
+        font-size: 1em !important;
+    }
+
+    h1#node-title {
+        font-size: 3em !important;
+    }
+
+    .guide-box {
+        font-size: 1.2em;
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .laliste-body {
+        @include flex(1);
+        @include flex-direction(row);
+    }
+
+    .laliste-content {
+        @include flex(1);
+        margin: 0 !important
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12em);
+    }
+
+    .row-height-short {
         height: 166px !important;
     }
 
-    .laliste-box-height-med {
+    .row-height-med {
         height: 194px !important;
     }
 
-    .laliste-box-height-tall {
+    .row-height-tall {
         height: 279px !important;
     }
 
-    .restaurant-info {
+    .restaurant-details {
         width: 96%;
         padding-top: 40px;
         font-size: 1.5em !important;
     }
 
-    .restaurant-user-actions {
+    .restaurant-user-actions-container p {
         font-size: 3em !important;
     }
 
     p.rank {
-        font-family: 'Josefin Sans', sans-serif;
         font-size: 5em !important;
-        font-weight: 600;
     }
 
     h1#node-title {
@@ -562,57 +779,8 @@ span.info-content > a {
         font-size: 5em !important;
     }
 
-    .food-guide-box {
+    .guide-box {
         font-size: 1.4em;
-    }
-}
-
-.Image {
-    display: block;
-    width: 40px;
-    height: auto;
-    margin-top: .2em
-}
-
-.Image--tiny {
-    width: 30px
-}
-
-@media (min-width:576px) {
-    .Image {
-        width: 70px
-    }
-
-    .Image--tiny {
-        width: 40px
-    }
-
-    .laliste-box-height-short {
-        height: 125px;
-    }
-
-    .laliste-box-height-med {
-        height: 125px;
-    }
-
-    .laliste-box-height-tall {
-        height: 125px;
-    }
-
-    .restaurant-info {
-        font-size: 1.1em;
-    }
-
-    .restaurant-user-actions {
-        font-size: 2em;
-    }
-
-    p.rank {
-        font-size: 2em;
-    }
-
-    h1#node-title {
-        font-size: 2em;
     }
 }
 
@@ -814,6 +982,53 @@ span.info-content > a {
     }
 }
 
+@media (min-width:1200px) {
+    .u-large-full {
+        width: 100% !important
+    }
+
+    .u-large-1of2, .u-large-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-1of2 {
+        width: 50% !important
+    }
+
+    .u-large-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-large-1of3, .u-large-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-2of3 {
+        width: 60% !important
+    }
+
+    .u-large-1of4 {
+        width: 25% !important
+    }
+
+    .u-large-1of4, .u-large-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-3of4 {
+        width: 75% !important
+    }
+}
+
 .no-hcenter {
     justify-content: left !important;
 }
@@ -823,6 +1038,7 @@ h1#node-title {
     font-family: "Mrs Eaves Italic", Serif;
     margin-top: -1%;
     margin-bottom: 4%;
+    color: $white;
 }
 
 p.rank {
@@ -834,7 +1050,7 @@ p.rank {
     padding-left : 20px;
 }
 
-.restaurant-user-actions {
+.restaurant-user-actions-container p {
     font-family: "Mrs Eaves Bold Italic", Serif;
 }
 

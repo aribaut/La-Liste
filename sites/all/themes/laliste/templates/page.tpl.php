@@ -74,7 +74,7 @@
 ?>
 
 <main class="laliste-body">
-  <div class="Container">
+  <div class="container-main">
     <header class="laliste-header logo-header">
       <div class="logo-div"></div>
       <?php print render($page['header']); ?>
@@ -108,8 +108,8 @@
     <?php endif; ?>
   </div>
 </main>
-<footer class="Grid Grid-cell Grid--center laliste-footer Footer">
-  <div class="Grid Grid-cell Grid--center insider-footer Grid--1of4">
+<footer class="laliste-footer">
+  <div class="insider-footer">
   <?php //print render($page['footer']); ?>
     <a class="footer-link" href="#">À PROPOS</a>
     <a class="footer-link" href="#">L'ÉQUIPE</a>

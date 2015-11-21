@@ -80,12 +80,12 @@
  * @ingroup themeable
  */
 ?>
-<div class="Grid Grid--full large-Grid--fit" style="position: relative;">
+<div class="restaurant-top-section">
   <img class="restaurant-media" src="<?php print base_path() . path_to_theme(); ?>/img/photo-restaurant.png">
   <div class="restaurant-overlay">
     <hr class="half-length"><?php if ($rank): ?><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><?php endif; ?><hr class="half-length">
     <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
-    <div class="Grid Grid--full large-Grid--fit restaurant-country">
+    <div class="restaurant-country">
       <div class="country"><?php if (isset($country_icon)): ?><?php print $country_icon; ?><?php endif; ?></div>
       <div class="restaurant-address">
         <?php if (isset($address1)): ?><span><?php print $address1; ?></br></span><?php endif; ?>
@@ -98,15 +98,12 @@
     <hr class="full-length">
   </div>
 </div>
-<div class="Grid Grid--full large-Grid--fit restaurant-info-container">
-  <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-med">
-    <?php //if ($content['field_rank']): ?>
-        <?php //render($content['field_rank']); ?>
-        <?php if ($rank): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
-    <?php //endif; ?>
+<div class="restaurant-info-container">
+  <div class="restaurant-rank-big">
+    <?php if ($rank): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
   </div>
-  <div class="Grid Grid-cell Grid--center laliste-box no-hcenter laliste-box-bg laliste-box-height-med u-textLeft">
-    <div class="restaurant-info">
+  <div class="restaurant-details-container">
+    <div class="restaurant-details">
       <ul>
         <?php if (isset($cooking_type)): ?>
         <li><span class="info-title"><?php print t('Type de cuisine');?>:</span> <span class="info-content"><?php print t($cooking_type); ?></span></li>
@@ -126,24 +123,24 @@
     </div>
   </div>
 </div>
-<div class="Grid Grid--full large-Grid--fit">
-   <div class="Grid Grid-cell Grid--center Grid--1of5 food-box-container">
+<div class="Grid">
+   <div class="guides-container">
    <?php if (isset($guides)): ?>
       <?php foreach($guides as $guide_name => $guide_url): ?>
         <?php if (isset($guide_url)): ?>
-          <a class="food-guide-box" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?></a>
+          <a class="guide-box" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?></a>
         <?php else: ?>
-          <div class="food-guide-box"><?php print $guide_name; ?></div>
+          <div class="guide-box"><?php print $guide_name; ?></div>
         <?php endif; ?>
       <?php endforeach; ?>
    <?php endif; ?>
    </div>
 </div>
-<div class="Grid Grid--full large-Grid--fit restaurant-info-container">
-   <div class="Grid Grid-cell Grid--center u-small-full u-med-full u-large-1of3 laliste-box laliste-box-bg laliste-box-height-tall">
-    <p class="restaurant-user-actions">Partager</p>
+<div class="restaurant-user-actions-container">
+   <div class="restaurant-user-action-share">
+    <p>Partager</p>
    </div>
-   <div class="Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-tall">
-    <p class="restaurant-user-actions">Ajouter à ma liste</p>
+   <div class="restaurant-user-action-add-list">
+    <p>Ajouter à ma liste</p>
    </div>
 </div>
