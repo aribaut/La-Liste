@@ -781,6 +781,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere;
       break;
 
+      case 'voyage.michelin.fr (trusted source)':
+        $score =  ($food==3) ? 0.03 : 0;
+        $score += ($food==2) ? 0.02 : 0;
+        $score += ($food==1) ? 0.01 : 0;
+      break;
+
       case 'Wine Spectator (trusted source)':
         $score = ($wine==3) ? 0.03 : 0;
         $score += ($wine==2) ? 0.02 : 0;
@@ -1247,6 +1253,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Via restó':
     $guide_data['type']  = 'user';
+  break;
+
+  case 'voyage.michelin.fr (trusted source)':
+    $guide_data['type']  = 'publication';
   break;
 
   case 'Wine Spectator (trusted source)':
