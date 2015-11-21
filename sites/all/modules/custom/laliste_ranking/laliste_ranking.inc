@@ -358,6 +358,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	$score += ($wine == 1 ? 1 : 0);
       break;
 
+      case 'Diningcity.hu':
+        $score = $food*20;
+      break;
+
       case 'Dining City':
         $score = $food*8;
         $score += $service;
@@ -394,6 +398,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Espresso':
         $score = $food*5;
+      break;
+
+      case 'Etterem.hu':
+        $score = $food*20;
       break;
 
       case 'Falstaff':
@@ -448,7 +456,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault-Millau (DE)':
-        // method 1
         $score +=  ($food == 19.5 ? 80 : 0);
         $score +=  ($food == 19 ? 77 : 0);
         $score +=  ($food == 18 ? 72 : 0);
@@ -465,6 +472,15 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 2 ? 65 : 0);
         $score +=  ($food == 1 ? 55 : 0);
         $score += ($wine == 1 ? 5 : 0);
+      break;
+
+      case 'Gault-Millau (HU)':
+        $score +=  ($food == 19 ? 100 : 0);
+        $score +=  ($food == 18 ? 90 : 0);
+        $score +=  ($food == 17 ? 80 : 0);
+        $score +=  ($food == 16 ? 70 : 0);
+        $score +=  ($food == 15 ? 60 : 0);
+        $score +=  ($food == 14 ? 60 : 0);
       break;
 
       case 'Gault-Millau (JP)':
@@ -682,7 +698,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Schlemmer Atlas':
-        // raw
         $score = $food*16;
         $score +=  ($wine == 1 ? 5 : 0);
         $score +=  ($service == 1 ? 15 : 0);
@@ -919,6 +934,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Diningcity.hu':
+    $guide_data['type']  = 'user';
+  break;
+
   case 'DininginDoha':
     $guide_data['type']  = 'user';
   break;
@@ -934,6 +953,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Espresso':
     $guide_data['trust'] = 0.708;
     $guide_data['type']  = 'guide';
+  break;
+
+  case 'Etterem.hu':
+    $guide_data['type']  = 'user';
   break;
 
   case 'Falstaff':
