@@ -726,8 +726,23 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Timeout' :
       case 'Timeout Mexico':
+      case 'Time Out (CN)':
       case 'Time Out (RU)':
         $score = $food*20;
+        $score += $bonus;
+      break;
+
+      case 'Timeout Food Awards':
+      case 'Timeout Bahrein Restaurant Awards':
+      case 'Timeout Food Awards Doha':
+      case 'Timeout Abu Dhabi Restaurant Awards':
+      case 'Timeout Food Awards Dubai':
+      case 'Timeout KL Food Awards':
+      case 'Timeout Melbourne Food Awards':
+      case 'Timeout Sidney Food Awards':
+        $score =  ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 80 : 0);
+        $score += ($food == 3 ? 60 : 0);
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
@@ -800,10 +815,20 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'White Guide':
-        $score = $bonus;
-        $tmp = $food - ($bonus+$service); // complicated calculation!
-        $score += $tmp * 4/7; // for wine
-        $score += $tmp * 3/7; // for ambiance
+      case 'White Guide (DK)':
+        $score =  ($bonus == 39 ? 80 : 0);
+        $score += ($bonus == 38 ? 75 : 0);
+        $score += ($bonus == 37 ? 70 : 0);
+        $score += ($bonus == 36 ? 65 : 0);
+        $score += ($bonus == 35 ? 60 : 0);
+        $score += ($bonus == 34 ? 55 : 0);
+        $score += ($bonus == 33 ? 50 : 0);
+        if($score) {
+          $score += $service/2.5;
+          $tmp = $food - ($bonus+$service); // complicated calculation!
+          $score += $tmp * 4/7; // for wine
+          $score += $tmp * 3/7; // for ambiance
+        }
       break;
 
       case 'Yelp':
@@ -1205,14 +1230,22 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
-  case 'Timeout Mexico':
-    $guide_data['trust'] = 0.5;
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
+  case 'Timeout Food Awards':
+  case 'Timeout Bahrein Restaurant Awards':
+  case 'Timeout Food Awards Doha':
+  case 'Timeout Abu Dhabi Restaurant Awards':
+  case 'Timeout Food Awards Dubai':
+  case 'Timeout KL Food Awards':
+  case 'Timeout Melbourne Food Awards':
+  case 'Timeout Sidney Food Awards':
+  case 'Timeout Food & Drink Awards Istanbul':
     $guide_data['type']  = 'guide';
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
   break;
 
+  case 'Timeout Mexico':
+  case 'Time Out (CN)':
   case 'Time Out (RU)':
-    $guide_data['trust'] = 0.5;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
@@ -1264,6 +1297,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'White Guide':
+  case 'White Guide (DK)':
     $guide_data['trust'] = 0.733;
     $guide_data['type']  = 'guide';
   break;
