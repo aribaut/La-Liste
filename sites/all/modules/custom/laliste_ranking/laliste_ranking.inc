@@ -726,6 +726,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Timeout' :
       case 'Timeout Mexico':
+      case 'Time Out (RU)':
         $score = $food*20;
       break;
 
@@ -1199,6 +1200,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Timeout Mexico':
+    $guide_data['trust'] = 0.5;
+    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Time Out (RU)':
     $guide_data['trust'] = 0.5;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
