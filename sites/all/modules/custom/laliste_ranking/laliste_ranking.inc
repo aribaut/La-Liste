@@ -835,9 +835,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($bonus == 38 ? 70 : 0);
         $score += ($bonus == 37 ? 60 : 0);
         $score += ($bonus == 36 ? 50 : 0);
-        $score += ($bonus == 35 ? 45 : 0);
-        $score += ($bonus == 34 ? 44 : 0);
-        $score += ($bonus == 33 ? 43 : 0);
+        $score += ($bonus == 35 ? 50 : 0);
         if($score) {
           $score += $service/2.5;
           $tmp = $food - ($bonus+$service); // complicated calculation!
