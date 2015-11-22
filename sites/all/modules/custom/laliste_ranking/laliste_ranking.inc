@@ -1313,12 +1313,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'White Guide':
+  case 'White Guide (DK)':
     $guide_data['trust'] = 0.733;
     $guide_data['type']  = 'guide';
 
-  case 'White Guide (DK)':
-    $guide_data['type']  = 'guide';
-  break;
 
 	case 'Zagat':
     $guide_data['type']  = 'user';
