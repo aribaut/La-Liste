@@ -392,7 +392,7 @@ strong {
     @extend .Grid-cell;
     @extend .Grid--full;
     @extend .u-small-full;
-    @extend .u-med-full;
+    @extend .u-med-1of2;
     @extend .u-large-2of3;
     @extend .logo;
 }
@@ -402,7 +402,7 @@ strong {
     @extend .Grid-cell;
     @extend .Grid--full;
     @extend .u-small-full;
-    @extend .u-med-full;
+    @extend .u-med-1of2;
     @extend .u-large-1of3;
     @include justify-content(flex-end);
     padding-right: 8px;
@@ -584,7 +584,7 @@ header > div.region.region-header {
 }
 
 .restaurant-details ul li .info-title{
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .restaurant-details ul li .info-content{
@@ -639,11 +639,11 @@ span.info-content > a {
     }
 
     .row-height-med {
-        height: 60px;
+        height: 80px;
     }
 
     .row-height-tall {
-        height: 60px;
+        height: 80px;
     }
 
     .restaurant-details {
@@ -651,6 +651,10 @@ span.info-content > a {
         ul {
             margin: 0 0 -0.5em !important;
         }
+    }
+
+    .restaurant-details-container {
+        font-size: 1.2em;
     }
 
     .restaurant-user-actions-container p {
@@ -710,15 +714,16 @@ span.info-content > a {
 @media screen and (min-width: 576px) {
 
     .header-branding {
-        @include justify-content(center);
+        @include justify-content(flex-start);
         img {
             width: 320px;
             height: 100%;
+            padding-left: 4px;
         }
     }
 
     .header-utils {
-        @include justify-content(center);
+        @include justify-content(flex-end);
     }
 
     .laliste-ads, .laliste-nav {
@@ -726,16 +731,16 @@ span.info-content > a {
     }
 
     .row-height-med {
-        height: 80px;
+        height: 100px;
     }
 
     .row-height-tall {
-        height: 80px;
+        height: 100px;
     }
 
     .restaurant-overlay {
         display: block;
-        top: 30px !important;
+        top: 24px !important;
         left: 250px !important;
         width: 42% !important;
         height: 85% !important;
@@ -834,7 +839,7 @@ span.info-content > a {
     }
 
     .restaurant-overlay {
-        top: 50px !important;
+        top: 33px !important;
         left: 400px !important;
     }
 
@@ -931,6 +936,8 @@ span.info-content > a {
     .restaurant-overlay {
         top: 50px !important;
         left: 600px !important;
+        width: 34% !important;
+        height: 76% !important;
     }
 
     .restaurant-details {
@@ -1257,7 +1264,6 @@ sup {
  * User login block in footer.
  */
 #block-user-login, #block-search-form {
-  margin: 2em auto;
   width: 100%;
   text-align: center;
 }
@@ -1325,11 +1331,11 @@ h2.element-invisible {
 }
 
 .restaurant-overlay .tiny-rank {
-    font-weight: 100;
+    font-weight: 300;
     margin: 5px;
     font-size: 1.2em;
     position: relative;
-    top: -0.15em;
+    top: -0.25em;
 }
 
 img.countryicon.iconset-gosquared_flat_large {
