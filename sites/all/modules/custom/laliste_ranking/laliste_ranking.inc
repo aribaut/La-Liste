@@ -906,6 +906,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Blue Ribbon':
     $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['trust'] = 1;
     $guide_data['type']  = 'guide';
   break;
 
@@ -969,7 +970,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Dianping':
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] =  0.7;
+    $guide_data['trust'] =  1.4;
   break;
 
   case 'Dining City':
@@ -1062,13 +1063,14 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (JP)':
-    $guide_data['trust'] =  0.8; // arbitrary
+    $guide_data['trust'] =  1.6; // arbitrary
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
   case 'Gault-Millau (MA)':
     $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['trust'] = 1;
     $guide_data['type']  = 'guide';
   break;
 
@@ -1108,6 +1110,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Guía Summum':
     $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['trust'] = 1;
     $guide_data['type']  = 'guide';
   break;
 
@@ -1146,13 +1149,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case "L'Internaute":
     $guide_data['type']  = 'user';
   break;
-
-  /*
-  case 'Lekker':
-    $guide_data['trust'] = 0; // ouch!
-    $guide_data['type']  = 'guide';
-  break;
-  */
 
   case 'Maclean’s Canada’s best restaurant':
     $guide_data['type']  = 'list';
@@ -1206,8 +1202,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case "Rossouw's Restaurants":
-    $guide_data['trust'] = 0.46;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['trust'] = 0.92;
     $guide_data['type']  = 'guide';
   break;
 
@@ -1244,18 +1240,22 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
-  case 'Timeout Food Awards':
+  case 'Timeout Food Awards': // chine
   case 'Timeout Bahrein Restaurant Awards':
   case 'Timeout Food Awards Doha':
   case 'Timeout Abu Dhabi Restaurant Awards':
   case 'Timeout Food Awards Dubai':
   case 'Timeout KL Food Awards':
   case 'Timeout Israel Eating & Drinking Awards':
-  case 'Timeout Melbourne Food Awards':
-  case 'Timeout Sidney Food Awards':
   case 'Timeout Food & Drink Awards Istanbul':
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 1;
     $guide_data['popularity'] = 10; // special case for being unique guide in country
+  break;
+
+  case 'Timeout Melbourne Food Awards':
+  case 'Timeout Sidney Food Awards':
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Timeout Mexico':
@@ -1263,6 +1263,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Time Out (RU)':
     $guide_data['popularity'] = 10; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 1;
   break;
 
   case 'Traveltipz.ru':
