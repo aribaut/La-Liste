@@ -139,14 +139,20 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
         $guide_ranking = laliste_ranking_get_guide_factor($ranking_score['guide']);
 
         // Default case for user review sites : We set their trust factor to 1
-        if (isset($guide_ranking) && ($guide_ranking['type'] == 'user')) {
+        if(isset($guide_ranking) && ($guide_ranking['type'] == 'user')) {
           $guide_ranking['trust'] = 1;
         }
 
         // we don't count lists as there bonus is calculated after the counpounded total
-        if ($ranking_score['score'] < 0) {
+        if($ranking_score['score'] < 0) {
           $n=$n-1;
         }
+
+        // special handling of countries with unique guide. A guide and its note counts double
+        if($guide_ranking['unique']) {
+          $ranking_score['score'] *= 2;
+        }
+
         // calculate the float score
         $score =  floatval($ranking_score['score']);
         // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
@@ -637,19 +643,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $bonus;
         $score += $service*2;
       break;
-
-      /*
-      case 'Lekker':
-        $score =  ($food == 1 ? 100 : 0);
-        $score += (($food > 1 && $food <= 5) ? 98 : 0);
-        $score += (($food >= 6 && $food <= 10) ? 95 : 0);
-        $score += (($food >= 11 && $food <= 20) ? 90 : 0);
-        $score += (($food >= 21 && $food <= 40) ? 85 : 0);
-        $score += (($food >= 41 && $food <= 60) ? 80 : 0);
-        $score += (($food >= 61 && $food <= 80) ? 75 : 0);
-        $score += (($food >= 81 && $food <= 100) ? 70 : 0);
-      break;
-      */
 
       case 'Michelin' :
       case 'Michelin (JP)':
