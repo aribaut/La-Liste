@@ -148,11 +148,6 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
           $n=$n-1;
         }
 
-        // special handling of countries with unique guide. A guide and its note counts double
-        if($guide_ranking['unique']) {
-          $ranking_score['score'] *= 2;
-        }
-
         // calculate the float score
         $score =  floatval($ranking_score['score']);
         // Let's update the ranking table with the raw score for each entry (i.e. before guide coefficient apply)
@@ -194,7 +189,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     }
     // compounded scores & popularity via MySQL! for * guides * only
     $compounded_pro = db_query("
-      SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, ROUND(SUM(popularity),1)/5 AS n
+      SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity >= 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
     // compounded scores & popularity via MySQL! for * public sites * only
