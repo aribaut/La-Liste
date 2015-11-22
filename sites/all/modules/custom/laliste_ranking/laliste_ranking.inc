@@ -1329,7 +1329,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   }
   // special handling for countries with only 1 guide
   if($guide_data['unique']) {
-    $guide_data['trust'] *= 2;
     $guide_data['popularity'] *= 2;
   }
   // Let's return all results and mark not set trust to -1 for debug
