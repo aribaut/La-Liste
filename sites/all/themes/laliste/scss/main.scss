@@ -311,7 +311,7 @@ strong {
 
     .Grid--1of5>.Grid-cell
     {
-        @include flex(0,0,80px); // guide-box
+        @include flex(0,0,87px); // guide-box
     }
 }
 
@@ -378,25 +378,40 @@ strong {
     @include flex-direction(column);
 }
 
-.laliste-footer, .laliste-header {
+.footer-main, .header-main {
     @include flexbox;
     @include flex(0);
 }
 
-.laliste-footer {
+.header-main {
+    @extend .Grid;
+}
+
+.header-utils {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of3;
+    @include justify-content(flex-end);
+}
+
+.footer-main {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
 }
 
-.insider-footer {
+.footer-container {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
     @extend .Grid--1of4;
+    @include justify-content(space-around);
 }
 
-.laliste-body {
+.content-body {
     @include flex(1);
     @include flex-direction(column);
     min-height: 100vh;
@@ -406,7 +421,7 @@ strong {
     padding-right: 1%;
 }
 
-.laliste-content {
+.content {
     @include flex(1);
     margin-top: 1.5em;
     margin-left: 0;
@@ -425,7 +440,7 @@ strong {
 }
 
 .laliste-box {
-    margin: 8px 4px 4px 4px;
+    margin: 4px 4px 4px 4px;
     width: 100%;
     font-weight: bold;
 }
@@ -434,9 +449,11 @@ strong {
     background-color: $light_grey;
 }
 
-header.laliste-header {
+header.header-main {
     width: 100%;
+    max-width: 1408px;
     height: 85px;
+    margin: 0 auto;
     margin-bottom: 18px;
 }
 
@@ -453,7 +470,7 @@ header > div.region.region-header {
     margin-right: 0px;
 }
 
-.container-main {
+.content-container {
     max-width: 1408px;
     margin: 0 auto;
     text-align: center;
@@ -469,6 +486,7 @@ header > div.region.region-header {
 .restaurant-media {
     width: 100%;
     height: 100%;
+    margin: 4px 0;
 }
 
 .restaurant-info-container {
@@ -504,6 +522,7 @@ header > div.region.region-header {
     @extend .Grid--1of5;
     height: 100%;
     @include justify-content(flex-start);
+    margin: 4px 0;
 }
 
 .guide-box {
@@ -522,7 +541,7 @@ header > div.region.region-header {
 }
 
 .insider-footer {
-    justify-content: space-around;
+    @include justify-content(space-around);
 }
 
 .restaurant-country {
@@ -578,7 +597,7 @@ span.info-content > a {
 }
 
 .guide-box {
-    margin: 4px 8px 4px 0px;
+    margin: 2px 4px 2px 0px;
     font-weight: 300;
 }
 
@@ -658,7 +677,7 @@ span.info-content > a {
 
     .guide-box {
         font-size: 0.8em;
-        height: 80px;
+        height: 87px;
     }
 
     a.guide-box {
@@ -711,7 +730,7 @@ span.info-content > a {
     }
 
     .restaurant-rank-big {
-        margin: 8px 4px 4px 4px;
+        margin: 4px 4px 4px 4px;
     }
 
     .img.countryicon.iconset-gosquared_flat_large {

@@ -72,22 +72,21 @@
  * @ingroup themeable
  */
 ?>
-
-<main class="laliste-body">
-  <div class="container-main">
-    <header class="Grid laliste-header">
-      <div class="Grid Grid-cell Grid--full logo u-small-full u-med-full u-large-2of3"></div>
-      <div class="Grid Grid-cell Grid--full u-small-full u-med-full u-large-1of3">
-        <?php print render($page['header']); ?>
-      </div>
-    </header>
+<header class="header-main">
+  <div class="Grid Grid-cell Grid--full logo u-small-full u-med-full u-large-2of3"></div>
+  <div class="header-utils">
+    <?php print render($page['header']); ?>
+  </div>
+</header>
+<main class="content-body">
+  <div class="content-container">
     <?php print render($title_prefix); ?>
     <?php if (false): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
     <?php print render($title_suffix); ?>
     <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
     <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
     <?php if ($page['content']): ?>
-      <article class="laliste-content">
+      <article class="content">
         <?php print $messages; ?>
         <?php print render($page['content']); ?>
       </article>
@@ -110,8 +109,8 @@
     <?php endif; ?>
   </div>
 </main>
-<footer class="laliste-footer">
-  <div class="insider-footer">
+<footer class="footer-main">
+  <div class="footer-container">
   <?php //print render($page['footer']); ?>
     <a class="footer-link" href="#">À&nbsp;PROPOS</a>
     <a class="footer-link" href="#">L'ÉQUIPE</a>
