@@ -188,7 +188,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     }
     // compounded scores & popularity via MySQL! for * guides * only
     $compounded_pro = db_query("
-      SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1) AS popularity, count(*) AS n
+      SELECT SUM(score*trust) AS score_pro, ROUND(SUM(popularity),1)/5 AS n
       FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id
       WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND trust IS NOT null AND score > 0 and popularity >= 5", array(':restaurant_id' => $restaurant_id))->fetchObject();
     // compounded scores & popularity via MySQL! for * public sites * only
@@ -905,8 +905,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Blue Ribbon':
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
-    $guide_data['trust'] = 1;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -968,9 +967,9 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
   case 'Dianping':
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] =  1.4;
+    $guide_data['trust'] =  0.7;
   break;
 
   case 'Dining City':
@@ -1063,14 +1062,13 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (JP)':
-    $guide_data['trust'] =  1.6; // arbitrary
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['trust'] =  0.8; // arbitrary
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
   case 'Gault-Millau (MA)':
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
-    $guide_data['trust'] = 1;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -1109,8 +1107,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Guía Summum':
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
-    $guide_data['trust'] = 1;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -1202,8 +1199,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case "Rossouw's Restaurants":
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
-    $guide_data['trust'] = 0.92;
+    $guide_data['unique'] = true; // special case for being unique guide in country
+    $guide_data['trust'] = 0.46;
     $guide_data['type']  = 'guide';
   break;
 
@@ -1249,8 +1246,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Timeout Israel Eating & Drinking Awards':
   case 'Timeout Food & Drink Awards Istanbul':
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 1;
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['unique'] = true;; // special case for being unique guide in country
   break;
 
   case 'Timeout Melbourne Food Awards':
@@ -1261,9 +1257,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Timeout Mexico':
   case 'Time Out (CN)':
   case 'Time Out (RU)':
-    $guide_data['popularity'] = 10; // special case for being unique guide in country
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 1;
   break;
 
   case 'Traveltipz.ru':
@@ -1338,6 +1333,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
   // default trust factor to 0.5
   if($guide_data['type']  == 'guide' && !isset($guide_data['trust'])) {
     $guide_data['trust'] = 0.5;
+  }
+  // special handling for countries with only 1 guide
+  if($guide_data['unique']) {
+    $guide_data['trust'] *= 2;
+    $guide_data['popularity'] *= 2;
   }
   // Let's return all results and mark not set trust to -1 for debug
   if (!isset($guide_data['trust']) || empty($guide_data['trust'])) {
