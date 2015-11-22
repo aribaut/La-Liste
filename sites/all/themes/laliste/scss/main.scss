@@ -288,7 +288,7 @@ strong {
     @include flex(0,0,169px); // guide-box
 }
 
-@media (min-width:384px) {
+@media (min-width:375px) {
     .small-Grid--fit>.Grid-cell {
         @include flex(1);
     }
@@ -402,8 +402,8 @@ strong {
     min-height: 100vh;
     padding: 1.5em;
     padding-top: 0;
-    padding-left: 6%;
-    padding-right: 6%;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .laliste-content {
@@ -594,7 +594,16 @@ span.info-content > a {
  * Site specific Media Queries
  **/
 
-@media screen and (min-width: 384px) {
+@media screen and (min-width: 375px) {
+
+    .laliste-header {
+        margin-bottom: 0;
+    }
+
+    .logo {
+        height: 52px;
+        background-size: 200px;
+    }
 
     .row-height-med {
         height: 60px;
@@ -615,8 +624,20 @@ span.info-content > a {
         font-size: 1.5em;
     }
 
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
     .restaurant-overlay {
-        //display: none !important;
+       display: none;
     }
 
     span.tiny-rank {
@@ -638,6 +659,10 @@ span.info-content > a {
     .guide-box {
         font-size: 0.8em;
         height: 80px;
+    }
+
+    a.guide-box {
+        font-weight: bold;
     }
 
     .laliste-footer {
@@ -664,6 +689,11 @@ span.info-content > a {
         @include flex(0,0,12em);
     }
 
+    .logo {
+        height: 100%;
+        background-size: 300px;
+    }
+
     .row-height-med {
         height: 80px;
     }
@@ -673,6 +703,7 @@ span.info-content > a {
     }
 
     .restaurant-overlay {
+        display: block;
         top: 30px !important;
         left: 250px !important;
         width: 42% !important;
@@ -698,6 +729,18 @@ span.info-content > a {
         font-size: 2em;
     }
 
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
     span.tiny-rank {
         font-size: 0.8em !important;
     }
@@ -718,6 +761,10 @@ span.info-content > a {
     .guide-box {
         font-size: 1em;
         height: 120px;
+    }
+
+    a.guide-box {
+        font-weight: 400;
     }
 
     a.footer-link {
@@ -742,6 +789,10 @@ span.info-content > a {
 
     .laliste-ads, .laliste-nav {
         @include flex(0,0,12em);
+    }
+
+    .logo {
+        background-size: 373px;
     }
 
     .row-height-med {
@@ -812,6 +863,7 @@ span.info-content > a {
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
+        margin-left: 4px;
         margin-right : 0px;
     }
 }
@@ -951,7 +1003,7 @@ span.info-content > a {
     width: 75% !important
 }
 
-@media (min-width:384px) {
+@media (min-width:375px) {
     .u-small-full {
         width: 100% !important
     }
