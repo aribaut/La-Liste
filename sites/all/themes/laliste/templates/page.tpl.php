@@ -73,7 +73,9 @@
  */
 ?>
 <header class="header-main">
-  <div class="Grid Grid-cell Grid--full logo u-small-full u-med-full u-large-2of3"></div>
+  <div class="header-branding">
+    <img src="<?php print base_path() . path_to_theme() . '/img/logo_header.png'; ?>">
+  </div>
   <div class="header-utils">
     <?php print render($page['header']); ?>
   </div>
