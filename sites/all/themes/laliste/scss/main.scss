@@ -683,7 +683,13 @@ span.info-content > a {
 
     p.rank {
         font-size: 1.5em;
+        margin-bottom: -15px;
     }
+
+    p.score {
+        font-size: 1em;
+        padding-bottom: 4px;
+     }
 
     .restaurant-address span {
         font-size: 0.6em !important;
@@ -783,6 +789,13 @@ span.info-content > a {
 
     p.rank {
         font-size: 2em;
+        padding-bottom: 8px;
+        margin-bottom: -15px;
+    }
+
+    p.score {
+        font-size: 1.5em;
+        padding-bottom: 10px;
     }
 
     .restaurant-address span {
@@ -865,9 +878,15 @@ span.info-content > a {
     }
 
     p.rank {
-        font-family: 'Josefin Sans', sans-serif;
         font-size: 4em !important;
         font-weight: 600;
+        margin-bottom: -20px;
+    }
+
+    p.score {
+        font-size: 2.5em !important;
+        font-weight: 600;
+        padding-bottom: 10px;
     }
 
     .restaurant-address span {
@@ -959,6 +978,12 @@ span.info-content > a {
 
     p.rank {
         font-size: 5em !important;
+        margin-bottom: -30px;
+    }
+
+    p.score {
+        font-size: 3.5em !important;
+        padding-bottom: 10px;
     }
 
     .restaurant-address span {
@@ -1243,9 +1268,17 @@ h1#node-title {
     color: $white;
 }
 
-p.rank {
+p.rank, p.score {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
+}
+
+p.score {
+    color: $dark_gold;
+}
+
+#separator {
+    font-weight: 200;
 }
 
 .restaurant-info {

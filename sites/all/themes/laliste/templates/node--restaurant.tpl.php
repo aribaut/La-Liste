@@ -83,7 +83,8 @@
 <div class="restaurant-top-section">
   <img class="restaurant-media" src="<?php print base_path() . path_to_theme(); ?>/img/photo-restaurant.png">
   <div class="restaurant-overlay">
-    <hr class="half-length"><?php if ($rank): ?><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><?php endif; ?><hr class="half-length">
+    <hr class="half-length">
+    <?php if ($rank): ?><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><?php endif; ?><hr class="half-length">
     <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
     <div class="restaurant-country">
       <div class="country"><?php if (isset($country_icon)): ?><?php print $country_icon; ?><?php endif; ?></div>
@@ -99,6 +100,8 @@
 </div>
 <div class="restaurant-info-container">
   <div class="restaurant-rank-big">
+    <?php if ($score): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
+    <?php if ($score && $rank): ?><p id="separator" class="rank">/</p><?php endif; ?>
     <?php if ($rank): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
   </div>
   <div class="restaurant-details-container">
