@@ -83,7 +83,7 @@ function laliste_ranking_update($pro) {
     ->execute();
   }
   // error handling
-  $score_errors = db_query("SELECT count(*) FROM {ranking} WHERE score > 100")->fetchField();
+  $score_errors = db_query("SELECT count(*) FROM {ranking} WHERE score > 100 and popularity <= 5")->fetchField();
 	echo "LALISTE RANKING IS UP TO DATE!\n";
   echo "================================\n";
   echo "Number of score ranking over 100 : ".$score_errors."\n";
