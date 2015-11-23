@@ -18,11 +18,10 @@ function laliste_ranking_update($pro) {
   $clear_restaurant_stats = db_query("DELETE FROM {restaurant_stats}");
   // let's clear the ranking scores and popularity
   $clear_ranking_scores = db_query("UPDATE {ranking} SET score=NULL, trust=NULL, popularity=NULL");
-	// for all restaurants, compute their scores
+	// for all restaurants enabled (default) to be on LA LISTE, compute their scores
 	$results = db_query("
-	SELECT nid
-	FROM {node}
-		");
+	 SELECT nid from {node} LEFT JOIN {field_data_field_restaurant_disabled} disabled ON disabled.entity_id=node.nid
+   WHERE disabled.entity_id IS NULL");
 	foreach($results as $row) {
 		$scores = array();
 		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
