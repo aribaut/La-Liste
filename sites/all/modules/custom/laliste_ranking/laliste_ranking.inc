@@ -21,7 +21,7 @@ function laliste_ranking_update($pro) {
 	// for all restaurants enabled (default) to be on LA LISTE, compute their scores
 	$results = db_query("
 	 SELECT nid from {node} LEFT JOIN {field_data_field_restaurant_disabled} disabled ON disabled.entity_id=node.nid
-   WHERE disabled.entity_id IS NULL OR disabled.field_restaurant_disabled_value == 0");
+   WHERE disabled.entity_id IS NULL OR disabled.field_restaurant_disabled_value = 0");
 	foreach($results as $row) {
 		$scores = array();
 		$scores = laliste_ranking_compute_restaurant_ranking_score($row->nid, $val);
