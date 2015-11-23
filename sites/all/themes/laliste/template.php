@@ -91,7 +91,7 @@ function laliste_preprocess_node(&$variables) {
   if($variables['type'] == 'restaurant') {
     // getting restaurant rank & score
      $ranking = db_query("
-      SELECT rank, score_laliste FROM {restaurant_stats}
+      SELECT rank, ROUND(score_laliste,3) as score_laliste FROM {restaurant_stats}
       WHERE restaurant_id = ".$variables['nid'])->fetchAssoc();
      $variables['rank'] = $ranking['rank'];
      $variables['score'] = $ranking['score_laliste'];
