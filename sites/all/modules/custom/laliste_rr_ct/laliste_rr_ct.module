@@ -155,7 +155,7 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
 
 function laliste_rr_ct_node_view($node, $view_mode, $langcode) {
   // removing display for this field
-  $node->content['field_restaurant_laliste_enable']['#access'] = FALSE;
+  $node->content['field_restaurant_disabled']['#access'] = FALSE;
 }
 
 function laliste_rr_ct_node_delete($node) {
