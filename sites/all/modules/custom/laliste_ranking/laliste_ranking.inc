@@ -730,8 +730,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Timeout Melbourne Food Awards':
       case 'Timeout Sidney Food Awards':
         $score =  ($food == 1 ? 100 : 0);
-        $score += ($food == 2 ? 80 : 0);
-        $score += ($food == 3 ? 60 : 0);
+        $score += ($food == 2 ? 90 : 0);
+        $score += ($food == 3 ? 80 : 0);
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
