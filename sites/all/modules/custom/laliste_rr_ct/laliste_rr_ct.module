@@ -34,7 +34,7 @@ function laliste_rr_ct_admin_paths() {
  */
 function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
   if ( $form_id == 'restaurant_node_form') {
-    drupal_add_css(drupal_get_path('module', 'laliste_rr_ct') . '/css/restaurant_form.css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+    drupal_add_css(drupal_get_path('module', 'laliste_rr_ct') . '/css/ .css', array('group' => CSS_DEFAULT, 'type' => 'file'));
 
     // We force set the form variable (address_field bug?)
     // address 1
@@ -151,6 +151,11 @@ function laliste_rr_ct_form_submit_callback($form, &$form_state) {
       }
     }
   }
+}
+
+function laliste_rr_ct_node_view($node, $view_mode, $langcode) {
+  // removing display for this field
+  $node->content['field_restaurant_laliste_enable']['#access'] = FALSE;
 }
 
 function laliste_rr_ct_node_delete($node) {
