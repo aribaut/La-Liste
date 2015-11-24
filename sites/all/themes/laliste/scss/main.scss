@@ -868,12 +868,13 @@ p.info-content {
     }
 
     .restaurant-overlay {
-        top: 33px !important;
-        left: 400px !important;
+        padding:30px;
+        padding-top: 3% !important;
     }
 
     .img.countryicon.iconset-gosquared_flat_large {
-        max-width: 90%;
+        width: 45px;
+        margin-top: 4px;
     }
 
     .restaurant-details {
@@ -905,12 +906,12 @@ p.info-content {
         padding-bottom: 10px;
     }
 
-    .restaurant-address span {
-        font-size: 1em !important;
+    .restaurant-address {
+        font-size: 1.5em !important;
     }
 
     h1#node-title {
-        font-size: 3em !important;
+        font-size: 2.6em !important;
     }
 
     .guide-box {
@@ -973,10 +974,10 @@ p.info-content {
     }
 
     .restaurant-overlay {
-        top: 50px !important;
+        //top: 50px !important;
         left: 600px !important;
-        width: 34% !important;
-        height: 76% !important;
+        width: 495px !important; //34%
+        //height: 76% !important;
     }
 
     .restaurant-details {
@@ -989,7 +990,8 @@ p.info-content {
     }
 
     .img.countryicon.iconset-gosquared_flat_large {
-        max-width: 100%;
+        width: 45px;
+        margin-top: -2px;
     }
 
     .restaurant-user-actions-container p {
@@ -1013,7 +1015,7 @@ p.info-content {
 
     h1#node-title {
         color: $white;
-        font-size: 4em !important;
+        font-size: 3.8em !important;
     }
 
     .guide-box {
@@ -1380,11 +1382,11 @@ h2.element-invisible {
 }
 
 .restaurant-overlay hr.half-length {
-    width: 30%
+    width: 36%
 }
 
 .restaurant-overlay hr.full-length {
-    width: 66%
+    width: 72%
 }
 
 .restaurant-overlay .tiny-rank {
