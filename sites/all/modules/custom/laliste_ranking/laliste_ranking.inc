@@ -392,6 +392,25 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service;
       break;
 
+      case 'Eatout.co.za':
+        $score = ($food == 5 ? 100 : 0);
+        $score = ($food == 4.5 ? 90 : 0);
+        $score = ($food == 4 ? 80 : 0);
+      break;
+
+      case 'Eat Out Mercedes Benz Restaurant Awards':
+        $score = ($food == 1 ? 100 : 0);
+        $score = ($food == 2 ? 98 : 0);
+        $score = ($food == 3 ? 96 : 0);
+        $score = ($food == 4 ? 94 : 0);
+        $score = ($food == 5 ? 92 : 0);
+        $score = ($food == 6 ? 90 : 0);
+        $score = ($food == 7 ? 88 : 0);
+        $score = ($food == 8 ? 86 : 0);
+        $score = ($food == 9 ? 84 : 0);
+        $score = ($food == 10 ? 82 : 0);
+      break;
+
       case 'Eesti Maitsed':
         //TBD
       break;
@@ -990,6 +1009,16 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Eatability':
     $guide_data['type']  = 'user';
+  break;
+
+  case 'Eatout.co.za':
+    $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.61; // arbitrary
+  break;
+
+  case 'Eat Out Mercedes Benz Restaurant Awards':
+    $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.59; // arbitrary
   break;
 
   case 'Espresso':
