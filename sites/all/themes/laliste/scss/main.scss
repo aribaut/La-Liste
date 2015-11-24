@@ -184,7 +184,7 @@ h3 {
 }
 
 a {
-    color: #999966;
+    color: $dark_gold;
     text-decoration: none
 }
 
@@ -468,7 +468,6 @@ header.header-main {
 
 .logo {
   margin-top: 20px;
-  //width: 100%;
   z-index: 80;
 }
 
@@ -581,6 +580,7 @@ header > div.region.region-header {
 .restaurant-details ul li {
      line-height: 1em;
      height: auto;
+     position: relative;
 }
 
 .restaurant-details ul li .info-title{
@@ -593,6 +593,14 @@ header > div.region.region-header {
 
 span.info-content > a {
    color: $dark_gold;
+}
+
+span.info-title {
+    position: absolute;
+}
+
+p.info-content {
+    padding-left: 140px;
 }
 
 .guide-box {
@@ -639,11 +647,11 @@ span.info-content > a {
     }
 
     .row-height-med {
-        height: 80px;
+        height: 90px;
     }
 
     .row-height-tall {
-        height: 80px;
+        height: 90px;
     }
 
     .restaurant-details {
@@ -715,6 +723,10 @@ span.info-content > a {
     a.footer-link {
         font-size: 1em;
     }
+
+    p.info-content {
+        padding-left: 70px;
+    }
 }
 
 @media screen and (min-width: 576px) {
@@ -737,11 +749,11 @@ span.info-content > a {
     }
 
     .row-height-med {
-        height: 100px;
+        height: 120px;
     }
 
     .row-height-tall {
-        height: 100px;
+        height: 120px;
     }
 
     .restaurant-overlay {
@@ -822,6 +834,10 @@ span.info-content > a {
 
     .footer-main {
         height: 200px;
+    }
+
+    p.info-content {
+        padding-left: 96px;
     }
 }
 
@@ -920,6 +936,10 @@ span.info-content > a {
         margin-left: 4px;
         margin-right : 0px;
     }
+
+    p.info-content {
+        padding-left: 105px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -993,7 +1013,7 @@ span.info-content > a {
 
     h1#node-title {
         color: $white;
-        font-size: 5em !important;
+        font-size: 4em !important;
     }
 
     .guide-box {
@@ -1008,6 +1028,10 @@ span.info-content > a {
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
         margin-right : 0px;
+    }
+
+    p.info-content {
+        padding-left: 140px;
     }
 }
 
@@ -1383,7 +1407,6 @@ img.countryicon.iconset-gosquared_flat_large {
     line-height: 110%;
     font-weight: 300;
     font-size: 1.2em;
-    width: 53%;
     text-align: left;
     padding-left: 5%;
     margin-bottom: 2%;

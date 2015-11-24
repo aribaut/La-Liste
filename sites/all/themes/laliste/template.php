@@ -93,8 +93,10 @@ function laliste_preprocess_node(&$variables) {
      $ranking = db_query("
       SELECT rank, ROUND(score_laliste,3) as score_laliste FROM {restaurant_stats}
       WHERE restaurant_id = ".$variables['nid'])->fetchAssoc();
-     $variables['rank'] = $ranking['rank'];
-     $variables['score'] = $ranking['score_laliste'];
+     if(isset($ranking['rank'])) {
+       $variables['rank'] = $ranking['rank'];
+       $variables['score'] = $ranking['score_laliste'];
+    }
     // Addresses
     if(!empty($variables['field_address'][0]['thoroughfare'])) {
       $variables['address1'] = $variables['field_address'][0]['thoroughfare'];
@@ -115,6 +117,11 @@ function laliste_preprocess_node(&$variables) {
       $variables['country_name'] = $countries[$country_code];
       $variables['country_icon'] = theme('countryicons_icon', array('code' =>  $country_code, 'iconset' =>  'gosquared_flat_large'));
     }
+    // full address
+    $variables['address_full'] = (isset($variables['address1']) ? $variables['address1'] : null);
+    $variables['address_full'] .= (isset($variables['address2']) ? ', '.$variables['address2'] : null);
+    $variables['address_full'] .= (isset($variables['postal_code']) ? ', '.$variables['postal_code'] : null);
+    $variables['address_full'] .= (isset($variables['city']) ? ', '.$variables['city'] : null);
     // Other infos
     if(!empty($variables['field_cooking_type'][0]['url'])) {
       $variables['cooking_type'] = $variables['field_cooking_type'][0]['value'];

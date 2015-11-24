@@ -83,15 +83,15 @@
 <div class="restaurant-top-section">
   <img class="restaurant-media" src="<?php print base_path() . path_to_theme(); ?>/img/photo-restaurant.png">
   <div class="restaurant-overlay">
-    <hr class="half-length">
-    <?php if ($rank): ?><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><?php endif; ?><hr class="half-length">
+    <?php if (isset($rank)): ?>
+      <hr class="half-length"><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><hr class="half-length">
+    <?php else: ?>
+      <hr class="full-length">
+    <?php endif; ?>
     <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
     <div class="restaurant-country">
       <div class="country"><?php if (isset($country_icon)): ?><?php print $country_icon; ?><?php endif; ?></div>
       <div class="restaurant-address">
-        <?php if (isset($address1)): ?><span><?php print $address1; ?></br></span><?php endif; ?>
-        <?php if (isset($address2)): ?><span><?php print $address2; ?></br></span><?php endif; ?>
-        <?php if (isset($postal_code)): ?><span><?php print $postal_code; ?></span><?php endif; ?>
         <?php if (isset($city)): ?><span><?php print $city; ?></br></span><?php endif; ?>
         <?php if (isset($country_name)): ?><span><?php print $country_name; ?></span><?php endif; ?>
       </div>
@@ -100,26 +100,29 @@
 </div>
 <div class="restaurant-info-container">
   <div class="restaurant-rank-big">
-    <?php if ($score): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
-    <?php if ($score && $rank): ?><p id="separator" class="rank">/</p><?php endif; ?>
-    <?php if ($rank): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
+    <?php if (isset($score)): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
+    <?php if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php endif; ?>
+    <?php if (isset($rank)): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
   </div>
   <div class="restaurant-details-container">
     <div class="restaurant-details">
       <ul>
         <?php if (isset($cooking_type)): ?>
-        <li><span class="info-title"><?php print t('Type de cuisine');?>:</span> <span class="info-content"><?php print t($cooking_type); ?></span></li>
+        <li><span class="info-title"><?php print t('Type de cuisine');?>:</span><p class="info-content"><?php print t($cooking_type); ?></p></li>
         <?php endif; ?>
-        <?php if (isset($website)): ?>
-          <li><span class="info-title"><?php print t('Site Internet');?>:</span> <span class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></span></li>
+        <?php if (isset($address_full)): ?>
+        <li><span class="info-title"><?php print t('Adresse');?>:</span><p class="info-content"><?php print t($address_full); ?></p></li>
         <?php endif; ?>
         <?php if (isset($phone)): ?>
-          <li><span class="info-title"><?php print t('Téléphone');?>:</span> <span class="info-content"><?php print $phone; ?></span></li>
+          <li><span class="info-title"><?php print t('Téléphone');?>:</span><p class="info-content"><?php print $phone; ?></p></li>
+        <?php endif; ?>
+        <?php if (isset($website)): ?>
+          <li><span class="info-title"><?php print t('Internet');?>:</span><p class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></p></li>
         <?php endif; ?>
         <?php if (isset($tags)): ?>
           <?php $n = count($tags); $i=0; ?>
-          <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span> <span class="info-content">
-          <?php foreach($tags as $tag): ?><?php print t($tag); $i++; ?> <?php if ($i<$n): ?><?php print '|' ?><?php endif; ?> <?php endforeach; ?></span></li>
+          <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span><p class="info-content">
+          <?php foreach($tags as $tag): ?><?php print t($tag); $i++; ?> <?php if ($i<$n): ?><?php print '|' ?><?php endif; ?> <?php endforeach; ?></p></li>
         <?php endif; ?>
       </ul>
     </div>
