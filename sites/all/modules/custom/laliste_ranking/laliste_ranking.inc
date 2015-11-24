@@ -410,12 +410,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Five Diamond Awards':
         $score =   ($food == 5 ? 100 : 0);
-        $score +=  ($food == 4 ? 65 : 0);
+        $score +=  ($food == 4 ? 60 : 0);
       break;
 
       case 'Forbes Travel Guide':
         $score =   ($food == 5 ? 100 : 0);
-        $score +=  ($food == 4 ? 70 : 0);
+        $score +=  ($food == 4 ? 65 : 0);
         $score +=  ($food == 3 ? 50 : 0);
       break;
 
