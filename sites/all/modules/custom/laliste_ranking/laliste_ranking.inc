@@ -408,6 +408,17 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food;
       break;
 
+      case 'Five Diamond Awards':
+        $score =   ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4 ? 70 : 0);
+      break;
+
+      case 'Forbes Travel Guide':
+        $score =   ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4 ? 75 : 0);
+        $score +=  ($food == 3 ? 50 : 0);
+      break;
+
       case 'Foursquare':
         $score = $food*10;
       break;
@@ -844,8 +855,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Der Feinschmecker':
-      case 'Five Diamond Awards':
-      case 'Forbes Travel Guide':
       case 'Openrice':
       case 'OpenTable':
       case 'Resto.be':
@@ -1002,6 +1011,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 	break;
 
 	case 'Forbes Travel Guide':
+    $guide_data['trust'] =  0.61;
     $guide_data['type']  = 'guide';
 	break;
 
