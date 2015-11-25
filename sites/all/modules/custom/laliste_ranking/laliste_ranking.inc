@@ -1117,7 +1117,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Gault Millau Maroc':
     $guide_data['unique'] = true; // special case for being unique guide in country\
-    $guide_data['trust'] =  0.8; // arbitrary
+    $guide_data['trust'] =  0.6; // arbitrary
     $guide_data['type']  = 'guide';
   break;
 
