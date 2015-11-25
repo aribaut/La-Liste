@@ -394,8 +394,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Eatout.co.za':
         $score = ($food == 5 ? 100 : 0);
-        $score = ($food == 4.5 ? 90 : 0);
         $score = ($food == 4 ? 80 : 0);
+        $score = ($food == 3 ? 60 : 0);
       break;
 
       case 'Eat Out Mercedes Benz Restaurant Awards':
@@ -652,6 +652,20 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*10;
       break;
 
+      case 'Kor-eat':
+        $score =  ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 98 : 0);
+        $score += ($food == 3 ? 96 : 0);
+        $score += ($food == 4 ? 94 : 0);
+        $score += ($food == 5 ? 92 : 0);
+        $score += ($food == 6 ? 90 : 0);
+        $score += ($food == 7 ? 88 : 0);
+        $score += ($food == 8 ? 86 : 0);
+        $score += ($food == 9 ? 84 : 0);
+        $score += ($food == 10 ? 82 : 0);
+        $score += ($food == 11 ? 70 : 0);
+      break;
+
       case 'La Suisse Gourmande':
         $score =  ($food == 100 ? 100 : 0);
         $score +=  ($food == 90 ? 90 : 0);
@@ -709,9 +723,9 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Rossouw\'s Restaurants':
-        $score = $food*16;
-        $score += ($wine == 1 ? 10 : 0);
-        $score += ($service == 1 ? 10 : 0);
+        $score += ($food == 3 ? 100 : 0);
+        $score += ($food == 2 ? 80 : 0);
+        $score += ($food == 1 ? 60 : 0);
       break;
 
       case 'Schlemmer Atlas':
@@ -746,6 +760,13 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Time Out (CN)':
       case 'Time Out (RU)':
         $score = $food*20;
+        $score += $bonus;
+      break;
+
+      case 'Timeout Seoul':
+        $score =  ($food == 5 ? 100 : 0);
+        $score += ($food == 4 ? 80 : 0);
+        $score += ($food == 3 ? 60 : 0);
         $score += $bonus;
       break;
 
@@ -922,6 +943,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Blue Ribbon':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.6;
   break;
 
   case 'Openrice':
@@ -1160,6 +1182,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Kor-eat':
+    $guide_data['trust'] =  0.6;
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'La Suisse Gourmande':
     $guide_data['trust'] = 0.63;
     $guide_data['type']  = 'guide';
@@ -1277,6 +1304,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Timeout Melbourne Food Awards':
   case 'Timeout Sidney Food Awards':
+  case 'Timeout Seoul':
     $guide_data['type']  = 'guide';
   break;
 
