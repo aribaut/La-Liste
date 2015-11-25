@@ -684,6 +684,19 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*10;
       break;
 
+      case 'IndiaTV (trusted source)':
+        $score =  ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 95 : 0);
+        $score += ($food == 3 ? 90 : 0);
+        $score += ($food == 4 ? 85 : 0);
+        $score += ($food == 5 ? 80 : 0);
+        $score += ($food == 6 ? 75 : 0);
+        $score += ($food == 7 ? 70 : 0);
+        $score += ($food == 8 ? 65 : 0);
+        $score += ($food == 9 ? 60 : 0);
+        $score += ($food == 10 ? 55 : 0);
+      break;
+
       case "L'Internaute":
         $score = $food*16;
         $score += $atmosphere;
@@ -842,6 +855,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*8;
         $score += $service;
         $score += $atmosphere;
+      break;
+
+      case 'virsanghvi.com':
+        $score =  ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4.5 ? 90 : 0);
+        $score +=  ($food == 4 ? 80 : 0);
       break;
 
       case 'voyage.michelin.fr (trusted source)':
@@ -1208,6 +1227,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'IndiaTV (trusted source)':
+    $guide_data['type']  = 'guide';
+  break;
+
   case "L'Internaute":
     $guide_data['type']  = 'user';
   break;
@@ -1363,6 +1386,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Via restó':
     $guide_data['type']  = 'user';
+  break;
+
+  case 'virsanghvi.com':
+    $guide_data['type']  = 'guide';
   break;
 
   case 'voyage.michelin.fr (trusted source)':
