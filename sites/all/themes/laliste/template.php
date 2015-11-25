@@ -69,22 +69,42 @@ function laliste_preprocess_block(&$vars) {
 /**
 * hook_form_FORM_ID_alter
 */
-function laliste_form_search_block_form_alter(&$form, &$form_state, $form_id) {
-    $form['search_block_form']['#title'] = ''; // Change the text on the label element
-    $form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibilty
-    $form['search_block_form']['#size'] = 40;  // define size of the textfield
-    $form['search_block_form']['#default_value'] = t('Search'); // Set a default value for the textfield
-    $form['actions']['submit']['#value'] = ''; // Change the text on the submit button
-    $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/img/search_icon.png');
-
+function laliste_form_search_block_form_alter(&$form, &$form_state) {
+  $form['search_block_form']['#title'] = ''; // Change the text on the label element
+  $form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibilty
+  $form['search_block_form']['#size'] = 40;  // define size of the textfield
+   // Set a default value for the textfield
+  $form['actions']['submit']['#value'] = ''; // Change the text on the submit button
+  // Prevent user from searching the default text
+  $form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
+  // we customize the search appearance on the homepage
+  if(drupal_is_front_page()) {
+    $form['actions']['submit']['#attributes']['class'][] = 'fpage-search-icon';
+    $form['search_block_form']['#attributes']['class'][] = 'fpage-search-box';
     // Add extra attributes to the text box
+    $form['search_block_form']['#default_value'] = t('Search a restaurant, a city, a country...');
+    $form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = '".t('Search a restaurant, a city, a country...')."';}";
+    $form['search_block_form']['#attributes']['onfocus'] = "if (this.value == '".t('Search a restaurant, a city, a country...')."') {this.value = '';}";
+      // Alternative (HTML5) placeholder attribute instead of using the javascript
+    $form['search_block_form']['#attributes']['placeholder'] = t('Search a restaurant, a city, a country...');
+  }
+  else {
+    $form['actions']['submit']['#attributes']['class'][] = 'other-page-search-icon';
+    $form['search_block_form']['#attributes']['class'][] = 'other-page-search-box';
+    // Add extra attributes to the text box
+    $form['search_block_form']['#default_value'] = t('Search');
     $form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = '".t('Search')."';}";
     $form['search_block_form']['#attributes']['onfocus'] = "if (this.value == '".t('Search')."') {this.value = '';}";
-    // Prevent user from searching the default text
-    $form['#attributes']['onsubmit'] = "if(this.search_block_form.value=='Search'){ alert('Please enter a search'); return false; }";
+      // Alternative (HTML5) placeholder attribute instead of using the javascript
+  $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+  }
+}
 
-    // Alternative (HTML5) placeholder attribute instead of using the javascript
-    $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+function laliste_preprocess_page(&$vars) {
+  if (drupal_is_front_page()) {
+    unset($vars['page']['content']['system_main']['default_message']); // removes "No front page content has been created yet."
+    drupal_set_title(''); //removes welcome message (page title)
+  }
 }
 
 function laliste_preprocess_node(&$variables) {

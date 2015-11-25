@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function custom_block_block_info() {
+  $blocks = array();
+  $blocks['my_block'] = array(
+    'info' => t('My Custom Block'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function custom_block_block_view($delta='') {
+  $block = array();
+
+  switch($delta) {
+    case 'my_block' :
+      $block['content'] = my_block_view();
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Custom function to assemble renderable array for block content.
+ * Returns a renderable array with the block content.
+ * @return
+ *   returns a renderable array of block content.
+ */
+function my_block_view() {
+  $block = array();
+
+  // Capture the image file path and form into HTML with attributes
+  $image_file = file_load(variable_get('block_image_fid', ''));
+  $image_path = '';
+
+  if (isset($image_file->uri)) {
+    $image_path = $image_file->uri;
+  }
+
+  $image = theme_image(array(
+    'path' => ($image_path),
+    'alt' => t('Image description here.'),
+    'title' => t('This is our block image.'),
+    'attributes' => array('class' => 'class_name'),
+  ));
+
+  // Capture WYSIWYG text from the variable
+  $text = variable_get('text_variable', '');
+
+  // Block output in HTML with div wrapper
+  $block = array(
+    'image' => array(
+      '#prefix' => '',
+      '#type' => 'markup',
+      '#markup' => $image,
+    ),
+    'message' => array(
+      '#type' => 'markup',
+      '#markup' => $text,
+      '#suffix' => '',
+    ),
+  );
+
+  return $block;
+}

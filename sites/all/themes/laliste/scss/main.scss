@@ -56,6 +56,14 @@ $color_cerulean_approx: #00aced;
        url('../fonts/mrs-eaves-bold-italic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.woff2') format('woff2'),
+       url('../fonts/fontawesome-webfont.woff') format('woff'),
+       url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+       url('../fonts/fontawesome-webfont.svg') format('svg');
+}
+
 .u-block {
     display: block !important
 }
@@ -1336,23 +1344,76 @@ sup {
   @include flexbox;
 }
 
-input#edit-search-block-form--2 {
-    width: 238px;
-    height: 42px;
+input.fpage-search-box,
+input.other-page-search-box {
     font-family: 'Mrs Eaves Italic';
-    font-size:24px;
+    font-size:28px;
     padding-left: 0.4em;
     padding-right: 1.8em;
-    background: $light_grey;
+    background: $white;
     border: 0;
     color : $gray;
+    -webkit-appearance: none;
+    border-radius:0;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
 }
 
-input#edit-submit.form-submit {
-    margin-left: -35px;
-    padding-right: 7px;
-    padding-top: 7px;
-    height: 50%;
+input.other-page-search-box {
+    width: 238px;
+    height: 42px;
+    background: $light_grey;
+}
+
+input.fpage-search-box {
+    width: 559px;
+    height: 86px;
+}
+
+input.fpage-search-icon,
+input.other-page-search-icon {
+    border: 0;
+    font-family: 'FontAwesome';
+    font-weight: 100;
+    background: $black;
+    color: $white;
+    justify-content: center;
+    -webkit-appearance: none;
+    border-radius:0;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+
+input.fpage-search-icon {
+    width: 90px;
+    height: 86px;
+    font-size: 28px;
+}
+
+input.other-page-search-icon {
+    width: 50px;
+    height: 42px;
+    font-size: 20px;
+}
+
+input[type=text].fpage-search-box,
+input[type=text].other-page-search-box,
+input.fpage-search-icon,
+input.other-page-search-icon {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  //border-top: 1px solid #DDDDDD; // define color
+}
+
+input[type=text].fpage-search-box:focus,
+input[type=text].other-page-search-box:focus,
+input.fpage-search-icon:focus,
+input.other-page-search-icon:focus {
+  box-shadow: 0 0 5px $dark_gold;
+  border: 1px solid $dark_gold;
 }
 
 // hide the search form title
