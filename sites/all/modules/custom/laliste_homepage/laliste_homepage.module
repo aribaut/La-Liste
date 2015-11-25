@@ -3,10 +3,10 @@
 /**
  * Implements hook_block_info().
  */
-function custom_block_block_info() {
+function laliste_homepage_block_info() {
   $blocks = array();
-  $blocks['my_block'] = array(
-    'info' => t('My Custom Block'),
+  $blocks['home_search'] = array(
+    'info' => t('Home Search Block'),
   );
 
   return $blocks;
@@ -15,12 +15,12 @@ function custom_block_block_info() {
 /**
  * Implements hook_block_view().
  */
-function custom_block_block_view($delta='') {
+function laliste_homepage_block_view($delta='') {
   $block = array();
 
   switch($delta) {
-    case 'my_block' :
-      $block['content'] = my_block_view();
+    case 'home_search' :
+      $block['content'] = home_search_block_view();
       break;
   }
 
@@ -33,7 +33,7 @@ function custom_block_block_view($delta='') {
  * @return
  *   returns a renderable array of block content.
  */
-function my_block_view() {
+function home_search_block_view() {
   $block = array();
 
   // Capture the image file path and form into HTML with attributes
