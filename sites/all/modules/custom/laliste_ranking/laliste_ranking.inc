@@ -524,7 +524,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $bonus;
       break;
 
-      case 'Gault-Millau (MA)':
+      case 'Gault Millau Maroc':
         $score +=  ($food == 17 ? 80 : 0);
         $score +=  ($food == 16 ? 75 : 0);
       break;
@@ -1115,7 +1115,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
-  case 'Gault-Millau (MA)':
+  case 'Gault Millau Maroc':
     $guide_data['unique'] = true; // special case for being unique guide in country\
     $guide_data['trust'] =  0.8; // arbitrary
     $guide_data['type']  = 'guide';
