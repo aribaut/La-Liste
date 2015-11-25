@@ -412,7 +412,16 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Eesti Maitsed':
-        //TBD
+        $score =  ($bonus == 40 ? 80 : 0);
+        $score += ($bonus == 39 ? 70 : 0);
+        $score += ($bonus == 38 ? 60 : 0);
+        $score += ($bonus == 37 ? 50 : 0);
+        $score += ($bonus == 36 ? 45 : 0);
+        $score += ($bonus == 35 ? 44 : 0);
+        $score += ($bonus == 34 ? 43 : 0);
+        $score += $atmosphere/3;
+        $score += $service/2;
+        $score += $wine/4;
       break;
 
       case 'Espresso':
@@ -951,7 +960,9 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Eesti Maitsed':
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.6;
   break;
 
   case 'James Beard Awards':
