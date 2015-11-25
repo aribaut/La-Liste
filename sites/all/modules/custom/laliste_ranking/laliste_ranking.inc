@@ -412,13 +412,13 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Eesti Maitsed':
-        $score =  ($bonus == 40 ? 80 : 0);
-        $score += ($bonus == 39 ? 70 : 0);
-        $score += ($bonus == 38 ? 60 : 0);
-        $score += ($bonus == 37 ? 50 : 0);
-        $score += ($bonus == 36 ? 45 : 0);
-        $score += ($bonus == 35 ? 44 : 0);
-        $score += ($bonus == 34 ? 43 : 0);
+        $score =  ($food == 40 ? 80 : 0);
+        $score += ($food == 39 ? 70 : 0);
+        $score += ($food == 38 ? 60 : 0);
+        $score += ($food == 37 ? 50 : 0);
+        $score += ($food == 36 ? 45 : 0);
+        $score += ($food == 35 ? 44 : 0);
+        $score += ($food == 34 ? 43 : 0);
         $score += $atmosphere/3;
         $score += $service/2;
         $score += $wine/4;
