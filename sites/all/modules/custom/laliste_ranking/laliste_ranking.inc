@@ -394,21 +394,21 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Eatout.co.za':
         $score = ($food == 5 ? 100 : 0);
-        $score = ($food == 4 ? 80 : 0);
-        $score = ($food == 3 ? 60 : 0);
+        $score += ($food == 4 ? 80 : 0);
+        $score += ($food == 3 ? 60 : 0);
       break;
 
       case 'Eat Out Mercedes Benz Restaurant Awards':
         $score = ($food == 1 ? 100 : 0);
-        $score = ($food == 2 ? 98 : 0);
-        $score = ($food == 3 ? 96 : 0);
-        $score = ($food == 4 ? 94 : 0);
-        $score = ($food == 5 ? 92 : 0);
-        $score = ($food == 6 ? 90 : 0);
-        $score = ($food == 7 ? 88 : 0);
-        $score = ($food == 8 ? 86 : 0);
-        $score = ($food == 9 ? 84 : 0);
-        $score = ($food == 10 ? 82 : 0);
+        $score += ($food == 2 ? 98 : 0);
+        $score += ($food == 3 ? 96 : 0);
+        $score += ($food == 4 ? 94 : 0);
+        $score += ($food == 5 ? 92 : 0);
+        $score += ($food == 6 ? 90 : 0);
+        $score += ($food == 7 ? 88 : 0);
+        $score += ($food == 8 ? 86 : 0);
+        $score += ($food == 9 ? 84 : 0);
+        $score += ($food == 10 ? 82 : 0);
       break;
 
       case 'Eesti Maitsed':
@@ -486,7 +486,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault-Millau (DE)':
-        $score +=  ($food == 19.5 ? 80 : 0);
+        $score =  ($food == 19.5 ? 80 : 0);
         $score +=  ($food == 19 ? 77 : 0);
         $score +=  ($food == 18 ? 72 : 0);
         $score +=  ($food == 17 ? 67 : 0);
@@ -505,7 +505,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault-Millau (HU)':
-        $score +=  ($food == 19 ? 100 : 0);
+        $score =  ($food == 19 ? 100 : 0);
         $score +=  ($food == 18 ? 90 : 0);
         $score +=  ($food == 17 ? 80 : 0);
         $score +=  ($food == 16 ? 70 : 0);
@@ -525,12 +525,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault Millau Maroc':
-        $score +=  ($food == 17 ? 80 : 0);
+        $score =  ($food == 17 ? 80 : 0);
         $score +=  ($food == 16 ? 75 : 0);
       break;
 
       case 'Gault-Millau (NL)':
-        $score +=  ($food == 19.5 ? 80 : 0);
+        $score =  ($food == 19.5 ? 80 : 0);
         $score +=  ($food == 19 ? 77 : 0);
         $score +=  ($food == 18.5 ? 74 : 0);
         $score +=  ($food == 18 ? 72 : 0);
@@ -544,7 +544,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Gault-Millau (PL)':
         $score =   ($food == 19 ? 100 : 0);
-        $score =   ($food == 18.5 ? 95 : 0);
+        $score +=   ($food == 18.5 ? 95 : 0);
         $score +=  ($food == 18 ? 90 : 0);
         $score +=  ($food == 17.5 ? 85 : 0);
         $score +=  ($food == 17 ? 80 : 0);
@@ -555,7 +555,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gayot.com':
-        $score +=  ($food == 19 ? 100 : 0);
+        $score =  ($food == 19 ? 100 : 0);
         $score +=  ($food == 18 ? 90 : 0);
         $score +=  ($food == 17 ? 80 : 0);
         $score +=  ($food == 16 ? 70 : 0);
@@ -723,7 +723,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Rossouw\'s Restaurants':
-        $score += ($food == 3 ? 100 : 0);
+        $score = ($food == 3 ? 100 : 0);
         $score += ($food == 2 ? 80 : 0);
         $score += ($food == 1 ? 60 : 0);
       break;
