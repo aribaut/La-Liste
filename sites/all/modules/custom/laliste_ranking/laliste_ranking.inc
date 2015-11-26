@@ -569,6 +569,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 17 ? 80 : 0);
         $score +=  ($food == 16 ? 70 : 0);
         $score +=  ($food == 15 ? 60 : 0);
+        $score +=  ($food == 14 ? 50 : 0);
       break;
 
       case 'Google Reviews':
