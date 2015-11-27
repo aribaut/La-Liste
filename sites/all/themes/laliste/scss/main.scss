@@ -430,7 +430,8 @@ strong {
     @include justify-content(space-around);
 }
 
-.content-body {
+.content-body,
+.content-body-home {
     @include flex(1);
     @include flex-direction(column);
     min-height: 100vh;
@@ -1334,6 +1335,11 @@ sup {
   width: 100%;
   text-align: center;
 }
+.content-body-home #block-search-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
 #block-user-login .block-title,
 #block-search-form .block-title {
   margin-bottom: 0.5em;
@@ -1487,4 +1493,11 @@ ul.tabs.primary {
   }
 }
 
+/**
+ * Slideshows
+ */
+
+.flexslider .slides img {
+  height: auto;
+}
 
