@@ -459,6 +459,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Gault-Millau (AT)': // 95 max
+      case 'Gault Millau (AT CR)':
       case 'Gault Millau (AT SL)':
         $score =   ($food == 19 ? 75 : 0);
         $score +=  ($food == 18 ? 70 : 0);
@@ -1109,6 +1110,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Gault-Millau (AT)':
     $guide_data['trust'] = 0.7;
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Gault Millau (AT CR)':
+    $guide_data['trust'] = 0.7;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
