@@ -343,7 +343,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $atmosphere*2;
       break;
 
-      case 'Der große Restaurant- & Hotelguide':
+      case 'Der große Restaurant & Hotelguide':
       	if ($bonus == 1) {
       	  $score =  ($food == 5 ? 80 : 0);
       	  $score +=  ($food == 4 ? 73 : 0);
@@ -1030,7 +1030,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
 	break;
 
-	case 'Der große Restaurant- & Hotelguide':
+	case 'Der große Restaurant & Hotelguide':
 		$guide_data['trust'] =	0.41;
     $guide_data['type']  = 'guide';
 	break;
