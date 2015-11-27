@@ -1037,7 +1037,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Dianping':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] =  0.7;
+    $guide_data['trust'] =  0.73;
   break;
 
   case 'Dining City':
@@ -1141,7 +1141,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault-Millau (JP)':
-    $guide_data['trust'] =  0.8; // arbitrary
+    $guide_data['trust'] =  0.8;
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
