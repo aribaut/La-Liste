@@ -1114,13 +1114,13 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Gault Millau (AT CR)':
-    $guide_data['trust'] = 0.7;
+    $guide_data['trust'] = 0.59;
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
   case 'Gault Millau (AT SL)':
-    $guide_data['trust'] = 0.7;
+    $guide_data['trust'] = 0.59;
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
