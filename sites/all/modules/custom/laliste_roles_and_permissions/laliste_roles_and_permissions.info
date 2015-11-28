@@ -1,0 +1,15 @@
+name = LaListe roles and permissions
+description = List all user roles and permissions
+core = 7.x
+package = LA LISTE
+version = 7.x-1.0
+project = laliste_roles_and_permissions
+dependencies[] = devel
+dependencies[] = features
+dependencies[] = search
+features[features_api][] = api:2
+features[user_permission][] = access devel information
+features[user_permission][] = search content
+features[user_permission][] = use advanced search
+features[user_role][] = chief editor
+features[user_role][] = editor

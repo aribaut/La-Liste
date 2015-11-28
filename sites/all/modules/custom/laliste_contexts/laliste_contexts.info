@@ -1,0 +1,17 @@
+name = LaListe Contexts
+description = Features all contexts
+core = 7.x
+package = LA LISTE
+version = 7.x-1.0
+project = laliste_contexts
+dependencies[] = context
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = laliste_homepage
+dependencies[] = laliste_rr_ct
+dependencies[] = locale
+dependencies[] = search
+features[context][] = laliste_layout_homepage_context
+features[context][] = laliste_layout_restaurant_node_page_context
+features[ctools][] = context:context:3
+features[features_api][] = api:2

@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function laliste_rr_ct_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "data" && $api == "data_default") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_node_info().
  */
 function laliste_rr_ct_node_info() {

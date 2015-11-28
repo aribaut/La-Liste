@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Contexts feature.
+ */
+
+include_once 'laliste_contexts.features.inc';
