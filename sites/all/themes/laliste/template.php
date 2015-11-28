@@ -176,3 +176,56 @@ function laliste_preprocess_node(&$variables) {
     }
   }
 }
+
+/*
+function laliste_preprocess_views_view_fields(&$vars) {
+  $view = $vars['view'];
+    if($view->name == 'laliste_rr_restaurants_country_winners_view') {
+      foreach ($vars['fields'] as $id => $field) {
+            $field_output = $view->style_plugin->get_field($view->row_index, $id);
+            $class = 'CLASS_NAME';
+            if ($field->handler->options['element_default_classes']) {
+              $class = 'field-content';
+            }
+
+            if ($classes = $field->handler->element_classes($view->row_index)) {
+              if ($class) {
+                $class .= ' ';
+              }
+              $class .=  $classes;
+            }
+
+            $pre = '<' . $field->element_type;
+            if ($class) {
+              $pre .= ' class="' . $class . '"';
+            }
+            $field_output = $pre . '>' . $field_output . '</' . $field->element_type . '>';
+
+          // Protect ourself somewhat for backward compatibility. This will prevent
+          // old templates from producing invalid HTML when no element type is selected.
+          if (empty($field->element_type)) {
+            $field->element_type = 'span';
+          }
+
+          $vars['fields'][$id]->content = $field_output;
+      }
+    }
+}*/
+
+function laliste_preprocess_views_view_field(&$vars){
+     $view = $vars['view'];
+     $output = $vars['output'];
+     $bool = ( !is_int($output) ? (ctype_digit($output)) : true );
+    if($view->name == 'laliste_rr_restaurants_country_winners_view' && $bool) {
+      $vars['output'] = t(ordinal($output));
+      //dpm($vars);
+    }
+}
+
+function ordinal($number) {
+    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+    if ((($number % 100) >= 11) && (($number%100) <= 13))
+        return $number. '<sup>' . 'th' . '</sup>';
+    else
+        return $number. '<sup>' . $ends[$number % 10] . '</sup>';
+}
