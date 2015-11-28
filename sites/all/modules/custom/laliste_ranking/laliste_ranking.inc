@@ -318,6 +318,20 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score +=  ($food == 1 ? 60 : 0);
       break;
 
+      case 'Condé Nast Traveler India':
+        $score = ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 96 : 0);
+        $score += ($food == 3 ? 92 : 0);
+        $score += ($food == 4 ? 88 : 0);
+        $score += ($food == 5 ? 84 : 0);
+        $score += ($food == 6 ? 80 : 0);
+        $score += ($food == 7 ? 76 : 0);
+        $score += ($food == 8 ? 72 : 0);
+        $score += ($food == 9 ? 68 : 0);
+        $score += ($food == 10 ? 64 : 0);
+        $score += ($food > 10 ? 60 : 0);
+      break;
+
       case 'Guide Delta':
         $score =   ($food == 4 ? 80 : 0);
         $score +=  ($food == 3 ? 70 : 0);
@@ -687,19 +701,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*10;
       break;
 
-      case 'IndiaTV (trusted source)':
-        $score =  ($food == 1 ? 100 : 0);
-        $score += ($food == 2 ? 95 : 0);
-        $score += ($food == 3 ? 90 : 0);
-        $score += ($food == 4 ? 85 : 0);
-        $score += ($food == 5 ? 80 : 0);
-        $score += ($food == 6 ? 75 : 0);
-        $score += ($food == 7 ? 70 : 0);
-        $score += ($food == 8 ? 65 : 0);
-        $score += ($food == 9 ? 60 : 0);
-        $score += ($food == 10 ? 55 : 0);
-      break;
-
       case "L'Internaute":
         $score = $food*16;
         $score += $atmosphere;
@@ -778,6 +779,18 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $wine/2;
         $score += $atmosphere/2;
         $score += $service;
+      break;
+
+      case 'Times Food Awards':
+        $score =  ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 90 : 0);
+        $score += ($food == 3 ? 80 : 0);
+      break;
+
+      case 'Times Food Guide':
+        $score =  ($food == 5 ? 100 : 0);
+        $score += ($food == 4.5 ? 90 : 0);
+        $score += ($food == 4 ? 80 : 0);
       break;
 
       case 'Timeout' :
@@ -975,6 +988,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
     $guide_data['trust'] = 0.6;
+  break;
+
+  case 'Condé Nast Traveler India':
+    $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.65;
   break;
 
   case 'Openrice':
@@ -1242,10 +1260,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
-  case 'IndiaTV (trusted source)':
-    $guide_data['type']  = 'guide';
-  break;
-
   case "L'Internaute":
     $guide_data['type']  = 'user';
   break;
@@ -1363,6 +1377,15 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Time Out (RU)':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+  break;
+
+  case 'Times Food Awards':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Times Food Guide':
+    $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.6;
   break;
 
   case 'Traveltipz.ru':
