@@ -1501,3 +1501,47 @@ ul.tabs.primary {
   height: auto;
 }
 
+.highlight-container {
+    @extend .Grid;
+}
+
+.highlight-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-1of3;
+    color: $dark_grey;
+    font-family: "Mrs Eaves Bold", sans-serif;
+    font-size: 3em;
+}
+
+.highlight-content-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-2of3;
+}
+
+.highlight-content-column {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--justifyCenter;
+    @extend .u-small-1of2;
+    @extend .u-med-1of2;
+    @extend .u-large-1of2;
+    background: $black;
+    color: $white;
+    font-family: "Mrs Eaves Italic", Serif;
+    font-size: 1.3em;
+    padding: 20px;
+    text-align: justify;
+    font-weight: 100;
+}
+
+
+
