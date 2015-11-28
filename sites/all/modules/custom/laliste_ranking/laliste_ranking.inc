@@ -992,7 +992,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Condé Nast Traveler India':
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.65;
+    $guide_data['trust'] = 0.7;
   break;
 
   case 'Openrice':
@@ -1385,7 +1385,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Times Food Guide':
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.6;
+    $guide_data['trust'] = 0.65;
   break;
 
   case 'Traveltipz.ru':
