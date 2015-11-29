@@ -551,10 +551,6 @@ header > div.region.region-header {
     margin-left: 0px;
 }
 
-.guides-container > :nth-child(8n+8) {
-    margin-right : 0px;
-}
-
 .insider-footer {
     @include justify-content(space-around);
 }
