@@ -708,6 +708,16 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service*2;
       break;
 
+      case 'Los Angeles Times (trusted source)':
+      case 'Washingtonian Magazine (trusted source)':
+      case 'Washington Post (trusted source)':
+        $score =  ($food == 4 ? 100 : 0);
+        $score =  ($food == 3.5 ? 90 : 0);
+        $score += ($food == 3  80 : 0);
+        $score += ($food == 2 ? 70 : 0);
+        $score += ($food == 1 ? 60 : 0);
+      break;
+
       case 'Michelin' :
       case 'Michelin (JP)':
       	$score =  ($food == 3 ? 80 : 0);
@@ -820,6 +830,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =  ($food == 1 ? 100 : 0);
         $score += ($food == 2 ? 90 : 0);
         $score += ($food == 3 ? 80 : 0);
+      break;
+
+      case 'The Daily Meal - reviews (trusted source)':
+        $score =  ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4 ? 75 : 0);
+        $score +=  ($food == 3 ? 50 : 0);
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
@@ -1264,6 +1280,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Los Angeles Times (trusted source)':
+  case 'Washingtonian Magazine (trusted source)':
+  case 'Washington Post (trusted source)':
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Maclean’s Canada’s best restaurant':
     $guide_data['type']  = 'list';
   break;
@@ -1332,6 +1354,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Singapore Tatler':
     $guide_data['trust'] = 0.55;
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'The Daily Meal - reviews (trusted source)':
     $guide_data['type']  = 'guide';
   break;
 
