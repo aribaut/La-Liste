@@ -713,7 +713,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Washington Post (trusted source)':
         $score =  ($food == 4 ? 100 : 0);
         $score =  ($food == 3.5 ? 90 : 0);
-        $score += ($food == 3  80 : 0);
+        $score += ($food == 3 ? 80 : 0);
         $score += ($food == 2 ? 70 : 0);
         $score += ($food == 1 ? 60 : 0);
       break;
@@ -1008,7 +1008,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Condé Nast Traveler India':
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.7;
+    $guide_data['trust'] = 0.6;
   break;
 
   case 'Openrice':
@@ -1411,7 +1411,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Times Food Guide':
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.65;
   break;
 
   case 'Traveltipz.ru':
