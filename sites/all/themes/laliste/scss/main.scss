@@ -1618,22 +1618,23 @@ div:nth-child(-n+5) > span.laliste-winners-rank {
     height: 110px;
 }
 div > span.laliste-winners-title {
-    width: 70.7%;
+    width: 71%;
+}
+div > span.laliste-winners-score-laliste {
+    width: 5%;
 }
 div:nth-child(-n+5) > span.laliste-winners-score-laliste {
-    width: 5%;
     padding-right: 10px;
 }
 div:nth-child(n+6) > span.laliste-winners-score-laliste {
-    width: 5%;
     padding-right: 33px;
 }
 div > span.laliste-winners-rank {
-    width: 15.84%;
+    width: 16%;
     padding-left: 33px;
 }
 div > span.laliste-winners-field-address-country-1 {
-    width: 8.45%;
+    width: 8%;
 }
 // 1st five winners flag
 div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
@@ -1735,8 +1736,5 @@ div:nth-child(n+7) > span.laliste-winners-rank {
 span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large {
     border: 1px solid $light_grey;
 }
-
-
-
 
 
