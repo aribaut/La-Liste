@@ -449,12 +449,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Falstaff':
         $score = $food;
       break;
-
+/*
       case 'Five Diamond Awards':
         $score =   ($food == 5 ? 100 : 0);
         $score +=  ($food == 4 ? 60 : 0);
       break;
-
+*/
       case 'Forbes Travel Guide':
         $score =   ($food == 5 ? 100 : 0);
         $score +=  ($food == 4 ? 65 : 0);
@@ -833,9 +833,22 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'The Daily Meal - reviews (trusted source)':
-        $score =  ($food == 5 ? 100 : 0);
-        $score +=  ($food == 4 ? 75 : 0);
-        $score +=  ($food == 3 ? 50 : 0);
+        $score =   ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4.9 ? 98 : 0);
+        $score +=  ($food == 4.8 ? 96 : 0);
+        $score +=  ($food == 4.7 ? 94 : 0);
+        $score +=  ($food == 4.6 ? 92 : 0);
+        $score +=  ($food == 4.5 ? 90 : 0);
+        $score +=  ($food == 4.4 ? 88 : 0);
+        $score +=  ($food == 4.3 ? 86 : 0);
+        $score +=  ($food == 4.2 ? 84 : 0);
+        $score +=  ($food == 4.1 ? 82 : 0);
+        $score +=  ($food == 4 ? 80 : 0);
+        $score +=  ($food == 3.9 ? 78 : 0);
+        $score +=  ($food == 3.8 ? 76 : 0);
+        $score +=  ($food == 3.7 ? 74 : 0);
+        $score +=  ($food == 3.6 ? 72 : 0);
+        $score +=  ($food == 3.5 ? 70 : 0);
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
@@ -1121,12 +1134,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Falstaff':
     $guide_data['type']  = 'user';
   break;
-
+/*
 	case 'Five Diamond Awards':
 		$guide_data['trust'] =	0.61;
     $guide_data['type']  = 'guide';
 	break;
-
+*/
 	case 'Forbes Travel Guide':
     $guide_data['trust'] =  0.61;
     $guide_data['type']  = 'guide';
