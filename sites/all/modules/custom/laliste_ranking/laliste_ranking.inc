@@ -1008,7 +1008,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Condé Nast Traveler India':
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.6;
   break;
 
   case 'Openrice':
