@@ -263,6 +263,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'The Daily Meal - 101 best restaurants':
       case 'James Beard Awards':
       case 'Maclean’s Canada’s best restaurant':
+      case 'Le Chef - les meilleurs restaurants':
         $score = ($food>=1 && $food <=20) ? 0.03 : 0;
         $score += ($food>20 && $food <=50) ? 0.02 : 0;
         $score += ($food>50 && $food <=100) ? 0.01 : 0;
@@ -994,7 +995,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   switch($guide_name) {
 
   case '50 Best': case 'Opiniated about dining': case 'Elite Traveler': case 'Vacay.ca':
-  case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
+  case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards': case 'Le Chef - les meilleurs restaurants':
     $guide_data['type']  = 'list';
   break;
 
