@@ -1022,6 +1022,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Condé Nast Traveler India':
     $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being considered unique guide in this country
   break;
 
   case 'Openrice':
@@ -1420,6 +1421,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Times Food Awards':
     $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being considered unique guide in this country
   break;
 
   case 'Times Food Guide':
