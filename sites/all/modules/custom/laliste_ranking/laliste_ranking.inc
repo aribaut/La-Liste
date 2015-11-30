@@ -306,6 +306,10 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($bonus==12) ? 60 : 0;
       break;
 
+      case 'Baidu reviews':
+          $score = $food*20;
+      break;
+
       case 'Blue Ribbon':
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
@@ -1012,6 +1016,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'AndyHayler.com (trusted source)':
     $guide_data['trust'] = 0.7;
     $guide_data['type']  = 'guide';
+  break;
+
+  case 'Baidu reviews':
+    $guide_data['type']  = 'user';
   break;
 
   case 'Blue Ribbon':
