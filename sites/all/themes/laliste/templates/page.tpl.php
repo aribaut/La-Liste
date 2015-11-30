@@ -77,16 +77,14 @@
     <a href="<?php print base_path(); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_header.png'; ?>"></a>
   </div>
   <div class="header-utils">
-    <?php print render($page['header']); ?>
+    <?php if (isset($tabs)): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+    <?php //print render($page['header']); ?>
   </div>
 </header>
 <main class="content-body">
   <div class="content-container">
-    <?php //print render($title_prefix); ?>
     <?php if (false): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-    <?php //print render($title_suffix); ?>
-    <?php if (false): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-    <?php if (false): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+    <?php if (isset($action_links)): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
     <?php if ($page['content']): ?>
       <article class="content">
         <?php print $messages; ?>

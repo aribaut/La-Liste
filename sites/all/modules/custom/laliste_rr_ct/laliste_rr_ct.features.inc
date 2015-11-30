@@ -11,6 +11,33 @@ function laliste_rr_ct_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "data" && $api == "data_default") {
     return array("version" => "1");
   }
+  if ($module == "file_entity" && $api == "file_default_displays") {
+    return array("version" => "1");
+  }
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function laliste_rr_ct_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: full-width_slider_image.
+  $styles['full-width_slider_image'] = array(
+    'label' => 'Full-width slider image',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1408,
+          'height' => 444,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
 }
 
 /**

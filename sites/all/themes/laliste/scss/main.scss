@@ -1257,7 +1257,7 @@ p.info-content {
     }
 
     .u-large-1of3 {
-        width: 39.2% !important
+        width: 40% !important
     }
 
     .u-large-1of3, .u-large-2of3 {
@@ -1737,4 +1737,37 @@ span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosqu
     border: 1px solid $light_grey;
 }
 
+.flexslider {
+    margin: 0;
+    border: 0;
+}
+
+.flex-control-paging {
+    display: none;
+}
+
+#block-views-homepage-slider-block {
+    position: relative;
+}
+
+#block-views-homepage-slider-block + #block-search-form {
+    position: absolute;
+    top: 277px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 649px;
+    z-index: 80;
+}
+
+/*
+ * Admin section
+ */
+.tabs {
+    padding-top : 22px;
+    background: $black;
+    a {
+        color: $white;
+    }
+}
 

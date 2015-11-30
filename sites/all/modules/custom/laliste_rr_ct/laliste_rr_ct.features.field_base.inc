@@ -109,6 +109,31 @@ function laliste_rr_ct_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_restaurant_disabled'
+  $field_bases['field_restaurant_disabled'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_restaurant_disabled',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_restaurant_guides'
   $field_bases['field_restaurant_guides'] = array(
     'active' => 1,
@@ -136,29 +161,26 @@ function laliste_rr_ct_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_restaurant_laliste_enable'
-  $field_bases['field_restaurant_laliste_enable'] = array(
+  // Exported field_base: 'field_restaurant_image'
+  $field_bases['field_restaurant_image'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_restaurant_laliste_enable',
+    'field_name' => 'field_restaurant_image',
     'indexes' => array(
-      'value' => array(
-        0 => 'value',
+      'fid' => array(
+        0 => 'fid',
       ),
     ),
     'locked' => 0,
-    'module' => 'list',
+    'module' => 'image',
     'settings' => array(
-      'allowed_values' => array(
-        0 => '',
-        1 => '',
-      ),
-      'allowed_values_function' => '',
+      'default_image' => 0,
+      'uri_scheme' => 'public',
     ),
     'translatable' => 0,
-    'type' => 'list_boolean',
+    'type' => 'image',
   );
 
   // Exported field_base: 'field_restaurant_tags'

@@ -15,7 +15,7 @@ function laliste_contexts_context_default_contexts() {
   $context->api_version = 3;
   $context->name = 'laliste_layout_homepage_context';
   $context->description = 'Default Homepage for LA LISTE';
-  $context->tag = '';
+  $context->tag = 'homepage';
   $context->conditions = array(
     'path' => array(
       'values' => array(
@@ -32,17 +32,29 @@ function laliste_contexts_context_default_contexts() {
           'region' => 'header',
           'weight' => '-9',
         ),
+        'views-homepage_slider-block' => array(
+          'module' => 'views',
+          'delta' => 'homepage_slider-block',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'laliste_homepage-home_highlight' => array(
           'module' => 'laliste_homepage',
           'delta' => 'home_highlight',
           'region' => 'content',
-          'weight' => '-9',
+          'weight' => '-8',
+        ),
+        'views-cbbe77509a0d5dfa927448406b230347' => array(
+          'module' => 'views',
+          'delta' => 'cbbe77509a0d5dfa927448406b230347',
+          'region' => 'content',
+          'weight' => '-7',
         ),
       ),
     ),
@@ -52,6 +64,7 @@ function laliste_contexts_context_default_contexts() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Default Homepage for LA LISTE');
+  t('homepage');
   $export['laliste_layout_homepage_context'] = $context;
 
   $context = new stdClass();

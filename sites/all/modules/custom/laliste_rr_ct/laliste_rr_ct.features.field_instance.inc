@@ -51,7 +51,7 @@ function laliste_rr_ct_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -106,7 +106,7 @@ function laliste_rr_ct_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -146,7 +146,7 @@ function laliste_rr_ct_field_default_field_instances() {
         'size' => 40,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -186,7 +186,7 @@ function laliste_rr_ct_field_default_field_instances() {
         'size' => 20,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -226,7 +226,50 @@ function laliste_rr_ct_field_default_field_instances() {
         'size' => 24,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-restaurant-field_restaurant_disabled'
+  $field_instances['node-restaurant-field_restaurant_disabled'] = array(
+    'bundle' => 'restaurant',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_restaurant_disabled',
+    'label' => 'LA LISTE Disabled',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 1,
     ),
   );
 
@@ -270,27 +313,26 @@ function laliste_rr_ct_field_default_field_instances() {
         ),
       ),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-restaurant-field_restaurant_laliste_enable'
-  $field_instances['node-restaurant-field_restaurant_laliste_enable'] = array(
+  // Exported field_instance: 'node-restaurant-field_restaurant_image'
+  $field_instances['node-restaurant-field_restaurant_image'] = array(
     'bundle' => 'restaurant',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 9,
+        'label' => 'hidden',
+        'module' => 'flexslider_fields',
+        'settings' => array(
+          'caption' => '',
+          'image_style' => 'full-width_slider_image',
+          'optionset' => 'default',
+        ),
+        'type' => 'flexslider',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -300,20 +342,42 @@ function laliste_rr_ct_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_restaurant_laliste_enable',
-    'label' => 'LA LISTE Disabled',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_restaurant_image',
+    'label' => 'Restaurant Images',
     'required' => 0,
     'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 11,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'media',
       'settings' => array(
-        'display_label' => 1,
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'upload' => 'upload',
+        ),
       ),
-      'type' => 'options_onoff',
-      'weight' => 1,
+      'type' => 'media_generic',
+      'weight' => 2,
     ),
   );
 
@@ -353,7 +417,7 @@ function laliste_rr_ct_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -410,7 +474,7 @@ function laliste_rr_ct_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -425,6 +489,7 @@ function laliste_rr_ct_field_default_field_instances() {
   t('Menu Price');
   t('Miscellaneous');
   t('Phone');
+  t('Restaurant Images');
   t('Tags');
   t('Website');
 
