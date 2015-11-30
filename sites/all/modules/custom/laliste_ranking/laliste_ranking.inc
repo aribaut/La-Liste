@@ -397,6 +397,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =  ($food == 3 ? 100 : 0);
         $score += ($food == 2 ? 90 : 0);
         $score += ($food == 1 ? 80 : 0);
+        $score += $bonus;
       break;
 
       case 'Dubai Eating':
