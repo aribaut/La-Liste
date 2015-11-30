@@ -1096,7 +1096,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Dianping':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] =  0.73;
+    $guide_data['trust'] =  0.7;
   break;
 
   case 'Dining City':
