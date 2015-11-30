@@ -1618,7 +1618,7 @@ div:nth-child(-n+5) > span.laliste-winners-rank {
     height: 110px;
 }
 div > span.laliste-winners-title {
-    width: 71%;
+    width: 72%;
 }
 div > span.laliste-winners-score-laliste {
     width: 5%;
@@ -1634,11 +1634,11 @@ div > span.laliste-winners-rank {
     padding-left: 33px;
 }
 div > span.laliste-winners-field-address-country-1 {
-    width: 8%;
+    width: 7%;
 }
 // 1st five winners flag
 div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
-    padding: 0 27px;
+    //padding: 0 27px;
 }
 // 1st five winners rank
 div:nth-child(-n+5) > span.laliste-winners-rank > span {
