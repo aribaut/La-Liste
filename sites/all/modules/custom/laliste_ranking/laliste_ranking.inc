@@ -1404,7 +1404,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Thailand Tatler Best restaurants':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.4;
+    $guide_data['trust'] = 0.38;
   break;
 
   case 'Timeout':
@@ -1417,11 +1417,16 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Timeout Food Awards Doha':
   case 'Timeout Abu Dhabi Restaurant Awards':
   case 'Timeout Food Awards Dubai':
-  case 'Timeout KL Food Awards':
   case 'Timeout Israel Eating & Drinking Awards':
   case 'Timeout Food & Drink Awards Istanbul':
     $guide_data['type']  = 'guide';
     $guide_data['unique'] = true;; // special case for being unique guide in country
+  break;
+
+  case 'Timeout KL Food Awards':
+    $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true;; // special case for being unique guide in country
+    $guide_data['trust'] = 0.4;
   break;
 
   case 'Timeout Melbourne Food Awards':
