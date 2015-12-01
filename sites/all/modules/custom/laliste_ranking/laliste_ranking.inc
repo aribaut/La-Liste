@@ -312,7 +312,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Blue Ribbon':
         $score =   ($food == 3 ? 100 : 0);
-        $score +=  ($food == 2 ? 85 : 0);
+        $score +=  ($food == 2 ? 90 : 0);
         $score +=  ($food == 1 ? 70 : 0);
         $score += $bonus;
       break;
@@ -1033,7 +1033,6 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Blue Ribbon':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.6;
   break;
 
   case 'Condé Nast Traveler India':
