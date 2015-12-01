@@ -670,11 +670,17 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	  $score +=  ($food == 9 ? 67 : 0);
       	}
       	$score += $atmosphere*4;
-      	 // service?
       break;
 
       case 'Harden\'s':
         $score = $food*16;
+        $score += $atmosphere*2;
+        $score += $service*2;
+      break;
+
+      case 'Indonesia Tatler':
+        $score = $food*16;
+        $score += $wine;
         $score += $atmosphere*2;
         $score += $service*2;
       break;
@@ -1294,6 +1300,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Harden\'s':
     $guide_data['type']  = 'user';
+  break;
+
+  case 'Indonesia Tatler':
+    $guide_data['unique'] = true; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Kor-eat':
