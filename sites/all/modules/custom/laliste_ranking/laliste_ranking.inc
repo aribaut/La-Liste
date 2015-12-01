@@ -312,8 +312,8 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Blue Ribbon':
         $score =   ($food == 3 ? 100 : 0);
-        $score +=  ($food == 2 ? 80 : 0);
-        $score +=  ($food == 1 ? 60 : 0);
+        $score +=  ($food == 2 ? 85 : 0);
+        $score +=  ($food == 1 ? 70 : 0);
         $score += $bonus;
       break;
 
