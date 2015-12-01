@@ -337,6 +337,17 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($food > 10 ? 60 : 0);
       break;
 
+      case 'Cuisine NZ Good Food Awards':
+        $score +=  ($food == 18.5 ? 80 : 0);
+        $score +=  ($food == 18 ? 75 : 0);
+        $score +=  ($food == 17.5 ? 70 : 0);
+        $score +=  ($food == 17 ? 65 : 0);
+      break;
+
+      case 'New Zealand Herald (trusted source)':
+        $score = $food*10;
+      break;
+
       case 'Guide Delta':
         $score =   ($food == 4 ? 80 : 0);
         $score +=  ($food == 3 ? 70 : 0);
