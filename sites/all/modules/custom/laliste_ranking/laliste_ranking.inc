@@ -777,11 +777,11 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Singapore Tatler':
-      case 'Philippines Tatler':
         $score = ($food == 5 ? 100 : 0);
       break;
 
       case 'Hong Kong Tatler':
+      case 'Philippines Tatler':
         $score = $food*16;
         $score += $wine;
         $score += $atmosphere;
