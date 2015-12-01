@@ -7,6 +7,7 @@
 // colors
 $light_grey: #f0f0f0;
 $dark_grey : #5d5d5d;
+$gold : #8A804F;
 $dark_gold : #93806c;
 $gray: #808080;
 $color_cape_cod_approx: #404040;
@@ -155,6 +156,10 @@ html {
     text-rendering: optimizeLegibility;
 }
 
+body {
+    font-size: 100%;
+}
+
 @media (-webkit-min-device-pixel-ratio:1.5), (min-resolution:1.5dppx), (min-resolution:144dpi) {
     html {
         font-weight: 300
@@ -163,23 +168,24 @@ html {
 
 h1 {
     font-weight: 300;
-    font-size: 2em;
+    font-size: 3rem;
     -webkit-font-kerning: normal;
-    letter-spacing: -.015em;
+    letter-spacing: -.015rrem;
     line-height: 1;
-    margin: .25em 0 .75em
+    margin: .25rem 0 .75rem
 }
 
-@media (min-width:768px) {
+// 768px :)
+@media (min-width:48rem) {
     h1 {
-        font-size: 2.5em;
-        margin: .5em 0 1em
+        font-size: 2.5rem;
+        margin: .5rem 0 1rem
     }
 }
 
 h2 {
-    font-size: 1.333em;
-    margin: 0 0 1.12528em
+    font-size: 1.333rem;
+    margin: 0 0 1.12528rem
 }
 
 h2, h3 {
@@ -187,12 +193,12 @@ h2, h3 {
 }
 
 h3 {
-    font-size: 1em;
-    margin: 0 0 1.5em
+    font-size: 1rem;
+    margin: 0 0 1.5rem
 }
 
 a {
-    color: $dark_gold;
+    color: $gold;
     text-decoration: none
 }
 
@@ -206,12 +212,12 @@ a:focus, a:hover {
 
 ol, ul {
     list-style: none;
-    margin: 0 0 1.5em;
-    padding: 0 0 0 1.5em
+    margin: 0 0 1.5rem;
+    padding: 0 0 0 1.5rem;
 }
 
 li {
-    margin-bottom: .333em
+    margin-bottom: .333rem
 }
 
 figure {
@@ -293,10 +299,11 @@ strong {
 
 .Grid--1of5>.Grid-cell
  {
-    @include flex(0,0,169px); // guide-box
+    @include flex(0,0,10.5625rem); // guide-box
 }
 
-@media (min-width:375px) {
+// 375px :)
+@media (min-width:23.4375rem) {
     .small-Grid--fit>.Grid-cell {
         @include flex(1);
     }
@@ -319,11 +326,12 @@ strong {
 
     .Grid--1of5>.Grid-cell
     {
-        @include flex(0,0,87px); // guide-box
+        @include flex(0,0,5.4375rem); // guide-box
     }
 }
 
-@media (min-width:576px) {
+// 576px
+@media (min-width:36rem) {
     .med-Grid--fit>.Grid-cell {
         @include flex(1);
     }
@@ -346,11 +354,12 @@ strong {
 
     .Grid--1of5>.Grid-cell
     {
-        @include flex(0,0,120px); // guide-box
+        @include flex(0,0,7.5rem); // guide-box
     }
 }
 
-@media (min-width:768px) {
+// 768px :)
+@media (min-width:48rem) {
     .large-Grid--fit>.Grid-cell {
         @include flex(1);
     }
@@ -373,7 +382,7 @@ strong {
 
     .Grid--1of5>.Grid-cell
     {
-        @include flex(0,0,150px); // guide-box
+        @include flex(0,0,9.375rem); // guide-box
     }
 }
 
@@ -413,7 +422,7 @@ strong {
     @extend .u-med-1of2;
     @extend .u-large-1of3;
     @include justify-content(flex-end);
-    padding-right: 8px;
+    padding-right: 0.5rem;
 }
 
 .footer-main {
@@ -435,7 +444,7 @@ strong {
     @include flex(1);
     @include flex-direction(column);
     min-height: 100vh;
-    padding: 1.5em;
+    padding: 1.5rem;
     padding-top: 0;
     padding-left: 1%;
     padding-right: 1%;
@@ -443,7 +452,7 @@ strong {
 
 .content {
     @include flex(1);
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
     margin-left: 0;
     margin-right: 0;
 }
@@ -453,14 +462,14 @@ strong {
 }
 
 .laliste-ads, .laliste-nav {
-    padding: 1em;
-    border-radius: 3px;
+    padding: 1rem;
+    border-radius: 0.375rem;
     background: #93806c;
     background: hsla(31, 15%, 50%, .1)
 }
 
 .laliste-box {
-    margin: 4px 4px 4px 4px;
+    margin: 0.5rem;
     width: 100%;
     font-weight: bold;
 }
@@ -471,22 +480,22 @@ strong {
 
 header.header-main {
     width: 100%;
-    max-width: 1408px;
+    max-width: 88rem;
     margin: 0 auto;
 }
 
 .logo {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   z-index: 80;
 }
 
 header > div.region.region-header {
     @include flexbox;
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 .content-container {
-    max-width: 1408px;
+    max-width: 88rem;
     margin: 0 auto;
     text-align: center;
 }
@@ -501,7 +510,7 @@ header > div.region.region-header {
 .restaurant-media {
     width: 100%;
     height: 100%;
-    margin: 4px 0;
+    margin: 0.5rem 0;
 }
 
 .restaurant-info-container {
@@ -537,7 +546,7 @@ header > div.region.region-header {
     @extend .Grid--1of5;
     height: 100%;
     @include justify-content(flex-start);
-    margin: 4px 0;
+    margin: 0.5rem 0;
 }
 
 .guide-box {
@@ -548,7 +557,7 @@ header > div.region.region-header {
 }
 
 .guides-container > :first-child {
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .insider-footer {
@@ -583,7 +592,7 @@ header > div.region.region-header {
 }
 
 .restaurant-details ul li {
-     line-height: 1em;
+     line-height: 1rem;
      height: auto;
      position: relative;
 }
@@ -593,11 +602,11 @@ header > div.region.region-header {
 }
 
 .restaurant-details ul li .info-content{
-    color: $dark_gold;
+    color: $gold;
 }
 
 span.info-content > a {
-   color: $dark_gold;
+   color: $gold;
 }
 
 span.info-title {
@@ -605,35 +614,36 @@ span.info-title {
 }
 
 p.info-content {
-    padding-left: 140px;
+    padding-left: 8.75rem;
 }
 
 .guide-box {
     color: $white;
     background: $black;
-    height: 169px;
+    height: 10.5625rem;
     width: auto;
-    padding: 10px;
+    padding: 0.625rem;
 }
 
 .guide-box {
-    margin: 2px 4px 2px 0px;
-    font-weight: 300;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    font-weight: normal;
 }
 
 .guide-box.first{
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .guide-box.last{
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 /*
  * Site specific Media Queries
  **/
 
-@media screen and (min-width: 375px) {
+// 375px :)
+@media screen and (min-width: 23.4375) {
 
     .header-main {
         margin-bottom: 0;
@@ -642,7 +652,7 @@ p.info-content {
     .header-branding {
         @include justify-content(center);
         img {
-            width: 240px;
+            width: 15rem;
             height: 100%;
         }
     }
@@ -652,38 +662,38 @@ p.info-content {
     }
 
     .row-height-med {
-        height: 90px;
+        height: 5.625rem;
     }
 
     .row-height-tall {
-        height: 90px;
+        height: 5.625rem;
     }
 
     .restaurant-details {
-        font-size: 0.8em;
+        font-size: 0.8rem;
         ul {
-            margin: 0 0 -0.5em !important;
+            margin: 0 0 -0.5rem !important;
         }
     }
 
     .restaurant-details-container {
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
 
     .restaurant-user-actions-container p {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 
     .restaurant-info-container > :first-child,
     .restaurant-user-actions-container > :first-child {
-        margin-left: 4px;
-        margin-right: 4px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
     }
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
-        margin-left: 0px;
-        margin-right: 0px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .restaurant-overlay {
@@ -691,30 +701,30 @@ p.info-content {
     }
 
     span.tiny-rank {
-        font-size: 0.5em !important;
+        font-size: 0.5rem !important;
     }
 
     p.rank {
-        font-size: 2em;
-        margin-bottom: -6px;
+        font-size: 2rem;
+        margin-bottom: -0.375rem;
     }
 
     p.score {
-        font-size: 1.5em;
-        padding-bottom: 4px;
+        font-size: 1.5rem;
+        padding-bottom: 0.5rem;
      }
 
     .restaurant-address span {
-        font-size: 0.6em !important;
+        font-size: 0.6rem !important;
     }
 
     h1#node-title {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 
     .guide-box {
-        font-size: 0.8em;
-        height: 87px;
+        font-size: 0.8rem;
+        height: 5.4375rem;
     }
 
     a.guide-box {
@@ -722,26 +732,27 @@ p.info-content {
     }
 
     .footer-main {
-        height: 140px;
+        height: 8.75rem;
     }
 
     a.footer-link {
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     p.info-content {
-        padding-left: 70px;
+        padding-left: 4.375rem;
     }
 }
 
-@media screen and (min-width: 576px) {
+// 576px :)
+@media screen and (min-width: 36rem) {
 
     .header-branding {
         @include justify-content(flex-start);
         img {
-            width: 320px;
+            width: 20rem;
             height: 100%;
-            padding-left: 4px;
+            padding-left: 0.5rem;
         }
     }
 
@@ -750,83 +761,83 @@ p.info-content {
     }
 
     .laliste-ads, .laliste-nav {
-        @include flex(0,0,12em);
+        @include flex(0,0,12rem);
     }
 
     .row-height-med {
-        height: 120px;
+        height: 7.5rem;
     }
 
     .row-height-tall {
-        height: 120px;
+        height: 7.5rem;
     }
 
     .restaurant-overlay {
         display: block;
-        top: 24px !important;
-        left: 250px !important;
-        width: 42% !important;
+        top: 1.5rem !important;
+        left: 15.625rem !important;
+        width: 42% !important; //nogood
         height: 85% !important;
     }
 
     .restaurant-rank-big {
-        margin: 4px 4px 4px 4px;
+        margin: 0.5rem;
     }
 
     .img.countryicon.iconset-gosquared_flat_large {
-        max-width: 70%;
+        max-width: 70%; //nogood
     }
 
     .restaurant-details {
-        font-size: 1.1em;
+        font-size: 1.1rem;
         ul {
-            margin: 0 0 -0.5em;
+            margin: 0 0 -0.5rem;
         }
     }
 
     .restaurant-user-actions-container p {
-        font-size: 2em;
+        font-size: 2rem;
     }
 
     .restaurant-info-container > :first-child,
     .restaurant-user-actions-container > :first-child {
-        margin-left: 4px;
-        margin-right: 4px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
     }
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
-        margin-left: 0px;
-        margin-right: 0px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     span.tiny-rank {
-        font-size: 0.8em !important;
+        font-size: 0.8rem !important;
     }
 
     p.rank {
-        font-size: 3em;
-        padding-bottom: 8px;
-        margin-bottom: -15px;
+        font-size: 3rem;
+        padding-bottom: 0.5rem;
+        margin-bottom: -0.9375rem;
     }
 
     p.score {
-        font-size: 2em;
-        padding-bottom: 10px;
+        font-size: 2rem;
+        padding-bottom: 0.625rem;
     }
 
     .restaurant-address span {
-        font-size: 0.8em !important;
+        font-size: 0.8rem !important;
         line-height: 0.9 !important;
     }
 
     h1#node-title {
-        font-size: 2em;
+        font-size: 2rem;
     }
 
     .guide-box {
-        font-size: 1em;
-        height: 120px;
+        font-size: 1rem;
+        height: 7.5rem;
     }
 
     a.guide-box {
@@ -834,25 +845,26 @@ p.info-content {
     }
 
     a.footer-link {
-        font-size: 1.5em;
+        font-size: 1.5rem;
     }
 
     .footer-main {
-        height: 200px;
+        height: 12.5rem;
     }
 
     p.info-content {
-        padding-left: 96px;
+        padding-left: 6rem;
     }
 }
 
-@media screen and (min-width: 768px) {
+// 768px
+@media screen and (min-width: 48rem) {
 
     .header-branding {
         @include justify-content(flex-start);
         img {
-            width: 373px;
-            height: 51px;
+            width: 23.3125rem;
+            height: 3.1875rem;
         }
     }
 
@@ -861,100 +873,101 @@ p.info-content {
     }
 
     .laliste-ads, .laliste-nav {
-        @include flex(0,0,12em);
+        @include flex(0,0,12rem);
     }
 
     .row-height-med {
-        height: 150px !important;
+        height: 9.375rem !important;
     }
 
     .row-height-tall {
-        height: 240px !important;
+        height: 15rem !important;
     }
 
     .restaurant-overlay {
-        padding:30px;
-        padding-top: 3% !important;
+        padding: 1.875rem;
+        padding-top: 3% !important; //nogood
     }
 
     .img.countryicon.iconset-gosquared_flat_large {
-        width: 45px;
-        margin-top: 4px;
+        width: 2.8125rem;
+        margin-top: 0.5rem;
     }
 
     .restaurant-details {
         width: 96%;
-        padding-top: 30px;
-        font-size: 1.2em !important;
+        padding-top: 1.875rem;
+        font-size: 1.2rem !important;
         ul {
-            margin: 0 0 1.5em !important;
+            margin: 0 0 1.5rem !important;
         }
     }
 
     .restaurant-user-actions-container p {
-        font-size: 3em !important;
+        font-size: 3rem !important;
     }
 
     span.tiny-rank {
-        font-size: 1em !important;
+        font-size: 1rem !important;
     }
 
     p.rank {
-        font-size: 4em !important;
+        font-size: 4rem !important;
         font-weight: 600;
-        margin-bottom: -30px;
+        margin-bottom: -1.875rem;
     }
 
     p.score {
-        font-size: 2.8em !important;
+        font-size: 2.8rem !important;
         font-weight: 600;
-        padding-bottom: 10px;
+        padding-bottom: 0.625rem;
     }
 
     .restaurant-address {
-        font-size: 1.5em !important;
+        font-size: 1.5rem !important;
     }
 
     h1#node-title {
-        font-size: 2.6em !important;
+        font-size: 2.6rem !important;
     }
 
     .guide-box {
-        font-size: 1.2em;
-        height: 150px;
+        font-size: 1.2rem;
+        height: 9.375rem;
     }
 
     a.footer-link {
-        font-size: 2.2em;
+        font-size: 2.2rem;
     }
 
     .footer-main {
-        height: 300px
+        height: 18.75rem;
     }
 
     .restaurant-info-container > :first-child,
     .restaurant-user-actions-container > :first-child {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
-        margin-left: 4px;
-        margin-right : 0px;
+        margin-left: 0.5rem;
+        margin-right : 0;
     }
 
     p.info-content {
-        padding-left: 105px;
+        padding-left: 6.5625rem;
     }
 }
 
-@media screen and (min-width: 1200px) {
+// 1200 pixels!
+@media screen and (min-width: 75rem) {
 
     .header-branding {
         @include justify-content(flex-start);
         img {
-            width: 373px;
-            height: 51px;
+            width: 23.4375rem;
+            height: 3.1875rem;
         }
     }
 
@@ -963,11 +976,11 @@ p.info-content {
     }
 
     .laliste-ads, .laliste-nav {
-        @include flex(0,0,12em);
+        @include flex(0,0,12rem);
     }
 
     .row-height-short {
-        height: 166px !important;
+        height: 10.375rem !important;
     }
 
     .row-height-med {
@@ -988,9 +1001,9 @@ p.info-content {
     .restaurant-details {
         width: 96%;
         padding-top: 40px;
-        font-size: 1.5em !important;
+        font-size: 1.5rem !important;
         ul {
-            margin: 0 0 1.5em !important;
+            margin: 0 0 1.5rem !important;
         }
     }
 
@@ -1000,31 +1013,31 @@ p.info-content {
     }
 
     .restaurant-user-actions-container p {
-        font-size: 3em !important;
+        font-size: 3rem !important;
     }
 
     p.rank {
-        font-size: 5em !important;
+        font-size: 5rem !important;
         margin-bottom: -30px;
     }
 
     p.score {
-        font-size: 3.5em !important;
+        font-size: 3.5rem !important;
         padding-bottom: 10px;
     }
 
     .restaurant-address span {
-        font-size: 1.4em !important;
+        font-size: 1.4rem !important;
         line-height: 1;
     }
 
     h1#node-title {
         color: $white;
-        font-size: 3.8em !important;
+        font-size: 3.8rem !important;
     }
 
     .guide-box {
-        font-size: 1.4em;
+        font-size: 1.4rem;
     }
 
     .restaurant-info-container > :first-child,
@@ -1305,7 +1318,7 @@ p.rank, p.score {
 }
 
 p.score {
-    color: $dark_gold;
+    color: $gold;
 }
 
 #separator {
@@ -1338,7 +1351,7 @@ sup {
 
 #block-user-login .block-title,
 #block-search-form .block-title {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
   text-align: center;
 }
 #block-user-login .content *,
@@ -1350,8 +1363,8 @@ input.fpage-search-box,
 input.other-page-search-box {
     font-family: 'Mrs Eaves Italic';
     font-size:28px;
-    padding-left: 0.4em;
-    padding-right: 1.8em;
+    padding-left: 0.4rem;
+    padding-right: 1.8rem;
     background: $white;
     border: 0;
     color : $gray;
@@ -1414,8 +1427,8 @@ input[type=text].fpage-search-box:focus,
 input[type=text].other-page-search-box:focus,
 input.fpage-search-icon:focus,
 input.other-page-search-icon:focus {
-  box-shadow: 0 0 5px $dark_gold;
-  border: 1px solid $dark_gold;
+  box-shadow: 0 0 5px $gold;
+  border: 1px solid $gold;
 }
 
 // hide the search form title
@@ -1455,9 +1468,9 @@ h2.element-invisible {
 .restaurant-overlay .tiny-rank {
     font-weight: 300;
     margin: 5px;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     position: relative;
-    top: -0.25em;
+    top: -0.25rem;
 }
 
 img.countryicon.iconset-gosquared_flat_large {
@@ -1471,7 +1484,7 @@ img.countryicon.iconset-gosquared_flat_large {
 .restaurant-address {
     line-height: 110%;
     font-weight: 300;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     text-align: left;
     padding-left: 5%;
     margin-bottom: 2%;
@@ -1511,7 +1524,7 @@ ul.tabs.primary {
     @extend .u-large-1of3;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
-    font-size: 3em;
+    font-size: 3rem;
 }
 
 .highlight-content-container {
@@ -1533,7 +1546,7 @@ ul.tabs.primary {
     background: $black;
     color: $white;
     font-family: "Mrs Eaves Italic", Serif;
-    font-size: 1.3em;
+    font-size: 1.3rem;
     padding: 20px;
     text-align: justify;
     font-weight: 100;
@@ -1546,7 +1559,7 @@ ul.tabs.primary {
 .block-views > h2 {
     padding-top: 30px;
     font-family: "Mrs Eaves Italic", Serif;
-    font-size: 5em;
+    font-size: 5rem;
     color: $dark_grey;
     background: $light_grey;
     font-weight: 100;
@@ -1599,17 +1612,17 @@ ul.tabs.primary {
 // 1st five Winners restaurant title
 div:nth-child(-n+5) > span.laliste-winners-title > span > a {
     font-family: "Mrs Eaves Bold", sans-serif;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     color: $white;
 }
 div:nth-child(-n+5) > span.laliste-winners-title {
     padding: 0 46px;
     text-align: left;
-    background: $dark_gold;
+    background: $gold;
     height: 110px;
 }
 div:nth-child(-n+5) > span.laliste-winners-score-laliste {
-    background: $dark_gold;
+    background: $gold;
     height: 110px;
 }
 
@@ -1644,16 +1657,16 @@ div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
 div:nth-child(-n+5) > span.laliste-winners-rank > span {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
-    font-size: 4em;
+    font-size: 4rem;
     sup {
-        font-size: 0.6em;
+        font-size: 0.6rem;
     }
 }
 // 1st five winners score
 div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 2rem;
     color: $white;
 }
 // hack for winner score proportionnal to div length
@@ -1707,7 +1720,7 @@ div:nth-child(n+6) > span.laliste-winners-field-address-country-1 {
 // 1st five Winners restaurant title
 div:nth-child(n+6) > span.laliste-winners-title > span > a {
     font-family: "Mrs Eaves Italic", sans-serif;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     color: $black;
 }
 div:nth-child(n+6) > span.laliste-winners-title {
@@ -1723,9 +1736,9 @@ div:nth-child(n+6) > span.laliste-winners-rank {
     height: 56px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     sup {
-        //font-size: 0.6em;
+        //font-size: 0.6rem;
     }
 }
 div:nth-child(n+7) > span.laliste-winners-title,
