@@ -1404,6 +1404,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Thailand Tatler Best restaurants':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.4;
   break;
 
   case 'Timeout':
