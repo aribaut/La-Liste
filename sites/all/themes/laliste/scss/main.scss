@@ -76,11 +76,11 @@ $color_cerulean_approx: #00aced;
 .u-hiddenVisually {
     position: absolute !important;
     overflow: hidden !important;
-    width: 1px !important;
-    height: 1px !important;
+    width: 0.0625rem !important;
+    height: 0.0625rem !important;
     padding: 0 !important;
     border: 0 !important;
-    clip: rect(1px, 1px, 1px, 1px) !important
+    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem) !important
 }
 
 .u-inline {
@@ -984,23 +984,23 @@ p.info-content {
     }
 
     .row-height-med {
-        height: 194px !important;
+        height: 12.125rem !important;
     }
 
     .row-height-tall {
-        height: 279px !important;
+        height: 17.4375rem !important;
     }
 
     .restaurant-overlay {
         //top: 50px !important;
-        left: 600px !important;
-        width: 495px !important; //34%
+        left: 37.5rem !important; //nogood
+        width: 30.9375rem !important;
         //height: 76% !important;
     }
 
     .restaurant-details {
         width: 96%;
-        padding-top: 40px;
+        padding-top: 2.5rem;
         font-size: 1.5rem !important;
         ul {
             margin: 0 0 1.5rem !important;
@@ -1008,8 +1008,8 @@ p.info-content {
     }
 
     .img.countryicon.iconset-gosquared_flat_large {
-        width: 45px;
-        margin-top: -2px;
+        width: 2.8125rem;
+        margin-top: -0.125rem;
     }
 
     .restaurant-user-actions-container p {
@@ -1018,12 +1018,12 @@ p.info-content {
 
     p.rank {
         font-size: 5rem !important;
-        margin-bottom: -30px;
+        margin-bottom: -1.875rem;
     }
 
     p.score {
         font-size: 3.5rem !important;
-        padding-bottom: 10px;
+        padding-bottom: 0.625rem;
     }
 
     .restaurant-address span {
@@ -1042,16 +1042,16 @@ p.info-content {
 
     .restaurant-info-container > :first-child,
     .restaurant-user-actions-container > :first-child {
-        margin-left: 0px;
+        margin-left: 0;
     }
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
-        margin-right : 0px;
+        margin-right : 0;
     }
 
     p.info-content {
-        padding-left: 140px;
+        padding-left: 8.75rem;
     }
 }
 
@@ -1112,7 +1112,8 @@ p.info-content {
     width: 75% !important
 }
 
-@media (min-width:375px) {
+// 375px :)
+@media (min-width:23.4375rem) {
     .u-small-full {
         width: 100% !important
     }
@@ -1159,7 +1160,8 @@ p.info-content {
     }
 }
 
-@media (min-width:576px) {
+// 576px!
+@media (min-width: 36rem) {
     .u-med-full {
         width: 100% !important
     }
@@ -1206,7 +1208,7 @@ p.info-content {
     }
 }
 
-@media (min-width:768px) {
+@media (min-width:48rem) {
     .u-large-full {
         width: 100% !important
     }
@@ -1253,7 +1255,7 @@ p.info-content {
     }
 }
 
-@media (min-width:1200px) {
+@media (min-width:75rem) {
     .u-large-full {
         width: 100% !important
     }
@@ -1307,7 +1309,7 @@ p.info-content {
 
 h1#node-title {
     font-family: "Mrs Eaves Italic", Serif;
-    margin-top: -1%;
+    margin-top: -1%; //nogood
     margin-bottom: 4%;
     color: $white;
 }
@@ -1326,7 +1328,7 @@ p.score {
 }
 
 .restaurant-info {
-    padding-left : 20px;
+    padding-left : 1.25rem;
 }
 
 .restaurant-user-actions-container p {
@@ -1362,7 +1364,7 @@ sup {
 input.fpage-search-box,
 input.other-page-search-box {
     font-family: 'Mrs Eaves Italic';
-    font-size:28px;
+    font-size:1.75rem;
     padding-left: 0.4rem;
     padding-right: 1.8rem;
     background: $white;
@@ -1370,19 +1372,19 @@ input.other-page-search-box {
     color : $gray;
     -webkit-appearance: none;
     border-radius:0;
-    border-top-left-radius:5px;
-    border-bottom-left-radius:5px;
+    border-top-left-radius:0.3125rem;
+    border-bottom-left-radius:0.3125rem;
 }
 
 input.other-page-search-box {
-    width: 238px;
-    height: 42px;
+    width: 14.875rem;
+    height: 2.625rem;
     background: $light_grey;
 }
 
 input.fpage-search-box {
-    width: 559px;
-    height: 86px;
+    width: 34.9375rem;
+    height: 5.375rem;
 }
 
 input.fpage-search-icon,
@@ -1395,20 +1397,20 @@ input.other-page-search-icon {
     justify-content: center;
     -webkit-appearance: none;
     border-radius:0;
-    border-top-right-radius:5px;
-    border-bottom-right-radius:5px;
+    border-top-right-radius:0.3125rem;
+    border-bottom-right-radius:0.3125rem;
 }
 
 input.fpage-search-icon {
-    width: 90px;
-    height: 86px;
-    font-size: 28px;
+    width: 5.625rem;
+    height: 5.375rem;
+    font-size: 1.75rem;
 }
 
 input.other-page-search-icon {
-    width: 50px;
-    height: 42px;
-    font-size: 20px;
+    width: 3.125rem;
+    height: 2.625rem;
+    font-size: 1.25rem;
 }
 
 input[type=text].fpage-search-box,
@@ -1420,15 +1422,15 @@ input.other-page-search-icon {
   -ms-transition: all 0.30s ease-in-out;
   -o-transition: all 0.30s ease-in-out;
   outline: none;
-  //border-top: 1px solid #DDDDDD; // define color
+  //border-top: 0.0625rem solid #DDDDDD; // define color
 }
 
 input[type=text].fpage-search-box:focus,
 input[type=text].other-page-search-box:focus,
 input.fpage-search-icon:focus,
 input.other-page-search-icon:focus {
-  box-shadow: 0 0 5px $gold;
-  border: 1px solid $gold;
+  box-shadow: 0 0 0.3125rem $gold;
+  border: 0.0625rem solid $gold;
 }
 
 // hide the search form title
@@ -1440,9 +1442,9 @@ h2.element-invisible {
   background-image: url("../img/restaurant-panel-bg.png");
   background-repeat: no-repeat;
   position: absolute;
-  top: 50px;
-  left: 600px;
-  width: 34%;
+  top: 3.125rem;
+  left: 37.5rem;
+  width: 34%; //nopgood
   height: 76%;
   z-index: 80;
   padding-top: 5%;
@@ -1454,7 +1456,7 @@ h2.element-invisible {
     display: inline-block;
     padding: 0;
     color: white;
-    border-width: 1px;
+    border-width: 0.0625rem;
 }
 
 .restaurant-overlay hr.half-length {
@@ -1466,15 +1468,15 @@ h2.element-invisible {
 }
 
 .restaurant-overlay .tiny-rank {
-    font-weight: 300;
-    margin: 5px;
+    font-weight: normal;
+    margin: 0.3125rem;
     font-size: 1.2rem;
     position: relative;
     top: -0.25rem;
 }
 
 img.countryicon.iconset-gosquared_flat_large {
-    margin-top: 12%;
+    margin-top: 12%; //nogood
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -1483,10 +1485,10 @@ img.countryicon.iconset-gosquared_flat_large {
 
 .restaurant-address {
     line-height: 110%;
-    font-weight: 300;
+    font-weight: normal;
     font-size: 1.2rem;
     text-align: left;
-    padding-left: 5%;
+    padding-left: 5%;//nogood
     margin-bottom: 2%;
 }
 
@@ -1498,7 +1500,7 @@ ul.tabs.primary {
   display: flex;
   margin-bottom: 0;
   li {
-    margin-right: 20px;
+    margin-right: 1.25rem;
   }
 }
 
@@ -1547,30 +1549,29 @@ ul.tabs.primary {
     color: $white;
     font-family: "Mrs Eaves Italic", Serif;
     font-size: 1.3rem;
-    padding: 20px;
+    padding: 1.25rem;
     text-align: justify;
     font-weight: 100;
 }
 
 #block-views-cbbe77509a0d5dfa927448406b230347 {
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 
 .block-views > h2 {
-    padding-top: 30px;
+    padding-top: 1.875rem;
     font-family: "Mrs Eaves Italic", Serif;
     font-size: 5rem;
     color: $dark_grey;
     background: $light_grey;
     font-weight: 100;
     margin: 0;
-    height: 152px;
+    height: 9.5rem;
 }
 
 .view-content {
     @extend .Grid;
     @include flex-direction(column);
-    //@include justify-content(space-between);
 }
 
 .laliste-winners-result {
@@ -1600,12 +1601,12 @@ ul.tabs.primary {
 }
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
-    height: 110px;
-    margin: 3px 0;
+    height: 6.875rem;
+    margin: 0.1875rem 0;
 }
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(n+6) {
-    height: 56px;
+    height: 3.5rem;
     margin: 0;
 }
 
@@ -1616,42 +1617,42 @@ div:nth-child(-n+5) > span.laliste-winners-title > span > a {
     color: $white;
 }
 div:nth-child(-n+5) > span.laliste-winners-title {
-    padding: 0 46px;
+    padding: 0 2.875rem;
     text-align: left;
     background: $gold;
-    height: 110px;
+    height: 6.875rem;
 }
 div:nth-child(-n+5) > span.laliste-winners-score-laliste {
     background: $gold;
-    height: 110px;
+    height: 6.875rem;
 }
 
 div:nth-child(-n+5) > span.laliste-winners-rank {
     background: $light_grey;
-    height: 110px;
+    height: 6.875rem;
 }
 div > span.laliste-winners-title {
-    width: 72%;
+    width: 72%;//nogood
 }
 div > span.laliste-winners-score-laliste {
-    width: 5%;
+    width: 5%;//nogood
 }
 div:nth-child(-n+5) > span.laliste-winners-score-laliste {
-    padding-right: 10px;
+    padding-right: 0.625rem
 }
 div:nth-child(n+6) > span.laliste-winners-score-laliste {
-    padding-right: 33px;
+    padding-right: 2.0625rem
 }
 div > span.laliste-winners-rank {
     width: 16%;
-    padding-left: 33px;
+    padding-left: 2.0625rem
 }
 div > span.laliste-winners-field-address-country-1 {
     width: 7%;
 }
 // 1st five winners flag
 div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
-    //padding: 0 27px;
+    //padding: 0 1.6875rem
 }
 // 1st five winners rank
 div:nth-child(-n+5) > span.laliste-winners-rank > span {
@@ -1671,43 +1672,43 @@ div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
 }
 // hack for winner score proportionnal to div length
 div:nth-child(2) > span.laliste-winners-score-laliste {
-    border-right: 4px solid $light_grey;
+    border-right: 0.25rem solid $light_grey;
 }
 div:nth-child(3) > span.laliste-winners-score-laliste {
-    border-right: 8.725px solid $light_grey;
+    border-right: 0.5453125rem solid $light_grey;
 }
 div:nth-child(4) > span.laliste-winners-score-laliste {
-    border-right: 22.75px solid $light_grey;
+    border-right: 1.421875rem solid $light_grey;
 }
 div:nth-child(5) > span.laliste-winners-score-laliste {
-    border-right: 24.575px solid $light_grey;
+    border-right: 1.5359375 solid $light_grey;
 }
 
 // prizes
 div:nth-child(1) > span.laliste-winners-rank {
   background-image: url("../img/1st_prize.png");
   background-repeat: no-repeat;
-  background-position: 130px 14px;
+  background-position: 8.125rem 0.875rem;
 }
 div:nth-child(2) > span.laliste-winners-rank {
   background-image: url("../img/2nd_prize.png");
   background-repeat: no-repeat;
-  background-position: 138px 16px;
+  background-position: 0.8625rem 1rem;
 }
 div:nth-child(3) > span.laliste-winners-rank {
   background-image: url("../img/3rd_prize.png");
   background-repeat: no-repeat;
-  background-position: 136px 16px;
+  background-position: 8.5rem 1rem;
 }
 div:nth-child(4) > span.laliste-winners-rank {
   background-image: url("../img/4th_prize.png");
   background-repeat: no-repeat;
-  background-position: 140px 16px;
+  background-position: 8.75rem 1rem;
 }
 div:nth-child(5) > span.laliste-winners-rank {
   background-image: url("../img/5th_prize.png");
   background-repeat: no-repeat;
-  background-position: 140px 16px;
+  background-position: 8.75rem 1rem;
 }
 
 // others winners country flag
@@ -1715,7 +1716,7 @@ div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
 }
 div:nth-child(n+6) > span.laliste-winners-field-address-country-1 {
-    padding: 0 27px;
+    padding: 0 1.6875rem;
 }
 // 1st five Winners restaurant title
 div:nth-child(n+6) > span.laliste-winners-title > span > a {
@@ -1725,15 +1726,15 @@ div:nth-child(n+6) > span.laliste-winners-title > span > a {
 }
 div:nth-child(n+6) > span.laliste-winners-title {
     //width: 70%;
-    padding: 0 46px;
+    padding: 0 2.875rem;
     text-align: left;
     background: $light_grey;
-    height: 56px;
+    height: 3.5rem
 }
 div:nth-child(n+6) > span.laliste-winners-score-laliste,
 div:nth-child(n+6) > span.laliste-winners-rank {
     background: $light_grey;
-    height: 56px;
+    height: 3.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
@@ -1744,10 +1745,10 @@ div:nth-child(n+6) > span.laliste-winners-rank {
 div:nth-child(n+7) > span.laliste-winners-title,
 div:nth-child(n+7) > span.laliste-winners-score-laliste,
 div:nth-child(n+7) > span.laliste-winners-rank {
-    border-top: 1px solid $dark_grey;
+    border-top: 0.0625rem solid $dark_grey;
 }
 span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large {
-    border: 1px solid $light_grey;
+    border: 0.0625rem solid $light_grey;
 }
 
 .flexslider {
@@ -1765,11 +1766,11 @@ span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosqu
 
 #block-views-homepage-slider-block + #block-search-form {
     position: absolute;
-    top: 277px;
+    top: 17.3125rem;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 649px;
+    width: 40.5625rem;
     z-index: 80;
 }
 
@@ -1777,7 +1778,7 @@ span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosqu
  * Admin section
  */
 .tabs {
-    padding-top : 22px;
+    padding-top : 1.375rem;
     background: $black;
     a {
         color: $white;
