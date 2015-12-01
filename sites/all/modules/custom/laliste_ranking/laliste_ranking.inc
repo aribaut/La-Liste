@@ -1353,6 +1353,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Philippines Tatler':
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.35;
     $guide_data['unique'] = true; // special case for being unique guide in country
   break;
 
