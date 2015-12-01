@@ -1346,6 +1346,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Philippines Tatler':
     $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being unique guide in country
   break;
 
   case 'Queremos comer':
@@ -1376,7 +1377,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Singapore Tatler':
-    $guide_data['trust'] = 0.55;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
@@ -1394,7 +1395,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Thailand Tatler Best restaurants':
-    $guide_data['trust'] = 0.7;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
   break;
 
