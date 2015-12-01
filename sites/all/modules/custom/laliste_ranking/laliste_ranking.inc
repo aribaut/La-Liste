@@ -1062,6 +1062,14 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['unique'] = true; // special case for being considered unique guide in this country
   break;
 
+  case 'Cuisine NZ Good Food Awards':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'New Zealand Herald (trusted source)':
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Openrice':
     $guide_data['type']  = 'user';
   break;
