@@ -678,11 +678,11 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service*2;
       break;
 
-      case 'Indonesia Tatler':
-        $score = $food*16;
-        $score += $wine;
-        $score += $atmosphere*2;
-        $score += $service*2;
+      case 'Indonesia Tatler Best Restaurants':
+        $score = $food*8;
+        $score += $wine/2;
+        $score += $atmosphere/2;
+        $score += $service;
       break;
 
       case 'James Beard Awards':
@@ -1302,9 +1302,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
-  case 'Indonesia Tatler':
+
+  case 'Indonesia Tatler Best Restaurants':
     $guide_data['unique'] = true; // special case for being unique guide in country
-    $guide_data['type']  = 'guide';
+     $guide_data['type']  = 'guide';
   break;
 
   case 'Kor-eat':
