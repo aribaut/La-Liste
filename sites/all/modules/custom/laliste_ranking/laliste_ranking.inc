@@ -781,12 +781,17 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = ($food == 5 ? 100 : 0);
       break;
 
-      case 'Malaysia Tatler':
       case 'Hong Kong Tatler':
         $score = $food*16;
         $score += $wine;
         $score += $atmosphere;
         $score += $service*2;
+      break;
+
+      case 'Malaysia Tatler':
+          $score = $food*16;
+          $score += $service*2;
+          $score += $atmosphere*2;
       break;
 
       case 'Tabelog':
@@ -1317,6 +1322,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Maclean’s Canada’s best restaurant':
     $guide_data['type']  = 'list';
+  break;
+
+  case 'Malaysia Tatler':
+    $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being unique guide in country
   break;
 
 	case 'Michelin':
