@@ -778,16 +778,15 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
 
       case 'Singapore Tatler':
       case 'Philippines Tatler':
+        $score = ($food == 5 ? 100 : 0);
+      break;
+
       case 'Malaysia Tatler':
       case 'Hong Kong Tatler':
-      if ($food >= 9) {
         $score = $food*16;
         $score += $wine;
         $score += $atmosphere;
         $score += $service*2;
-      } else {
-        $score = 0;
-      }
       break;
 
       case 'Tabelog':
@@ -795,7 +794,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Thailand Tatler Best restaurants':
-      if ($food >= 9) {
+      if ($food >= 9.5) {
         $score = $food*8;
         $score += $wine/2;
         $score += $atmosphere/2;
