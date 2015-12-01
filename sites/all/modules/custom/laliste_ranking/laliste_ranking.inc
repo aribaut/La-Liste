@@ -172,7 +172,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     $dominant_ranking = db_query("
       SELECT trust, score, popularity FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 5 AND score > 0 ORDER BY trust DESC LIMIT 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
-    // We only consider a dominant guide who has a score equal or above 93
+    // We only consider a dominant guide who has a score equal or above 9
     if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 93) {
       db_query("
         UPDATE {ranking}
@@ -1491,7 +1491,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'White Guide (DK)':
     $guide_data['trust'] = 0.733;
     $guide_data['type']  = 'guide';
-
+  break;
 
 	case 'Zagat':
     $guide_data['type']  = 'user';
