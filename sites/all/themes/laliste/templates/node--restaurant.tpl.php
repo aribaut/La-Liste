@@ -84,8 +84,8 @@
   <?php print render($content['field_restaurant_image']); ?>
   <div class="restaurant-overlay">
     <?php if (isset($rank)): ?>
-      <?php if (false): ?>
-        <hr class="half-length"><span class="tiny-rank"><?php print $rank; ?><sup>e</sup></span><hr class="half-length">
+      <?php if (true): ?>
+        <hr class="half-length"><span class="tiny-rank"><?php print $rank; ?></span><hr class="half-length">
       <?php endif;?>
     <?php else: ?>
       <hr class="full-length">
@@ -102,11 +102,11 @@
 </div>
 <div class="restaurant-info-container">
   <div class="restaurant-rank-big">
-    <?php if (false): ?>
-    <?php if (isset($score)): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
-    <?php if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php endif; ?>
-    <?php if (isset($rank)): ?><p class="rank"><?php print $rank; ?><sup>e</sup></p><?php endif; ?>
-  <?php endif; ?>
+    <?php if (true): ?>
+      <?php if (isset($score)): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
+      <?php if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php endif; ?>
+      <?php if (isset($rank)): ?><p class="rank"><?php print $rank; ?></p><?php endif; ?>
+    <?php endif; ?>
   </div>
   <div class="restaurant-details-container">
     <div class="restaurant-details">

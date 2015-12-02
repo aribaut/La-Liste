@@ -114,7 +114,9 @@ function laliste_preprocess_node(&$variables) {
       SELECT rank, ROUND(score_laliste,3) as score_laliste FROM {restaurant_stats}
       WHERE restaurant_id = ".$variables['nid'])->fetchAssoc();
      if(isset($ranking['rank'])) {
-       $variables['rank'] = $ranking['rank'];
+       if($bool = ( !is_int($ranking['rank']) ? (ctype_digit($ranking['rank'])) : true )) {
+        $variables['rank'] = t(ordinal($ranking['rank']));
+       }
        $variables['score'] = $ranking['score_laliste'];
     }
     // Addresses
@@ -218,14 +220,13 @@ function laliste_preprocess_views_view_field(&$vars){
      $bool = ( !is_int($output) ? (ctype_digit($output)) : true );
     if($view->name == 'laliste_rr_restaurants_country_winners_view' && $bool) {
       $vars['output'] = t(ordinal($output));
-      //dpm($vars);
     }
 }
 
 function ordinal($number) {
-    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+    $ends = array(t('th'),t('st'),t('nd'),t('rd'),t('th'),t('th'),t('th'),t('th'),t('th'),t('th'));
     if ((($number % 100) >= 11) && (($number%100) <= 13))
-        return $number. '<sup>' . 'th' . '</sup>';
+        return $number. '<sup>' . t('th') . '</sup>';
     else
         return $number. '<sup>' . $ends[$number % 10] . '</sup>';
 }
