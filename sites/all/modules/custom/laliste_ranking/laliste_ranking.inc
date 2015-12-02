@@ -1328,6 +1328,9 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Hong Kong Tatler':
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Indonesia Tatler Best Restaurants':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
