@@ -689,6 +689,13 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += $service*2;
       break;
 
+      case 'Hong Kong Tatler':
+        $score = $food*16;
+        $score += $wine;
+        $score += $atmosphere;
+        $score += $service*2;
+      break;
+
       case 'Indonesia Tatler Best Restaurants':
         $score = $food*8;
         $score += $wine/2;
@@ -797,7 +804,6 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = ($food == 5 ? 100 : 0);
       break;
 
-      case 'Hong Kong Tatler':
       case 'Philippines Tatler':
         $score = $food*16;
         $score += $wine;
@@ -1321,10 +1327,10 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
-
+  case 'Hong Kong Tatler':
   case 'Indonesia Tatler Best Restaurants':
     $guide_data['unique'] = true; // special case for being unique guide in country
-     $guide_data['type']  = 'guide';
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Kor-eat':
