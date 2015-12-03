@@ -172,7 +172,7 @@ function laliste_ranking_compute_restaurant_ranking_score($restaurant_id, $pro) 
     $dominant_ranking = db_query("
       SELECT trust, score, popularity FROM {ranking} LEFT JOIN {restaurantguideranking} ON {restaurantguideranking}.ranking_id = {ranking}.ranking_id WHERE {restaurantguideranking}.restaurant_id = :restaurant_id AND popularity = 5 AND score > 0 ORDER BY trust DESC LIMIT 1", array(':restaurant_id' => $restaurant_id))->fetchObject();
 
-    // We only consider a dominant guide who has a score equal or above 93
+    // We only consider a dominant guide who has a score equal or above 9
     if($dominant_ranking->popularity == 5 && $dominant_ranking->score >= 93) {
       db_query("
         UPDATE {ranking}
@@ -263,6 +263,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'The Daily Meal - 101 best restaurants':
       case 'James Beard Awards':
       case 'Maclean’s Canada’s best restaurant':
+      case 'Le Chef - les meilleurs restaurants':
         $score = ($food>=1 && $food <=20) ? 0.03 : 0;
         $score += ($food>20 && $food <=50) ? 0.02 : 0;
         $score += ($food>50 && $food <=100) ? 0.01 : 0;
@@ -305,10 +306,14 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score += ($bonus==12) ? 60 : 0;
       break;
 
+      case 'Baidu reviews':
+          $score = $food*20;
+      break;
+
       case 'Blue Ribbon':
         $score =   ($food == 3 ? 100 : 0);
-        $score +=  ($food == 2 ? 80 : 0);
-        $score +=  ($food == 1 ? 60 : 0);
+        $score +=  ($food == 2 ? 90 : 0);
+        $score +=  ($food == 1 ? 70 : 0);
         $score += $bonus;
       break;
 
@@ -316,6 +321,31 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =   ($food == 3 ? 100 : 0);
         $score +=  ($food == 2 ? 80 : 0);
         $score +=  ($food == 1 ? 60 : 0);
+      break;
+
+      case 'Condé Nast Traveler India':
+        $score = ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 96 : 0);
+        $score += ($food == 3 ? 92 : 0);
+        $score += ($food == 4 ? 88 : 0);
+        $score += ($food == 5 ? 84 : 0);
+        $score += ($food == 6 ? 80 : 0);
+        $score += ($food == 7 ? 76 : 0);
+        $score += ($food == 8 ? 72 : 0);
+        $score += ($food == 9 ? 68 : 0);
+        $score += ($food == 10 ? 64 : 0);
+        $score += ($food > 10 ? 60 : 0);
+      break;
+
+      case 'Cuisine NZ Good Food Awards':
+        $score +=  ($food == 18.5 ? 80 : 0);
+        $score +=  ($food == 18 ? 75 : 0);
+        $score +=  ($food == 17.5 ? 70 : 0);
+        $score +=  ($food == 17 ? 65 : 0);
+      break;
+
+      case 'New Zealand Herald (trusted source)':
+        $score = $food*10;
       break;
 
       case 'Guide Delta':
@@ -378,6 +408,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =  ($food == 3 ? 100 : 0);
         $score += ($food == 2 ? 90 : 0);
         $score += ($food == 1 ? 80 : 0);
+        $score += $bonus;
       break;
 
       case 'Dubai Eating':
@@ -435,12 +466,12 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Falstaff':
         $score = $food;
       break;
-
+/*
       case 'Five Diamond Awards':
         $score =   ($food == 5 ? 100 : 0);
         $score +=  ($food == 4 ? 60 : 0);
       break;
-
+*/
       case 'Forbes Travel Guide':
         $score =   ($food == 5 ? 100 : 0);
         $score +=  ($food == 4 ? 65 : 0);
@@ -650,13 +681,26 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       	  $score +=  ($food == 9 ? 67 : 0);
       	}
       	$score += $atmosphere*4;
-      	 // service?
       break;
 
       case 'Harden\'s':
         $score = $food*16;
         $score += $atmosphere*2;
         $score += $service*2;
+      break;
+
+      case 'Hong Kong Tatler':
+        $score = $food*16;
+        $score += $wine;
+        $score += $atmosphere;
+        $score += $service*2;
+      break;
+
+      case 'Indonesia Tatler Best Restaurants':
+        $score = $food*8;
+        $score += $wine/2;
+        $score += $atmosphere/2;
+        $score += $service;
       break;
 
       case 'James Beard Awards':
@@ -687,24 +731,21 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score = $food*10;
       break;
 
-      case 'IndiaTV (trusted source)':
-        $score =  ($food == 1 ? 100 : 0);
-        $score += ($food == 2 ? 95 : 0);
-        $score += ($food == 3 ? 90 : 0);
-        $score += ($food == 4 ? 85 : 0);
-        $score += ($food == 5 ? 80 : 0);
-        $score += ($food == 6 ? 75 : 0);
-        $score += ($food == 7 ? 70 : 0);
-        $score += ($food == 8 ? 65 : 0);
-        $score += ($food == 9 ? 60 : 0);
-        $score += ($food == 10 ? 55 : 0);
-      break;
-
       case "L'Internaute":
         $score = $food*16;
         $score += $atmosphere;
         $score += $bonus;
         $score += $service*2;
+      break;
+
+      case 'Los Angeles Times (trusted source)':
+      case 'Washingtonian Magazine (trusted source)':
+      case 'Washington Post (trusted source)':
+        $score =  ($food == 4 ? 100 : 0);
+        $score =  ($food == 3.5 ? 90 : 0);
+        $score += ($food == 3 ? 80 : 0);
+        $score += ($food == 2 ? 70 : 0);
+        $score += ($food == 1 ? 60 : 0);
       break;
 
       case 'Michelin' :
@@ -760,13 +801,20 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Singapore Tatler':
+        $score = ($food == 5 ? 100 : 0);
+      break;
+
       case 'Philippines Tatler':
-      case 'Malaysia Tatler':
-      case 'Hong Kong Tatler':
         $score = $food*16;
         $score += $wine;
         $score += $atmosphere;
         $score += $service*2;
+      break;
+
+      case 'Malaysia Tatler':
+          $score = $food*16;
+          $score += $service*2;
+          $score += $atmosphere*2;
       break;
 
       case 'Tabelog':
@@ -774,10 +822,26 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       break;
 
       case 'Thailand Tatler Best restaurants':
+      if ($food >= 9.5) {
         $score = $food*8;
         $score += $wine/2;
         $score += $atmosphere/2;
         $score += $service;
+      } else {
+        $score = 0;
+      }
+      break;
+
+      case 'Times Food Awards':
+        $score =  ($food == 1 ? 100 : 0);
+        $score += ($food == 2 ? 90 : 0);
+        $score += ($food == 3 ? 80 : 0);
+      break;
+
+      case 'Times Food Guide':
+        $score =  ($food == 5 ? 100 : 0);
+        $score += ($food == 4.5 ? 90 : 0);
+        $score += ($food == 4 ? 80 : 0);
       break;
 
       case 'Timeout' :
@@ -807,6 +871,25 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
         $score =  ($food == 1 ? 100 : 0);
         $score += ($food == 2 ? 90 : 0);
         $score += ($food == 3 ? 80 : 0);
+      break;
+
+      case 'The Daily Meal - reviews (trusted source)':
+        $score =   ($food == 5 ? 100 : 0);
+        $score +=  ($food == 4.9 ? 98 : 0);
+        $score +=  ($food == 4.8 ? 96 : 0);
+        $score +=  ($food == 4.7 ? 94 : 0);
+        $score +=  ($food == 4.6 ? 92 : 0);
+        $score +=  ($food == 4.5 ? 90 : 0);
+        $score +=  ($food == 4.4 ? 88 : 0);
+        $score +=  ($food == 4.3 ? 86 : 0);
+        $score +=  ($food == 4.2 ? 84 : 0);
+        $score +=  ($food == 4.1 ? 82 : 0);
+        $score +=  ($food == 4 ? 80 : 0);
+        $score +=  ($food == 3.9 ? 78 : 0);
+        $score +=  ($food == 3.8 ? 76 : 0);
+        $score +=  ($food == 3.7 ? 74 : 0);
+        $score +=  ($food == 3.6 ? 72 : 0);
+        $score +=  ($food == 3.5 ? 70 : 0);
       break;
 
       case 'The Sydney Morning Herald Good Food Guide':
@@ -952,7 +1035,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   switch($guide_name) {
 
   case '50 Best': case 'Opiniated about dining': case 'Elite Traveler': case 'Vacay.ca':
-  case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards':
+  case 'The Daily Meal - 101 best restaurants': case 'James Beard Awards': case 'Le Chef - les meilleurs restaurants':
     $guide_data['type']  = 'list';
   break;
 
@@ -971,10 +1054,26 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'guide';
   break;
 
+  case 'Baidu reviews':
+    $guide_data['type']  = 'user';
+  break;
+
   case 'Blue Ribbon':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] = 0.6;
+  break;
+
+  case 'Condé Nast Traveler India':
+    $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being considered unique guide in this country
+  break;
+
+  case 'Cuisine NZ Good Food Awards':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'New Zealand Herald (trusted source)':
+    $guide_data['type']  = 'guide';
   break;
 
   case 'Openrice':
@@ -1039,7 +1138,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Dianping':
     $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
-    $guide_data['trust'] =  0.73;
+    $guide_data['trust'] =  0.7;
   break;
 
   case 'Dining City':
@@ -1088,12 +1187,12 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Falstaff':
     $guide_data['type']  = 'user';
   break;
-
+/*
 	case 'Five Diamond Awards':
 		$guide_data['trust'] =	0.61;
     $guide_data['type']  = 'guide';
 	break;
-
+*/
 	case 'Forbes Travel Guide':
     $guide_data['trust'] =  0.61;
     $guide_data['type']  = 'guide';
@@ -1228,6 +1327,15 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
+  case 'Hong Kong Tatler':
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Indonesia Tatler Best Restaurants':
+    $guide_data['unique'] = true; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Kor-eat':
     $guide_data['trust'] =  0.6;
     $guide_data['type']  = 'guide';
@@ -1242,16 +1350,23 @@ function laliste_ranking_get_guide_factor($guide_name) {
     $guide_data['type']  = 'user';
   break;
 
-  case 'IndiaTV (trusted source)':
-    $guide_data['type']  = 'guide';
-  break;
-
   case "L'Internaute":
     $guide_data['type']  = 'user';
   break;
 
+  case 'Los Angeles Times (trusted source)':
+  case 'Washingtonian Magazine (trusted source)':
+  case 'Washington Post (trusted source)':
+    $guide_data['type']  = 'guide';
+  break;
+
   case 'Maclean’s Canada’s best restaurant':
     $guide_data['type']  = 'list';
+  break;
+
+  case 'Malaysia Tatler':
+    $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being unique guide in country
   break;
 
 	case 'Michelin':
@@ -1287,6 +1402,8 @@ function laliste_ranking_get_guide_factor($guide_name) {
 
   case 'Philippines Tatler':
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.34;
+    $guide_data['unique'] = true; // special case for being unique guide in country
   break;
 
   case 'Queremos comer':
@@ -1317,7 +1434,11 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Singapore Tatler':
-    $guide_data['trust'] = 0.55;
+    $guide_data['unique'] = true; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'The Daily Meal - reviews (trusted source)':
     $guide_data['type']  = 'guide';
   break;
 
@@ -1331,8 +1452,9 @@ function laliste_ranking_get_guide_factor($guide_name) {
   break;
 
   case 'Thailand Tatler Best restaurants':
-    $guide_data['trust'] = 0.7;
+    $guide_data['unique'] = true; // special case for being unique guide in country
     $guide_data['type']  = 'guide';
+    $guide_data['trust'] = 0.38;
   break;
 
   case 'Timeout':
@@ -1345,11 +1467,16 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Timeout Food Awards Doha':
   case 'Timeout Abu Dhabi Restaurant Awards':
   case 'Timeout Food Awards Dubai':
-  case 'Timeout KL Food Awards':
   case 'Timeout Israel Eating & Drinking Awards':
   case 'Timeout Food & Drink Awards Istanbul':
     $guide_data['type']  = 'guide';
     $guide_data['unique'] = true;; // special case for being unique guide in country
+  break;
+
+  case 'Timeout KL Food Awards':
+    $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true;; // special case for being unique guide in country
+    $guide_data['trust'] = 0.4;
   break;
 
   case 'Timeout Melbourne Food Awards':
@@ -1362,6 +1489,15 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'Time Out (CN)':
   case 'Time Out (RU)':
     $guide_data['unique'] = true; // special case for being unique guide in country
+    $guide_data['type']  = 'guide';
+  break;
+
+  case 'Times Food Awards':
+    $guide_data['type']  = 'guide';
+    $guide_data['unique'] = true; // special case for being considered unique guide in this country
+  break;
+
+  case 'Times Food Guide':
     $guide_data['type']  = 'guide';
   break;
 
@@ -1419,7 +1555,7 @@ function laliste_ranking_get_guide_factor($guide_name) {
   case 'White Guide (DK)':
     $guide_data['trust'] = 0.733;
     $guide_data['type']  = 'guide';
-
+  break;
 
 	case 'Zagat':
     $guide_data['type']  = 'user';
