@@ -11,6 +11,7 @@ dependencies[] = laliste_homepage
 dependencies[] = laliste_rr_ct
 dependencies[] = locale
 dependencies[] = search
+dependencies[] = views
 features[context][] = laliste_layout_homepage_context
 features[context][] = laliste_layout_restaurant_node_page_context
 features[ctools][] = context:context:3
