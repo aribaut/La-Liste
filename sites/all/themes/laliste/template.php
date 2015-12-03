@@ -169,7 +169,7 @@ function laliste_preprocess_node(&$variables) {
     $links = db_query("
       SELECT guide_id, link FROM ranking r LEFT JOIN restaurantguideranking rgr
       ON rgr.ranking_id=r.ranking_id WHERE restaurant_id=".$variables['nid']."
-      AND score IS NOT NULL ORDER BY guide_id")->fetchAllKeyed();
+      ORDER BY guide_id")->fetchAllKeyed();
     // we now get the taxonomy term names
     $terms = taxonomy_term_load_multiple(array_keys($links));
     // we load everything together : the terms and the url in one variable
