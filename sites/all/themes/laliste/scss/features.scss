@@ -1,0 +1,51 @@
+.Notice {
+    background-color: #edffdb;
+    color: rgba(0, 0, 0, .6);
+    font-size: .9em;
+    margin-bottom: 1.5em;
+    padding: 1.2em 1.5em
+}
+
+.Error {
+    padding: 1em 1.5em;
+    background: #c00;
+    color: #fff;
+    font-weight: 700;
+    text-align: center
+}
+
+.Feature-figure {
+    margin-bottom: .75em;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: border-color .2s;
+    transition: border-color .2s
+}
+
+.Feature-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #fff
+}
+
+.Feature-title {
+    margin: 0 0 .5em;
+    color: #404040;
+    text-align: center;
+    -webkit-transition: color .1s;
+    transition: color .1s
+}
+
+.Feature-description {
+    margin: 0 .75em;
+    font-size: .8em
+}
+
+.Feature a:active .Feature-figure, .Feature a:focus .Feature-figure, .Feature a:hover .Feature-figure {
+    border-color: #46b980
+}
+
+.Feature a:active .Feature-title, .Feature a:focus .Feature-title, .Feature a:hover .Feature-title {
+    color: #46b980
+}
+

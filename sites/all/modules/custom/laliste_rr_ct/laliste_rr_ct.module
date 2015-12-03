@@ -24,6 +24,8 @@ function laliste_rr_ct_admin_paths() {
       'countries' => TRUE,
       'user' => TRUE,
       'user/*' => TRUE,
+      'search' => TRUE,
+      'search/*' => TRUE,
   );
   return $paths;
 }
@@ -216,4 +218,25 @@ function laliste_rr_ct_get_tax_term_options($machine_name){
   }
 
   return $options;
+}
+
+/**
+ * Modify the node editing administrative tabs
+ * Adds rankings link to access a restaurant scores
+ */
+function laliste_rr_ct_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  $node = menu_get_object();
+  if (isset($node) && ($node->type == 'restaurant') && isset($data['tabs'][0]['count'])) {
+    $count = $data['tabs'][0]['count'];
+    $data['tabs'][0]['output'][$count]['#theme'] = 'menu_local_task';
+    $data['tabs'][0]['output'][$count]['#link'] = array(
+      'title' => 'Rankings',
+      'href' => 'restaurant/' . arg(1) . '/view',
+      'path' => 'restaurant/' . arg(1) . '/view',
+      'localized_options' => array(
+        'html' => TRUE
+      )
+    );
+    $data['tabs'][0]['output'][$count]['#active'] = FALSE;
+  }
 }

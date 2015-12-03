@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function laliste_homepage_block_info() {
+  $blocks = array();
+  $blocks['home_search'] = array(
+    'info' => t('Home Search Block'),
+  );
+  $blocks['home_highlight'] = array(
+    'info' => t('Home Highlight Block'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function laliste_homepage_block_view($delta='') {
+  $block = array();
+
+  switch($delta) {
+    case 'home_search':
+      $block = generate_home_search_block();
+    break;
+    case 'home_highlight':
+      $block = generate_home_highlight_block();
+    break;
+  }
+
+  return $block;
+}
+
+function generate_home_highlight_block() {
+  $block = array();
+  $block['subject'] = '';
+  $block['content'] = "
+  <div class='highlight-container'>
+    <div class='highlight-title'>".t('PRÉSENTATION')."</div>
+    <div class='highlight-content-container'>
+      <div class='highlight-content-column'><p>While it was until recently reserved for an elite, global gastronomy is changing fast. All around the world, it has entered daily life through entertainment and images, while new culinary cultures are emerging constantly, happily renewing the codes of cooking, the world’s “oldest art”. Food guides are the arbiters of good taste and highlight the great gastronomic venues based on various criteria, as well as picking our more modest eateries. Online review sites reveal multiple, and sometimes contradictory, opinions.</p>
+      </div>
+      <div class='highlight-content-column'><p>Happily renewing the codes of cooking, the world’s “oldest art”. Food guides are the arbiters of good taste and highlight the great gastronomic venues based on various criteria, as well as picking our more modest eateries. Online review sites reveal multiple, and sometimes contradictory, opinions.</p>
+      </div>
+  </div>";
+  return $block;
+}
+
+/**
+ * Custom function to assemble renderable array for block content.
+ * Returns a renderable array with the block content.
+ * @return
+ *   returns a renderable array of block content.
+ */
+function generate_home_search_block() {
+  $block = array();
+
+  // Capture the image file path and form into HTML with attributes
+  $image_file = file_load(variable_get('block_image_fid', ''));
+  $image_path = '';
+
+  if (isset($image_file->uri)) {
+    $image_path = $image_file->uri;
+  }
+
+  $image = theme_image(array(
+    'path' => ($image_path),
+    'alt' => t('Image description here.'),
+    'title' => t('This is our block image.'),
+    'attributes' => array('class' => 'class_name'),
+  ));
+
+  // Capture WYSIWYG text from the variable
+  $text = variable_get('text_variable', '');
+
+  // Block output in HTML with div wrapper
+  $block = array(
+    'image' => array(
+      '#prefix' => '',
+      '#type' => 'markup',
+      '#markup' => $image,
+    ),
+    'message' => array(
+      '#type' => 'markup',
+      '#markup' => $text,
+      '#suffix' => '',
+    ),
+  );
+
+  return $block;
+}

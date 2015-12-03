@@ -1,0 +1,1816 @@
+
+@import "compass/reset";
+@import "_variables";
+@import "header";
+@import "footer";
+
+// colors
+$light_grey: #f0f0f0;
+$dark_grey : #5d5d5d;
+$gold : #8A804F;
+$dark_gold : #93806c;
+$gray: #808080;
+$color_cape_cod_approx: #404040;
+$black: #000;
+$color_ocean_green_50_approx: rgba(70, 185, 128, .5);
+$color_ocean_green_approx: #46b980;
+$color_almond_frost_15_approx: rgba(146, 128, 108, .15);
+$color_storm_dust_approx: #666;
+$color_almond_frost_25_approx: rgba(146, 128, 108, .25);
+$white: #fff;
+$color_sea_green_approx: #389466;
+$color_almond_frost_10_approx: rgba(146, 128, 108, .1);
+$color_guardsman_red_approx: #c00;
+$color_alto_approx: #d9d9d9;
+$color_mountain_mist_approx: #999;
+$mercury: #e5e5e5;
+$color_almond_frost_approx: #93806c;
+$color_carla_approx: #edffdb;
+$black_60: rgba(0, 0, 0, .6);
+$color_cerulean_approx: #00aced;
+
+@font-face {
+  font-family: 'Mrs Eaves Roman';
+  src: url('../fonts/mrs-eaves-roman.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-roman.woff') format('woff'),
+       url('../fonts/mrs-eaves-roman.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mrs Eaves Bold';
+  src: url('../fonts/mrs-eaves-bold.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-bold.woff') format('woff'),
+       url('../fonts/mrs-eaves-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mrs Eaves Italic';
+  src: url('../fonts/mrs-eaves-italic.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-italic.woff') format('woff'),
+       url('../fonts/mrs-eaves-italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mrs Eaves Bold Italic';
+  src: url('../fonts/mrs-eaves-bold-italic.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-bold-italic.woff') format('woff'),
+       url('../fonts/mrs-eaves-bold-italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.woff2') format('woff2'),
+       url('../fonts/fontawesome-webfont.woff') format('woff'),
+       url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+       url('../fonts/fontawesome-webfont.svg') format('svg');
+}
+
+.u-block {
+    display: block !important
+}
+
+.u-hidden {
+    display: none !important
+}
+
+.u-hiddenVisually {
+    position: absolute !important;
+    overflow: hidden !important;
+    width: 0.0625rem !important;
+    height: 0.0625rem !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem) !important
+}
+
+.u-inline {
+    display: inline !important
+}
+
+.u-inlineBlock {
+    display: inline-block !important;
+    max-width: 100%
+}
+
+.u-table {
+    display: table !important
+}
+
+.u-tableCell {
+    display: table-cell !important
+}
+
+.u-tableRow {
+    display: table-row !important
+}
+
+.u-textBreak {
+    word-wrap: break-word !important
+}
+
+.u-textCenter {
+    text-align: center !important
+}
+
+.u-textLeft {
+    text-align: left !important
+}
+
+.u-textRight {
+    text-align: right !important
+}
+
+.u-textInheritColor {
+    color: inherit !important
+}
+
+.u-textKern {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern" 1, "kern";
+    -moz-font-feature-settings: "kern" 1, "kern";
+    font-feature-settings: kern\ 1, kern;
+    -webkit-font-kerning: normal;
+    -moz-font-kerning: normal;
+    font-kerning: normal
+}
+
+.u-textNoWrap, .u-textTruncate {
+    white-space: nowrap !important
+}
+
+.u-textTruncate {
+    max-width: 100%;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    word-wrap: normal !important
+}
+
+*, :after, :before {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+    color: $black;
+    font: 400 1em/1.4 'Josefin Sans', sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-size: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio:1.5), (min-resolution:1.5dppx), (min-resolution:144dpi) {
+    html {
+        font-weight: 300
+    }
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 3rem;
+    -webkit-font-kerning: normal;
+    letter-spacing: -.015rrem;
+    line-height: 1;
+    margin: .25rem 0 .75rem
+}
+
+// 768px :)
+@media (min-width:48rem) {
+    h1 {
+        font-size: 2.5rem;
+        margin: .5rem 0 1rem
+    }
+}
+
+h2 {
+    font-size: 1.333rem;
+    margin: 0 0 1.12528rem
+}
+
+h2, h3 {
+    font-weight: 600
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 0 0 1.5rem
+}
+
+a {
+    color: $gold;
+    text-decoration: none
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    text-decoration: underline;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0 0 0 1.5rem;
+}
+
+li {
+    margin-bottom: .333rem
+}
+
+figure {
+    margin: 0
+}
+
+strong {
+    font-weight: 600
+}
+
+/*
+ * Flexbox grid structure
+ **/
+
+.Grid {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.Grid-cell {
+    @include flex(1);
+}
+
+.Grid--top {
+    @include align-items(flex-start);
+}
+
+.Grid--bottom {
+    @include align-items(flex-end);
+}
+
+.Grid--center {
+    @include align-items(center);
+}
+
+.Grid--justifyCenter {
+    @include justify-content(center);
+}
+
+.Grid-cell--top {
+    @include align-self(flex-start);
+}
+
+.Grid-cell--bottom {
+    @include align-self(flex-end);
+}
+
+.Grid-cell--center {
+    @include align-self(center);
+}
+
+.Grid-cell--autoSize {
+    @include flex(0);
+}
+
+.Grid--fit>.Grid-cell {
+    @include flex(1);
+}
+
+.Grid--full>.Grid-cell {
+    @include flex(0,0,100%);
+}
+
+.Grid--1of2>.Grid-cell {
+    @include flex(0,0,50%);
+}
+
+.Grid--1of3>.Grid-cell {
+    @include flex(0,0,33.3333%);
+}
+
+.Grid--1of4>.Grid-cell {
+    @include flex(0,0,25%);
+}
+
+.Grid--1of5>.Grid-cell
+ {
+    @include flex(0,0,10.5625rem); // guide-box
+}
+
+// 375px :)
+@media (min-width:23.4375rem) {
+    .small-Grid--fit>.Grid-cell {
+        @include flex(1);
+    }
+
+    .small-Grid--full>.Grid-cell {
+        @include flex(0,0,100%);
+    }
+
+    .small-Grid--1of2>.Grid-cell {
+        @include flex(0,0,50%);
+    }
+
+    .small-Grid--1of3>.Grid-cell {
+        @include flex(0,0,33.3333%);
+    }
+
+    .small-Grid--1of4>.Grid-cell {
+        @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,5.4375rem); // guide-box
+    }
+}
+
+// 576px
+@media (min-width:36rem) {
+    .med-Grid--fit>.Grid-cell {
+        @include flex(1);
+    }
+
+    .med-Grid--full>.Grid-cell {
+        @include flex(0,0,100%);
+    }
+
+    .med-Grid--1of2>.Grid-cell {
+        @include flex(0,0,50%);
+    }
+
+    .med-Grid--1of3>.Grid-cell {
+        @include flex(0,0,33.3333%);
+    }
+
+    .med-Grid--1of4>.Grid-cell {
+        @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,7.5rem); // guide-box
+    }
+}
+
+// 768px :)
+@media (min-width:48rem) {
+    .large-Grid--fit>.Grid-cell {
+        @include flex(1);
+    }
+
+    .large-Grid--full>.Grid-cell {
+        @include flex(0,0,100%);
+    }
+
+    .large-Grid--1of2>.Grid-cell {
+        @include flex(0,0,50%);
+    }
+
+    .large-Grid--1of3>.Grid-cell {
+        @include flex(0,0,33.3333%);
+    }
+
+    .large-Grid--1of4>.Grid-cell {
+        @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,9.375rem); // guide-box
+    }
+}
+
+/*
+ * Site Specific
+ **/
+
+.laliste {
+    height: 100%;
+    @include flex-direction(column);
+}
+
+.footer-main, .header-main {
+    @include flexbox;
+    @include flex(0);
+}
+
+.header-main {
+    @extend .Grid;
+}
+
+.header-branding {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-2of3;
+    @extend .logo;
+}
+
+.header-utils {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-1of3;
+    @include justify-content(flex-end);
+    padding-right: 0.5rem;
+}
+
+.footer-main {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+}
+
+.footer-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of4;
+    @include justify-content(space-around);
+}
+
+.content-body,
+.content-body-home {
+    @include flex(1);
+    @include flex-direction(column);
+    min-height: 100vh;
+    padding: 1.5rem;
+    padding-top: 0;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.content {
+    @include flex(1);
+    margin-top: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.laliste-nav {
+    @include order(-1);
+}
+
+.laliste-ads, .laliste-nav {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    background: #93806c;
+    background: hsla(31, 15%, 50%, .1)
+}
+
+.laliste-box {
+    margin: 0.5rem;
+    width: 100%;
+    font-weight: bold;
+}
+
+.laliste-box-bg {
+    background-color: $light_grey;
+}
+
+header.header-main {
+    width: 100%;
+    max-width: 88rem;
+    margin: 0 auto;
+}
+
+.logo {
+  margin-top: 1.25rem;
+  z-index: 80;
+}
+
+header > div.region.region-header {
+    @include flexbox;
+    margin-right: 0;
+}
+
+.content-container {
+    max-width: 88rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.restaurant-top-section {
+    @extend .Grid;
+    @extend .Grid--full;
+    @extend .large-Grid--fit;
+    position: relative;
+}
+
+.restaurant-media {
+    width: 100%;
+    height: 100%;
+    margin: 0.5rem 0;
+}
+
+.restaurant-info-container {
+    @extend .Grid;
+}
+
+.restaurant-user-actions-container {
+    @extend .Grid;
+}
+
+.restaurant-user-action-share,
+.restaurant-user-action-add-list {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .laliste-box;
+    @extend .laliste-box-bg;
+    @extend .row-height-tall;
+}
+
+.restaurant-user-action-share {
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of3;
+}
+
+//Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-tall
+
+.guides-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of5;
+    height: 100%;
+    @include justify-content(flex-start);
+    margin: 0.5rem 0;
+}
+
+.guide-box {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of5;
+}
+
+.guides-container > :first-child {
+    margin-left: 0;
+}
+
+.insider-footer {
+    @include justify-content(space-around);
+}
+
+.restaurant-country {
+    @extend .Grid;
+}
+
+.restaurant-rank-big {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full ;
+    @extend .u-large-1of3;
+    @extend .row-height-med;
+    @extend .laliste-box;
+    background-color: $light_grey;
+}
+
+.restaurant-details-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .laliste-box;
+    @extend .no-hcenter;
+    @extend .laliste-box-bg;
+    @extend .row-height-med;
+    @extend .u-textLeft;
+}
+
+.restaurant-details ul li {
+     line-height: 1.9rem;
+     height: auto;
+     position: relative;
+}
+
+.restaurant-details ul li .info-title{
+    font-weight: 400;
+}
+
+.restaurant-details ul li .info-content{
+    color: $gold;
+}
+
+span.info-content > a {
+   color: $gold;
+}
+
+span.info-title {
+    position: absolute;
+}
+
+p.info-content {
+    padding-left: 8.75rem;
+}
+
+.guide-box {
+    color: $white;
+    background: $black;
+    height: 10.5625rem;
+    width: auto;
+    padding: 0.625rem;
+}
+
+.guide-box {
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    font-weight: normal;
+}
+
+.guide-box.first{
+    margin-left: 0;
+}
+
+.guide-box.last{
+    margin-right: 0;
+}
+
+/*
+ * Site specific Media Queries
+ **/
+
+// 375px :)
+@media screen and (min-width: 23.4375) {
+
+    .header-main {
+        margin-bottom: 0;
+    }
+
+    .header-branding {
+        @include justify-content(center);
+        img {
+            width: 15rem;
+            height: 100%;
+        }
+    }
+
+    .header-utils {
+        @include justify-content(center);
+    }
+
+    .row-height-med {
+        height: 5.625rem;
+    }
+
+    .row-height-tall {
+        height: 5.625rem;
+    }
+
+    .restaurant-details {
+        font-size: 0.8rem;
+        ul {
+            margin: 0 0 -0.5rem !important;
+        }
+    }
+
+    .restaurant-details-container {
+        font-size: 1.2rem;
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 1.5rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .restaurant-overlay {
+       display: none;
+    }
+
+    span.tiny-rank {
+        font-size: 0.5rem !important;
+    }
+
+    p.rank {
+        font-size: 2rem;
+        margin-bottom: -0.375rem;
+        position: relative;
+        sup {
+            position: absolute;
+            font-size: 0.5rem;
+            top: 0.1625rem;
+        }
+    }
+
+    p.score {
+        font-size: 1.5rem;
+        padding-bottom: 0.5rem;
+     }
+
+    .restaurant-address span {
+        font-size: 0.6rem !important;
+    }
+
+    h1#node-title {
+        font-size: 1.5rem;
+    }
+
+    .guide-box {
+        font-size: 0.8rem;
+        height: 5.4375rem;
+    }
+
+    a.guide-box {
+        font-weight: bold;
+    }
+
+    .footer-main {
+        height: 8.75rem;
+    }
+
+    a.footer-link {
+        font-size: 1rem;
+    }
+
+    p.info-content {
+        padding-left: 4.375rem;
+    }
+}
+
+// 576px :)
+@media screen and (min-width: 36rem) {
+
+    .header-branding {
+        @include justify-content(flex-start);
+        img {
+            width: 20rem;
+            height: 100%;
+            padding-left: 0.5rem;
+        }
+    }
+
+    .header-utils {
+        @include justify-content(flex-end);
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12rem);
+    }
+
+    .row-height-med {
+        height: 7.5rem;
+    }
+
+    .row-height-tall {
+        height: 7.5rem;
+    }
+
+    .restaurant-overlay {
+        display: block;
+        top: 1.5rem !important;
+        left: 15.625rem !important;
+        width: 42% !important; //nogood
+        height: 85% !important;
+    }
+
+    .restaurant-rank-big {
+        margin: 0.5rem;
+    }
+
+    .img.countryicon.iconset-gosquared_flat_large {
+        max-width: 70%; //nogood
+    }
+
+    .restaurant-details {
+        font-size: 1.1rem;
+        ul {
+            margin: 0 0 -0.5rem;
+        }
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 2rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    span.tiny-rank {
+        font-size: 0.8rem !important;
+    }
+
+    p.rank {
+        font-size: 3rem;
+        padding-bottom: 0.5rem;
+        margin-bottom: -0.9375rem;
+        position: relative;
+        sup {
+            position: absolute;
+            font-size: 1rem;
+            top: 0.1625rem;
+        }
+    }
+
+    p.score {
+        font-size: 2rem;
+        padding-bottom: 0.625rem;
+    }
+
+    .restaurant-address span {
+        font-size: 0.8rem !important;
+        line-height: 0.9 !important;
+    }
+
+    h1#node-title {
+        font-size: 2rem;
+    }
+
+    .guide-box {
+        font-size: 1rem;
+        height: 7.5rem;
+    }
+
+    a.guide-box {
+        font-weight: 400;
+    }
+
+    a.footer-link {
+        font-size: 1.5rem;
+    }
+
+    .footer-main {
+        height: 12.5rem;
+    }
+
+    p.info-content {
+        padding-left: 6rem;
+    }
+}
+
+// 768px
+@media screen and (min-width: 48rem) {
+
+    .header-branding {
+        @include justify-content(flex-start);
+        img {
+            width: 23.3125rem;
+            height: 3.1875rem;
+        }
+    }
+
+    .header-utils {
+        @include justify-content(flex-end);
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12rem);
+    }
+
+    .row-height-med {
+        height: 9.375rem !important;
+    }
+
+    .row-height-tall {
+        height: 15rem !important;
+    }
+
+    .restaurant-overlay {
+        padding: 1.875rem;
+        padding-top: 3% !important; //nogood
+    }
+
+    .img.countryicon.iconset-gosquared_flat_large {
+        width: 2.8125rem;
+        margin-top: 0.5rem;
+    }
+
+    .restaurant-details {
+        width: 96%;
+        padding-top: 1.875rem;
+        font-size: 1.2rem !important;
+        ul {
+            margin: 0 0 1.5rem !important;
+        }
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 3rem !important;
+    }
+
+    span.tiny-rank {
+        font-size: 1rem !important;
+    }
+
+    p.rank {
+        font-size: 4rem !important;
+        font-weight: 600;
+        margin-bottom: -1.875rem;
+        position: relative;
+        sup {
+            position: absolute;
+            font-size: 1.5rem;
+            top: 0.1625rem;
+        }
+    }
+
+    p.score {
+        font-size: 2.8rem !important;
+        font-weight: 600;
+        padding-bottom: 0.625rem;
+    }
+
+    .restaurant-address {
+        font-size: 1.5rem !important;
+    }
+
+    h1#node-title {
+        font-size: 2.6rem !important;
+    }
+
+    .guide-box {
+        font-size: 1.2rem;
+        height: 9.375rem;
+    }
+
+    a.footer-link {
+        font-size: 2.2rem;
+    }
+
+    .footer-main {
+        height: 18.75rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0.5rem;
+        margin-right : 0;
+    }
+
+    p.info-content {
+        padding-left: 6.5625rem;
+    }
+}
+
+// 1200 pixels!
+@media screen and (min-width: 75rem) {
+
+    .header-branding {
+        @include justify-content(flex-start);
+        img {
+            width: 23.4375rem;
+            height: 3.1875rem;
+        }
+    }
+
+    .header-utils {
+        @include justify-content(flex-end);
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12rem);
+    }
+
+    .row-height-short {
+        height: 8.375rem !important;
+    }
+
+    .row-height-med {
+        height: 10.125rem !important;
+    }
+
+    .row-height-tall {
+        height: 12.4375rem !important;
+    }
+
+    .restaurant-overlay {
+        //top: 50px !important;
+        left: 37.5rem !important; //nogood
+        width: 30.9375rem !important;
+        //height: 76% !important;
+    }
+
+    .restaurant-details {
+        width: 96%;
+        //padding-top: 2.5rem;
+        font-size: 2rem !important;
+        ul {
+            margin: 0 0 1.5rem !important;
+        }
+    }
+
+    .img.countryicon.iconset-gosquared_flat_large {
+        width: 2.8125rem;
+        margin-top: -0.125rem;
+    }
+
+    .restaurant-user-actions-container p {
+        font-size: 3rem !important;
+    }
+
+    p.rank {
+        font-size: 5rem !important;
+        margin-bottom: -1.875rem;
+        position: relative;
+        sup {
+            position: absolute;
+            font-size: 2rem;
+            top: 0.1625rem;
+        }
+    }
+
+    p.score {
+        font-size: 3.5rem !important;
+        padding-bottom: 0.625rem;
+    }
+
+    .restaurant-address span {
+        font-size: 1.4rem !important;
+        line-height: 1;
+    }
+
+    h1#node-title {
+        color: $white;
+        font-size: 3.8rem !important;
+    }
+
+    .guide-box {
+        font-size: 1.4rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-right : 0;
+    }
+
+    p.info-content {
+        padding-left: 8.75rem;
+    }
+}
+
+.u-ieMinHeightBugFix {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.u-full {
+    width: 100% !important
+}
+
+.u-1of2, .u-full {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important
+}
+
+.u-1of2 {
+    width: 50% !important
+}
+
+.u-1of3 {
+    width: 39.2% !important
+}
+
+.u-1of3, .u-2of3 {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important
+}
+
+.u-2of3 {
+    width: 60% !important
+}
+
+.u-1of4 {
+    width: 25% !important
+}
+
+.u-1of4, .u-3of4 {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important
+}
+
+.u-3of4 {
+    width: 75% !important
+}
+
+// 375px :)
+@media (min-width:23.4375rem) {
+    .u-small-full {
+        width: 100% !important
+    }
+
+    .u-small-1of2, .u-small-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-small-1of2 {
+        width: 50% !important
+    }
+
+    .u-small-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-small-1of3, .u-small-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-small-2of3 {
+        width: 60% !important
+    }
+
+    .u-small-1of4 {
+        width: 25% !important
+    }
+
+    .u-small-1of4, .u-small-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-small-3of4 {
+        width: 75% !important
+    }
+}
+
+// 576px!
+@media (min-width: 36rem) {
+    .u-med-full {
+        width: 100% !important
+    }
+
+    .u-med-1of2, .u-med-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-med-1of2 {
+        width: 50% !important
+    }
+
+    .u-med-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-med-1of3, .u-med-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-med-2of3 {
+        width: 60% !important
+    }
+
+    .u-med-1of4 {
+        width: 25% !important
+    }
+
+    .u-med-1of4, .u-med-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-med-3of4 {
+        width: 75% !important
+    }
+}
+
+@media (min-width:48rem) {
+    .u-large-full {
+        width: 100% !important
+    }
+
+    .u-large-1of2, .u-large-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-1of2 {
+        width: 50% !important
+    }
+
+    .u-large-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-large-1of3, .u-large-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-2of3 {
+        width: 60% !important
+    }
+
+    .u-large-1of4 {
+        width: 25% !important
+    }
+
+    .u-large-1of4, .u-large-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-3of4 {
+        width: 75% !important
+    }
+}
+
+@media (min-width:75rem) {
+    .u-large-full {
+        width: 100% !important
+    }
+
+    .u-large-1of2, .u-large-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-1of2 {
+        width: 50% !important
+    }
+
+    .u-large-1of3 {
+        width: 40% !important
+    }
+
+    .u-large-1of3, .u-large-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-2of3 {
+        width: 60% !important
+    }
+
+    .u-large-1of4 {
+        width: 25% !important
+    }
+
+    .u-large-1of4, .u-large-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-3of4 {
+        width: 75% !important
+    }
+}
+
+.no-hcenter {
+    justify-content: left !important;
+}
+
+
+h1#node-title {
+    font-family: "Mrs Eaves Italic", Serif;
+    margin-top: -1%; //nogood
+    margin-bottom: 4%;
+    color: $white;
+}
+
+p.rank, p.score {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
+
+p.score {
+    color: $gold;
+}
+
+#separator {
+    font-weight: 200;
+}
+
+.restaurant-info {
+    padding-left : 1.25rem;
+}
+
+.restaurant-user-actions-container p {
+    font-family: "Mrs Eaves Bold Italic", Serif;
+}
+
+sup {
+    vertical-align: text-bottom;
+}
+
+/**
+ * User login block in footer.
+ */
+#block-user-login, #block-search-form {
+  width: 100%;
+  text-align: center;
+}
+.content-body-home #block-search-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#block-user-login .block-title,
+#block-search-form .block-title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+#block-user-login .content *,
+#block-search-form .content * {
+  @include flexbox;
+}
+
+input.fpage-search-box,
+input.other-page-search-box {
+    font-family: 'Mrs Eaves Italic';
+    font-size:1.75rem;
+    padding-left: 0.4rem;
+    padding-right: 1.8rem;
+    background: $white;
+    border: 0;
+    color : $gray;
+    -webkit-appearance: none;
+    border-radius:0;
+    border-top-left-radius:0.3125rem;
+    border-bottom-left-radius:0.3125rem;
+}
+
+input.other-page-search-box {
+    width: 14.875rem;
+    height: 2.625rem;
+    background: $light_grey;
+}
+
+input.fpage-search-box {
+    width: 34.9375rem;
+    height: 5.375rem;
+}
+
+input.fpage-search-icon,
+input.other-page-search-icon {
+    border: 0;
+    font-family: 'FontAwesome';
+    font-weight: 100;
+    background: $black;
+    color: $white;
+    justify-content: center;
+    -webkit-appearance: none;
+    border-radius:0;
+    border-top-right-radius:0.3125rem;
+    border-bottom-right-radius:0.3125rem;
+}
+
+input.fpage-search-icon {
+    width: 5.625rem;
+    height: 5.375rem;
+    font-size: 1.75rem;
+}
+
+input.other-page-search-icon {
+    width: 3.125rem;
+    height: 2.625rem;
+    font-size: 1.25rem;
+}
+
+input[type=text].fpage-search-box,
+input[type=text].other-page-search-box,
+input.fpage-search-icon,
+input.other-page-search-icon {
+  -webkit-transition: all 0.0s ease-in-out;
+  -moz-transition: all 0.0s ease-in-out;
+  -ms-transition: all 0.0s ease-in-out;
+  -o-transition: all 0.0s ease-in-out;
+  outline: none;
+}
+
+input[type=text].fpage-search-box:focus,
+input[type=text].other-page-search-box:focus,
+input.fpage-search-icon:focus,
+input.other-page-search-icon:focus {
+  box-shadow: 0 0 0.25rem $gold;
+  border: 0.0625rem solid $gold;
+}
+
+// hide the search form title
+h2.element-invisible {
+    display: none !important;
+}
+
+.restaurant-overlay {
+  background-image: url("../img/restaurant-panel-bg.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 3.125rem;
+  left: 37.5rem;
+  width: 34%; //nopgood
+  height: 76%;
+  z-index: 80;
+  padding-top: 5%;
+  color: white;
+}
+
+.restaurant-overlay hr.half-length,
+.restaurant-overlay hr.full-length {
+    display: inline-block;
+    padding: 0;
+    color: white;
+    border-width: 0.0625rem;
+}
+
+.restaurant-overlay hr.half-length {
+    width: 36%
+}
+
+.restaurant-overlay hr.full-length {
+    width: 72%
+}
+
+.restaurant-overlay .tiny-rank {
+    font-weight: normal;
+    margin: 0.3125rem;
+    font-size: 1.2rem;
+    position: relative;
+    top: -0.25rem;
+}
+
+img.countryicon.iconset-gosquared_flat_large {
+    margin-top: 12%; //nogood
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.restaurant-address {
+    line-height: 110%;
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-left: 5%;//nogood
+    margin-bottom: 2%;
+}
+
+/**
+ * Administration
+ */
+
+ul.tabs.primary {
+  display: flex;
+  margin-bottom: 0;
+  li {
+    margin-right: 1.25rem;
+  }
+}
+
+/**
+ * Slideshows
+ */
+
+.flexslider .slides img {
+  height: auto;
+}
+
+.highlight-container {
+    @extend .Grid;
+}
+
+.highlight-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-1of3;
+    color: $dark_grey;
+    font-family: "Mrs Eaves Bold", sans-serif;
+    font-size: 3rem;
+}
+
+.highlight-content-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-2of3;
+}
+
+.highlight-content-column {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--justifyCenter;
+    @extend .u-small-1of2;
+    @extend .u-med-1of2;
+    @extend .u-large-1of2;
+    background: $black;
+    color: $white;
+    font-family: "Mrs Eaves Italic", Serif;
+    font-size: 1.3rem;
+    padding: 1.25rem;
+    text-align: justify;
+    font-weight: 100;
+}
+
+#block-views-cbbe77509a0d5dfa927448406b230347 {
+    margin-top: 1.25rem;
+}
+
+.block-views > h2 {
+    padding-top: 1rem;
+    font-family: "Mrs Eaves Italic", Serif;
+    font-size: 5rem;
+    color: $dark_grey;
+    background: $light_grey;
+    font-weight: 100;
+    margin: 0;
+    height: 9.5rem;
+}
+
+.view-content {
+    @extend .Grid;
+    @include flex-direction(column);
+}
+
+.laliste-winners-result {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @include justify-content(space-between);
+    @include align-items(center);
+}
+
+.laliste-winners-title {
+    @extend .Grid;
+    @include align-items(center);
+    @include justify-content(flex-start);
+}
+
+.laliste-winners-score-laliste {
+    @extend .Grid;
+    @include align-items(center);
+    @include justify-content(flex-end);
+}
+
+.laliste-winners-rank {
+    @extend .Grid;
+    @include align-items(center);
+    @include justify-content(space-between);
+}
+
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
+    height: 6.875rem;
+    margin: 0.1875rem 0;
+}
+
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(n+6) {
+    height: 3.5rem;
+    margin: 0;
+}
+
+// 1st five Winners restaurant title
+div:nth-child(-n+5) > span.laliste-winners-title > span > a {
+    font-family: "Mrs Eaves Bold", sans-serif;
+    font-size: 2.5rem;
+    color: $white;
+}
+div:nth-child(-n+5) > span.laliste-winners-title {
+    padding: 0 2.875rem;
+    text-align: left;
+    background: $gold;
+    height: 6.875rem;
+}
+div:nth-child(-n+5) > span.laliste-winners-score-laliste {
+    background: $gold;
+    height: 6.875rem;
+}
+
+div:nth-child(-n+5) > span.laliste-winners-rank {
+    background: $light_grey;
+    height: 6.875rem;
+}
+div > span.laliste-winners-title {
+    width: 72%;//nogood
+}
+div > span.laliste-winners-score-laliste {
+    width: 5%;//nogood
+}
+div:nth-child(-n+5) > span.laliste-winners-score-laliste {
+    padding-right: 0.625rem
+}
+div:nth-child(n+6) > span.laliste-winners-score-laliste {
+    padding-right: 2.0625rem
+}
+div > span.laliste-winners-rank {
+    width: 16%;
+    padding-left: 2.0625rem
+}
+div > span.laliste-winners-field-address-country-1 {
+    width: 7%;
+}
+// 1st five winners flag
+div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
+    //padding: 0 1.6875rem
+}
+// 1st five winners rank
+div:nth-child(-n+5) > span.laliste-winners-rank > span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 4rem;
+    position: relative;
+    sup {
+        font-size: 1.5rem;
+        position: absolute;
+        top: 0.3rem;
+    }
+}
+// 1st five winners score
+div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: $white;
+}
+// hack for winner score proportionnal to div length
+div:nth-child(2) > span.laliste-winners-score-laliste {
+    border-right: 0.25rem solid $light_grey;
+}
+div:nth-child(3) > span.laliste-winners-score-laliste {
+    border-right: 0.5453125rem solid $light_grey;
+}
+div:nth-child(4) > span.laliste-winners-score-laliste {
+    border-right: 1.421875rem solid $light_grey;
+}
+div:nth-child(5) > span.laliste-winners-score-laliste {
+    border-right: 1.5359375 solid $light_grey;
+}
+
+// prizes
+div:nth-child(1) > span.laliste-winners-rank {
+  background-image: url("../img/1st_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.125rem 0.875rem;
+}
+div:nth-child(2) > span.laliste-winners-rank {
+  background-image: url("../img/2nd_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.625rem 1rem;
+}
+div:nth-child(3) > span.laliste-winners-rank {
+  background-image: url("../img/3rd_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.5rem 1rem;
+}
+div:nth-child(4) > span.laliste-winners-rank {
+  background-image: url("../img/4th_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.75rem 1rem;
+}
+div:nth-child(5) > span.laliste-winners-rank {
+  background-image: url("../img/5th_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.75rem 1rem;
+}
+
+// others winners country flag
+div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
+    max-width: 50%;
+}
+div:nth-child(n+6) > span.laliste-winners-field-address-country-1 {
+    padding: 0 1rem;
+}
+// 1st five Winners restaurant title
+div:nth-child(n+6) > span.laliste-winners-title > span > a {
+    font-family: "Mrs Eaves Italic", sans-serif;
+    font-size: 1.5rem;
+    color: $black;
+}
+div:nth-child(n+6) > span.laliste-winners-title {
+    //width: 70%;
+    padding: 0 2.875rem;
+    text-align: left;
+    background: $light_grey;
+    height: 3.5rem
+}
+div:nth-child(n+6) > span.laliste-winners-score-laliste,
+div:nth-child(n+6) > span.laliste-winners-rank {
+    background: $light_grey;
+    height: 3.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+    sup {
+        font-size: 0.6rem;
+        position: absolute;
+        top: 0.875rem;
+    }
+}
+div:nth-child(n+7) > span.laliste-winners-title,
+div:nth-child(n+7) > span.laliste-winners-score-laliste,
+div:nth-child(n+7) > span.laliste-winners-rank {
+    border-top: 0.0625rem solid $dark_grey;
+}
+span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large {
+    border: 0.0625rem solid $light_grey;
+}
+
+.flexslider {
+    margin: 0;
+    border: 0;
+}
+
+.flex-control-paging {
+    display: none;
+}
+
+#block-views-homepage-slider-block {
+    position: relative;
+}
+
+#block-views-homepage-slider-block + #block-search-form {
+    position: absolute;
+    top: 17.3125rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 40.5625rem;
+    z-index: 80;
+}
+
+/*
+ * Admin section
+ */
+.tabs {
+    padding-top : 1.375rem;
+    background: $black;
+    a {
+        color: $white;
+    }
+}
+

@@ -1,0 +1,6 @@
+name = LaListe HomePage
+description = Provides Functionalities for LA LISTE homepage
+core = 7.x
+package = LA LISTE
+version = 7.x-1.0
+project = laliste_homepage

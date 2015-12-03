@@ -5,7 +5,7 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-# SASS css dir
+# Ignore SASS generated content
 sites/all/themes/laliste/.sass-cache
 sites/all/themes/laliste/css/*
 
