@@ -11,7 +11,7 @@ $gold : #8A804F;
 $dark_gold : #93806c;
 $gray: #808080;
 $color_cape_cod_approx: #404040;
-$black: #000;
+$black: #110b09;
 $color_ocean_green_50_approx: rgba(70, 185, 128, .5);
 $color_ocean_green_approx: #46b980;
 $color_almond_frost_15_approx: rgba(146, 128, 108, .15);
@@ -302,8 +302,8 @@ strong {
     @include flex(0,0,10.5625rem); // guide-box
 }
 
-// 375px :)
-@media (min-width:23.4375rem) {
+// 320px :)
+@media (min-width:20rem) {//23.4375rem
     .small-Grid--fit>.Grid-cell {
         @include flex(1);
     }
@@ -326,7 +326,7 @@ strong {
 
     .Grid--1of5>.Grid-cell
     {
-        @include flex(0,0,5.4375rem); // guide-box
+        @include flex(0,0,6.85rem); // guide-box
     }
 }
 
@@ -567,7 +567,7 @@ header > div.region.region-header {
 .restaurant-country {
     @extend .Grid;
 }
-
+//.small-Grid--full
 .restaurant-rank-big {
     @extend .Grid;
     @extend .Grid-cell;
@@ -642,8 +642,8 @@ p.info-content {
  * Site specific Media Queries
  **/
 
-// 375px :)
-@media screen and (min-width: 23.4375) {
+// 320px :)
+@media screen and (min-width: 20rem) {//23.4375rem
 
     .header-main {
         margin-bottom: 0;
@@ -673,6 +673,9 @@ p.info-content {
         font-size: 0.8rem;
         ul {
             margin: 0 0 -0.5rem !important;
+            li {
+                line-height: 0.95rem;
+            }
         }
     }
 
@@ -730,7 +733,7 @@ p.info-content {
 
     .guide-box {
         font-size: 0.8rem;
-        height: 5.4375rem;
+        height: 6.85rem !important;
     }
 
     a.guide-box {
@@ -849,7 +852,7 @@ p.info-content {
 
     .guide-box {
         font-size: 1rem;
-        height: 7.5rem;
+        height: 7.5rem !important;
     }
 
     a.guide-box {
@@ -951,7 +954,7 @@ p.info-content {
 
     .guide-box {
         font-size: 1.2rem;
-        height: 9.375rem;
+        height: 9.375rem !important;
     }
 
     a.footer-link {
@@ -1136,8 +1139,8 @@ p.info-content {
     width: 75% !important
 }
 
-// 375px :)
-@media (min-width:23.4375rem) {
+// 320px :)
+@media (min-width:20rem) {
     .u-small-full {
         width: 100% !important
     }
