@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Homepage Content Type feature.
+ */
+
+include_once 'laliste_homepage_content_type.features.inc';
