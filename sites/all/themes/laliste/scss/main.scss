@@ -749,7 +749,17 @@ p.info-content {
     }
 
     p.info-content {
-        padding-left: 4.375rem;
+        padding-left: 3.6rem !important;
+    }
+
+    //homepage
+
+    .highlight-title {
+        font-size: 1.2rem  !important;
+    }
+
+    .highlight-content-column {
+        font-size: 0.6rem  !important;
     }
 }
 
@@ -801,6 +811,9 @@ p.info-content {
         font-size: 1.1rem;
         ul {
             margin: 0 0 -0.5rem;
+            li {
+                line-height: 1.2rem;
+            }
         }
     }
 
@@ -868,7 +881,17 @@ p.info-content {
     }
 
     p.info-content {
-        padding-left: 6rem;
+        padding-left: 5rem !important;
+    }
+
+    //homepage
+
+    .highlight-title {
+        font-size: 1.5rem !important;
+    }
+
+    .highlight-content-column {
+        font-size: 0.8rem !important;
     }
 }
 
@@ -878,8 +901,8 @@ p.info-content {
     .header-branding {
         @include justify-content(flex-start);
         img {
-            width: 23.3125rem;
-            height: 3.1875rem;
+            width: 23.3125rem  !important;
+            height: 3.1875rem  !important;
         }
     }
 
@@ -915,6 +938,9 @@ p.info-content {
         font-size: 1.2rem !important;
         ul {
             margin: 0 0 1.5rem !important;
+            li {
+                line-height: 1.5rem;
+            }
         }
     }
 
@@ -958,27 +984,42 @@ p.info-content {
     }
 
     a.footer-link {
-        font-size: 2.2rem;
+        font-size: 2.2rem  !important;
     }
 
     .footer-main {
-        height: 18.75rem;
+        height: 18.75rem  !important;
     }
 
     .restaurant-info-container > :first-child,
     .restaurant-user-actions-container > :first-child {
-        margin-left: 0;
+        margin-left: 0  !important;
     }
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
-        margin-left: 0.5rem;
-        margin-right : 0;
+        margin-left: 0.5rem  !important;
+        margin-right : 0  !important;
     }
 
     p.info-content {
-        padding-left: 6.5625rem;
+        padding-left: 5.5625rem !important;
     }
+
+    //homepage
+
+    .highlight-title {
+        font-size: 2rem  !important;
+    }
+
+    .highlight-content-column {
+        font-size: 1rem  !important;
+    }
+
+    .laliste-winners-rank {
+        //display: none !important;
+    }
+
 }
 
 // 1200 pixels!
@@ -1025,6 +1066,9 @@ p.info-content {
         font-size: 2rem !important;
         ul {
             margin: 0 0 1.5rem !important;
+            li {
+                line-height: 1.9rem;
+            }
         }
     }
 
@@ -1078,7 +1122,17 @@ p.info-content {
     }
 
     p.info-content {
-        padding-left: 8.75rem;
+        padding-left: 8.5625rem !important;
+    }
+
+    //homepage
+
+    .highlight-title {
+        font-size: 3rem  !important;
+    }
+
+    .highlight-content-column {
+        font-size: 1.3rem  !important;
     }
 }
 
@@ -1548,7 +1602,7 @@ ul.tabs.primary {
     @extend .Grid--full;
     @extend .Grid--center;
     @extend .u-small-full;
-    @extend .u-med-1of2;
+    @extend .u-med-full;
     @extend .u-large-1of3;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
@@ -1560,7 +1614,7 @@ ul.tabs.primary {
     @extend .Grid-cell;
     @extend .Grid--full;
     @extend .u-small-full;
-    @extend .u-med-1of2;
+    @extend .u-med-full;
     @extend .u-large-2of3;
 }
 
@@ -1568,7 +1622,7 @@ ul.tabs.primary {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--justifyCenter;
-    @extend .u-small-1of2;
+    @extend .u-small-full;
     @extend .u-med-1of2;
     @extend .u-large-1of2;
     background: $black;
@@ -1604,26 +1658,42 @@ ul.tabs.primary {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--full;
-    @include justify-content(space-between);
+    @include flex-direction(column);
+    @include align-items(flex-start);
+}
+
+.laliste-winners-field-address-country-1 {
+    @extend .Grid;
+    @extend .Grid-cell;//
+    @include justify-content(flex-start);
     @include align-items(center);
+    width: 8%;
 }
 
 .laliste-winners-title {
     @extend .Grid;
+    @extend .Grid-cell;//
     @include align-items(center);
     @include justify-content(flex-start);
+    width: 56.3rem;
 }
 
 .laliste-winners-score-laliste {
     @extend .Grid;
+    @extend .Grid-cell;//
     @include align-items(center);
     @include justify-content(flex-end);
+    width:13%;
+    //@include justify-content(flex-end);
 }
 
 .laliste-winners-rank {
     @extend .Grid;
+    @extend .Grid-cell;//
     @include align-items(center);
-    @include justify-content(space-between);
+    @include justify-content(center);
+    width:15%;
+    //@include justify-content(space-between);
 }
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
@@ -1656,12 +1726,13 @@ div:nth-child(-n+5) > span.laliste-winners-score-laliste {
 div:nth-child(-n+5) > span.laliste-winners-rank {
     background: $light_grey;
     height: 6.875rem;
+    padding-right: 2rem;
 }
 div > span.laliste-winners-title {
-    width: 72%;//nogood
+    //width: 72%;//nogood
 }
 div > span.laliste-winners-score-laliste {
-    width: 5%;//nogood
+    //width: 5%;//nogood
 }
 div:nth-child(-n+5) > span.laliste-winners-score-laliste {
     padding-right: 0.625rem
@@ -1670,11 +1741,11 @@ div:nth-child(n+6) > span.laliste-winners-score-laliste {
     padding-right: 2.0625rem
 }
 div > span.laliste-winners-rank {
-    width: 16%;
-    padding-left: 2.0625rem
+    //width: 16%;
+    //padding-left: 2.0625rem
 }
 div > span.laliste-winners-field-address-country-1 {
-    width: 7%;
+    //width: 7%;
 }
 // 1st five winners flag
 div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
@@ -1707,10 +1778,10 @@ div:nth-child(3) > span.laliste-winners-score-laliste {
     border-right: 0.5453125rem solid $light_grey;
 }
 div:nth-child(4) > span.laliste-winners-score-laliste {
-    border-right: 1.421875rem solid $light_grey;
+    border-right: 0.921875rem solid $light_grey;
 }
 div:nth-child(5) > span.laliste-winners-score-laliste {
-    border-right: 1.5359375 solid $light_grey;
+    border-right: 1.5359375rem solid $light_grey;
 }
 
 // prizes
