@@ -814,12 +814,21 @@ p.info-content {
     div:nth-child(-n+5) > span.laliste-winners-rank{
         padding-right: 0 !important;
     }
-    .laliste-winners-rank {
+    div:nth-child(-n+5) > span.laliste-winners-rank {
         span {
             font-size: 1.8rem !important;
             sup {
                 font-size: 0.8rem !important;
-                top: 0.3rem !important;
+                top: 0.1rem !important;
+            }
+        }
+    }
+    div:nth-child(n+6) > span.laliste-winners-rank {
+        span {
+            font-size: 1rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 1rem !important;
             }
         }
     }
@@ -976,13 +985,13 @@ p.info-content {
 
     //homepage highlight block
     .highlight-container {
-        display: unset !important;
+        display: inherit !important;
     }
     .highlight-title {
         font-size: 2.5rem !important;
     }
     .highlight-content-column {
-        font-size: 0.8rem !important;
+        font-size: 1rem !important;
     }
 
     //homepage winner view
@@ -1013,7 +1022,6 @@ p.info-content {
     div:nth-child(-n+5) > span.laliste-winners-rank{
         padding-right: 0 !important;
     }
-    //.laliste-winners-rank,
     div:nth-child(-n+5) > span.laliste-winners-rank {
         span {
             font-size: 2rem !important;
@@ -1145,18 +1153,90 @@ p.info-content {
         padding-left: 5.5625rem !important;
     }
 
-    //homepage
+    /*
+    * homepage
+    **/
+    //homepage search box
+    .content-body-home #block-search-form {
+        margin: 0 auto !important;
+        width: 20rem !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form {
+        position: inherit !important;
+        top: inherit !important;
+        left: inherit !important;
+        right: inherit !important;
+        margin: inherit !important;
+        width: inherit !important;
+    }
+    input.fpage-search-box {
+        height: 3.375rem !important;
+        width: 19.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 3.625rem !important;
+        height: 3.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box {
+        font-size: 1.8rem !important;
+    }
 
+    //homepage highlight block
+    .highlight-container {
+        display: inherit !important;
+    }
     .highlight-title {
-        font-size: 2rem  !important;
+        font-size: 2.5rem !important;
     }
-
     .highlight-content-column {
-        font-size: 1rem  !important;
+        font-size: 1.2rem !important;
     }
 
-    .laliste-winners-rank {
-        //display: none !important;
+    //homepage winner view
+    .block-views > h2 {
+        padding-top: 0 !important;
+        font-size: 4rem !important;
+        height: 100% !important;
+    }
+    .laliste-winners-score-laliste {
+        display: inherit !important;
+    }
+    div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+        font-size: 1.5rem !important;
+    }
+    div:nth-child(n+6) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    .laliste-winners-result {
+        height: 5rem !important;
+    }
+    .laliste-winners-title {
+        width: 64% !important;
+        padding: 0 0.875rem !important;
+        span > a {
+            font-size: 2rem !important;
+        }
+    }
+    div:nth-child(-n+5) > span.laliste-winners-rank{
+        padding-right: 0 !important;
+    }
+    div:nth-child(-n+5) > span.laliste-winners-rank {
+        span {
+            font-size: 3rem !important;
+            sup {
+                font-size: 0.8rem !important;
+                top: 0.3rem !important;
+            }
+        }
+    }
+    div:nth-child(n+6) > span.laliste-winners-rank {
+        span {
+            font-size: 2rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.8rem !important;
+            }
+        }
     }
 
 }
@@ -1741,7 +1821,7 @@ ul.tabs.primary {
     @extend .Grid--full;
     @extend .Grid--center;
     @extend .u-small-full;
-    @extend .u-med-full;
+    @extend .u-med-1of3;
     @extend .u-large-1of3;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
@@ -1762,7 +1842,7 @@ ul.tabs.primary {
     @extend .Grid-cell;
     @extend .Grid--justifyCenter;
     @extend .u-small-full;
-    @extend .u-med-1of2;
+    @extend .u-med-full;
     @extend .u-large-1of2;
     background: $black;
     color: $white;
