@@ -643,7 +643,7 @@ p.info-content {
  **/
 
 // 320px :)
-@media screen and (min-width: 20rem) {//23.4375rem
+@media screen and (min-width: 20rem) {
 
     .header-main {
         margin-bottom: 0;
@@ -752,14 +752,76 @@ p.info-content {
         padding-left: 3.6rem !important;
     }
 
-    //homepage
+    .content {
+        margin-top: 1rem !important;
+    }
 
+    //homepage search box
+    .content-body-home #block-search-form {
+        margin: 0 auto !important;
+        width: 20rem !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form {
+        position: unset !important;
+        top: unset !important;
+        left: unset !important;
+        right: unset !important;
+        margin: unset !important;
+        width: unset !important;
+    }
+    input.fpage-search-box {
+        height: 3.375rem !important;
+        width: 19.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 3.625rem !important;
+        height: 3.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box {
+        font-size: 1.4rem !important;
+    }
+
+    //homepage highlight block
+    .highlight-container {
+        display: none !important;
+    }
     .highlight-title {
         font-size: 1.2rem  !important;
     }
-
     .highlight-content-column {
         font-size: 0.6rem  !important;
+    }
+
+    //homepage winner view
+    .block-views > h2 {
+        padding-top: 0 !important;
+        font-size: 3rem !important;
+        height: 100% !important;
+    }
+    .laliste-winners-score-laliste {
+        display: none !important;
+    }
+    .laliste-winners-result {
+        height: 3.5rem !important;
+    }
+    .laliste-winners-title {
+        width: 77% !important;//17.675rem
+        padding: 0 0.875rem !important;
+        span > a {
+            font-size: 1.2rem !important;
+        }
+    }
+    div:nth-child(-n+5) > span.laliste-winners-rank{
+        padding-right: 0 !important;
+    }
+    .laliste-winners-rank {
+        span {
+            font-size: 1.8rem !important;
+            sup {
+                font-size: 0.8rem !important;
+                top: 0.3rem !important;
+            }
+        }
     }
 }
 
@@ -884,14 +946,91 @@ p.info-content {
         padding-left: 5rem !important;
     }
 
-    //homepage
-
-    .highlight-title {
-        font-size: 1.5rem !important;
+    /*
+    * homepage
+    **/
+    //homepage search box
+    .content-body-home #block-search-form {
+        margin: 0 auto !important;
+        width: 20rem !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form {
+        position: unset !important;
+        top: unset !important;
+        left: unset !important;
+        right: unset !important;
+        margin: unset !important;
+        width: unset !important;
+    }
+    input.fpage-search-box {
+        height: 3.375rem !important;
+        width: 19.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 3.625rem !important;
+        height: 3.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box {
+        font-size: 1.4rem !important;
     }
 
+    //homepage highlight block
+    .highlight-container {
+        display: unset !important;
+    }
+    .highlight-title {
+        font-size: 2.5rem !important;
+    }
     .highlight-content-column {
         font-size: 0.8rem !important;
+    }
+
+    //homepage winner view
+    .block-views > h2 {
+        padding-top: 0 !important;
+        font-size: 3rem !important;
+        height: 100% !important;
+    }
+    .laliste-winners-score-laliste {
+        display: inherit !important;
+    }
+    div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    div:nth-child(n+6) > span.laliste-winners-score-laliste > span {
+        font-size: 0.7rem !important;
+    }
+    .laliste-winners-result {
+        height: 3.5rem !important;
+    }
+    .laliste-winners-title {
+        width: 64% !important;//17.675rem
+        padding: 0 0.875rem !important;
+        span > a {
+            font-size: 1.2rem !important;
+        }
+    }
+    div:nth-child(-n+5) > span.laliste-winners-rank{
+        padding-right: 0 !important;
+    }
+    //.laliste-winners-rank,
+    div:nth-child(-n+5) > span.laliste-winners-rank {
+        span {
+            font-size: 2rem !important;
+            sup {
+                font-size: 0.8rem !important;
+                top: 0.3rem !important;
+            }
+        }
+    }
+    div:nth-child(n+6) > span.laliste-winners-rank {
+        span {
+            font-size: 1.2rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.8rem !important;
+            }
+        }
     }
 }
 
@@ -924,7 +1063,7 @@ p.info-content {
 
     .restaurant-overlay {
         padding: 1.875rem;
-        padding-top: 3% !important; //nogood
+        padding-top: 5% !important; //nogood
     }
 
     .img.countryicon.iconset-gosquared_flat_large {
@@ -1684,7 +1823,6 @@ ul.tabs.primary {
     @include align-items(center);
     @include justify-content(flex-end);
     width:13%;
-    //@include justify-content(flex-end);
 }
 
 .laliste-winners-rank {
@@ -1816,7 +1954,7 @@ div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
 }
 div:nth-child(n+6) > span.laliste-winners-field-address-country-1 {
-    padding: 0 1rem;
+    //padding: 0 1rem;
 }
 // 1st five Winners restaurant title
 div:nth-child(n+6) > span.laliste-winners-title > span > a {
