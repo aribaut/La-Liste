@@ -26,11 +26,15 @@ function laliste_rr_ct_image_default_styles() {
   $styles['full-width_slider_image'] = array(
     'label' => 'Full-width slider image',
     'effects' => array(
-      1 => array(
-        'name' => 'image_scale_and_crop',
+      3 => array(
+        'name' => 'focal_point_scale_and_crop',
         'data' => array(
           'width' => 1408,
           'height' => 444,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
         ),
         'weight' => 1,
       ),

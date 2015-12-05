@@ -10,6 +10,7 @@ dependencies[] = data
 dependencies[] = features
 dependencies[] = file_entity
 dependencies[] = flexslider_fields
+dependencies[] = focal_point
 dependencies[] = i18n_taxonomy
 dependencies[] = image
 dependencies[] = link
