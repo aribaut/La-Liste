@@ -517,6 +517,21 @@ header > div.region.region-header {
     @extend .Grid;
 }
 
+.restaurant-info-map {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of3;
+    @include justify-content(flex-start);
+}
+
+.restaurant-info-right-pane {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include flex-direction(columns);
+}
+
 .restaurant-user-actions-container {
     @extend .Grid;
 }
@@ -536,8 +551,6 @@ header > div.region.region-header {
     @extend .u-med-full;
     @extend .u-large-1of3;
 }
-
-//Grid Grid-cell Grid--center laliste-box laliste-box-bg laliste-box-height-tall
 
 .guides-container {
     @extend .Grid;
@@ -573,8 +586,8 @@ header > div.region.region-header {
     @extend .Grid-cell;
     @extend .Grid--center;
     @extend .u-small-full;
-    @extend .u-med-full ;
-    @extend .u-large-1of3;
+    @extend .u-med-full;
+    @extend .u-large-full ;
     @extend .row-height-med;
     @extend .laliste-box;
     background-color: $light_grey;
@@ -636,6 +649,12 @@ p.info-content {
 
 .guide-box.last{
     margin-right: 0;
+}
+
+// restaurant map view
+.view-restaurant-map {
+    width: 100%;
+    border: 2px solid $black;
 }
 
 /*
@@ -831,6 +850,20 @@ p.info-content {
                 top: 1rem !important;
             }
         }
+    }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    #leaflet-map {
+        height: 232px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
     }
 }
 
@@ -1040,6 +1073,20 @@ p.info-content {
             }
         }
     }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    #leaflet-map {
+        height: 232px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
 }
 
 // 768px
@@ -1238,7 +1285,20 @@ p.info-content {
             }
         }
     }
-
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    #leaflet-map {
+        height: 232px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
 }
 
 // 1200 pixels!
@@ -1265,7 +1325,7 @@ p.info-content {
     }
 
     .row-height-med {
-        height: 10.125rem !important;
+        height: 10.775rem !important;
     }
 
     .row-height-tall {
@@ -1345,7 +1405,6 @@ p.info-content {
     }
 
     //homepage
-
     .highlight-title {
         font-size: 3rem  !important;
     }
@@ -1353,7 +1412,40 @@ p.info-content {
     .highlight-content-column {
         font-size: 1.3rem  !important;
     }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    #leaflet-map {
+        height: 352px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
 }
+
+// 1438 pixels!
+@media screen and (min-width: 89.875rem) {
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    #leaflet-map {
+        height: 352px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
+}
+// END MEDIA QUERIES
 
 .u-ieMinHeightBugFix {
     display: -webkit-box;

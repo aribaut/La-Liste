@@ -101,34 +101,39 @@
   </div>
 </div>
 <div class="restaurant-info-container">
-  <div class="restaurant-rank-big">
-    <?php if (true): ?>
-      <?php if (isset($score)): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
-      <?php if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php endif; ?>
-      <?php if (isset($rank)): ?><p class="rank"><?php print $rank; ?></p><?php endif; ?>
-    <?php endif; ?>
+  <div class="restaurant-info-map">
+    <?php print views_embed_view('restaurant_map', 'block', $node->nid); ?>
   </div>
-  <div class="restaurant-details-container">
-    <div class="restaurant-details">
-      <ul>
-        <?php if (isset($cooking_type)): ?>
-        <li><span class="info-title"><?php print t('Type de cuisine');?>:</span><p class="info-content"><?php print t($cooking_type); ?></p></li>
-        <?php endif; ?>
-        <?php if (isset($address_full)): ?>
-        <li><span class="info-title"><?php print t('Adresse');?>:</span><p class="info-content"><?php print t($address_full); ?></p></li>
-        <?php endif; ?>
-        <?php if (isset($phone)): ?>
-          <li><span class="info-title"><?php print t('Téléphone');?>:</span><p class="info-content"><?php print $phone; ?></p></li>
-        <?php endif; ?>
-        <?php if (isset($website)): ?>
-          <li><span class="info-title"><?php print t('Internet');?>:</span><p class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></p></li>
-        <?php endif; ?>
-        <?php if (isset($tags)): ?>
-          <?php $n = count($tags); $i=0; ?>
-          <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span><p class="info-content">
-          <?php foreach($tags as $tag): ?><?php print t($tag); $i++; ?> <?php if ($i<$n): ?><?php print '|' ?><?php endif; ?> <?php endforeach; ?></p></li>
-        <?php endif; ?>
-      </ul>
+  <div class="restaurant-info-right-pane">
+    <div class="restaurant-rank-big">
+      <?php if (true): ?>
+        <?php if (isset($score)): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
+        <?php if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php endif; ?>
+        <?php if (isset($rank)): ?><p class="rank"><?php print $rank; ?></p><?php endif; ?>
+      <?php endif; ?>
+    </div>
+    <div class="restaurant-details-container">
+      <div class="restaurant-details">
+        <ul>
+          <?php if (isset($cooking_type)): ?>
+          <li><span class="info-title"><?php print t('Type de cuisine');?>:</span><p class="info-content"><?php print t($cooking_type); ?></p></li>
+          <?php endif; ?>
+          <?php if (isset($address_full)): ?>
+          <li><span class="info-title"><?php print t('Adresse');?>:</span><p class="info-content"><?php print t($address_full); ?></p></li>
+          <?php endif; ?>
+          <?php if (isset($phone)): ?>
+            <li><span class="info-title"><?php print t('Téléphone');?>:</span><p class="info-content"><?php print $phone; ?></p></li>
+          <?php endif; ?>
+          <?php if (isset($website)): ?>
+            <li><span class="info-title"><?php print t('Internet');?>:</span><p class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></p></li>
+          <?php endif; ?>
+          <?php if (isset($tags)): ?>
+            <?php $n = count($tags); $i=0; ?>
+            <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span><p class="info-content">
+            <?php foreach($tags as $tag): ?><?php print t($tag); $i++; ?> <?php if ($i<$n): ?><?php print '|' ?><?php endif; ?> <?php endforeach; ?></p></li>
+          <?php endif; ?>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
