@@ -657,6 +657,12 @@ p.info-content {
     border: 2px solid $black;
 }
 
+// homepage world view
+div.view-header > div.view-la-liste-country-map {
+    height: 100%;
+    border: 2px solid $black;
+}
+
 /*
  * Site specific Media Queries
  **/
@@ -859,7 +865,7 @@ p.info-content {
         border: 2px solid $black;
         margin-top: 8px !important;
     }
-    #leaflet-map {
+    .content-body #leaflet-map {
         height: 232px !important;
     }
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
@@ -1081,7 +1087,7 @@ p.info-content {
         border: 2px solid $black;
         margin-top: 8px !important;
     }
-    #leaflet-map {
+    .content-body #leaflet-map {
         height: 232px !important;
     }
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
@@ -1293,7 +1299,7 @@ p.info-content {
         border: 2px solid $black;
         margin-top: 8px !important;
     }
-    #leaflet-map {
+    .content-body #leaflet-map {
         height: 232px !important;
     }
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
@@ -1420,7 +1426,7 @@ p.info-content {
         border: 2px solid $black;
         margin-top: 8px !important;
     }
-    #leaflet-map {
+    .content-body #leaflet-map {
         height: 352px !important;
     }
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
@@ -1438,7 +1444,7 @@ p.info-content {
         border: 2px solid $black;
         margin-top: 8px !important;
     }
-    #leaflet-map {
+    .content-body #leaflet-map {
         height: 352px !important;
     }
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
@@ -2004,6 +2010,11 @@ ul.tabs.primary {
     @include justify-content(center);
     width:15%;
     //@include justify-content(space-between);
+}
+
+// worldwide map view height
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div {
+    height: 100% !important;
 }
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
