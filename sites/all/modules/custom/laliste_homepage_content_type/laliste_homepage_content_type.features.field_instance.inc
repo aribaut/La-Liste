@@ -22,7 +22,7 @@ function laliste_homepage_content_type_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'homepage_slider_image',
+          'image_style' => 'full-width_slider_image',
         ),
         'type' => 'image',
         'weight' => 0,
