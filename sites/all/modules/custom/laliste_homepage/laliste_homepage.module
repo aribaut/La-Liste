@@ -40,7 +40,7 @@ function generate_home_highlight_block() {
   <div class='highlight-container'>
     <div class='highlight-title'>".t('PRÉSENTATION')."</div>
     <div class='highlight-content-container'>
-      <div class='highlight-content-column'><p>While it was until recently reserved for an elite, global gastronomy is changing fast. All around the world, it has entered daily life through entertainment and images, while new culinary cultures are emerging constantly, happily renewing the codes of cooking, the world’s “oldest art”. Food guides are the arbiters of good taste and highlight the great gastronomic venues based on various criteria, as well as picking our more modest eateries. Online review sites reveal multiple, and sometimes contradictory, opinions.</p>
+      <div class='highlight-content-column'><p>While it was until recently reserved for an elite, global gastronomy is changing fast. All around the world, it has entered daily life through entertainment and images, while new culinary cultures are emerging constantly, happily renewing the codes of cooking, the world’s “oldest art”.</p>
       </div>
       <div class='highlight-content-column'><p>Happily renewing the codes of cooking, the world’s “oldest art”. Food guides are the arbiters of good taste and highlight the great gastronomic venues based on various criteria, as well as picking our more modest eateries. Online review sites reveal multiple, and sometimes contradictory, opinions.</p>
       </div>
