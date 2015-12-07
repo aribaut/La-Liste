@@ -100,19 +100,19 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'leaflet';
   $handler->display->display_options['style_options']['entity_type'] = 'node';
   $handler->display->display_options['style_options']['data_source'] = 'field_restaurant_position';
   $handler->display->display_options['style_options']['name_field'] = 'title';
   $handler->display->display_options['style_options']['description_field'] = 'score_laliste';
   $handler->display->display_options['style_options']['map'] = 'mapbox-warden';
-  $handler->display->display_options['style_options']['height'] = '842';
+  $handler->display->display_options['style_options']['height'] = '856';
   $handler->display->display_options['style_options']['hide_empty'] = 1;
-  $handler->display->display_options['style_options']['zoom']['initialZoom'] = '3';
-  $handler->display->display_options['style_options']['zoom']['minZoom'] = '3';
-  $handler->display->display_options['style_options']['zoom']['maxZoom'] = '7';
+  $handler->display->display_options['style_options']['zoom']['initialZoom'] = '2';
+  $handler->display->display_options['style_options']['zoom']['minZoom'] = '2';
+  $handler->display->display_options['style_options']['zoom']['maxZoom'] = '5';
   $handler->display->display_options['style_options']['zoom']['scrollWheelZoom'] = 0;
   $handler->display->display_options['style_options']['vector_display']['stroke'] = 0;
   $handler->display->display_options['style_options']['vector_display']['fill'] = 0;
@@ -160,7 +160,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['label'] = '';
   $handler->display->display_options['fields']['score_laliste']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = ' is ranked [rank] with a score of [score_laliste] points';
+  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = ' is in the [rank]th position';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '0';
   /* Contextual filter: Content: Address - Country */
@@ -186,6 +186,16 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'restaurant' => 'restaurant',
   );
+  /* Filter criterion: Content: Position (field_restaurant_position:lat) */
+  $handler->display->display_options['filters']['field_restaurant_position_lat']['id'] = 'field_restaurant_position_lat';
+  $handler->display->display_options['filters']['field_restaurant_position_lat']['table'] = 'field_data_field_restaurant_position';
+  $handler->display->display_options['filters']['field_restaurant_position_lat']['field'] = 'field_restaurant_position_lat';
+  $handler->display->display_options['filters']['field_restaurant_position_lat']['operator'] = 'not empty';
+  /* Filter criterion: Restaurant stats: Rank */
+  $handler->display->display_options['filters']['rank']['id'] = 'rank';
+  $handler->display->display_options['filters']['rank']['table'] = 'restaurant_stats';
+  $handler->display->display_options['filters']['rank']['field'] = 'rank';
+  $handler->display->display_options['filters']['rank']['operator'] = 'not empty';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -199,7 +209,7 @@ function laliste_views_views_default_views() {
     t('Desc'),
     t('.'),
     t(','),
-    t(' is ranked [rank] with a score of [score_laliste] points'),
+    t(' is in the [rank]th position'),
     t('All'),
     t('Block'),
   );
