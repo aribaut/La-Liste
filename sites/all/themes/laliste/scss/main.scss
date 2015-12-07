@@ -1224,7 +1224,7 @@ div.view-header > div.view-la-liste-country-map {
     }
     input.fpage-search-box {
         height: 3.375rem !important;
-        width: 19.3rem !important;
+        width: 24.3rem !important;
     }
     input.fpage-search-icon {
         width: 3.625rem !important;
@@ -2012,12 +2012,6 @@ ul.tabs.primary {
     //@include justify-content(space-between);
 }
 
-// worldwide map view height
-/*
-#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div {
-    height: 100% !important;
-}
-*/
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
     height: 6.875rem;
     margin: 0.1875rem 0;
