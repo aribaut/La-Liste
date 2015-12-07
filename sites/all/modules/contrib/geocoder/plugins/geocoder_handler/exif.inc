@@ -19,10 +19,10 @@ function geocoder_exif($url, $options = array()) {
       return FALSE;
     }
   }
-  
+
   // The user has permission to access the file. Geocode it.
   geophp_load();
-  if ($data = exif_read_data($url)) {
+  if ($data = exif_read_data(file_create_url($url))) {
     if (!isset($data['GPSLatitudeRef'])) return FALSE;
     $lat = geocoder_exif_from($data['GPSLatitudeRef'], $data['GPSLatitude']);
     $lon = geocoder_exif_from($data['GPSLongitudeRef'], $data['GPSLongitude']);
