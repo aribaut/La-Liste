@@ -659,7 +659,7 @@ p.info-content {
 
 // homepage world view
 div.view-header > div.view-la-liste-country-map {
-    height: 100%;
+    height: 100% !important;
     border: 2px solid $black;
 }
 
@@ -2013,10 +2013,11 @@ ul.tabs.primary {
 }
 
 // worldwide map view height
+/*
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div {
     height: 100% !important;
 }
-
+*/
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
     height: 6.875rem;
     margin: 0.1875rem 0;
