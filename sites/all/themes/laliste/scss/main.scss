@@ -238,7 +238,7 @@ strong {
     list-style: none;
     margin: 0;
     padding: 0;
-    justify-content: center;
+    //justify-content: center;
 }
 
 .Grid-cell {
@@ -784,15 +784,11 @@ div.view-header > div.view-la-liste-country-map {
     //homepage search box
     .content-body-home #block-search-form {
         margin: 0 auto !important;
-        width: 20rem !important;
+        width: 24rem !important;
+        padding-left: 1rem;
     }
     #block-views-homepage-slider-block + #block-search-form {
-        position: unset !important;
-        top: unset !important;
-        left: unset !important;
-        right: unset !important;
-        margin: unset !important;
-        width: unset !important;
+        position: inherit !important;
     }
     input.fpage-search-box {
         height: 3.375rem !important;
@@ -997,18 +993,14 @@ div.view-header > div.view-la-liste-country-map {
     /*
     * homepage
     **/
+
     //homepage search box
     .content-body-home #block-search-form {
         margin: 0 auto !important;
-        width: 20rem !important;
+        width: 24rem !important;
     }
     #block-views-homepage-slider-block + #block-search-form {
-        position: unset !important;
-        top: unset !important;
-        left: unset !important;
-        right: unset !important;
-        margin: unset !important;
-        width: unset !important;
+        top: 10.3125rem !important;
     }
     input.fpage-search-box {
         height: 3.375rem !important;
@@ -1027,7 +1019,7 @@ div.view-header > div.view-la-liste-country-map {
         display: inherit !important;
     }
     .highlight-title {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
     }
     .highlight-content-column {
         font-size: 1rem !important;
@@ -1212,28 +1204,23 @@ div.view-header > div.view-la-liste-country-map {
     //homepage search box
     .content-body-home #block-search-form {
         margin: 0 auto !important;
-        width: 20rem !important;
+        width: 32rem !important;
     }
     #block-views-homepage-slider-block + #block-search-form {
-        position: inherit !important;
-        top: inherit !important;
-        left: inherit !important;
-        right: inherit !important;
-        margin: inherit !important;
-        width: inherit !important;
+        position: absolute !important;
+        top: 14rem !important;
     }
     input.fpage-search-box {
-        height: 3.375rem !important;
+        height: 4.375rem !important;
         width: 24.3rem !important;
     }
     input.fpage-search-icon {
-        width: 3.625rem !important;
-        height: 3.375rem !important;
+        width: 4.625rem !important;
+        height: 4.375rem !important;
     }
     input.fpage-search-box, input.other-page-search-box {
         font-size: 1.8rem !important;
     }
-
     //homepage highlight block
     .highlight-container {
         display: inherit !important;
@@ -1409,10 +1396,29 @@ div.view-header > div.view-la-liste-country-map {
     p.info-content {
         padding-left: 8.5625rem !important;
     }
+    //homepage search box
+    .content-body-home #block-search-form {
+        margin: 0 auto !important;
+        width: 50% !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form {
+        position: absolute !important;
+        top: 17.3125rem !important;
+    }
+    input.fpage-search-box {
+        height: 6.375rem !important;
+        width: 33.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 6.625rem !important;
+        height: 6.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box {
+        font-size: 1.8rem !important;
+    }
 
-    //homepage
     .highlight-title {
-        font-size: 3rem  !important;
+        font-size: 2.5rem  !important;
     }
 
     .highlight-content-column {
@@ -1432,6 +1438,13 @@ div.view-header > div.view-la-liste-country-map {
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
         display: none;
     }
+    #block-views-homepage-slider-block + #block-search-form {
+        top: 15.3125rem;
+    }
+    .content-body-home #block-search-form {
+        margin: 0 auto !important;
+        width: 50% !important;
+    }
 }
 
 // 1438 pixels!
@@ -1450,6 +1463,27 @@ div.view-header > div.view-la-liste-country-map {
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
         display: none;
     }
+    //homepage search box
+    .content-body-home #block-search-form {
+        margin: 0 auto !important;
+        width: 37% !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form {
+        position: absolute !important;
+        top: 17.3125rem !important;
+    }
+    input.fpage-search-box {
+        height: 6.375rem !important;
+        width: 33.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 6.625rem !important;
+        height: 6.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box {
+        font-size: 1.8rem !important;
+    }
+
 }
 // END MEDIA QUERIES
 
@@ -1911,28 +1945,27 @@ ul.tabs.primary {
 
 .highlight-container {
     @extend .Grid;
+    @extend .Grid-cell;
 }
 
 .highlight-title {
     @extend .Grid;
     @extend .Grid-cell;
-    @extend .Grid--full;
     @extend .Grid--center;
     @extend .u-small-full;
-    @extend .u-med-1of3;
-    @extend .u-large-1of3;
+    @extend .u-med-1of4;
+    @extend .u-large-1of4;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .highlight-content-container {
     @extend .Grid;
     @extend .Grid-cell;
-    @extend .Grid--full;
     @extend .u-small-full;
-    @extend .u-med-full;
-    @extend .u-large-2of3;
+    @extend .u-med-3of4;
+    @extend .u-large-3of4;
 }
 
 .highlight-content-column {
