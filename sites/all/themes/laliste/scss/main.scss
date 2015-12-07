@@ -591,6 +591,7 @@ header > div.region.region-header {
     @extend .row-height-med;
     @extend .laliste-box;
     background-color: $light_grey;
+    @include justify-content(flex-start);
 }
 
 .restaurant-details-container {
@@ -728,6 +729,14 @@ div.view-header > div.view-la-liste-country-map {
        display: none;
     }
 
+    div.restaurant-rank-big {
+        @include justify-content(center);
+    }
+
+    div.restaurant-rank-big > div > div > img {
+        max-width: 60% !important;
+    }
+
     span.tiny-rank {
         font-size: 0.5rem !important;
     }
@@ -744,8 +753,9 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     p.score {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         padding-bottom: 0.5rem;
+        padding-left: 1.5rem;
      }
 
     .restaurant-address span {
@@ -753,11 +763,11 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     h1#node-title {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
     }
 
     .guide-box {
-        font-size: 0.8rem;
+        font-size: 1rem;
         height: 6.85rem !important;
     }
 
@@ -899,18 +909,21 @@ div.view-header > div.view-la-liste-country-map {
 
     .restaurant-overlay {
         display: block;
-        top: 1.5rem !important;
-        left: 15.625rem !important;
-        width: 42% !important; //nogood
-        height: 85% !important;
+        padding-top: 5% !important;
+        top: 0% !important;
+        left: 24% !important;
+        width: 51% !important; //nogood
+        height: 97% !important;
+        padding: 2rem !important;
     }
 
     .restaurant-rank-big {
         margin: 0.5rem;
     }
 
-    .img.countryicon.iconset-gosquared_flat_large {
-        max-width: 70%; //nogood
+    div.restaurant-rank-big > div > div > img {
+        max-width: 80% !important;
+        padding: 1rem !important;
     }
 
     .restaurant-details {
@@ -960,9 +973,12 @@ div.view-header > div.view-la-liste-country-map {
         padding-bottom: 0.625rem;
     }
 
-    .restaurant-address span {
-        font-size: 0.8rem !important;
-        line-height: 0.9 !important;
+    .restaurant-address {
+        padding-top: 0.4rem !important;
+        span {
+            font-size: 1rem !important;
+            line-height: 1rem !important;
+        }
     }
 
     h1#node-title {
@@ -1119,9 +1135,9 @@ div.view-header > div.view-la-liste-country-map {
         padding-top: 5% !important; //nogood
     }
 
-    .img.countryicon.iconset-gosquared_flat_large {
-        width: 2.8125rem;
-        margin-top: 0.5rem;
+    div.restaurant-rank-big > div > div > img {
+        max-width: 80% !important;
+        padding: 0.25rem !important;
     }
 
     .restaurant-details {
@@ -1344,9 +1360,9 @@ div.view-header > div.view-la-liste-country-map {
         }
     }
 
-    .img.countryicon.iconset-gosquared_flat_large {
-        width: 2.8125rem;
-        margin-top: -0.125rem;
+    div.restaurant-rank-big > div > div > img {
+        max-width: 100% !important;
+        padding: 1rem !important;
     }
 
     .restaurant-user-actions-container p {
@@ -1354,7 +1370,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     p.rank {
-        font-size: 5rem !important;
+        font-size: 4rem !important;
         margin-bottom: -1.875rem;
         position: relative;
         sup {
@@ -1365,7 +1381,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     p.score {
-        font-size: 3.5rem !important;
+        font-size: 2.5rem !important;
         padding-bottom: 0.625rem;
     }
 
@@ -1376,7 +1392,7 @@ div.view-header > div.view-la-liste-country-map {
 
     h1#node-title {
         color: $white;
-        font-size: 3.8rem !important;
+        font-size: 3rem !important;
     }
 
     .guide-box {
@@ -1741,9 +1757,7 @@ div.view-header > div.view-la-liste-country-map {
 
 h1#node-title {
     font-family: "Mrs Eaves Italic", Serif;
-    margin-top: -1%; //nogood
-    margin-bottom: 4%;
-    color: $white;
+    color: $black;
 }
 
 p.rank, p.score {
@@ -1870,6 +1884,7 @@ h2.element-invisible {
 }
 
 .restaurant-overlay {
+display:none !important;
   background-image: url("../img/restaurant-panel-bg.png");
   background-repeat: no-repeat;
   position: absolute;
@@ -1907,7 +1922,6 @@ h2.element-invisible {
 }
 
 img.countryicon.iconset-gosquared_flat_large {
-    margin-top: 12%; //nogood
     max-width: 100%;
     max-height: 100%;
     width: auto;
