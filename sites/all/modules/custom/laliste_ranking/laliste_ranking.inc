@@ -865,6 +865,7 @@ function generate_score($ranking_id, $guide_id, $food, $bonus, $wine, $service, 
       case 'Timeout Abu Dhabi Restaurant Awards':
       case 'Timeout Food Awards Dubai':
       case 'Timeout Israel Eating & Drinking Awards':
+      case 'Timeout Food & Drink Awards Istanbul':
       case 'Timeout KL Food Awards':
       case 'Timeout Melbourne Food Awards':
       case 'Timeout Sidney Food Awards':
