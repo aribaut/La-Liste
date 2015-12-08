@@ -138,6 +138,7 @@ function drush_geocoder_backfill() {
                     if ($entity_type != 'user') {
                       $entity->original = array();
                     }
+                    usleep(200000);
                     entity_save($entity_type, $entity);
                   }
                 }
