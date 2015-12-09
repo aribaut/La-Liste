@@ -706,6 +706,13 @@ div.view-header > div.view-la-liste-country-map {
 // 320px :)
 @media screen and (min-width: 20rem) {
 
+    a.logo {
+        span {
+            font-size: 0.6rem !important;
+            padding-left: 0.4rem !important;
+        }
+    }
+
     .header-main {
         margin-bottom: 0;
     }
@@ -921,6 +928,13 @@ div.view-header > div.view-la-liste-country-map {
 
 // 576px :)
 @media screen and (min-width: 36rem) {
+
+    a.logo {
+        span {
+            font-size: 0.78rem !important;
+            padding-left: 1rem !important;
+        }
+    }
 
     .header-branding {
         @include justify-content(flex-start);
@@ -1151,8 +1165,15 @@ div.view-header > div.view-la-liste-country-map {
     .header-branding {
         @include justify-content(flex-start);
         img {
-            width: 23.3125rem  !important;
-            height: 3.1875rem  !important;
+            width: 405px  !important;
+            height: 89px  !important;
+        }
+    }
+
+    a.logo {
+        span {
+            font-size: 0.993rem !important;
+            padding-left:1.2rem !important;
         }
     }
 
@@ -1366,10 +1387,18 @@ div.view-header > div.view-la-liste-country-map {
     .header-branding {
         @include justify-content(flex-start);
         img {
-            width: 23.4375rem;
-            height: 3.1875rem;
+            width: 405px;
+            height: 89px;
         }
     }
+
+    a.logo {
+        span {
+            font-size: 0.993rem !important;
+            padding-left:1.2rem !important;
+        }
+    }
+
 
     .header-utils {
         @include justify-content(flex-end);
@@ -2324,6 +2353,13 @@ span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosqu
     background: $black;
     a {
         color: $white;
+    }
+}
+
+a.logo {
+    span {
+        font-size: 0.993rem;
+        padding-left:1.2rem;
     }
 }
 

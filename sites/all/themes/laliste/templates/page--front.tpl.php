@@ -74,7 +74,7 @@
 ?>
 <header class="header-main">
   <div class="header-branding">
-    <a href="<?php print url('<front>'); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_header.png'; ?>"></a>
+    <a class="logo" href="<?php print url('<front>'); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_bheader.jpg'; ?>"><br/><span>OBJECTIVELY DELICIOUS &middot; DELICIOUSLY OBJECTIVE</span></a>
   </div>
   <div class="header-utils">
     <?php print render($page['header']); ?>
