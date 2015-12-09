@@ -446,8 +446,8 @@ strong {
     min-height: 100vh;
     padding: 1.5rem;
     padding-top: 0;
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 .content {
@@ -706,6 +706,12 @@ div.view-header > div.view-la-liste-country-map {
 // 320px :)
 @media screen and (min-width: 20rem) {
 
+    .content-body,
+    .content-body-home {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     a.logo {
         span {
             font-size: 0.5rem !important;
@@ -718,6 +724,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     .header-branding {
+        padding-left: 0 !important;
         @include justify-content(center);
         img {
             width: 15rem;
@@ -929,6 +936,12 @@ div.view-header > div.view-la-liste-country-map {
 // 576px :)
 @media screen and (min-width: 36rem) {
 
+    .content-body,
+    .content-body-home {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     a.logo {
         span {
             font-size: 0.79rem !important;
@@ -937,6 +950,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     .header-branding {
+        padding-left: 0 !important;
         @include justify-content(flex-start);
         img {
             width: 20rem;
@@ -1162,7 +1176,14 @@ div.view-header > div.view-la-liste-country-map {
 // 768px
 @media screen and (min-width: 48rem) {
 
+    .content-body,
+    .content-body-home {
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
     .header-branding {
+        padding-left: 2% !important;
         @include justify-content(flex-start);
         img {
             width: 405px  !important;
@@ -1384,7 +1405,14 @@ div.view-header > div.view-la-liste-country-map {
 // 1200 pixels!
 @media screen and (min-width: 75rem) {
 
+    .content-body,
+    .content-body-home {
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
     .header-branding {
+        padding-left: 2.5% !important;
         @include justify-content(flex-start);
         img {
             width: 405px;
@@ -1547,6 +1575,21 @@ div.view-header > div.view-la-liste-country-map {
 
 // 1438 pixels!
 @media screen and (min-width: 89.875rem) {
+
+    .content-body,
+    .content-body-home {
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
+    .header-branding {
+        padding-left: 0 !important;
+        @include justify-content(flex-start);
+        img {
+            width: 405px;
+            height: 89px;
+        }
+    }
 
     .restaurant-overlay {
         top: 15% !important;
