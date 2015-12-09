@@ -32,17 +32,23 @@ function laliste_contexts_context_default_contexts() {
           'region' => 'header',
           'weight' => '-9',
         ),
+        'views-homepage_slider-block' => array(
+          'module' => 'views',
+          'delta' => 'homepage_slider-block',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
         'search-form' => array(
           'module' => 'search',
           'delta' => 'form',
           'region' => 'content',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'laliste_homepage-home_highlight' => array(
           'module' => 'laliste_homepage',
           'delta' => 'home_highlight',
           'region' => 'content',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'views-cbbe77509a0d5dfa927448406b230347' => array(
           'module' => 'views',
@@ -60,6 +66,48 @@ function laliste_contexts_context_default_contexts() {
   t('Default Homepage for LA LISTE');
   t('homepage');
   $export['laliste_layout_homepage_context'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'laliste_layout_liste_node_page_context';
+  $context->description = 'Liste of restaurants';
+  $context->tag = 'layout';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'liste' => 'liste',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'search-form' => array(
+          'module' => 'search',
+          'delta' => 'form',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
+        'locale-language' => array(
+          'module' => 'locale',
+          'delta' => 'language',
+          'region' => 'header',
+          'weight' => '-9',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Liste of restaurants');
+  t('layout');
+  $export['laliste_layout_liste_node_page_context'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
