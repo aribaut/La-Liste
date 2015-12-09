@@ -2355,7 +2355,7 @@ span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosqu
         color: $white;
     }
 }
-
+//body > header > div.header-branding > a > span
 a.logo {
     span {
         font-size: 0.993rem;
@@ -2363,3 +2363,6 @@ a.logo {
     }
 }
 
+a:focus.logo, a:hover.logo {
+    text-decoration: none;
+}
