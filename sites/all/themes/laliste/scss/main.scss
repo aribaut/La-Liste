@@ -874,11 +874,15 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 0.6rem  !important;
     }
 
-    // map
+    // world map
     #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div {
         height: 250px !important;
     }
 
+    // restaurant map
+    .restaurant-info-map {
+        margin-top: 0.125rem;
+    }
     .view-restaurant-map > div.view-content > div {
         height: 200px !important;
     }
@@ -945,13 +949,17 @@ div.view-header > div.view-la-liste-country-map {
 // 576px :)
 @media screen and (min-width: 36rem) {
 
-    // map
+    // world map
     #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div {
-        height: 300px !important;
+        height: 21.875rem !important;
     }
 
+    // restaurant map
+    .restaurant-info-map {
+        margin-top: 0.25rem;
+    }
     .view-restaurant-map > div.view-content > div {
-        height: 300px !important;
+        height: 18.75rem !important;
     }
 
     .content-body,
@@ -1223,6 +1231,13 @@ div.view-header > div.view-la-liste-country-map {
     .laliste-ads, .laliste-nav {
         @include flex(0,0,12rem);
     }
+    // restaurant map
+    .restaurant-info-map {
+        margin-top: 0.5rem;
+    }
+    .view-restaurant-map > div.view-content > div {
+        height: 19rem !important;
+    }
 
     .row-height-med {
         height: 9.375rem !important;
@@ -1313,7 +1328,7 @@ div.view-header > div.view-la-liste-country-map {
 
     .restaurant-info-container > :last-child,
     .restaurant-user-actions-container > :last-child {
-        margin-left: 0.5rem  !important;
+        margin-left: 0  !important;
         margin-right : 0  !important;
     }
 
@@ -1445,9 +1460,15 @@ div.view-header > div.view-la-liste-country-map {
         }
     }
 
-
     .header-utils {
         @include justify-content(flex-end);
+    }
+
+    .restaurant-info-map {
+        margin-top: 0.5rem;
+    }
+    .view-restaurant-map > div.view-content > div {
+        height: 21.875rem !important;
     }
 
     .laliste-ads, .laliste-nav {
@@ -1930,7 +1951,7 @@ p.score {
 
 .restaurant-user-actions-container p,
 .liste-user-action-share p {
-    font-family: "Mrs Eaves Bold Italic", Serif;
+    font-family: "Mrs Eaves Italic", Serif;
 }
 
 sup {
