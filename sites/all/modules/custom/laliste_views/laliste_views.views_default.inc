@@ -107,7 +107,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['data_source'] = 'field_restaurant_position';
   $handler->display->display_options['style_options']['name_field'] = 'title';
   $handler->display->display_options['style_options']['description_field'] = 'score_laliste';
-  $handler->display->display_options['style_options']['map'] = 'mapbox-warden';
+  $handler->display->display_options['style_options']['map'] = 'leaflet-mapbox';
   $handler->display->display_options['style_options']['height'] = '545';
   $handler->display->display_options['style_options']['hide_empty'] = 1;
   $handler->display->display_options['style_options']['zoom']['initialZoom'] = '2';

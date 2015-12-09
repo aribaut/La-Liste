@@ -177,48 +177,21 @@ function laliste_preprocess_node(&$variables) {
       $variables['guides'][$terms[$tid]->name] = $link;
     }
   }
-}
-
-/*
-function laliste_preprocess_views_view_fields(&$vars) {
-  $view = $vars['view'];
-    if($view->name == 'laliste_rr_restaurants_country_winners_view') {
-      foreach ($vars['fields'] as $id => $field) {
-            $field_output = $view->style_plugin->get_field($view->row_index, $id);
-            $class = 'CLASS_NAME';
-            if ($field->handler->options['element_default_classes']) {
-              $class = 'field-content';
-            }
-
-            if ($classes = $field->handler->element_classes($view->row_index)) {
-              if ($class) {
-                $class .= ' ';
-              }
-              $class .=  $classes;
-            }
-
-            $pre = '<' . $field->element_type;
-            if ($class) {
-              $pre .= ' class="' . $class . '"';
-            }
-            $field_output = $pre . '>' . $field_output . '</' . $field->element_type . '>';
-
-          // Protect ourself somewhat for backward compatibility. This will prevent
-          // old templates from producing invalid HTML when no element type is selected.
-          if (empty($field->element_type)) {
-            $field->element_type = 'span';
-          }
-
-          $vars['fields'][$id]->content = $field_output;
-      }
+  elseif($variables['type'] == 'liste') {
+    // let's get the name of the Liste author via a fast SQL all.
+    if(!empty($variables['field_liste_author'][0]['target_id'])) {
+      $variables['liste_author'] = db_query("SELECT name FROM {users} WHERE uid = :uid",
+        array(":uid"=>$variables['field_liste_author'][0]['target_id']))->fetchField();
     }
-}*/
+  }
+}
 
 function laliste_preprocess_views_view_field(&$vars){
      $view = $vars['view'];
      $output = $vars['output'];
      $bool = ( !is_int($output) ? (ctype_digit($output)) : true );
-    if($view->name == 'laliste_rr_restaurants_country_winners_view' && $bool) {
+    if((($view->name == 'laliste_rr_restaurants_country_winners_view') ||
+        ($view->name == 'laliste_liste_restaurants_view')) && $bool) {
       $vars['output'] = t(ordinal($output));
     }
 }

@@ -74,7 +74,7 @@
 ?>
 <header class="header-main">
   <div class="header-branding">
-    <a href="<?php print base_path(); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_header.png'; ?>"></a>
+    <a href="<?php print url('<front>'); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_header.png'; ?>"></a>
   </div>
   <div class="header-utils">
     <?php print render($page['header']); ?>
