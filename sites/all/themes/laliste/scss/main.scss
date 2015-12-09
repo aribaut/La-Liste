@@ -879,6 +879,10 @@ div.view-header > div.view-la-liste-country-map {
         height: 300px !important;
     }
 
+    .view-restaurant-map > div.view-content > div {
+        height: 200px !important;
+    }
+
     //homepage winner view
     .block-views > h2 {
         padding-top: 0 !important;
@@ -889,7 +893,7 @@ div.view-header > div.view-la-liste-country-map {
         display: none !important;
     }
     .laliste-winners-result {
-        height: 3.5rem !important;
+        height: 2rem !important;
     }
     .laliste-winners-title {
         width: 77% !important;//17.675rem
@@ -944,6 +948,10 @@ div.view-header > div.view-la-liste-country-map {
     // map
     #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div {
         height: 400px !important;
+    }
+
+    .view-restaurant-map > div.view-content > div {
+        height: 300px !important;
     }
 
     .content-body,
@@ -1134,7 +1142,7 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 0.7rem !important;
     }
     .laliste-winners-result {
-        height: 3.5rem !important;
+        height: 2.5rem !important;
     }
     div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
         width: 100% !important;//17.675rem
@@ -1363,7 +1371,7 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 1rem !important;
     }
     .laliste-winners-result {
-        height: 5rem !important;
+        height: 4rem !important;
     }
     div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
         width: 100% !important;
@@ -2221,7 +2229,7 @@ div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(n+6),
 div.view-content > div.laliste-winners-result {
-    height: 3.5rem;
+    height: 2.8rem;
     margin: 0;
 }
 
@@ -2304,6 +2312,7 @@ div:nth-child(5) > span.laliste-winners-score-laliste {
 }
 
 // prizes
+/*
 div:nth-child(1) > span.laliste-winners-rank {
   background-image: url("../img/1st_prize.png");
   background-repeat: no-repeat;
@@ -2329,7 +2338,7 @@ div:nth-child(5) > span.laliste-winners-rank {
   background-repeat: no-repeat;
   background-position: 8.75rem 1rem;
 }
-
+*/
 // others winners country flag
 div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
@@ -2340,7 +2349,7 @@ div:nth-child(n+6) > span.laliste-winners-field-address-country-1 {
 // 1st five Winners restaurant title
 div:nth-child(n+6) > span.laliste-winners-title > span > a {
     font-family: "Mrs Eaves Italic", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: $black;
 }
 div:nth-child(n+6) > span.laliste-winners-title {
@@ -2348,12 +2357,12 @@ div:nth-child(n+6) > span.laliste-winners-title {
     padding: 0 2.875rem;
     text-align: left;
     background: $light_grey;
-    height: 3.5rem
+    height: 2.8rem
 }
 div:nth-child(n+6) > span.laliste-winners-score-laliste,
 div:nth-child(n+6) > span.laliste-winners-rank {
     background: $light_grey;
-    height: 3.5rem;
+    height: 2.8rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
