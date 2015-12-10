@@ -100,19 +100,11 @@
   <div class="restaurant-info-right-pane">
     <div class="restaurant-rank-big">
       <div class="restaurant-country">
-        <div class="country"><?php if (isset($country_icon)): ?><?php print $country_icon; ?><?php endif; ?></div>
-        <!--
-        <div class="restaurant-address">
-          <?php if (isset($city)): ?><span><?php print $city; ?></br></span><?php endif; ?>
-          <?php if (isset($country_name)): ?><span><?php print $country_name; ?></span><?php endif; ?>
-        </div>-->
+        <?php if (isset($country_icon)): ?><div class="country simple"><?php print $country_icon; ?></div><?php endif; ?>
+        <?php if (isset($rank)): ?><div class="simple"><p class="rank"><?php print $rank; ?></p></div><?php endif; ?>
+        <?php if (isset($score)): ?><div class="simple"><p class="score"><?php print $score; ?></p></div><?php endif; ?>
       </div>
       <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
-      <?php if (true): ?>
-        <?php if (isset($score)): ?><p class="score"><?php print $score; ?></p><?php endif; ?>
-        <?php if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php endif; ?>
-        <?php if (isset($rank)): ?><p class="rank"><?php print $rank; ?></p><?php endif; ?>
-      <?php endif; ?>
     </div>
     <div class="restaurant-details-container">
       <div class="restaurant-details">
@@ -160,3 +152,10 @@
     <p>Ajouter à ma liste</p>
    </div>
 </div>
+
+        <!--<?php //if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php //endif; ?>-->
+        <!--
+        <div class="restaurant-address">
+          <?php //if (isset($city)): ?><span><?php //print $city; ?></br></span><?php //endif; ?>
+          <?php //if (isset($country_name)): ?><span><?php //print $country_name; ?></span><?php //endif; ?>
+        </div>-->

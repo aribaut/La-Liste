@@ -614,6 +614,19 @@ header > div.region.region-header {
 
 .restaurant-country {
     @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid-cell--center;
+    @include justify-content(center);
+    @include flex-direction(rows);
+}
+
+.simple {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include align-items(baseline);
+    //@include justify-content(flex-start);
+    //@include flex-direction(column);
 }
 
 .restaurant-rank-big {
@@ -626,7 +639,8 @@ header > div.region.region-header {
     @extend .row-height-med;
     @extend .laliste-box;
     background-color: $light_grey;
-    @include justify-content(flex-start);
+    @include justify-content(center);
+    @include flex-direction(column);
 }
 
 .restaurant-details-container {
@@ -737,7 +751,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     .row-height-med {
-        height: 5.625rem;
+        height: 8rem;
     }
 
     .row-height-tall {
@@ -791,22 +805,34 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 0.5rem !important;
     }
 
+    .simple {
+        padding: 0 1rem;
+    }
+
     p.rank {
-        font-size: 2rem;
-        margin-bottom: 0.25rem;
+        font-size: 2.4rem !important;
         position: relative;
+        margin-top: 0.5rem;
         sup {
             position: absolute;
-            font-size: 0.5rem;
-            top: 0.1625rem;
+            font-size: 1rem;
+            top: 0.2rem;
         }
     }
 
     p.score {
-        font-size: 1.3rem;
-        padding-bottom: 0.5rem;
-        padding-left: 1.5rem;
-     }
+        font-size: 1.6rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+        position: relative;
+            sup {
+                position: absolute;
+                font-size: 0.1rem;
+                top: -0.35rem;
+                left: 0;
+                letter-spacing: 0.1rem;
+            }
+    }
 
     .restaurant-address span {
         font-size: 0.6rem !important;
@@ -814,7 +840,7 @@ div.view-header > div.view-la-liste-country-map {
 
     h1#node-title,
     h1#liste-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .guide-box {
@@ -1048,21 +1074,32 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 0.8rem !important;
     }
 
+    .simple {
+        padding: 0 1rem;
+    }
+
     p.rank {
-        font-size: 3rem;
-        padding-bottom: 2rem;
-        margin-bottom: -0.9375rem;
+        font-size: 3rem !important;
         position: relative;
+        margin-top: 0.5rem;
         sup {
             position: absolute;
-            font-size: 1rem;
-            top: 0.1625rem;
+            font-size: 1.2rem;
+            top: 0.6rem;
         }
     }
 
     p.score {
-        font-size: 2rem;
-        padding-bottom: 0.625rem;
+        font-size: 2rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+            sup {
+                position: absolute;
+                font-size: 0.6rem;
+                top: -0.35rem;
+                right: 0.1rem;
+                letter-spacing: 0.1rem;
+            }
     }
 
     .restaurant-address {
@@ -1240,7 +1277,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     .row-height-med {
-        height: 9.375rem !important;
+        height: 10.375rem !important;
     }
 
     .row-height-tall {
@@ -1277,26 +1314,32 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 3rem !important;
     }
 
-    span.tiny-rank {
-        font-size: 1rem !important;
+    .simple {
+        padding: 0 1rem;
     }
 
     p.rank {
-        font-size: 4rem !important;
-        font-weight: 600;
-        margin-bottom: -1.875rem;
+        font-size: 3rem !important;
         position: relative;
+        margin-top: 0.5rem;
         sup {
             position: absolute;
-            font-size: 1.5rem;
-            top: 0.1625rem;
+            font-size: 1.2rem;
+            top: 0.6rem;
         }
     }
 
     p.score {
-        font-size: 2.8rem !important;
-        font-weight: 600;
-        padding-bottom: 0.625rem;
+        font-size: 2rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+            sup {
+                position: absolute;
+                font-size: 0.6rem;
+                top: -0.35rem;
+                right: 0.1rem;
+                letter-spacing: 0.1rem;
+            }
     }
 
     .restaurant-address {
@@ -1480,7 +1523,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     .row-height-med {
-        height: 10.775rem !important;
+        height: 12.775rem !important;
     }
 
     .row-height-tall {
@@ -1498,7 +1541,7 @@ div.view-header > div.view-la-liste-country-map {
     .restaurant-details {
         width: 96%;
         //padding-top: 2.5rem;
-        font-size: 2rem !important;
+        font-size: 1.8rem !important;
         ul {
             margin: 0 0 1.5rem !important;
             li {
@@ -1517,20 +1560,36 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 3rem !important;
     }
 
+    .restaurant-country {
+        margin-top: 0.5rem
+    }
+
+    .simple {
+        padding: 0 1rem;
+    }
+
     p.rank {
         font-size: 4rem !important;
-        margin-bottom: -1.875rem;
         position: relative;
+        margin-top: 0.5rem;
         sup {
             position: absolute;
-            font-size: 2rem;
-            top: 0.1625rem;
+            font-size: 1.2rem;
+            top: 0.6rem;
         }
     }
 
     p.score {
         font-size: 2.5rem !important;
-        padding-bottom: 0.625rem;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+            sup {
+                position: absolute;
+                font-size: 0.8rem;
+                top: -0.3rem;
+                right: 0;
+                letter-spacing: 0.1rem;
+            }
     }
 
     .restaurant-address span {
@@ -1542,6 +1601,7 @@ div.view-header > div.view-la-liste-country-map {
     h1#liste-title {
         color: $white;
         font-size: 3rem !important;
+        padding: 0 0.6rem;
     }
 
     .guide-box {
@@ -1939,6 +1999,9 @@ p.rank, p.score {
 
 p.score {
     color: $gold;
+    sup {
+        color: $black;
+    }
 }
 
 #separator {

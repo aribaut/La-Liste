@@ -111,13 +111,13 @@ function laliste_preprocess_node(&$variables) {
   if($variables['type'] == 'restaurant') {
     // getting restaurant rank & score
      $ranking = db_query("
-      SELECT rank, ROUND(score_laliste,3) as score_laliste FROM {restaurant_stats}
+      SELECT rank, ROUND(score_laliste,2) as score_laliste FROM {restaurant_stats}
       WHERE restaurant_id = ".$variables['nid'])->fetchAssoc();
      if(isset($ranking['rank'])) {
        if($bool = ( !is_int($ranking['rank']) ? (ctype_digit($ranking['rank'])) : true )) {
         $variables['rank'] = t(ordinal($ranking['rank']));
        }
-       $variables['score'] = $ranking['score_laliste'];
+       $variables['score'] = $ranking['score_laliste'] . '<sup>' . t('SCORE') . '/100' . '</sup>';
     }
     // Addresses
     if(!empty($variables['field_address'][0]['thoroughfare'])) {
