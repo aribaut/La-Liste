@@ -57,6 +57,7 @@ $color_cerulean_approx: #00aced;
        url('../fonts/mrs-eaves-bold-italic.ttf') format('truetype');
 }
 
+/*
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.woff2') format('woff2'),
@@ -64,7 +65,7 @@ $color_cerulean_approx: #00aced;
        url('../fonts/fontawesome-webfont.ttf') format('truetype'),
        url('../fonts/fontawesome-webfont.svg') format('svg');
 }
-
+*/
 .u-block {
     display: block !important
 }
@@ -170,16 +171,16 @@ h1 {
     font-weight: 300;
     font-size: 3rem;
     -webkit-font-kerning: normal;
-    letter-spacing: -.015rrem;
+    letter-spacing: -.015rem;
     line-height: 1;
-    margin: .25rem 0 .75rem
+    //margin: .25rem 0 .75rem
 }
 
 // 768px :)
 @media (min-width:48rem) {
     h1 {
         font-size: 2.5rem;
-        margin: .5rem 0 1rem
+        //margin: .5rem 0 1rem
     }
 }
 
@@ -794,11 +795,25 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     div.restaurant-rank-big {
+        position: relative;
         @include justify-content(center);
     }
 
     div.restaurant-rank-big > div > div > img {
         max-width: 60% !important;
+    }
+
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 3rem;
+    }
+    .fa-angle-left {
+        top: 2.5rem;
+        left: 0.4rem;
+    }
+    .fa-angle-right {
+        bottom: 2.5rem;
+        right: 0.4rem;
     }
 
     span.tiny-rank {
@@ -841,6 +856,8 @@ div.view-header > div.view-la-liste-country-map {
     h1#node-title,
     h1#liste-title {
         font-size: 2rem;
+        padding: 0 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .guide-box {
@@ -1043,6 +1060,19 @@ div.view-header > div.view-la-liste-country-map {
         padding: 1rem !important;
     }
 
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 3rem;
+    }
+    .fa-angle-left {
+        top: 2.1rem;
+        left: 0.4rem;
+    }
+    .fa-angle-right {
+        bottom: 2.4rem;
+        right: 0.4rem;
+    }
+
     .restaurant-details {
         font-size: 1.1rem;
         ul {
@@ -1113,6 +1143,8 @@ div.view-header > div.view-la-liste-country-map {
     h1#node-title,
     h1#liste-title {
         font-size: 2rem;
+        padding: 0 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .guide-box {
@@ -1297,6 +1329,19 @@ div.view-header > div.view-la-liste-country-map {
         padding: 0.25rem !important;
     }
 
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 4rem;
+    }
+    .fa-angle-left {
+        top: 3rem;
+        left: 0.4rem;
+    }
+    .fa-angle-right {
+        bottom: 3.4rem;
+        right: 0.4rem;
+    }
+
     .restaurant-details {
         width: 96%;
         padding-top: 1.875rem;
@@ -1348,7 +1393,9 @@ div.view-header > div.view-la-liste-country-map {
 
     h1#node-title,
     h1#liste-title {
-        font-size: 2.6rem !important;
+        font-size: 2.4rem !important;
+        padding: 0 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .guide-box {
@@ -1555,6 +1602,19 @@ div.view-header > div.view-la-liste-country-map {
         padding: 1rem !important;
     }
 
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 5rem;
+    }
+    .fa-angle-left {
+        top: 4rem;
+        left: 1rem;
+    }
+    .fa-angle-right {
+        bottom: 3.75rem;
+        right: 1rem;
+    }
+
     .restaurant-user-actions-container p,
     .liste-user-action-share p {
         font-size: 3rem !important;
@@ -1601,7 +1661,7 @@ div.view-header > div.view-la-liste-country-map {
     h1#liste-title {
         color: $white;
         font-size: 3rem !important;
-        padding: 0 0.6rem;
+        padding: 0 4rem;
     }
 
     .guide-box {
@@ -2511,4 +2571,11 @@ a.logo {
 
 a:focus.logo, a:hover.logo {
     text-decoration: none;
+}
+
+.fa-angle-left,
+.fa-angle-right {
+    position: absolute;
+    color: $gold;
+    font-weight: 100;
 }

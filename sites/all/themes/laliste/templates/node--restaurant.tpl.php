@@ -99,12 +99,14 @@
   </div>
   <div class="restaurant-info-right-pane">
     <div class="restaurant-rank-big">
+    <i class="fa fa-angle-left"></i>
       <div class="restaurant-country">
         <?php if (isset($country_icon)): ?><div class="country simple"><?php print $country_icon; ?></div><?php endif; ?>
         <?php if (isset($rank)): ?><div class="simple"><p class="rank"><?php print $rank; ?></p></div><?php endif; ?>
         <?php if (isset($score)): ?><div class="simple"><p class="score"><?php print $score; ?></p></div><?php endif; ?>
       </div>
       <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
+      <i class="fa fa-angle-right"></i>
     </div>
     <div class="restaurant-details-container">
       <div class="restaurant-details">
