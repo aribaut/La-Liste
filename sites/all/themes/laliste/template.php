@@ -123,10 +123,10 @@ function laliste_preprocess_node(&$variables) {
         SELECT restaurant_id as rid, rank from {restaurant_stats}
         WHERE rank = " . ($ranking['rank']-1) . " OR rank = " . ($ranking['rank']+1) . " ORDER BY rank ASC")->fetchAll();
 
-       if(!empty($prev_next[0]->rid && (isset($prev_next[1]->rank)))) {
+       if((isset($prev_next[0]->rid)) && (!empty($prev_next[0]->rid) && (isset($prev_next[1]->rank)))) {
          $variables['prev_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[0]->rid;
        }
-       if(!empty($prev_next[1]->rid)) {
+       if((isset($prev_next[1]->rid)) && (!empty($prev_next[1]->rid))) {
          $variables['next_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[1]->rid;
        }
 
