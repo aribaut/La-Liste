@@ -70,7 +70,10 @@ function laliste_ranking_update($pro) {
 	}
   // we calculate all the ranks
   $ranks = db_query("
-    SELECT @curRank := @curRank + 1 AS rank, restaurant_id FROM (SELECT @curRank := 0) r, restaurant_stats LEFT JOIN node ON node.nid = restaurant_stats.restaurant_id  WHERE popularity >= 10 ORDER BY score_laliste DESC LIMIT 1000");
+    SELECT (FLOOR( 1 + RAND() *1000 )) AS rank, restaurant_id FROM restaurant_stats LEFT JOIN node ON node.nid = restaurant_stats.restaurant_id  WHERE popularity >= 10 ORDER BY score_laliste DESC LIMIT 1000");
+
+  //
+  // SELECT @curRank := @curRank + 1 AS rank, restaurant_id FROM (SELECT @curRank := 0) r, restaurant_stats LEFT JOIN node ON node.nid = restaurant_stats.restaurant_id  WHERE popularity >= 10 ORDER BY score_laliste DESC LIMIT 1000
   // we update the stats table
   foreach($ranks as $row) {
     db_update('restaurant_stats')
