@@ -118,6 +118,17 @@ function laliste_preprocess_node(&$variables) {
         $variables['rank'] = t(ordinal($ranking['rank']));
        }
        $variables['score'] = $ranking['score_laliste'] . '<sup>' . t('SCORE') . '/100' . '</sup>';
+       // let's populate the previous/next restaurant arrows if current got rank and in the LISTE
+       $prev_next = db_query("
+        SELECT restaurant_id as rid from {restaurant_stats}
+        WHERE rank = " . ($ranking['rank']-1) . " OR rank = " . ($ranking['rank']+1))->fetchAll();
+       if(!empty($prev_next[0]->rid)) {
+         $variables['next_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[0]->rid;
+       }
+       if(!empty($prev_next[1]->rid)) {
+         $variables['prev_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[1]->rid;
+       }
+
     }
     // Addresses
     if(!empty($variables['field_address'][0]['thoroughfare'])) {
