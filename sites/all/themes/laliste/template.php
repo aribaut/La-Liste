@@ -123,10 +123,22 @@ function laliste_preprocess_node(&$variables) {
         SELECT restaurant_id as rid, rank from {restaurant_stats}
         WHERE rank = " . ($ranking['rank']-1) . " OR rank = " . ($ranking['rank']+1) . " ORDER BY rank ASC")->fetchAll();
 
-       if((isset($prev_next[0]->rid)) && (!empty($prev_next[0]->rid) && (isset($prev_next[1]->rank)))) {
+       // first condition
+       if((isset($prev_next[0]->rid)) && (isset($prev_next[1]->rank)) && (!empty($prev_next[0]->rid))) {
          $variables['prev_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[0]->rid;
        }
-       if((isset($prev_next[1]->rid)) && (!empty($prev_next[1]->rid))) {
+       // special case 1
+       elseif($ranking['rank'] == 1) {
+          $variables['prev_link'] = null;
+          $variables['next_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[0]->rid;
+       }
+       // special case 2
+       elseif($ranking['rank'] == 1000) {
+          $variables['prev_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[0]->rid;
+          $variables['next_link'] = null;
+       }
+       // second condition
+       if((isset($prev_next[0]->rid)) && (isset($prev_next[1]->rid)) && (!empty($prev_next[1]->rid))) {
          $variables['next_link'] = $GLOBALS['base_url'].'/node/'.$prev_next[1]->rid;
        }
 
