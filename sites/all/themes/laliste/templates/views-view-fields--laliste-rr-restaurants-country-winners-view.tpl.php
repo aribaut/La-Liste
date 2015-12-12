@@ -29,7 +29,7 @@
     <?php //print $field->label_html; ?>
     <span class='laliste-winners-<?php print $field->class; ?>'>
     <?php if($field->class == 'field-address-country-1'): ?>
-      <a href='country/<?php print $field->raw; ?>/laliste/view'><?php print theme('countryicons_icon', array('code' =>  $field->raw, 'iconset' =>  'gosquared_flat_large')); ?></a>
+      <a href="<?php print $GLOBALS['base_url'] . '/country/' . $field->raw . '/laliste/view'?>"><?php print theme('countryicons_icon', array('code' =>  $field->raw, 'iconset' =>  'gosquared_flat_large')); ?></a>
     <?php else: ?>
       <?php print $field->content; ?>
     <?php endif; ?>

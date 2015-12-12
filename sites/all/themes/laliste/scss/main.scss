@@ -1464,7 +1464,7 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 1.2rem !important;
     }
 
-    //homepage winner view
+    // LA LISTE Winner Views
     .block-views > h2 {
         padding-top: 0 !important;
         font-size: 4rem !important;
@@ -1473,29 +1473,56 @@ div.view-header > div.view-la-liste-country-map {
     .laliste-winners-score-laliste {
         display: inherit !important;
     }
-    div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
-        font-size: 1.5rem !important;
-    }
-    div:nth-child(n+6) > span.laliste-winners-score-laliste > span {
-        font-size: 1rem !important;
-    }
-    .laliste-winners-result {
-        height: 4rem !important;
-    }
-    div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
-        width: 100% !important;
-    }
     .laliste-winners-title {
         width: 64% !important;
         padding: 0 0.875rem !important;
-        span > a {
-            font-size: 2rem !important;
+    }
+    // regular page
+    .content-body div:nth-child(n) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    .content-body div.content > div > div.view-content > div:nth-child(n) {
+        height: 2.5rem !important;
+    }
+    .content-body div.content > div > div.view-content > div:nth-child(n) > span.laliste-winners-title > span > a {
+        font-size: 1.4rem !important;
+    }
+    .content-body div:nth-child(n) > span.laliste-winners-rank {
+        span {
+            font-size: 1.4rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.4rem !important;
+            }
         }
     }
-    div:nth-child(-n+5) > span.laliste-winners-rank{
+    .content-body #block-system-main > div > div > div.view-header {
+        margin-bottom: 1.5rem;
+    }
+    // homepage specifics
+   .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+        font-size: 1.5rem !important;
+    }
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    .content-body-home #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-content > div:nth-child(-n+5) {
+        height: 4rem !important;
+        margin: 0.1875rem 0;
+    }
+    .content-body-home #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-content > div:nth-child(n+6) {
+        height: 2.5rem !important;
+    }
+    .content-body-home div.content > div > div.view-content > div:nth-child(-n+5) > span.laliste-winners-title > span > a {
+        font-size: 2rem !important;
+    }
+    .content-body-home div.content > div > div.view-content > div:nth-child(n+6) > span.laliste-winners-title > span > a {
+        font-size: 1.4rem !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank{
         padding-right: 0 !important;
     }
-    div:nth-child(-n+5) > span.laliste-winners-rank {
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
         span {
             font-size: 3rem !important;
             sup {
@@ -1504,15 +1531,16 @@ div.view-header > div.view-la-liste-country-map {
             }
         }
     }
-    div:nth-child(n+6) > span.laliste-winners-rank {
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-rank {
         span {
-            font-size: 2rem !important;
+            font-size: 1.4rem !important;
             sup {
                 font-size: 0.6rem !important;
-                top: 0.8rem !important;
+                top: 0.4rem !important;
             }
         }
     }
+
     // mapping
     .restaurant-details-container {
         margin: 0;
@@ -2382,52 +2410,39 @@ div.view-content > div.laliste-winners-result {
 }
 
 // 1st five Winners restaurant title
-div:nth-child(-n+5) > span.laliste-winners-title > span > a {
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-title > span > a {
     font-family: "Mrs Eaves Bold", sans-serif;
     font-size: 2.5rem;
     color: $white;
 }
-div:nth-child(-n+5) > span.laliste-winners-title {
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-title {
     padding: 0 2.875rem;
     text-align: left;
     background: $gold;
     height: 6.875rem;
 }
-div:nth-child(-n+5) > span.laliste-winners-score-laliste {
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste {
     background: $gold;
     height: 6.875rem;
 }
 
-div:nth-child(-n+5) > span.laliste-winners-rank {
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
     background: $light_grey;
     height: 6.875rem;
     padding-right: 2rem;
 }
-div > span.laliste-winners-title {
-    //width: 72%;//nogood
-}
-div > span.laliste-winners-score-laliste {
-    //width: 5%;//nogood
-}
-div:nth-child(-n+5) > span.laliste-winners-score-laliste {
+
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste {
     padding-right: 0.625rem
 }
-div:nth-child(n+6) > span.laliste-winners-score-laliste {
+.content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste {
     padding-right: 2.0625rem
 }
-div > span.laliste-winners-rank {
-    //width: 16%;
-    //padding-left: 2.0625rem
-}
-div > span.laliste-winners-field-address-country-1 {
-    //width: 7%;
-}
-// 1st five winners flag
-div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 {
-    //padding: 0 1.6875rem
+.content-body div:nth-child(n) > span.laliste-winners-score-laliste {
+    padding-right: 2.0625rem
 }
 // 1st five winners rank
-div:nth-child(-n+5) > span.laliste-winners-rank > span {
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-rank > span {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
     font-size: 4rem;
@@ -2439,76 +2454,80 @@ div:nth-child(-n+5) > span.laliste-winners-rank > span {
     }
 }
 // 1st five winners score
-div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: bold;
     font-size: 2rem;
     color: $white;
 }
 // hack for winner score proportionnal to div length
-div:nth-child(2) > span.laliste-winners-score-laliste {
+.content-body-home div:nth-child(2) > span.laliste-winners-score-laliste {
     border-right: 0.25rem solid $light_grey;
 }
-div:nth-child(3) > span.laliste-winners-score-laliste {
+.content-body-home div:nth-child(3) > span.laliste-winners-score-laliste {
     border-right: 0.5453125rem solid $light_grey;
 }
-div:nth-child(4) > span.laliste-winners-score-laliste {
+.content-body-home div:nth-child(4) > span.laliste-winners-score-laliste {
     border-right: 0.921875rem solid $light_grey;
 }
-div:nth-child(5) > span.laliste-winners-score-laliste {
+.content-body-home div:nth-child(5) > span.laliste-winners-score-laliste {
     border-right: 1.5359375rem solid $light_grey;
 }
 
-// prizes
-/*
-div:nth-child(1) > span.laliste-winners-rank {
+// prizes icons
+.content-body-home div:nth-child(1) > span.laliste-winners-rank {
   background-image: url("../img/1st_prize.png");
   background-repeat: no-repeat;
-  background-position: 8.125rem 0.875rem;
+  background-position: 8.475rem 0.3rem;
+  background-size: contain;
 }
-div:nth-child(2) > span.laliste-winners-rank {
+.content-body-home div:nth-child(2) > span.laliste-winners-rank {
   background-image: url("../img/2nd_prize.png");
   background-repeat: no-repeat;
-  background-position: 8.625rem 1rem;
+  background-position: 8.625rem 0.3rem;
+  background-size: contain;
 }
-div:nth-child(3) > span.laliste-winners-rank {
+.content-body-home div:nth-child(3) > span.laliste-winners-rank {
   background-image: url("../img/3rd_prize.png");
   background-repeat: no-repeat;
-  background-position: 8.5rem 1rem;
+  background-position: 8.5rem 0.3rem;
+  background-size: contain;
 }
-div:nth-child(4) > span.laliste-winners-rank {
+.content-body-home div:nth-child(4) > span.laliste-winners-rank {
   background-image: url("../img/4th_prize.png");
   background-repeat: no-repeat;
-  background-position: 8.75rem 1rem;
+  background-position: 8.75rem 0.3rem;
+  background-size: contain;
 }
-div:nth-child(5) > span.laliste-winners-rank {
+.content-body-home div:nth-child(5) > span.laliste-winners-rank {
   background-image: url("../img/5th_prize.png");
   background-repeat: no-repeat;
-  background-position: 8.75rem 1rem;
+  background-position: 8.75rem 0.3rem;
+  background-size: contain;
 }
-*/
+
 // others winners country flag
-div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
+.content-body-home div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
 }
-div:nth-child(n+6) > span.laliste-winners-field-address-country-1 {
-    //padding: 0 1rem;
+// all other pages
+.content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > img {
+    max-width: 50%;
 }
-// 1st five Winners restaurant title
-div:nth-child(n+6) > span.laliste-winners-title > span > a {
+// Remaining Winners restaurant title
+.content-body-home div:nth-child(n+6) > span.laliste-winners-title > span > a {
     font-family: "Mrs Eaves Italic", sans-serif;
     font-size: 1.2rem;
     color: $black;
 }
-div:nth-child(n+6) > span.laliste-winners-title {
-    //width: 70%;
+.content-body-home div:nth-child(n+6) > span.laliste-winners-title {
     padding: 0 2.875rem;
     text-align: left;
     background: $light_grey;
     height: 2.8rem
 }
-div:nth-child(n+6) > span.laliste-winners-score-laliste,
-div:nth-child(n+6) > span.laliste-winners-rank {
+.content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste,
+.content-body-home div:nth-child(n+6) > span.laliste-winners-rank {
     background: $light_grey;
     height: 2.8rem;
     font-family: 'Josefin Sans', sans-serif;
@@ -2521,15 +2540,46 @@ div:nth-child(n+6) > span.laliste-winners-rank {
         top: 0.875rem;
     }
 }
-div:nth-child(n+7) > span.laliste-winners-title,
-div:nth-child(n+7) > span.laliste-winners-score-laliste,
-div:nth-child(n+7) > span.laliste-winners-rank {
+.content-body-home div:nth-child(n+7) > span.laliste-winners-title,
+.content-body-home div:nth-child(n+7) > span.laliste-winners-score-laliste,
+.content-body-home div:nth-child(n+7) > span.laliste-winners-rank {
     border-top: 0.0625rem solid $dark_grey;
 }
+// all other pages
+ .content-body div:nth-child(n) > span.laliste-winners-title > span > a {
+    font-family: "Mrs Eaves Italic", sans-serif;
+    font-size: 1.2rem;
+    color: $black;
+}
+.content-body div:nth-child(n) > span.laliste-winners-title {
+    padding: 0 2.875rem;
+    text-align: left;
+    background: $light_grey;
+    height: 2.8rem
+}
+.content-body div:nth-child(n) > span.laliste-winners-score-laliste,
+.content-body div:nth-child(n) > span.laliste-winners-rank {
+    background: $light_grey;
+    height: 2.8rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+    sup {
+        font-size: 0.6rem;
+        position: absolute;
+        top: 0.875rem;
+    }
+}
+.content-body div:nth-child(n+1) > span.laliste-winners-title,
+.content-body div:nth-child(n+1) > span.laliste-winners-score-laliste,
+.content-body div:nth-child(n+1) > span.laliste-winners-rank {
+    border-top: 0.0625rem solid $dark_grey;
+}
+// country flag border
 span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large {
     border: 0.0625rem solid $light_grey;
 }
-
 // end winners view
 
 .flexslider {
@@ -2582,4 +2632,36 @@ a:focus.logo, a:hover.logo {
     position: absolute;
     color: $gold;
     font-weight: 100;
+}
+
+// LA LISTE view page pager
+#block-system-main > div > div > div.item-list {
+    @extend .Grid;
+    margin: 4rem;
+    font-size: 1.4rem;
+}
+#block-system-main > div > div > div.item-list > ul {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(space-around);
+    @include flex-direction(rows);
+    background: $black;
+    padding: 0.5rem 0 0 0.5rem;
+    a, a:active, a:hover, a:focus, a:visited {
+        color: $white;
+    }
+}
+
+
+
+// La LISTE more link homepage
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.more-link {
+    font-size: 1.4rem;
+    margin: 2rem auto;
+    width: 18rem;
+    padding: 1rem;
+    background: $black;
+    a, a:active, a:hover, a:focus, a:visited {
+        color: $white;
+    }
 }
