@@ -116,7 +116,7 @@
   <?php //print render($page['footer']); ?>
     <a class="footer-link" href="#">À&nbsp;PROPOS</a>
     <a class="footer-link" href="#">L'ÉQUIPE</a>
-    <a class="footer-link" href="#">CONTACT</a>
+    <a class="footer-link" href="mailto:contact@laliste.com?subject=Contact%20from%20laliste.com">CONTACT</a>
     <a class="footer-link" href="#">FAQ</a>
   </div>
 </footer>

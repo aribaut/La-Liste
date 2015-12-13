@@ -44,6 +44,8 @@ function generate_home_highlight_block() {
       </div>
       <div class='highlight-content-column'><p>Happily renewing the codes of cooking, the world’s “oldest art”. Food guides are the arbiters of good taste and highlight the great gastronomic venues based on various criteria, as well as picking our more modest eateries. Online review sites reveal multiple, and sometimes contradictory, opinions.</p>
       </div>
+      <div class='highlight-content-column'><p>Happily renewing the codes of cooking, the world’s “oldest art”. Food guides are the arbiters of good taste and highlight the great gastronomic venues based on various criteria, as well as picking our more modest eateries. Online review sites reveal multiple, and sometimes contradictory, opinions.</p>
+      </div>
   </div>";
   return $block;
 }
