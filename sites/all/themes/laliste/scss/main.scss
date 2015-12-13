@@ -2024,7 +2024,11 @@ div.view-header > div.view-la-liste-country-map {
         width: 39.2% !important
     }
 
-    .u-large-1of3, .u-large-2of3 {
+    .u-large-33 {
+        width: 33% !important
+    }
+
+    .u-large-1of3, .u-large-2of3, .u-large-33 {
         -webkit-box-flex: 0 !important;
         -webkit-flex: none !important;
         -ms-flex: none !important;
@@ -2071,7 +2075,11 @@ div.view-header > div.view-la-liste-country-map {
         width: 40% !important
     }
 
-    .u-large-1of3, .u-large-2of3 {
+    .u-large-33 {
+        width: 33% !important
+    }
+
+    .u-large-1of3, .u-large-2of3, .u-large-33 {
         -webkit-box-flex: 0 !important;
         -webkit-flex: none !important;
         -ms-flex: none !important;
@@ -2333,8 +2341,8 @@ ul.tabs.primary {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .u-small-full;
-    @extend .u-med-3of4;
-    @extend .u-large-3of4;
+    @extend .u-med-full;
+    @extend .u-large-full;
 }
 
 .highlight-content-column {
@@ -2343,7 +2351,7 @@ ul.tabs.primary {
     @extend .Grid--justifyCenter;
     @extend .u-small-full;
     @extend .u-med-full;
-    @extend .u-large-1of2;
+    @extend .u-large-33;
     background: $black;
     color: $white;
     font-family: "Mrs Eaves Italic", Serif;
