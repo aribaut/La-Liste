@@ -515,7 +515,7 @@ header > div.region.region-header {
 }
 
 #page-title {
-    margin-top: 4rem;
+    //margin-top: 4rem;
 }
 
 .node-page > div > div > p {
@@ -881,7 +881,8 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     h1#node-title,
-    h1#liste-title {
+    h1#liste-title,
+    h1#page-title {
         font-size: 2rem;
         padding: 0 2.5rem;
         margin-bottom: 1rem;
@@ -902,6 +903,10 @@ div.view-header > div.view-la-liste-country-map {
 
     a.footer-link {
         font-size: 1rem;
+    }
+
+    a.sub-footer-link {
+        font-size: 0.6rem;
     }
 
     p.info-content {
@@ -960,7 +965,7 @@ div.view-header > div.view-la-liste-country-map {
     //homepage winner view
     .content-body-home .block-views > h2 {
         padding-top: 0 !important;
-        font-size: 3rem !important;
+        font-size: 2.1rem !important;
         height: 100% !important;
     }
     .laliste-winners-score-laliste {
@@ -971,9 +976,9 @@ div.view-header > div.view-la-liste-country-map {
     }
     .laliste-winners-title {
         width: 77% !important;//17.675rem
-        padding: 0 0.875rem !important;
+        padding: 0 0.475rem !important;
         span > a {
-            font-size: 1.2rem !important;
+            font-size: 1.1rem !important;
             span.field-localization  {
                 display:none !important;
             }
@@ -1011,8 +1016,9 @@ div.view-header > div.view-la-liste-country-map {
         padding: 0.5rem !important;
     }
     // pager page view
-    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
-        font-size: 0.8rem !important;
+    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
+    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list ul li.pager-current {
+        font-size: 0.9rem !important;
     }
     // mapping
     .restaurant-details-container {
@@ -1182,7 +1188,8 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     h1#node-title,
-    h1#liste-title {
+    h1#liste-title,
+    h1#page-title {
         font-size: 2rem;
         padding: 0 2.5rem;
         margin-bottom: 1rem;
@@ -1204,6 +1211,11 @@ div.view-header > div.view-la-liste-country-map {
     .footer-main {
         height: 12.5rem;
     }
+
+    a.sub-footer-link {
+        font-size: 0.8rem;
+    }
+
 
     p.info-content {
         padding-left: 5rem !important;
@@ -1449,7 +1461,8 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     h1#node-title,
-    h1#liste-title {
+    h1#liste-title,
+    h1#page-title {
         font-size: 2.4rem !important;
         padding: 0 2.5rem;
         margin-bottom: 1rem;
@@ -1466,6 +1479,10 @@ div.view-header > div.view-la-liste-country-map {
 
     .footer-main {
         height: 18.75rem  !important;
+    }
+
+    a.sub-footer-link {
+        font-size: 1rem;
     }
 
     .restaurant-info-container > :first-child,
@@ -1567,7 +1584,7 @@ div.view-header > div.view-la-liste-country-map {
         height: 2.5rem !important;
     }
     .content-body-home div.content > div > div.view-content > div:nth-child(-n+5) > span.laliste-winners-title > span > a {
-        font-size: 2rem !important;
+        font-size: 1.6rem !important;
     }
     .content-body-home div.content > div > div.view-content > div:nth-child(n+6) > span.laliste-winners-title > span > a {
         font-size: 1.4rem !important;
@@ -1743,7 +1760,8 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     h1#node-title,
-    h1#liste-title {
+    h1#liste-title,
+    h1#page-title {
         color: $white;
         font-size: 3rem !important;
         padding: 0 4rem;
@@ -1797,6 +1815,10 @@ div.view-header > div.view-la-liste-country-map {
     // mapping
     .restaurant-details-container {
         margin: 0;
+    }
+    // view title
+    .content-body-home .block-views > h2 {
+        font-size: 5rem !important;
     }
     .field-restaurant-position {
         border: 2px solid $black;
@@ -2139,7 +2161,8 @@ div.view-header > div.view-la-liste-country-map {
 
 
 h1#node-title,
-h1#liste-title
+h1#liste-title,
+h1#page-title
  {
     font-family: "Mrs Eaves Italic", Serif;
     color: $black;
@@ -2381,7 +2404,7 @@ ul.tabs.primary {
     @extend .u-large-33;
     background: $black;
     color: $white;
-    font-family: "Mrs Eaves Italic", Serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-size: 1.3rem;
     padding: 1.25rem;
     text-align: justify;
@@ -2401,7 +2424,7 @@ ul.tabs.primary {
 .content-body-home .block-views > h2 {
     padding-top: 1rem;
     font-family: "Mrs Eaves Italic", Serif;
-    font-size: 5rem !important;
+    font-size: 5rem;
     color: $dark_grey;
     background: $light_grey;
     font-weight: 100;
@@ -2427,6 +2450,7 @@ ul.tabs.primary {
     @extend .Grid-cell;//
     @include justify-content(flex-start);
     @include align-items(center);
+    text-align: center;
     width: 8%;
 }
 
@@ -2705,7 +2729,7 @@ a:focus.logo, a:hover.logo {
 div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
     @extend .Grid;
     margin: 0rem;
-    font-size: 1rem !important;
+    font-size: 1rem;
     ul {
         @extend .Grid;
         @extend .Grid-cell;
@@ -2719,7 +2743,7 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
             color: $white;
         }
         li.pager-current {
-            font-size: 1.3rem !important;
+            font-size: 1.2rem;
             font-weight: bold;
             text-decoration: underline;
         }

@@ -115,7 +115,7 @@
   <div class="footer-container">
   <?php //print render($page['footer']); ?>
     <a class="footer-link" href="/about"><?php print t('ABOUT'); ?></a>
-    <a class="footer-link" href="/our-team"><?php print t('OUR TEAM'); ?></a>
+    <a class="footer-link" href="/our-team"><?php print t('TEAM'); ?></a>
     <a class="footer-link" href="mailto:contact@laliste.com?subject=Contact%20from%20laliste.com"><?php print t('CONTACT'); ?></a>
     <a class="footer-link" href="#"><?php print t('FAQ'); ?></a>
   </div>
