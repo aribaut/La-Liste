@@ -1264,6 +1264,8 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
   $handler->display->display_options['fields']['field_address_locality']['label'] = '';
   $handler->display->display_options['fields']['field_address_locality']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_address_locality']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_address_locality']['alter']['text'] = '<span class="field-localization">   - [field_address_locality]</span>';
   $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_locality']['element_default_classes'] = FALSE;
   /* Field: Content: Title */
@@ -1272,7 +1274,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '[title]     <span class="field-localization">   - [field_address_locality]</span>';
+  $handler->display->display_options['fields']['title']['alter']['text'] = '[title]     [field_address_locality]';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Restaurant stats: Score laliste */
   $handler->display->display_options['fields']['score_laliste']['id'] = 'score_laliste';
@@ -1380,7 +1382,8 @@ function laliste_views_views_default_views() {
     t('There is no data in this table.'),
     t('Country'),
     t('France'),
-    t('[title]     <span class="field-localization">   - [field_address_locality]</span>'),
+    t('<span class="field-localization">   - [field_address_locality]</span>'),
+    t('[title]     [field_address_locality]'),
     t('Score laliste'),
     t('.'),
     t(','),

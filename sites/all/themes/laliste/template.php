@@ -370,3 +370,24 @@ function laliste_pager_link($variables) {
     return theme_pager_link($variables);
   }
 }
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function laliste_views_pre_render($view) {
+  if ($view->name == 'laliste_rr_restaurants_country_winners_view') {
+    if ($view->current_display == 'page_1') {
+      if(isset($view->args[0])) {
+        if($view->args[0] != 'world') {
+          include_once DRUPAL_ROOT . '/includes/locale.inc';
+          $country_names = country_get_list();
+          $country = $country_names[$view->args[0]];
+          $view->set_title(t('Restaurants in') . ' ' . t($country));
+        }
+        else {
+          $view->set_title(t('Restaurants') . ' ' . t('Worldwide'));
+        }
+      }
+    }
+  }
+}
