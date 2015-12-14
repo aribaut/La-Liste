@@ -231,7 +231,7 @@ function ordinal($number) {
 
 function laliste_pager($variables) {
   // only customize pager for country page view
-  if(strpos(current_path(),'country/') !== FALSE) {
+  if(strpos(current_path(),'country/world') !== FALSE) {
     $tags = $variables['tags'];
     $element = $variables['element'];
     $parameters = $variables['parameters'];
@@ -357,7 +357,7 @@ function laliste_pager($variables) {
 
 function laliste_pager_link($variables) {
   // only customize pager for country page view
-  if(strpos(current_path(),'country/') !== FALSE) {
+  if(strpos(current_path(),'country/world') !== FALSE) {
     $text = $variables['text'];
     // we customize the view pager output
     switch ($text) {
