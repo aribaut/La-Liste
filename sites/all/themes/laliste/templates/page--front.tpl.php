@@ -121,6 +121,6 @@
   </div>
   <div class="sub-footer">
     <a class="sub-footer-link" href="/privacy-notice"><?php print t('PRIVACY NOTICE'); ?></a>
-    <a class="sub-footer-link" href="/condition-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
+    <a class="sub-footer-link" href="/conditions-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
   </div>
 </footer>
