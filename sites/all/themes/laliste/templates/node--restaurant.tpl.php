@@ -151,7 +151,7 @@
     <p>Share</p>
    </div>
    <div class="restaurant-user-action-add-list">
-    <p>Add to my Liste</p>
+    <p>See International Advisors</p>
    </div>
 </div>
 
