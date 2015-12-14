@@ -112,20 +112,20 @@
       <div class="restaurant-details">
         <ul>
           <?php if (isset($cooking_type)): ?>
-          <li><span class="info-title"><?php print t('Type de cuisine');?>:</span><p class="info-content"><?php print t($cooking_type); ?></p></li>
+          <li><span class="info-title"><?php print t('Cooking Type');?>:</span><p class="info-content"><?php print t($cooking_type); ?></p></li>
           <?php endif; ?>
           <?php if (isset($address_full)): ?>
-          <li><span class="info-title"><?php print t('Adresse');?>:</span><p class="info-content"><?php print t($address_full); ?></p></li>
+          <li><span class="info-title"><?php print t('Address');?>:</span><p class="info-content"><?php print t($address_full); ?></p></li>
           <?php endif; ?>
           <?php if (isset($phone)): ?>
-            <li><span class="info-title"><?php print t('Téléphone');?>:</span><p class="info-content"><?php print $phone; ?></p></li>
+            <li><span class="info-title"><?php print t('Phone');?>:</span><p class="info-content"><?php print $phone; ?></p></li>
           <?php endif; ?>
           <?php if (isset($website)): ?>
             <li><span class="info-title"><?php print t('Internet');?>:</span><p class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></p></li>
           <?php endif; ?>
           <?php if (isset($tags)): ?>
             <?php $n = count($tags); $i=0; ?>
-            <li><span class="info-title"><?php print t('Mots-Clefs');?>:</span><p class="info-content">
+            <li><span class="info-title"><?php print t('Keywords');?>:</span><p class="info-content">
             <?php foreach($tags as $tag): ?><?php print t($tag); $i++; ?> <?php if ($i<$n): ?><?php print '|' ?><?php endif; ?> <?php endforeach; ?></p></li>
           <?php endif; ?>
         </ul>
@@ -148,10 +148,10 @@
 </div>
 <div class="restaurant-user-actions-container">
    <div class="restaurant-user-action-share">
-    <p>Partager</p>
+    <p>Share</p>
    </div>
    <div class="restaurant-user-action-add-list">
-    <p>Ajouter à ma liste</p>
+    <p>Add to my Liste</p>
    </div>
 </div>
 

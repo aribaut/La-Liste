@@ -608,6 +608,7 @@ header > div.region.region-header {
     height: 100%;
     @include justify-content(flex-start);
     margin: 0.5rem 0;
+    text-align: center;
 }
 
 .guide-box {
