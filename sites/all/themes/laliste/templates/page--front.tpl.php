@@ -114,9 +114,13 @@
 <footer class="footer-main">
   <div class="footer-container">
   <?php //print render($page['footer']); ?>
-    <a class="footer-link" href="#">À&nbsp;PROPOS</a>
-    <a class="footer-link" href="#">L'ÉQUIPE</a>
-    <a class="footer-link" href="mailto:contact@laliste.com?subject=Contact%20from%20laliste.com">CONTACT</a>
-    <a class="footer-link" href="#">FAQ</a>
+    <a class="footer-link" href="/about"><?php print t('ABOUT'); ?></a>
+    <a class="footer-link" href="/our-team"><?php print t('OUR TEAM'); ?></a>
+    <a class="footer-link" href="mailto:contact@laliste.com?subject=Contact%20from%20laliste.com"><?php print t('CONTACT'); ?></a>
+    <a class="footer-link" href="#"><?php print t('FAQ'); ?></a>
+  </div>
+  <div class="sub-footer">
+    <a class="sub-footer-link" href="/privacy-notice"><?php print t('PRIVACY NOTICE'); ?></a>
+    <a class="sub-footer-link" href="/condition-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
   </div>
 </footer>

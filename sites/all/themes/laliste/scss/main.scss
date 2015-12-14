@@ -436,8 +436,21 @@ strong {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
-    @extend .Grid--1of4;
+    //@extend .Grid--1of4;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
     @include justify-content(space-around);
+}
+
+.sub-footer {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    @include justify-content(center);
 }
 
 .content-body,
@@ -498,7 +511,21 @@ header > div.region.region-header {
 .content-container {
     max-width: 88rem;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
+}
+
+#page-title {
+    margin-top: 4rem;
+}
+
+.node-page > div > div > p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.node-page > div > div > ul {
+    font-size: 1.2rem;
+    list-style: square outside none;
 }
 
 .restaurant-top-section {
@@ -1491,7 +1518,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     // LA LISTE Winner Views
-    .block-views > h2 {
+    .content-body-home .block-views > h2 {
         padding-top: 0 !important;
         font-size: 4rem !important;
         height: 100% !important;
@@ -2371,15 +2398,15 @@ ul.tabs.primary {
     margin-top: 1.25rem;
 }
 
-.block-views > h2 {
+.content-body-home .block-views > h2 {
     padding-top: 1rem;
     font-family: "Mrs Eaves Italic", Serif;
-    font-size: 5rem;
+    font-size: 5rem !important;
     color: $dark_grey;
     background: $light_grey;
     font-weight: 100;
     margin: 0;
-    height: 9.5rem;
+    text-align: center;
 }
 
 .view-content {
@@ -2705,6 +2732,7 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
     margin: 1rem auto;
     width: 18rem;
     padding: 1rem;
+    text-align: center;
     background: $black;
     a, a:active, a:hover, a:focus, a:visited {
         color: $white;

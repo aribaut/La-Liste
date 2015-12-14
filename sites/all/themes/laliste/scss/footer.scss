@@ -23,6 +23,13 @@ a.footer-link {
     padding: 10px;
 }
 
+a.sub-footer-link {
+    font-size: 1em;
+    font-weight: 600;
+    color: #5d5d5d;
+    padding: 0.5rem;
+}
+
 .Footer a:active, .Footer a:focus, .Footer a:hover {
     color: #5d5d5d;
     text-decoration: underline
