@@ -148,10 +148,10 @@
 </div>
 <div class="restaurant-user-actions-container">
    <div class="restaurant-user-action-share">
-    <div class="restaurant-user-action-row ">
+    <div class="restaurant-user-action-row1">
       <p>Share</p>
     </div>
-    <div class="restaurant-user-action-row ">
+    <div class="restaurant-user-action-row2">
       <?php print render($content['addtoany']); ?>
     </div>
    </div>
