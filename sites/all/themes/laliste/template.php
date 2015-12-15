@@ -64,6 +64,9 @@ function laliste_preprocess_block(&$vars) {
   if ($vars['block']->delta == 'login') {
     $vars['theme_hook_suggestions'][] = 'block__no_title';
   }
+  if ($vars['elements']['#block']->delta == 'language') {
+    $vars['elements']['#block']->subject = NULL;
+  }
 }
 
 /**
@@ -389,5 +392,16 @@ function laliste_views_pre_render($view) {
         }
       }
     }
+  }
+}
+
+/**
+ * 2 letters language instead of full language name.
+ * Implements hook_language_switch_links_alter().
+ */
+
+function laliste_language_switch_links_alter(array &$links, $type, $path) {
+  foreach($links as $key => $link) {
+    $links[$key]['title'] = strtoupper($link['language']->language);
   }
 }

@@ -2242,7 +2242,7 @@ input.fpage-search-box,
 input.other-page-search-box {
     font-family: 'Mrs Eaves Italic';
     font-size:1.75rem;
-    padding-left: 0.4rem;
+    padding-left: 1rem;
     padding-right: 1.8rem;
     background: $white;
     border: 0;
@@ -2859,3 +2859,15 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
     }
 }
 
+//language selector
+#block-locale-language > div.content > ul > li {
+    display: inline-block;
+}
+
+#block-locale-language > div.content > ul > li.active > a {
+    text-decoration: underline;
+}
+
+#block-locale-language > div.content > ul > li > a:hover {
+    text-decoration: none;
+}
