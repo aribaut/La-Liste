@@ -44,18 +44,18 @@ function generate_home_methodology_block(){
   $block['content'] = "
   <div class='method-container'>
     <div class='method-main-title'>".t('Our Method')."</div>
-    <div class='method-content-block1'>".t('While it was until recently reserved for an elite, global gastronomy is changing fast. All around the world, it has entered daily life through entertainment and images, while new culinary cultures are emerging constantly, happily renewing the codes of cooking, the world’s “oldest art”')."
+    <div class='method-content-block'>".t('While it was until recently reserved for an elite, global gastronomy is changing fast. All around the world, it has entered daily life through entertainment and images, while new culinary cultures are emerging constantly, happily renewing the codes of cooking, the world’s “oldest art”')."
     </div>
     <div class='method-title method-experts'>".t('Our Experts')."</div>
-    <div class='method-content-block2'>
+    <div class='method-content-block'>
       <img src='".base_path().path_to_theme().'/img/our-experts.png'."' alt=''>
     </div>
     <div class='method-title method-algorithm'>".t('Our Algorithm')."</div>
-    <div class='method-content-block3'>
+    <div class='method-content-block'>
       <img src='".base_path().path_to_theme().'/img/our-algorithm.png'."' alt=''>
     </div>
     <div class='method-title method-liste'>".t('Our Liste')."</div>
-    <div class='method-content-block4'>
+    <div class='method-content-block'>
       <img src='".base_path().path_to_theme().'/img/our-liste.png'."' alt=''>
     </div>
   </div>
