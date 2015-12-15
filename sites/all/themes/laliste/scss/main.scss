@@ -2767,10 +2767,10 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
 // our method home block
 .method-container {
     @extend .Grid;
-    @extend .Grid-cell;
     text-align: center;
     margin : 3rem auto;
     width: 36rem;
+    @include flex-direction(column);
 }
 
 .method-main-title,
@@ -2778,12 +2778,17 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
+    @extend .Grid--full;
     color: $dark_grey;
     font-family: 'Mrs Eaves Italic', sans-serif;
     font-size: 3rem;
 }
 
 .method-content-block {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--full;
     font-size: 1.3rem;
 }
 
