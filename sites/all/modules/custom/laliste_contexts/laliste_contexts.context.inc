@@ -56,12 +56,6 @@ function laliste_contexts_context_default_contexts() {
           'region' => 'content',
           'weight' => '-7',
         ),
-        'laliste_homepage-home_methodology' => array(
-          'module' => 'laliste_homepage',
-          'delta' => 'home_methodology',
-          'region' => 'content',
-          'weight' => '-6',
-        ),
       ),
     ),
   );
@@ -72,6 +66,48 @@ function laliste_contexts_context_default_contexts() {
   t('Default Homepage for LA LISTE');
   t('homepage');
   $export['laliste_layout_homepage_context'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'laliste_layout_liste_node_page_context';
+  $context->description = 'Liste of restaurants';
+  $context->tag = 'layout';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'liste' => 'liste',
+      ),
+      'options' => array(
+        'node_form' => '0',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'search-form' => array(
+          'module' => 'search',
+          'delta' => 'form',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
+        'locale-language' => array(
+          'module' => 'locale',
+          'delta' => 'language',
+          'region' => 'header',
+          'weight' => '-9',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Liste of restaurants');
+  t('layout');
+  $export['laliste_layout_liste_node_page_context'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
@@ -114,6 +150,39 @@ function laliste_contexts_context_default_contexts() {
   t('Provides a layout for a restaurant node');
   t('layout');
   $export['laliste_layout_restaurant_node_page_context'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'laliste_layout_sitewide_context';
+  $context->description = 'Sitewide context';
+  $context->tag = 'layout';
+  $context->conditions = array(
+    'sitewide' => array(
+      'values' => array(
+        1 => 1,
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'locale-language' => array(
+          'module' => 'locale',
+          'delta' => 'language',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Sitewide context');
+  t('layout');
+  $export['laliste_layout_sitewide_context'] = $context;
 
   return $export;
 }

@@ -72,6 +72,18 @@ function laliste_contexts_field_default_field_instances() {
         'type' => 'geofield_leaflet',
         'weight' => 11,
       ),
+      'search_index' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),

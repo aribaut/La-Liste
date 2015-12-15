@@ -24,6 +24,18 @@ function laliste_rr_ct_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'search_index' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -73,6 +85,30 @@ function laliste_rr_ct_field_default_field_instances() {
         ),
         'type' => 'addressfield_default',
         'weight' => 3,
+      ),
+      'search_index' => array(
+        'label' => 'hidden',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            'address' => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 1,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -124,6 +160,18 @@ function laliste_rr_ct_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 5,
       ),
+      'search_index' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -164,6 +212,18 @@ function laliste_rr_ct_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 7,
       ),
+      'search_index' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -203,6 +263,20 @@ function laliste_rr_ct_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 0,
+      ),
+      'search_index' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -248,6 +322,18 @@ function laliste_rr_ct_field_default_field_instances() {
         'type' => 'list_default',
         'weight' => 9,
       ),
+      'search_index' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -282,6 +368,20 @@ function laliste_rr_ct_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+      'search_index' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
@@ -333,6 +433,28 @@ function laliste_rr_ct_field_default_field_instances() {
         ),
         'type' => 'flexslider',
         'weight' => 10,
+      ),
+      'search_index' => array(
+        'label' => 'hidden',
+        'module' => 'flexslider_fields',
+        'settings' => array(
+          'caption' => '',
+          'image_style' => 'media_thumbnail',
+          'optionset' => 'default',
+        ),
+        'type' => 'flexslider',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'flexslider_fields',
+        'settings' => array(
+          'caption' => '',
+          'image_style' => 'medium',
+          'optionset' => 'default',
+        ),
+        'type' => 'flexslider',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -395,6 +517,20 @@ function laliste_rr_ct_field_default_field_instances() {
         'type' => 'i18n_taxonomy_term_reference_link',
         'weight' => 8,
       ),
+      'search_index' => array(
+        'label' => 'hidden',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -434,6 +570,20 @@ function laliste_rr_ct_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_url',
         'weight' => 1,
+      ),
+      'search_index' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_url',
+        'weight' => 3,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_url',
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
