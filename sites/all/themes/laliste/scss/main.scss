@@ -2399,8 +2399,8 @@ ul.tabs.primary {
     @extend .Grid-cell;
     @extend .Grid--center;
     @extend .u-small-full;
-    @extend .u-med-1of4;
-    @extend .u-large-1of4;
+    @extend .u-med-1of2;
+    @extend .u-large-1of2;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
     font-size: 2rem;
@@ -2421,13 +2421,13 @@ ul.tabs.primary {
     @extend .u-small-full;
     @extend .u-med-full;
     @extend .u-large-33;
-    background: $black;
-    color: $white;
+    background: $gold_darker1;
+    color: $light_grey;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1.3rem;
     padding: 1.25rem;
     text-align: justify;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 

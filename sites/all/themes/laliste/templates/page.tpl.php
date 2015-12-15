@@ -78,7 +78,7 @@
   </div>
   <div class="header-utils">
     <?php if (isset($tabs)): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-    <?php //print render($page['header']); ?>
+    <?php print render($page['header']); ?>
   </div>
 </header>
 <main class="content-body">
