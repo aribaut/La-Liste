@@ -73,11 +73,11 @@ function generate_home_highlight_block() {
     <div class='highlight-container'>
       <div class='highlight-title'>".t('Welcome To Your Global Table !')."</div>
       <div class='highlight-content-container'>
-        <div class='highlight-content-column'><p>Culinary Connoisseurs Of All Countries and Creeds, your search for exceptional experiences around the world starts at LA LISTE. Food is a global obsession. Every year, experts and amateurs create and publish millions of restaurant reviews.</p>
+        <div class='highlight-content-column'><p>Culinary Connoisseurs Of All Countries and Creeds, your search for exceptional experiences around the world starts at LA LISTE. Food is a global obsession. Every year, experts and amateurs create and publish millions of restaurant reviews. LA LISTE uses score averaging and semantic</p>
         </div>
-        <div class='highlight-content-column'><p>LA LISTE uses score averaging and semantic analysis to keep up, analyzing hundreds of food guides, review sites, gourmet blogs, social media, and major national and local publications in 48 countries. The result is LA LISTE: 1,000 Outstanding Restaurants highlighting most-loved food destinations worldwide.</p>
+        <div class='highlight-content-column'><p>analysis to keep up, analyzing hundreds of food guides, review sites, gourmet blogs, social media, and major national and local publications in 48 countries. The result is LA LISTE: 1,000 Outstanding Restaurants highlighting most-loved food destinations worldwide. At the heart of our rankings is an</p>
         </div>
-        <div class='highlight-content-column'><p>At the heart of our rankings is a comprehensive algorithm that quantifies the epicurian pleasure experienced by critics and diners like you - because &laquo; gastronomy is the art of using food to create happiness &raquo;. We believe that numbers speak for themselves, and we are here to translate them into a universal language for gourmands everywhere.</p>
+        <div class='highlight-content-column'><p> algorithm that quantifies the epicurian pleasure experienced by critics and diners like you - because &laquo; gastronomy is the art of using food to create happiness &raquo;. We believe that numbers speak for themselves, and we are here to translate them into a language for gourmands everywhere.</p>
         </div>
     </div>";
   }
