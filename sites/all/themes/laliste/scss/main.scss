@@ -8,7 +8,10 @@
 $light_grey: #f0f0f0;
 $dark_grey : #5d5d5d;
 $gold : #8A804F;
-$dark_gold : #93806c;
+$gold_darker1: #7a7043;
+$gold_darker2: #615935;
+$gold_darker3: #474227;
+$gold_darker4: #2e2b19;
 $gray: #808080;
 $color_cape_cod_approx: #404040;
 $black: #110b09;
@@ -2504,12 +2507,31 @@ div.view-content > div.laliste-winners-result {
 .content-body-home div:nth-child(-n+5) > span.laliste-winners-title {
     padding: 0 2.875rem;
     text-align: left;
-    background: $gold;
     height: 6.875rem;
 }
 .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste {
-    background: $gold;
     height: 6.875rem;
+}
+// gold color gradient
+.content-body-home div:nth-child(1) > span.laliste-winners-title,
+.content-body-home div:nth-child(1) > span.laliste-winners-score-laliste {
+    background: $gold;
+}
+.content-body-home div:nth-child(2) > span.laliste-winners-title,
+.content-body-home div:nth-child(2) > span.laliste-winners-score-laliste {
+    background: $gold_darker1;
+}
+.content-body-home div:nth-child(3) > span.laliste-winners-title,
+.content-body-home div:nth-child(3) > span.laliste-winners-score-laliste {
+    background: $gold_darker2;
+}
+.content-body-home div:nth-child(4) > span.laliste-winners-title,
+.content-body-home div:nth-child(4) > span.laliste-winners-score-laliste {
+    background: $gold_darker3;
+}
+.content-body-home div:nth-child(5) > span.laliste-winners-title,
+.content-body-home div:nth-child(5) > span.laliste-winners-score-laliste {
+    background: $gold_darker4;
 }
 
 .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
