@@ -578,9 +578,24 @@ header > div.region.region-header {
 }
 
 .restaurant-user-action-share {
+    @extend .Grid;
+    @extend .Grid-cell;
     @extend .u-small-full;
     @extend .u-med-full;
     @extend .u-large-1of3;
+    @include flex-direction(column);
+}
+
+.restaurant-user-action-row1,
+.restaurant-user-action-row2 {
+    @extend .Grid;
+    @extend .Grid-cell;
+}
+.restaurant-user-action-row1 {
+    @include align-items(flex-end);
+}
+.restaurant-user-action-row2{
+    @include align-items(flex-start);
 }
 
 .liste-info-container {

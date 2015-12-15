@@ -148,10 +148,15 @@
 </div>
 <div class="restaurant-user-actions-container">
    <div class="restaurant-user-action-share">
-    <p>Share</p>
+    <div class="restaurant-user-action-row ">
+      <p>Share</p>
+    </div>
+    <div class="restaurant-user-action-row ">
+      <?php print render($content['addtoany']); ?>
+    </div>
    </div>
    <div class="restaurant-user-action-add-list">
-    <p>See International Advisors</p>
+    <p></p>
    </div>
 </div>
 
