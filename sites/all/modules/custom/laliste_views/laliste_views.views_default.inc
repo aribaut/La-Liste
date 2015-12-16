@@ -1209,7 +1209,7 @@ function laliste_views_views_default_views() {
 
   /* Display: Default */
   $handler = $view->new_display('default', 'Default', 'default');
-  $handler->display->display_options['title'] = '1,000 Outstanding Restaurants';
+  $handler->display->display_options['title'] = '1,000 Remarkable Restaurants';
   $handler->display->display_options['css_class'] = 'laliste-winners-home';
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -1327,6 +1327,55 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Address - Country */
+  $handler->display->display_options['fields']['field_address_country_1']['id'] = 'field_address_country_1';
+  $handler->display->display_options['fields']['field_address_country_1']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_country_1']['field'] = 'field_address_country';
+  $handler->display->display_options['fields']['field_address_country_1']['label'] = '';
+  $handler->display->display_options['fields']['field_address_country_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_country_1']['display_name'] = 0;
+  /* Field: Content: Address - Country */
+  $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
+  $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
+  $handler->display->display_options['fields']['field_address_country']['label'] = 'Country';
+  $handler->display->display_options['fields']['field_address_country']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_address_country']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_address_country']['alter']['path'] = 'country/[field_address_country_1]/laliste/view';
+  $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
+  $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
+  /* Field: Content: Address - Locality (i.e. City) */
+  $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
+  $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
+  $handler->display->display_options['fields']['field_address_locality']['label'] = '';
+  $handler->display->display_options['fields']['field_address_locality']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_address_locality']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_address_locality']['alter']['text'] = '<span class="field-localization">   - [field_address_locality]</span>';
+  $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_locality']['element_default_classes'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '[title]     [field_address_locality]';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Restaurant stats: Score laliste */
+  $handler->display->display_options['fields']['score_laliste']['id'] = 'score_laliste';
+  $handler->display->display_options['fields']['score_laliste']['table'] = 'restaurant_stats';
+  $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
+  $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['score_laliste']['set_precision'] = TRUE;
+  $handler->display->display_options['fields']['score_laliste']['precision'] = '3';
+  /* Field: Restaurant stats: Rank */
+  $handler->display->display_options['fields']['rank']['id'] = 'rank';
+  $handler->display->display_options['fields']['rank']['table'] = 'restaurant_stats';
+  $handler->display->display_options['fields']['rank']['field'] = 'rank';
+  $handler->display->display_options['fields']['rank']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['rank']['separator'] = '';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Restaurant stats: Rank */
@@ -1365,7 +1414,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['rank']['value']['max'] = '1000';
   $translatables['laliste_rr_restaurants_country_winners_view'] = array(
     t('Default'),
-    t('1,000 Outstanding Restaurants'),
+    t('1,000 Remarkable Restaurants'),
     t('See all restaurants in La Liste'),
     t('Apply'),
     t('Reset'),
