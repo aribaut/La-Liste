@@ -48,15 +48,15 @@ function generate_home_methodology_block(){
     </div>
     <div class='method-title method-experts'>".t('Our Experts')."</div>
     <div class='method-content-block'>
-      <img src='".base_path().path_to_theme().'/img/our-experts.png'."' alt=''>
+      <img src='".base_path().path_to_theme().'/img/our-experts.png'."' alt='Experts of LA LISTE'>
     </div>
     <div class='method-title method-algorithm'>".t('Our Algorithm')."</div>
     <div class='method-content-block'>
-      <img src='".base_path().path_to_theme().'/img/our-algorithm.png'."' alt=''>
+      <img src='".base_path().path_to_theme().'/img/our-algorithm.png'."' alt='Ciacco Algorithm of LA LISTE'>
     </div>
     <div class='method-title method-liste'>".t('Our Liste')."</div>
     <div class='method-content-block'>
-      <img src='".base_path().path_to_theme().'/img/our-liste.png'."' alt=''>
+      <img src='".base_path().path_to_theme().'/img/our-liste.png'."' alt='La Liste of a 1000 outstanding restaurants'>
     </div>
   </div>
   <div class='method-link'><a href='our-method'>".t('Discover How we did it!')."</a></div>";
