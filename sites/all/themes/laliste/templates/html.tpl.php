@@ -47,6 +47,8 @@
 <head>
   <title><?php print $head_title; ?></title>
   <?php print $head; ?>
+  <link rel="icon" type="image/png" href="<?php print base_path().path_to_theme().'/favicon2.ico';?>" />
+  <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="<?php print base_path().path_to_theme().'/favicon2.ico';?>" /><![endif]-->
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Josefin+Sans' type='text/css'>
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' type='text/css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
