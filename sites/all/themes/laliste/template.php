@@ -24,6 +24,25 @@ function laliste_css_alter(&$css) {
     unset($css[drupal_get_path('module','addressfield').'/addressfield.css']);
 }
 
+/**
+ * Prioritizes js scripts
+ * Implements hook_js_alter()
+ */
+function laliste_js_alter(&$javascript) {
+  // Collect the scripts we want in to remain in the header scope.
+  $header_scripts = array(
+    //'sites/all/libraries/modernizr/modernizr.min.js', example of putting js in header
+  );
+
+  // Change the default scope of all other scripts to footer.
+  // We assume if the script is scoped to header it was done so by default.
+  foreach ($javascript as $key => &$script) {
+    if ($script['scope'] == 'header' && !in_array($script['data'], $header_scripts)) {
+      $script['scope'] = 'footer';
+    }
+  }
+}
+
 /*
  * from https://www.drupal.org/node/1167712#comment-5080586
  */
