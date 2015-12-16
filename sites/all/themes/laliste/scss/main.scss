@@ -2366,11 +2366,14 @@ h2.element-invisible {
     top: -0.25rem;
 }
 
-img.countryicon.iconset-gosquared_flat_large {
+img.countryicon.iconset-gosquared_flat_large,
+span.laliste-winners-field-address-country-1 > a > li {
+    /*
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
+    */
 }
 
 .restaurant-address {
@@ -2479,7 +2482,7 @@ ul.tabs.primary {
 
 .laliste-winners-field-address-country-1 {
     @extend .Grid;
-    @extend .Grid-cell;//
+    @extend .Grid-cell;
     @include justify-content(flex-start);
     @include align-items(center);
     text-align: center;
@@ -2636,7 +2639,7 @@ div.view-content > div.laliste-winners-result {
   background-size: contain;
 }
 .content-body-home div:nth-child(5) > span.laliste-winners-rank {
-  background-image: url("../img/5th_prize.png");
+  background-image: url("../img/4th_prize.png");
   background-repeat: no-repeat;
   background-position: 8.75rem 0.3rem;
   background-size: contain;
@@ -2646,9 +2649,19 @@ div.view-content > div.laliste-winners-result {
 .content-body-home div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
 }
+.content-body-home div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > li {
+    min-width: 64px;
+    min-height: 41px;
+    zoom: 0.5;
+}
 // all other pages
 .content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
+}
+.content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > li {
+    min-width: 64px;
+    min-height: 41px;
+    zoom: 0.5;
 }
 // Remaining Winners restaurant title
 .content-body-home div:nth-child(n+6) > span.laliste-winners-title > span > a {
@@ -2719,7 +2732,8 @@ div.view-content > div.laliste-winners-result {
     border-top: 0.0625rem solid $dark_grey;
 }
 // country flag border
-span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large {
+span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large,
+span.laliste-winners-field-address-country-1 > a > li {
     border: 0.0625rem solid $light_grey;
 }
 // end winners view
@@ -2875,6 +2889,10 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
 //language selector
 #block-locale-language > div.content > ul > li {
     display: inline-block;
+}
+
+#block-locale-language > div.content > ul > li.fr {
+    background: none;
 }
 
 #block-locale-language > div.content > ul > li.active > a {
