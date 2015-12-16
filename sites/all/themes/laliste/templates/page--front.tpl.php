@@ -120,7 +120,7 @@
     <a class="footer-link" href="#"><?php print t('FAQ'); ?></a>
   </div>
   <div class="sub-footer">
-    <a class="sub-footer-link" href="/privacy-notice"><?php print t('PRIVACY NOTICE'); ?></a>
+    <a class="sub-footer-link" href="/legal-notice"><?php print t('LEGAL NOTICE'); ?></a>
     <a class="sub-footer-link" href="/conditions-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
   </div>
 </footer>
