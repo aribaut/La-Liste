@@ -82,7 +82,7 @@
   </div>
 </header>
 <main class="content-body">
-  <div class="content-container">
+  <div class="content-container<?php if((isset($node) && $node->type =='page')): print ' page'; endif; ?>">
     <?php if ((isset($node) && $node->type =='page') || (strpos(current_path(),'country/') !== FALSE)): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
     <?php if (isset($action_links)): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
     <?php if ($page['content']): ?>

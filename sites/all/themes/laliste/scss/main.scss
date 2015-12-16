@@ -517,6 +517,12 @@ header > div.region.region-header {
     text-align: left;
 }
 
+.content-container.page {
+    padding-left: 1.1rem;
+}
+
+body > main > div
+
 #page-title {
     //margin-top: 4rem;
 }
@@ -940,7 +946,7 @@ div.view-header > div.view-la-liste-country-map {
     .content-body-home #block-search-form {
         margin: 0 auto !important;
         width: 24rem !important;
-        padding-left: 1rem;
+        //padding-left: 1rem;
     }
     #block-views-homepage-slider-block + #block-search-form {
         position: inherit !important;
@@ -948,6 +954,7 @@ div.view-header > div.view-la-liste-country-map {
     input.fpage-search-box {
         height: 3.375rem !important;
         width: 19.3rem !important;
+        padding-left: 0 !important;
     }
     input.fpage-search-icon {
         width: 3.625rem !important;
@@ -1031,7 +1038,7 @@ div.view-header > div.view-la-liste-country-map {
     #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.more-link {
         font-size: 1rem !important;
         margin: 0.5rem auto !important;
-        width: 8rem !important;
+        width: 11rem !important;
         padding: 0.5rem !important;
     }
     // pager page view
@@ -1333,7 +1340,7 @@ div.view-header > div.view-la-liste-country-map {
     #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.more-link {
         font-size: 1.2rem !important;
         margin: 1rem auto !important;
-        width: 10rem !important;
+        width: 13rem !important;
         padding: 0.5rem !important;
     }
     // mapping
@@ -1783,7 +1790,12 @@ div.view-header > div.view-la-liste-country-map {
     h1#page-title {
         color: $white;
         font-size: 3rem !important;
-        padding: 0 4rem;
+        //padding: 0 4rem;
+    }
+
+    .content-container.page h1#page-title {
+        padding-left: 0;
+        margin-top : 2rem;
     }
 
     .guide-box {
@@ -2399,7 +2411,7 @@ ul.tabs.primary {
     @extend .Grid-cell;
     @extend .Grid--center;
     @extend .u-small-full;
-    @extend .u-med-1of2;
+    @extend .u-med-full;
     @extend .u-large-1of2;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
