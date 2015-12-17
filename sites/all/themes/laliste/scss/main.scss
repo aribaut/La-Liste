@@ -1015,6 +1015,9 @@ div.view-header > div.view-la-liste-country-map {
             }
         }
     }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
+        zoom: 0.5 !important;
+    }
     .content-body-home div:nth-child(n+6) > span.laliste-winners-rank,
     .content-body div:nth-child(n) > span.laliste-winners-rank{
         span {
@@ -1284,6 +1287,9 @@ div.view-header > div.view-la-liste-country-map {
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
         font-size: 1rem !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
+        zoom: 0.75 !important;
     }
     .content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste > span,
     .content-body div:nth-child(n) > span.laliste-winners-score-laliste > span {
@@ -1606,6 +1612,9 @@ div.view-header > div.view-la-liste-country-map {
     }
     .content-body-home div.content > div > div.view-content > div:nth-child(n+6) > span.laliste-winners-title > span > a {
         font-size: 1.4rem !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
+        zoom: 1 !important;
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank{
         padding-right: 0 !important;
@@ -2960,5 +2969,9 @@ li.search-result {
 
 .search-result h3 {
     margin: 0;
+}
+
+#file-117 > div.content {
+    text-align: center;
 }
 
