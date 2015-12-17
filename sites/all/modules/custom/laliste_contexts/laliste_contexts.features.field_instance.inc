@@ -46,6 +46,17 @@ function laliste_contexts_field_default_field_instances() {
             'shadowUrl' => '',
           ),
           'leaflet_map' => 'OSM Mapnik',
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
           'popup' => array(
             'show' => 0,
             'text' => '',
@@ -72,18 +83,6 @@ function laliste_contexts_field_default_field_instances() {
         'type' => 'geofield_leaflet',
         'weight' => 11,
       ),
-      'search_index' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'search_result' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -109,6 +108,11 @@ function laliste_contexts_field_default_field_instances() {
         'handler_settings' => array(
           'google' => array(
             'all_results' => 0,
+            'biasing' => array(
+              'bounds' => '',
+              'components' => '',
+              'region' => '',
+            ),
             'geometry_type' => 'point',
             'reject_results' => array(
               'APPROXIMATE' => 0,

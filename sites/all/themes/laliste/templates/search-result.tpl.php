@@ -76,10 +76,10 @@
   </h3>
   <div class="Grid">
    <div class="guides-container">
-   <?php if (isset($guides)): ?>
+   <?php if (isset($guides)): ?>Reviews:&nbsp;
       <?php foreach($guides as $guide_name => $guide_url): ?>
         <?php if (isset($guide_url)): ?>
-          <a class="guide-link" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?> | </a>
+          <a class="guide-link" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?></a>&nbsp;&middot;&nbsp;
         <?php else: ?>
           <div class="guide-name"><?php print $guide_name; ?></div>
         <?php endif; ?>

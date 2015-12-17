@@ -2951,7 +2951,11 @@ li.search-result {
     margin-right: 0.5rem;
 }
 .search-result p.score {
-    //margin-left: 2rem;
+    font-size: 1.65rem !important;
+    color: $dark_grey;
+    sup {
+        color: $dark_grey;
+    }
 }
 
 .search-result h3 {
