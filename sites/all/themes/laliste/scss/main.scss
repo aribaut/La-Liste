@@ -2902,3 +2902,13 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
 #block-locale-language > div.content > ul > li > a:hover {
     text-decoration: none;
 }
+
+// prelaunch
+.content-body-prelaunch {
+    margin: auto auto;
+    background: $black;
+}
+.content-container-prelaunch h1 {
+    color: $gold;
+    font-size: 5em;
+}
