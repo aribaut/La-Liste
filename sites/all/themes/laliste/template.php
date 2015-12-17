@@ -427,17 +427,23 @@ function laliste_language_switch_links_alter(array &$links, $type, $path) {
 
 /*
 ** Theming node search results
+** configured for Apache Solr!
  */
 function laliste_preprocess_search_result(&$variables) {
   $result = $variables['result'];
-  if ($result['node']->type == "restaurant") {
-    $node = node_load($result['node']->nid);
+  //var_dump($result);
+  //if ($result['node']->type == "restaurant") {
+  if ($result['node']->bundle == "restaurant") {
+    //$nid = $result['node']->nid;
+    //$node = node_load($nid);
+    $nid = $result['node']->entity_id;
+    $node = node_load($nid);
     // Add image to restaurant
     $restaurant_image = field_view_field('node', $node, 'field_restaurant_image', array('label'=>'hidden', 'type' => 'file_rendered', 'settings' => array('file_view_mode' => 'preview')));
     $variables['image'] = $restaurant_image[0];
     $links = db_query("
       SELECT guide_id, link FROM ranking r LEFT JOIN restaurantguideranking rgr
-      ON rgr.ranking_id=r.ranking_id WHERE restaurant_id=".$result['node']->nid."
+      ON rgr.ranking_id=r.ranking_id WHERE restaurant_id=".$nid."
       ORDER BY guide_id")->fetchAllKeyed();
     // we now get the taxonomy term names
     $terms = taxonomy_term_load_multiple(array_keys($links));
@@ -448,7 +454,7 @@ function laliste_preprocess_search_result(&$variables) {
     // getting restaurant rank & score
     $ranking = db_query("
     SELECT rank, ROUND(score_laliste,2) as score_laliste FROM {restaurant_stats}
-    WHERE restaurant_id = ".$result['node']->nid)->fetchAssoc();
+    WHERE restaurant_id = ".$nid)->fetchAssoc();
     if(isset($ranking['rank'])) {
       if($bool = ( !is_int($ranking['rank']) ? (ctype_digit($ranking['rank'])) : true )) {
         $variables['rank'] = t(ordinal($ranking['rank']));

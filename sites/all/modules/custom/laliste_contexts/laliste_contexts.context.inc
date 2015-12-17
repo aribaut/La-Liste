@@ -118,7 +118,7 @@ function laliste_contexts_context_default_contexts() {
   $context->conditions = array(
     'path' => array(
       'values' => array(
-        'search/node*' => 'search/node*',
+        'search/site*' => 'search/site*',
       ),
     ),
   );
