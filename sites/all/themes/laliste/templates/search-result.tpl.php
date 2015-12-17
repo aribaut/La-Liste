@@ -72,7 +72,7 @@
 
   <h3 class="title"<?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
-    <p class="score"><?php print $score;?></p>
+    <?php if (isset($score)): ?><p class="score"><?php print $score;?></p><?php endif; ?>
   </h3>
   <div class="Grid">
    <div class="guides-container">
