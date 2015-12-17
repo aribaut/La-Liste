@@ -66,15 +66,34 @@
 ?>
 <li class="<?php print $classes; ?>"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
+  <?php if($image):?>
+        <?php print render($image);?>
+  <?php endif; ?>
+
   <h3 class="title"<?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
+    <p class="score"><?php print $score;?></p>
   </h3>
-  <?php print render($title_suffix); ?>
+  <div class="Grid">
+   <div class="guides-container">
+   <?php if (isset($guides)): ?>
+      <?php foreach($guides as $guide_name => $guide_url): ?>
+        <?php if (isset($guide_url)): ?>
+          <a class="guide-link" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?> | </a>
+        <?php else: ?>
+          <div class="guide-name"><?php print $guide_name; ?></div>
+        <?php endif; ?>
+      <?php endforeach; ?>
+   <?php endif; ?>
+
+   </div>
+</div>
+
   <div class="search-snippet-info">
-    <?php if ($snippet): ?>
+    <?php if (false): ?>
       <p class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
     <?php endif; ?>
-    <?php if ($info): ?>
+    <?php if (false): ?>
       <p class="search-info"><?php print $info; ?></p>
     <?php endif; ?>
   </div>

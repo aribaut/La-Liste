@@ -424,3 +424,40 @@ function laliste_language_switch_links_alter(array &$links, $type, $path) {
     $links[$key]['title'] = strtoupper($link['language']->language);
   }
 }
+
+function laliste_preprocess_search_result(&$variables) {
+// Add image to restaurant
+  $result = $variables['result'];
+ if ($result['node']->type == "restaurant") {
+     $node = node_load($result['node']->nid);
+    //dpm($node);
+     $restaurant_image = field_view_field('node', $node, 'field_restaurant_image', array('label'=>'hidden', 'type' => 'file_rendered', 'settings' => array('file_view_mode' => 'preview')));
+     //dpm($restaurant_image);
+     //$variables['rendered'] = var_dump($node);
+
+         $links = db_query("
+      SELECT guide_id, link FROM ranking r LEFT JOIN restaurantguideranking rgr
+      ON rgr.ranking_id=r.ranking_id WHERE restaurant_id=".$result['node']->nid."
+      ORDER BY guide_id")->fetchAllKeyed();
+    // we now get the taxonomy term names
+    $terms = taxonomy_term_load_multiple(array_keys($links));
+    // we load everything together : the terms and the url in one variable
+    foreach ($links as $tid => $link) {
+      $variables['guides'][$terms[$tid]->name] = $link;
+    }
+
+     $variables['image'] = $restaurant_image[0];
+
+
+         // getting restaurant rank & score
+     $ranking = db_query("
+      SELECT rank, ROUND(score_laliste,2) as score_laliste FROM {restaurant_stats}
+      WHERE restaurant_id = ".$result['node']->nid)->fetchAssoc();
+     if(isset($ranking['rank'])) {
+       if($bool = ( !is_int($ranking['rank']) ? (ctype_digit($ranking['rank'])) : true )) {
+        $variables['rank'] = t(ordinal($ranking['rank']));
+       }
+       $variables['score'] = $ranking['score_laliste'] . '<sup>' . t('SCORE') . '/100' . '</sup>';
+      }
+  }
+}

@@ -951,7 +951,7 @@ div.view-header > div.view-la-liste-country-map {
         width: 3.625rem !important;
         height: 3.375rem !important;
     }
-    input.fpage-search-box, input.other-page-search-box {
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
         font-size: 1.4rem !important;
     }
 
@@ -1258,7 +1258,7 @@ div.view-header > div.view-la-liste-country-map {
         width: 3.625rem !important;
         height: 3.375rem !important;
     }
-    input.fpage-search-box, input.other-page-search-box {
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
         font-size: 1.4rem !important;
     }
 
@@ -1538,7 +1538,7 @@ div.view-header > div.view-la-liste-country-map {
         width: 4.625rem !important;
         height: 4.375rem !important;
     }
-    input.fpage-search-box, input.other-page-search-box {
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
         font-size: 1.8rem !important;
     }
     //homepage highlight block
@@ -1824,7 +1824,7 @@ div.view-header > div.view-la-liste-country-map {
         width: 6.625rem !important;
         height: 6.375rem !important;
     }
-    input.fpage-search-box, input.other-page-search-box {
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
         font-size: 1.8rem !important;
     }
 
@@ -1916,7 +1916,7 @@ div.view-header > div.view-la-liste-country-map {
         width: 6.625rem !important;
         height: 6.375rem !important;
     }
-    input.fpage-search-box, input.other-page-search-box {
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
         font-size: 1.8rem !important;
     }
 
@@ -2243,7 +2243,8 @@ sup {
 }
 
 input.fpage-search-box,
-input.other-page-search-box {
+input.other-page-search-box,
+#edit-keys {
     font-family: 'Mrs Eaves Italic';
     font-size:1.75rem;
     padding-left: 1rem;
@@ -2257,7 +2258,8 @@ input.other-page-search-box {
     border-bottom-left-radius:0.3125rem;
 }
 
-input.other-page-search-box {
+input.other-page-search-box,
+#edit-keys {
     width: 14.875rem;
     height: 2.625rem;
     background: $light_grey;
@@ -2269,7 +2271,8 @@ input.fpage-search-box {
 }
 
 input.fpage-search-icon,
-input.other-page-search-icon {
+input.other-page-search-icon,
+#edit-submit {
     border: 0;
     font-family: 'FontAwesome';
     font-weight: 100;
@@ -2282,13 +2285,15 @@ input.other-page-search-icon {
     border-bottom-right-radius:0.3125rem;
 }
 
-input.fpage-search-icon {
+input.fpage-search-icon,
+#edit-submit {
     width: 5.625rem;
     height: 5.375rem;
     font-size: 1.75rem;
 }
 
-input.other-page-search-icon {
+input.other-page-search-icon,
+#edit-submit {
     width: 3.125rem;
     height: 2.625rem;
     font-size: 1.25rem;
@@ -2297,7 +2302,8 @@ input.other-page-search-icon {
 input[type=text].fpage-search-box,
 input[type=text].other-page-search-box,
 input.fpage-search-icon,
-input.other-page-search-icon {
+input.other-page-search-icon,
+#edit-submit {
   -webkit-transition: all 0.0s ease-in-out;
   -moz-transition: all 0.0s ease-in-out;
   -ms-transition: all 0.0s ease-in-out;
@@ -2308,7 +2314,8 @@ input.other-page-search-icon {
 input[type=text].fpage-search-box:focus,
 input[type=text].other-page-search-box:focus,
 input.fpage-search-icon:focus,
-input.other-page-search-icon:focus {
+input.other-page-search-icon:focus,
+#edit-submit:focus {
   box-shadow: 0 0 0.25rem $gold;
   border: 0.0625rem solid $gold;
 }
@@ -2898,3 +2905,56 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
 ul.links.inline {
     display: none;
 }
+
+#edit-advanced {
+    display: none;
+}
+
+li.search-result {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--full;
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    h3.title {
+        margin-left: 1rem;
+        font-size: 2rem;
+    }
+}
+
+form.search-form {
+    display:none;
+}
+#block-system-main > div > h2 {
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}
+
+.search-result .guide-box {
+height: 4.375rem !important;
+width: 4.375rem !important;
+}
+
+li.search-result > h3 > p > a {
+    font-size: 2rem;
+}
+
+.guide-link {
+    margin: 0 0.25rem;
+}
+
+li.search-result {
+    margin-bottom: 1rem;
+}
+.search-result p.rank > a {
+    margin-right: 0.5rem;
+}
+.search-result p.score {
+    //margin-left: 2rem;
+}
+
+.search-result h3 {
+    margin: 0;
+}
+
