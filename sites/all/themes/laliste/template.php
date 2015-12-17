@@ -219,8 +219,11 @@ function laliste_preprocess_node(&$variables) {
     // we now get the taxonomy term names
     $terms = taxonomy_term_load_multiple(array_keys($links));
     // we load everything together : the terms and the url in one variable
+    $array  = array( 'Lo Mejor de la Gastronomia', 'Identita Golose', 'Touring', 'Guide bleu' );
     foreach ($links as $tid => $link) {
-      $variables['guides'][$terms[$tid]->name] = $link;
+      if(!in_array($terms[$tid]->name, $array)) {
+        $variables['guides'][$terms[$tid]->name] = $link;
+      }
     }
     // if not geocoder location exists, we put a default map instead
   }

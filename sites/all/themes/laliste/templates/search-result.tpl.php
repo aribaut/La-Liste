@@ -78,7 +78,8 @@
    <div class="guides-container">
    <?php if (isset($guides)): ?>Reviews:&nbsp;
       <?php foreach($guides as $guide_name => $guide_url): ?>
-        <?php if (isset($guide_url)): ?>
+        <?php $array  = array( 'Lo Mejor de la Gastronomia', 'Identita Golose', 'Touring', 'Guide bleu' ); ?>
+        <?php if (isset($guide_url) && (!in_array($guide_name, $array))): ?>
           <a class="guide-link" href="<?php print $guide_url ?>" target="_blank"><?php print $guide_name; ?></a>&nbsp;&middot;&nbsp;
         <?php else: ?>
           <div class="guide-name"><?php print $guide_name; ?></div>
