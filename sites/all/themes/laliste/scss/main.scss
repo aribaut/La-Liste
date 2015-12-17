@@ -899,9 +899,9 @@ div.view-header > div.view-la-liste-country-map {
     h1#node-title,
     h1#liste-title,
     h1#page-title {
-        font-size: 2rem;
-        padding: 0 2.5rem;
-        margin-bottom: 1rem;
+        font-size: 2rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .guide-box {
@@ -930,7 +930,7 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     .content {
-        margin-top: 1rem !important;
+        margin-top: 0.5rem !important;
     }
 
     //homepage search box
@@ -1207,9 +1207,9 @@ div.view-header > div.view-la-liste-country-map {
     h1#node-title,
     h1#liste-title,
     h1#page-title {
-        font-size: 2rem;
-        padding: 0 2.5rem;
-        margin-bottom: 1rem;
+        font-size: 2rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .guide-box {
@@ -1481,8 +1481,9 @@ div.view-header > div.view-la-liste-country-map {
     h1#liste-title,
     h1#page-title {
         font-size: 2.4rem !important;
-        padding: 0 2.5rem;
-        margin-bottom: 1rem;
+        //padding: 0 2.5rem;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .guide-box {
@@ -1584,7 +1585,7 @@ div.view-header > div.view-la-liste-country-map {
         }
     }
     .content-body #block-system-main > div > div > div.view-header {
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
     }
     // homepage specifics
    .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
@@ -2406,10 +2407,11 @@ ul.tabs.primary {
     @extend .Grid--center;
     @extend .u-small-full;
     @extend .u-med-full;
-    @extend .u-large-1of2;
+    @extend .u-large-full;
     color: $dark_grey;
     font-family: "Mrs Eaves Bold", sans-serif;
     font-size: 2rem;
+    @include justify-content(flex-start);
 }
 
 .highlight-content-container {
