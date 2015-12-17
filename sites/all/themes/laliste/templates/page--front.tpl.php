@@ -111,16 +111,30 @@
     <?php endif; ?>
   </div>
 </main>
+<?php if (isset($language->language) && ($language->language == 'fr')): ?>
 <footer class="footer-main">
   <div class="footer-container">
-  <?php //print render($page['footer']); ?>
-    <a class="footer-link" href="about"><?php print t('ABOUT'); ?></a>
-    <a class="footer-link" href="our-team"><?php print t('TEAM'); ?></a>
+    <a class="footer-link" href="fr/about"><?php print t('ABOUT'); ?></a>
+    <a class="footer-link" href="fr/our-team"><?php print t('TEAM'); ?></a>
     <a class="footer-link" href="mailto:contact@laliste.com?subject=Contact%20from%20laliste.com"><?php print t('CONTACT'); ?></a>
-    <a class="footer-link" href="news"><?php print t('NEWS'); ?></a>
+    <a class="footer-link" href="fr/news"><?php print t('NEWS'); ?></a>
   </div>
   <div class="sub-footer">
-    <a class="sub-footer-link" href="legal-notice"><?php print t('LEGAL NOTICE'); ?></a>
-    <a class="sub-footer-link" href="conditions-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
+    <a class="sub-footer-link" href="fr/legal-notice"><?php print t('LEGAL NOTICE'); ?></a>
+    <a class="sub-footer-link" href="fr/conditions-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
   </div>
 </footer>
+<?php else: ?>
+  <footer class="footer-main">
+  <div class="footer-container">
+    <a class="footer-link" href="/about"><?php print t('ABOUT'); ?></a>
+    <a class="footer-link" href="/our-team"><?php print t('TEAM'); ?></a>
+    <a class="footer-link" href="mailto:contact@laliste.com?subject=Contact%20from%20laliste.com"><?php print t('CONTACT'); ?></a>
+    <a class="footer-link" href="/news"><?php print t('NEWS'); ?></a>
+  </div>
+  <div class="sub-footer">
+    <a class="sub-footer-link" href="/legal-notice"><?php print t('LEGAL NOTICE'); ?></a>
+    <a class="sub-footer-link" href="/conditions-of-use"><?php print t('CONDITIONS OF USE'); ?></a>
+  </div>
+</footer>
+<?php endif; ?>
