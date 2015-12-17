@@ -15,7 +15,6 @@ function laliste_roles_and_permissions_user_default_permissions() {
     'name' => 'access devel information',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
     ),
     'module' => 'devel',
   );
@@ -36,8 +35,6 @@ function laliste_roles_and_permissions_user_default_permissions() {
     'name' => 'use advanced search',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
     ),
     'module' => 'search',
   );
