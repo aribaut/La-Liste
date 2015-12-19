@@ -73,11 +73,11 @@ function generate_home_highlight_block() {
     <div class='highlight-container'>
       <div class='highlight-title'>".t('Welcome To Your Global Table !')."</div>
       <div class='highlight-content-container'>
-        <div class='highlight-content-column'><p>Culinary Connoisseurs Of All Countries and Creeds, your search for exceptional experiences around the world starts at LA LISTE. Food is a global obsession. Every year, experts and amateurs create and publish millions of restaurant reviews. LA LISTE uses score averaging and semantic analysis to keep up, </p>
+        <div class='highlight-content-column'><p>".check_plain(variable_get('highlight_left_block_en', "Culinary Connoisseurs Of All Countries and Creeds, your search for exceptional experiences around the world starts at LA LISTE. Food is a global obsession. Every year, experts and amateurs create and publish millions of restaurant reviews. LA LISTE uses score averaging and semantic analysis to keep up,"))."</p>
         </div>
-        <div class='highlight-content-column'><p>searching in 200+ food guides, review sites, gourmet blogs, social media, and major national and local publications in 48 countries. The result is LA LISTE: 1,000 Remarkable Restaurants highlighting most-loved food destinations worldwide. At the heart of our rankings is an algorithm that quantifies</p>
+        <div class='highlight-content-column'><p>".check_plain(variable_get('highlight_center_block_en', "searching in 200+ food guides, review sites, gourmet blogs, social media, and major national and local publications in 48 countries. The result is LA LISTE: 1,000 Remarkable Restaurants highlighting most-loved food destinations worldwide. At the heart of our rankings is an algorithm that quantifies"))."</p>
         </div>
-        <div class='highlight-content-column'><p> the epicurian pleasure experienced by critics and diners like you - because &laquo; gastronomy is the art of using food to create happiness &raquo;. We believe that numbers speak for themselves, and we are here to translate them into a language for gourmands everywhere.</p>
+        <div class='highlight-content-column'><p>".check_plain(variable_get('highlight_right_block_en', " the epicurian pleasure experienced by critics and diners like you - because &laquo; gastronomy is the art of using food to create happiness &raquo;. We believe that numbers speak for themselves, and we are here to translate them into a language for gourmands everywhere."))."</p>
         </div>
     </div>";
   }
@@ -86,11 +86,11 @@ function generate_home_highlight_block() {
     <div class='highlight-container'>
       <div class='highlight-title'>".t('Bienvenue sur la planète gastronomie !')."</div>
       <div class='highlight-content-container'>
-        <div class='highlight-content-column'><p>Voyageurs, touristes, gourmets, vous qui cherchez des avis fiables sur des restaurants sous toutes les latitudes, consultez LA LISTE ! Vous y trouvez &laquo; 1000 restaurants d'exception &raquo; classés par les guides nationaux de 48 pays. Les critères retenus portent</p>
+        <div class='highlight-content-column'><p>".check_plain(variable_get('highlight_left_block_fr', "Voyageurs, touristes, gourmets, vous qui cherchez des avis fiables sur des restaurants sous toutes les latitudes, consultez LA LISTE ! Vous y trouvez &laquo; 1000 restaurants d'exception &raquo; classés par les guides nationaux de 48 pays. Les critères retenus portent"))."</p>
         </div>
-        <div class='highlight-content-column'><p> sur la cuisine, le cadre, le service, l'accueil et la cave, et aussi par les notes des sites participatifs et des principaux grands média. L'algorithme qui intègre ces données reflète le plaisir éprouvé par les dégustateurs, inspecteurs de guides ou particuliers.</p>
+        <div class='highlight-content-column'><p>".check_plain(variable_get('highlight_center_block_fr', " sur la cuisine, le cadre, le service, l'accueil et la cave, et aussi par les notes des sites participatifs et des principaux grands média. L'algorithme qui intègre ces données reflète le plaisir éprouvé par les dégustateurs, inspecteurs de guides ou particuliers."))."</p>
         </div>
-        <div class='highlight-content-column'><p><em>&laquo; La gastronomie est l'art d'utiliser la nourriture pour créer du bonheur &raquo;</em> selon Théodore Zeldin, qui s'applique à l'art culinaire de tous les pays, selon les usages culturels dont chaque cuisinier est l'interprète, quel que soit le produit qu'il transforme.</p>
+        <div class='highlight-content-column'><p>".check_plain(variable_get('highlight_right_block_fr', "<em>&laquo; La gastronomie est l'art d'utiliser la nourriture pour créer du bonheur &raquo;</em> selon Théodore Zeldin, qui s'applique à l'art culinaire de tous les pays, selon les usages culturels dont chaque cuisinier est l'interprète, quel que soit le produit qu'il transforme."))."</p>
         </div>
     </div>";
   }
@@ -140,3 +140,112 @@ function generate_home_search_block() {
 
   return $block;
 }
+
+/*
+** Highlight Block Admin Settings Page
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function laliste_homepage_menu() {
+  $items['admin/structure/homepage'] = array(
+    'title' => 'Homepage content edit',
+    'description' => 'Edit content for the homepage.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('laliste_homepage_settings'),
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Menu callback: displays the laliste homepage module settings page.
+ *
+ * @ingroup forms
+ *
+ * @see laliste_homepage_settings_validate()
+ * @see laliste_homepage_settings_submit()
+ */
+function laliste_homepage_settings($form, &$form_state) {
+
+  // english language
+  $form['highlight_left_block_en'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight left block - english'),
+    '#description' => t('Shows the content into the left block of the highlight section.'),
+    '#default_value' => variable_get('highlight_left_block_en', "Culinary Connoisseurs Of All Countries and Creeds, your search for exceptional experiences around the world starts at LA LISTE. Food is a global obsession. Every year, experts and amateurs create and publish millions of restaurant reviews. LA LISTE uses score averaging and semantic analysis to keep up,"),
+  );
+
+  $form['highlight_center_block_en'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight center block - english'),
+    '#description' => t('Shows the content into the center block of the highlight section.'),
+    '#default_value' => variable_get('highlight_center_block_en', "searching in 200+ food guides, review sites, gourmet blogs, social media, and major national and local publications in 48 countries. The result is LA LISTE: 1,000 Remarkable Restaurants highlighting most-loved food destinations worldwide. At the heart of our rankings is an algorithm that quantifies"),
+  );
+
+  $form['highlight_right_block_en'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight right block - english'),
+    '#description' => t('Shows the content into the right block of the highlight section.'),
+    '#default_value' => variable_get('highlight_right_block_en', " the epicurian pleasure experienced by critics and diners like you - because &laquo; gastronomy is the art of using food to create happiness &raquo;. We believe that numbers speak for themselves, and we are here to translate them into a language for gourmands everywhere."),
+  );
+
+  // french language
+  $form['highlight_left_block_fr'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight left block - french'),
+    '#description' => t('Shows the content into the left block of the highlight section.'),
+    '#default_value' => variable_get('highlight_left_block_fr', "Voyageurs, touristes, gourmets, vous qui cherchez des avis fiables sur des restaurants sous toutes les latitudes, consultez LA LISTE ! Vous y trouvez &laquo; 1000 restaurants d'exception &raquo; classés par les guides nationaux de 48 pays. Les critères retenus portent"),
+  );
+
+  $form['highlight_center_block_fr'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight center block - french'),
+    '#description' => t('Shows the content into the center block of the highlight section.'),
+    '#default_value' => variable_get('highlight_center_block_fr', " sur la cuisine, le cadre, le service, l'accueil et la cave, et aussi par les notes des sites participatifs et des principaux grands média. L'algorithme qui intègre ces données reflète le plaisir éprouvé par les dégustateurs, inspecteurs de guides ou particuliers."),
+  );
+
+  $form['highlight_right_block_fr'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Highlight right block - french'),
+    '#description' => t('Shows the content into the right block of the highlight section.'),
+    '#default_value' => variable_get('highlight_right_block_fr', "<em>&laquo; La gastronomie est l'art d'utiliser la nourriture pour créer du bonheur &raquo;</em> selon Théodore Zeldin, qui s'applique à l'art culinaire de tous les pays, selon les usages culturels dont chaque cuisinier est l'interprète, quel que soit le produit qu'il transforme."),
+  );
+
+  $form['#validate'][] = 'laliste_homepage_settings_validate';
+  $form['#submit'][] = 'laliste_homepage_settings_submit';
+
+  // Use system_settings_form() to automate saving configuration variables.
+  return system_settings_form($form);
+}
+
+/**
+ * Form validation handler for search_admin_settings().
+ */
+function laliste_homepage_settings_validate($form, &$form_state) {
+  // Check whether we selected a valid default.
+  /*
+  if ($form_state['triggering_element']['#value'] != t('Reset to defaults')) {
+    $new_modules = array_filter($form_state['values']['search_active_modules']);
+    $default = $form_state['values']['search_default_module'];
+    if (!in_array($default, $new_modules, TRUE)) {
+      form_set_error('search_default_module', t('Your default search module is not selected as an active module.'));
+    }
+  }*/
+}
+
+/**
+ * Form submission handler for search_admin_settings().
+ */
+function laliste_homepage_settings_submit($form, &$form_state) {
+
+  //$current_modules = variable_get('search_active_modules', array('node', 'user'));
+  // Check whether we are resetting the values.
+  //if ($form_state['triggering_element']['#value'] == t('Reset to defaults'))
+
+    //drupal_set_message(t('The active search modules have been changed.'));
+    //variable_set('menu_rebuild_needed', TRUE);
+}
+
