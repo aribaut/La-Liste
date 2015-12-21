@@ -840,6 +840,7 @@ div.view-header > div.view-la-liste-country-map {
     div.restaurant-rank-big {
         position: relative;
         @include justify-content(center);
+         padding: 0 2rem;
     }
 
     div.restaurant-rank-big > div > div > img {
@@ -906,6 +907,7 @@ div.view-header > div.view-la-liste-country-map {
 
     h1#node-title {
         text-align: center;
+        padding-bottom: 1rem;
     }
 
     .guide-box {
@@ -2508,6 +2510,9 @@ ul.tabs.primary {
     @extend .Grid--full;
     @include flex-direction(column);
     @include align-items(flex-start);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .laliste-winners-field-address-country-1 {
