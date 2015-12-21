@@ -441,6 +441,7 @@ function laliste_preprocess_search_result(&$variables) {
     //$node = node_load($nid);
     $nid = $result['node']->entity_id;
     $node = node_load($nid);
+    //var_dump($node);
     // Add image to restaurant
     $restaurant_image = field_view_field('node', $node, 'field_restaurant_image', array('label'=>'hidden', 'type' => 'file_rendered', 'settings' => array('file_view_mode' => 'preview')));
     $variables['image'] = $restaurant_image[0];
@@ -463,6 +464,20 @@ function laliste_preprocess_search_result(&$variables) {
         $variables['rank'] = t(ordinal($ranking['rank']));
       }
       $variables['score'] = $ranking['score_laliste'] . '<sup>' . t('SCORE') . '/100' . '</sup>';
+    }
+    // getting address from node object
+    if(isset($node->field_address['und'][0]['postal_code'])
+      && !empty($node->field_address['und'][0]['postal_code'])) {
+      $variables['postal_code'] = $node->field_address['und'][0]['postal_code'];
+    }
+    if(isset($node->field_address['und'][0]['locality'])
+      && !empty($node->field_address['und'][0]['locality'])) {
+      $variables['city'] = $node->field_address['und'][0]['locality'];
+    }
+    if(isset($node->field_address['und'][0]['country'])
+      && !empty($node->field_address['und'][0]['country'])) {
+      $variables['country_img_path'] = base_path() . path_to_theme() . '/img/flat-large-countries.png';
+      $variables['country_code'] = $node->field_address['und'][0]['country'];
     }
   }
 }

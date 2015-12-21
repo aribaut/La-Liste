@@ -69,14 +69,36 @@
   <?php if($image):?>
         <?php print render($image);?>
   <?php endif; ?>
-
-  <h3 class="title"<?php print $title_attributes; ?>>
-    <a href="<?php print $url; ?>"><?php print $title; ?></a>
-    <?php if (isset($score)): ?><p class="score"><?php print $score;?></p><?php endif; ?>
-  </h3>
+  <div class="search-container">
+    <div class="search-title">
+    <h3 class="title"<?php print $title_attributes; ?>>
+      <a href="<?php print $url; ?>"><?php print $title; ?><?php if (isset($city)): ?>,&nbsp;<?php print $city; ?><?php endif; ?></a>
+    </h3>
+    </div>
+    <div class="search-icons">
+      <div class="search-score">
+      <?php if (isset($score)): ?>
+        <p class="score"><?php print $score;?></p>
+      <?php endif; ?>
+      </div>
+      <?php if(false):?>
+        <div class="search-country">
+          <a href="<?php print $GLOBALS['base_url'].'/country/'.$country_code.'/laliste/view'?>">
+            <ul><li class='<?php print strtolower($country_code);?>' src='<?php print $country_img_path;?>'></li></ul>
+          </a>
+        </div>
+      <?php endif; ?>
+    </div>
+  </div>
+  <div class="search-snippet-info">
+  <?php if (isset($snippet)): ?>
+    <p class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
+  <?php endif; ?>
+</div>
+<?php if (false): ?>
   <div class="Grid">
-   <div class="guides-container">
-   <?php if (isset($guides)): ?>Reviews:&nbsp;
+    <div class="guides-container">
+    Reviews:&nbsp;
       <?php foreach($guides as $guide_name => $guide_url): ?>
         <?php $array  = array( 'Lo Mejor de la Gastronomia', 'Identita Golose', 'Touring', 'Guide bleu' ); ?>
         <?php if (isset($guide_url) && (!in_array($guide_name, $array))): ?>
@@ -85,17 +107,7 @@
           <div class="guide-name"><?php print $guide_name; ?></div>
         <?php endif; ?>
       <?php endforeach; ?>
-   <?php endif; ?>
-
-   </div>
-</div>
-
-  <div class="search-snippet-info">
-    <?php if (false): ?>
-      <p class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
-    <?php endif; ?>
-    <?php if (false): ?>
-      <p class="search-info"><?php print $info; ?></p>
-    <?php endif; ?>
+    </div>
   </div>
+   <?php endif; ?>
 </li>

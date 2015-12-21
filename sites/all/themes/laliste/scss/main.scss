@@ -1054,6 +1054,9 @@ div.view-header > div.view-la-liste-country-map {
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
         display: none;
     }
+    li.search-result h3.title {
+        font-size: 1.5rem !important;
+    }
 }
 
 // 576px :)
@@ -1354,6 +1357,9 @@ div.view-header > div.view-la-liste-country-map {
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
         display: none;
     }
+    li.search-result h3.title {
+        font-size: 1.75rem !important;
+    }
 }
 
 // 768px
@@ -1652,6 +1658,9 @@ div.view-header > div.view-la-liste-country-map {
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
         display: none;
     }
+    li.search-result h3.title {
+        font-size: 2rem !important;
+    }
 }
 
 // 1200 pixels!
@@ -1775,7 +1784,7 @@ div.view-header > div.view-la-liste-country-map {
             sup {
                 position: absolute;
                 font-size: 0.8rem;
-                top: -0.3rem;
+                top: -0.6rem;
                 right: 0;
                 letter-spacing: 0.1rem;
             }
@@ -2954,7 +2963,7 @@ li.search-result > h3 > p > a {
 }
 
 li.search-result {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 .search-result p.rank > a {
     margin-right: 0.5rem;
@@ -2973,5 +2982,59 @@ li.search-result {
 
 #file-117 > div.content {
     text-align: center;
+}
+
+.search-container {
+    @extend .Grid;
+    @include flex-direction(column);
+}
+
+.search-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+}
+
+.search-icons {
+    @extend .Grid;
+    @include flex-direction(row);
+    @include justify-content(flex-start);
+    @include align-items(center);
+    width: 8rem;
+}
+
+.search-score,
+.search-country {
+    @extend .Grid;
+    @extend .Grid-cell;
+    margin-left: -1.5rem;
+    margin-top: 0.5rem;
+    p {
+        margin-top : 0;
+    }
+    a > ul {
+        margin: 0 0 1rem;
+    }
+}
+
+.search-country {
+    @include align-self(flex-end);
+    a > ul > li {
+        zoom: 0.8;
+    }
+}
+
+.search-snippet-info {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    margin-left: 1rem;
+    p.search-snippet {
+        color: $gray;
+        strong {
+            font-weight: 600;
+            color: $black;
+        }
+    }
 }
 

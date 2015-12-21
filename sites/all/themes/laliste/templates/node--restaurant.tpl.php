@@ -159,10 +159,3 @@
     <p></p>
    </div>
 </div>
-
-        <!--<?php //if (isset($score) && isset($rank)): ?><p id="separator" class="rank">/</p><?php //endif; ?>-->
-        <!--
-        <div class="restaurant-address">
-          <?php //if (isset($city)): ?><span><?php //print $city; ?></br></span><?php //endif; ?>
-          <?php //if (isset($country_name)): ?><span><?php //print $country_name; ?></span><?php //endif; ?>
-        </div>-->

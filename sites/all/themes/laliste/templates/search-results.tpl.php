@@ -24,7 +24,8 @@
  */
 ?>
 <?php if ($search_results): ?>
-  <h2><?php print t('Search results');?></h2>
+  <h1><?php print t('Search results') . ' ' . t('for') . ' ' . '&laquo;'. $query->getParam("q") . '&raquo;';?></h1>
+  <h2><?php print $description; ?></h2>
   <ol class="search-results <?php print $module; ?>-results">
     <?php print $search_results; ?>
   </ol>
