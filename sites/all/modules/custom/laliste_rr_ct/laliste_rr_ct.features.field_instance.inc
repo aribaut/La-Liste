@@ -470,7 +470,7 @@ function laliste_rr_ct_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'default_image' => 11,
+      'default_image' => 120,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
@@ -495,6 +495,7 @@ function laliste_rr_ct_field_default_field_instances() {
         'browser_plugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
           'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
           'upload' => 'upload',
         ),
       ),

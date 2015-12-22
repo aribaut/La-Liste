@@ -1730,6 +1730,16 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['vector_display']['stroke'] = 0;
   $handler->display->display_options['style_options']['vector_display']['fill'] = 0;
   $handler->display->display_options['style_options']['vector_display']['clickable'] = 0;
+  /* No results behavior: Entity: Rendered entity */
+  $handler->display->display_options['empty']['entity']['id'] = 'entity';
+  $handler->display->display_options['empty']['entity']['table'] = 'entity__global';
+  $handler->display->display_options['empty']['entity']['field'] = 'entity';
+  $handler->display->display_options['empty']['entity']['label'] = 'Map not available';
+  $handler->display->display_options['empty']['entity']['empty'] = TRUE;
+  $handler->display->display_options['empty']['entity']['entity_type'] = 'file';
+  $handler->display->display_options['empty']['entity']['entity_id'] = '117';
+  $handler->display->display_options['empty']['entity']['view_mode'] = 'teaser';
+  $handler->display->display_options['empty']['entity']['bypass_access'] = 1;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1805,6 +1815,7 @@ function laliste_views_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Map not available'),
     t('.'),
     t(','),
     t(' is ranked [rank] with a score of [score_laliste] points'),
