@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Basic Page Type feature.
+ */
+
+include_once 'laliste_basic_page_type.features.inc';
