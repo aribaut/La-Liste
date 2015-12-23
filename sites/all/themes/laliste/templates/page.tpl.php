@@ -116,7 +116,7 @@
     <a class="footer-link" href="/fr/about"><?php print t('ABOUT'); ?></a>
     <a class="footer-link" href="/fr/our-team"><?php print t('TEAM'); ?></a>
     <a class="footer-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
-    <a class="footer-link" href="/fr/news"><?php print t('NEWS'); ?></a>
+    <a class="footer-link" href="#"><?php print t('NEWS'); ?></a>
   </div>
   <div class="sub-footer">
     <a class="sub-footer-link" href="/fr/legal-notice"><?php print t('LEGAL NOTICE'); ?></a>
@@ -130,7 +130,7 @@
     <a class="footer-link" href="/about"><?php print t('ABOUT'); ?></a>
     <a class="footer-link" href="/our-team"><?php print t('TEAM'); ?></a>
     <a class="footer-link" href="/winners"><?php print t('WINNERS'); ?></a>
-    <a class="footer-link" href="/news"><?php print t('NEWS'); ?></a>
+    <a class="footer-link" href="#"><?php print t('NEWS'); ?></a>
   </div>
   <div class="sub-footer">
     <a class="sub-footer-link" href="/legal-notice"><?php print t('LEGAL NOTICE'); ?></a>
