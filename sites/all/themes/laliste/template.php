@@ -228,10 +228,10 @@ function laliste_preprocess_node(&$variables) {
     // if not geocoder location exists, we put a default map instead
   }
   elseif($variables['type'] == 'liste') {
-    // let's get the name of the Liste author via a fast SQL all.
-    if(!empty($variables['field_liste_author'][0]['target_id'])) {
+    // let's get the name of the Liste author via a fast SQL call.
+    if(!empty($variables['field_liste_author']['und'][0]['target_id'])) {
       $variables['liste_author'] = db_query("SELECT name FROM {users} WHERE uid = :uid",
-        array(":uid"=>$variables['field_liste_author'][0]['target_id']))->fetchField();
+        array(":uid"=>$variables['field_liste_author']['und'][0]['target_id']))->fetchField();
     }
   }
 }

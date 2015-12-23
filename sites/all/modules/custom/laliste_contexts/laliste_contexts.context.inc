@@ -70,6 +70,48 @@ function laliste_contexts_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
+  $context->name = 'laliste_layout_liste_node_context';
+  $context->description = 'View a Liste';
+  $context->tag = 'layout';
+  $context->conditions = array(
+    'node' => array(
+      'values' => array(
+        'liste' => 'liste',
+      ),
+      'options' => array(
+        'node_form' => '1',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'search-form' => array(
+          'module' => 'search',
+          'delta' => 'form',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
+        'locale-language' => array(
+          'module' => 'locale',
+          'delta' => 'language',
+          'region' => 'header',
+          'weight' => '-9',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('View a Liste');
+  t('layout');
+  $export['laliste_layout_liste_node_context'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
   $context->name = 'laliste_layout_restaurant_node_page_context';
   $context->description = 'Provides a layout for a restaurant node';
   $context->tag = 'layout';
@@ -108,39 +150,6 @@ function laliste_contexts_context_default_contexts() {
   t('Provides a layout for a restaurant node');
   t('layout');
   $export['laliste_layout_restaurant_node_page_context'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'search_page_context';
-  $context->description = 'Search page layout';
-  $context->tag = 'layout';
-  $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        'search/site*' => 'search/site*',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
-          'region' => 'content',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Search page layout');
-  t('layout');
-  $export['search_page_context'] = $context;
 
   return $export;
 }

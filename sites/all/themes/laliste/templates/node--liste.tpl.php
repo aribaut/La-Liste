@@ -80,35 +80,25 @@
  * @ingroup themeable
  */
 ?>
-<div class="restaurant-top-section">
+<div class="liste-top-section">
   <?php print render($content['field_liste_image']); ?>
 </div>
-<div class="restaurant-info-container">
-    <div class='highlight-container'>
-      <!--<div class='highlight-title'><?php //print t('PRÉSENTATION'); ?></div>-->
-      <div class='highlight-content-column'><?php print render($content['body']); ?></div>
-      <div class='highlight-content-column'><?php print render($content['body']); ?></div>
-    </div>
-  <div class="restaurant-info-right-pane">
-    <div class="liste-title-grid">
+<div class="liste-container">
+    <div class="liste-title-container">
       <?php print format_date($node->changed, 'medium'); ?>
       <?php if ($title): ?><h1 id="liste-title"><?php print $title; ?></h1><?php endif; ?>
-      <?php if ($liste_author): ?><h2 id="liste-author"><?php print t('Liste réalisée par') . ' ' . $liste_author; ?></h2><?php endif; ?>
+      <?php if (isset($liste_author)): ?><h2 id="liste-author"><?php print t('Liste réalisée par') . ' ' . $liste_author; ?></h2><?php endif; ?>
     </div>
-    <div class="restaurant-details-container">
-      <div class="liste-user-action-share">
-         <p><?php print t('Partager cette liste'); ?></p>
+    <div class='liste-highlight'>
+      <?php print render($content['body']); ?>
+    </div>
+    <div class="liste-info-container">
+      <div class="liste-info">
+        <?php print views_embed_view('laliste_liste_restaurants_view', 'block_1', $node->nid); ?>
       </div>
     </div>
-  </div>
-</div>
-<div class="liste-info-container">
-  <div class="liste-info">
-    <?php print views_embed_view('laliste_liste_restaurants_view', 'block_1', $node->nid); ?>
-  </div>
-</div>
-<div class="restaurant-user-actions-container">
-   <div class="restaurant-user-action-add-list">
-    <p><?php print t('Ces listes peuvent également vous intéresser'); ?></p>
-   </div>
+    <div class="liste-user-action-share">
+      <p><?php print t('Share'); ?></p>
+      <?php print render($content['addtoany']); ?>
+    </div>
 </div>

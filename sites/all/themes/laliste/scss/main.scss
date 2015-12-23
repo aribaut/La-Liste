@@ -487,7 +487,7 @@ strong {
 }
 
 .laliste-box {
-    margin: 0.5rem;
+    margin: 0.5rem 0;
     width: 100%;
     font-weight: bold;
 }
@@ -528,7 +528,8 @@ header > div.region.region-header {
     list-style: square outside none;
 }
 
-.restaurant-top-section {
+.restaurant-top-section,
+.liste-top-section {
     @extend .Grid;
     @extend .Grid--full;
     @extend .large-Grid--fit;
@@ -541,8 +542,13 @@ header > div.region.region-header {
     margin: 0.5rem 0;
 }
 
-.restaurant-info-container {
+.restaurant-info-container,
+.liste-container {
     @extend .Grid;
+}
+
+.liste-container {
+    @include flex-direction(column);
 }
 
 .restaurant-info-map {
@@ -641,7 +647,7 @@ header > div.region.region-header {
     @include justify-content(space-around);
 }
 
-.liste-title-grid {
+.liste-title-container {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
@@ -654,6 +660,26 @@ header > div.region.region-header {
     background-color: $light_grey;
     @include justify-content(center);
     @include flex-direction(column);
+    @include flex-wrap(nowrap);
+}
+
+.view-laliste-liste-restaurants-view {
+    width: 100%;
+}
+
+.liste-user-action-share {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    @extend .row-height-short;
+    @extend .laliste-box;
+    @extend .laliste-box-bg;
+    padding-bottom: 1rem;
 }
 
 .restaurant-country {
@@ -1015,7 +1041,7 @@ div.view-header > div.view-la-liste-country-map {
         }
     }
     div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
-        width: 100% !important;
+        width: 77% !important;
     }
 
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
@@ -1323,7 +1349,7 @@ div.view-header > div.view-la-liste-country-map {
         height: 2.5rem !important;
     }
     div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
-        width: 100% !important;
+        width: 77% !important;
     }
     .laliste-winners-title {
         width: 64% !important;//17.675rem
@@ -1478,7 +1504,7 @@ div.view-header > div.view-la-liste-country-map {
 
     .restaurant-user-actions-container p,
     .liste-user-action-share p {
-        font-size: 3rem !important;
+        font-size: 2rem !important;
     }
 
     .simple {
@@ -1516,7 +1542,7 @@ div.view-header > div.view-la-liste-country-map {
     h1#node-title,
     h1#liste-title,
     h1#page-title {
-        font-size: 2.4rem !important;
+        font-size: 3.4rem !important;
         //padding: 0 2.5rem;
         margin-top: 1rem !important;
         margin-bottom: 0.5rem !important;
@@ -1787,7 +1813,7 @@ div.view-header > div.view-la-liste-country-map {
 
     .restaurant-user-actions-container p,
     .liste-user-action-share p {
-        font-size: 3rem !important;
+        font-size: 2rem !important;
     }
 
     .restaurant-country {
@@ -1831,7 +1857,7 @@ div.view-header > div.view-la-liste-country-map {
     h1#liste-title,
     h1#page-title {
         color: $white;
-        font-size: 3rem !important;
+        font-size: 4rem !important;
         //padding: 0 4rem;
     }
 
@@ -2476,7 +2502,8 @@ ul.tabs.primary {
     @include justify-content(flex-start);
 }
 
-.highlight-content-container {
+.highlight-content-container,
+.liste-container {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .u-small-full;
@@ -2495,6 +2522,22 @@ ul.tabs.primary {
     color: $light_grey;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1.25rem;
+    padding: 1.25rem;
+    text-align: justify;
+    font-weight: 300;
+}
+
+.liste-highlight {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--justifyCenter;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    background: $gold_darker1;
+    color: $light_grey;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1rem;
     padding: 1.25rem;
     text-align: justify;
     font-weight: 300;
@@ -2555,7 +2598,7 @@ ul.tabs.primary {
 }
 
 div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
-    width: 100%;
+    width: 77%;
 }
 
 .laliste-winners-score-laliste {
