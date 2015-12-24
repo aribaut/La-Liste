@@ -427,6 +427,7 @@ strong {
     @extend .u-med-1of2;
     @extend .u-large-1of3;
     @include justify-content(flex-end);
+    @include flex-wrap(nowrap);
     padding-right: 0.5rem;
 }
 
@@ -507,9 +508,19 @@ header.header-main {
   z-index: 80;
 }
 
-header > div.region.region-header {
-    @include flexbox;
+body > header > div.header-utils,
+body > header > div.header-utils > div.region.region-header {
+    @extend .Grid;
+    @extend .Grid--full;
+    @include flex-wrap(nowrap);
+    @include justify-content(flex-end);
     margin-right: 0;
+}
+
+#block-search-form,
+#block-locale-language {
+    @extend .Grid;
+    @extend .Grid-cell;
 }
 
 .content-container {
@@ -818,10 +829,6 @@ div.view-header > div.view-la-liste-country-map {
         }
     }
 
-    .header-utils {
-        @include justify-content(center);
-    }
-
     .row-height-med {
         height: 8rem;
     }
@@ -1099,6 +1106,11 @@ div.view-header > div.view-la-liste-country-map {
     .search-results-title {
         font-size: 2rem !important;
     }
+    #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+        color: $white;
+        font-family: 'Mrs Eaves Italic', sans-serif;
+        font-size: 2rem !important;
+    }
 }
 
 // 576px :)
@@ -1138,10 +1150,6 @@ div.view-header > div.view-la-liste-country-map {
             height: 100%;
             padding-left: 0.5rem;
         }
-    }
-
-    .header-utils {
-        @include justify-content(flex-end);
     }
 
     .laliste-ads, .laliste-nav {
@@ -1410,6 +1418,11 @@ div.view-header > div.view-la-liste-country-map {
     .search-results-title {
         font-size: 2.5rem !important;
     }
+    #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+        color: $white;
+        font-family: 'Mrs Eaves Italic', sans-serif;
+        font-size: 2.5rem !important;
+    }
 }
 
 // 768px
@@ -1439,10 +1452,6 @@ div.view-header > div.view-la-liste-country-map {
             font-size: 0.993rem !important;
             padding-left:1.2rem !important;
         }
-    }
-
-    .header-utils {
-        @include justify-content(flex-end);
     }
 
     .laliste-ads, .laliste-nav {
@@ -1719,6 +1728,11 @@ div.view-header > div.view-la-liste-country-map {
     .search-results-title {
         font-size: 3rem !important;
     }
+    #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+        color: $white;
+        font-family: 'Mrs Eaves Italic', sans-serif;
+        font-size: 3rem !important;
+    }
 }
 
 // 1200 pixels!
@@ -1744,10 +1758,6 @@ div.view-header > div.view-la-liste-country-map {
             font-size: 0.993rem !important;
             padding-left:1.2rem !important;
         }
-    }
-
-    .header-utils {
-        @include justify-content(flex-end);
     }
 
     .restaurant-info-map {
@@ -3003,8 +3013,18 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
     text-decoration: none;
 }
 
-ul.links.inline {
+// main navigation user menu
+#navigation > div > h2 {
     display: none;
+}
+#main-menu > li {
+    display: inline;
+}
+#main-menu > li:after {
+     content:" · ";
+}
+#main-menu > li.last:after {
+    content:"";
 }
 
 #edit-advanced {
@@ -3125,3 +3145,28 @@ li.search-result {
     margin : 1.5rem 0;
 }
 
+.home-video {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(center);
+    background: $gold_darker3;
+    padding: 1.5% 1.5%;
+    margin: 0 0.25rem;
+}
+
+.home-video-title,
+.home-video-iframe {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid-cell--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of2;
+}
+
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+    color: $white;
+    font-family: 'Mrs Eaves Italic', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+}
