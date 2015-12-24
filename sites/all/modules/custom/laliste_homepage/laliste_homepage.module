@@ -45,12 +45,20 @@ function laliste_homepage_block_view($delta='') {
 }
 
 function generate_home_video_block(){
+  global $language;
+  $lang_name = $language->language ;
+  if($lang_name == 'en') {
+    $title = t('2015 Launch Party');
+  }
+  elseif($lang_name == 'fr') {
+    $title = t('Palmarès 2015');
+  }
   $block = array();
   $block['subject'] = '';
   $block['content'] = '
   <div class="home-video">
     <div class="home-video-title">
-      <h2>'.t('2015 Launch Party').'</h2>
+      <h2>'.$title.'</h2>
     </div>
     <div class="home-video-iframe">
     <iframe width="480" height="270" border="0" frameborder="0" scrolling="no" src="http://www.restovisio.com/api/v2/video/embed.html?video_id=5198&width=640&height=360&source=embed&autostart=no&format=hd" allowfullscreen webkitallowfullscreen mozallowfullscreen ></iframe>
