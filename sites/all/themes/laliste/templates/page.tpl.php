@@ -85,8 +85,8 @@
 <?php if (isset($language->language) && ($language->language == 'fr')): ?>
 <nav class="nav-main">
   <div class="nav-container">
-    <a class="nav-link" href="/fr/about"><?php print t('ABOUT'); ?></a>
-    <a class="nav-link" href="/fr/our-team"><?php print t('TEAM'); ?></a>
+    <a class="nav-link" href="/fr/about"><?php print t('MÉTHODE'); ?></a>
+    <a class="nav-link" href="/fr/our-team"><?php print t("L'ÉQUIPE"); ?></a>
     <a class="nav-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
     <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
   </div>
@@ -94,7 +94,7 @@
 <?php else: ?>
   <nav class="nav-main">
   <div class="nav-container">
-    <a class="nav-link" href="/about"><?php print t('ABOUT'); ?></a>
+    <a class="nav-link" href="/about"><?php print t('METHOD'); ?></a>
     <a class="nav-link" href="/our-team"><?php print t('TEAM'); ?></a>
     <a class="nav-link" href="/winners"><?php print t('WINNERS'); ?></a>
     <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
@@ -132,8 +132,8 @@
 <?php if (isset($language->language) && ($language->language == 'fr')): ?>
 <footer class="footer-main">
   <div class="footer-container">
-    <a class="footer-link" href="/fr/about"><?php print t('ABOUT'); ?></a>
-    <a class="footer-link" href="/fr/our-team"><?php print t('TEAM'); ?></a>
+    <a class="footer-link" href="/fr/about"><?php print t('MÉTHODE'); ?></a>
+    <a class="footer-link" href="/fr/our-team"><?php print t("L'ÉQUIPE"); ?></a>
     <a class="footer-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
     <a class="footer-link" href="/fr/news"><?php print t('NEWS'); ?></a>
   </div>
@@ -146,7 +146,7 @@
 <?php else: ?>
   <footer class="footer-main">
   <div class="footer-container">
-    <a class="footer-link" href="/about"><?php print t('ABOUT'); ?></a>
+    <a class="footer-link" href="/about"><?php print t('METHOD'); ?></a>
     <a class="footer-link" href="/our-team"><?php print t('TEAM'); ?></a>
     <a class="footer-link" href="/winners"><?php print t('WINNERS'); ?></a>
     <a class="footer-link" href="/news"><?php print t('NEWS'); ?></a>
