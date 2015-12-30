@@ -179,11 +179,8 @@ function laliste_preprocess_node(&$variables) {
       $variables['city'] = $variables['field_address'][0]['locality'];
     }
     if(!empty($variables['field_address'][0]['country'])) {
-      include_once DRUPAL_ROOT . '/includes/locale.inc';
-      $country_code = $variables['field_address'][0]['country'];
-      $countries = country_get_list();
-      $variables['country_name'] = $countries[$country_code];
-      $variables['country_icon'] = theme('countryicons_icon', array('code' =>  $country_code, 'iconset' =>  'gosquared_flat_large'));
+      $variables['country_icon'] = base_path() . path_to_theme() . '/img/flat-large-countries.png';
+      $variables['country_code'] = $variables['field_address'][0]['country'];
     }
     // full address
     $variables['address_full'] = (isset($variables['address1']) ? $variables['address1'] : null);
