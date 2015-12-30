@@ -72,7 +72,7 @@
  * @ingroup themeable
  */
 ?>
-<header class="header-main">
+<header class="header-main header-home">
   <div class="header-branding">
     <a class="logo" href="<?php print url('<front>'); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_bheader.jpg'; ?>" alt="LA LISTE logo branding"><br/><span>OBJECTIVELY DELICIOUS &middot; DELICIOUSLY OBJECTIVE</span></a>
   </div>

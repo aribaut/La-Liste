@@ -533,6 +533,18 @@ body > header > div.header-utils > div.region.region-header {
     right:0;
 }
 
+.language-switcher-locale-url {
+    @extend .Grid;
+    width: 65%;
+    li {
+       @extend .Grid;
+       @extend .Grid-cell;
+    }
+}
+
+.header-home .language-switcher-locale-url {
+    width: 90%;
+}
 
 #block-search-form {
     @include align-items(flex-end);
