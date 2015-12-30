@@ -73,7 +73,7 @@
  */
 //dpm($language)
 ?>
-<header class="header-main">
+<header class="header-main header-page">
   <div class="header-branding">
     <a class="logo" href="<?php print url('<front>'); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_bheader.jpg'; ?>" alt="LA LISTE logo branding"><br/><span>OBJECTIVELY DELICIOUS &middot; DELICIOUSLY OBJECTIVE</span></a>
   </div>
@@ -82,6 +82,25 @@
     <?php print render($page['header']); ?>
   </div>
 </header>
+<?php if (isset($language->language) && ($language->language == 'fr')): ?>
+<nav class="nav-main">
+  <div class="nav-container">
+    <a class="nav-link" href="/fr/about"><?php print t('ABOUT'); ?></a>
+    <a class="nav-link" href="/fr/our-team"><?php print t('TEAM'); ?></a>
+    <a class="nav-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
+    <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
+  </div>
+</nav>
+<?php else: ?>
+  <nav class="nav-main">
+  <div class="nav-container">
+    <a class="nav-link" href="/about"><?php print t('ABOUT'); ?></a>
+    <a class="nav-link" href="/our-team"><?php print t('TEAM'); ?></a>
+    <a class="nav-link" href="/winners"><?php print t('WINNERS'); ?></a>
+    <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
+  </div>
+</nav>
+<?php endif; ?>
 <main class="content-body">
   <div class="content-container<?php if((isset($node) && $node->type =='page')): print ' page'; endif; ?>">
     <?php if ((isset($node) && $node->type =='page') || (strpos(current_path(),'country/') !== FALSE)): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>

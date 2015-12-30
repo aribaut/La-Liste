@@ -80,6 +80,25 @@
     <?php print render($page['header']); ?>
   </div>
 </header>
+<?php if (isset($language->language) && ($language->language == 'fr')): ?>
+<nav class="nav-main">
+  <div class="nav-container">
+    <a class="nav-link" href="/fr/about"><?php print t('ABOUT'); ?></a>
+    <a class="nav-link" href="/fr/our-team"><?php print t('TEAM'); ?></a>
+    <a class="nav-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
+    <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
+  </div>
+</nav>
+<?php else: ?>
+  <nav class="nav-main">
+  <div class="nav-container">
+    <a class="nav-link" href="/about"><?php print t('ABOUT'); ?></a>
+    <a class="nav-link" href="/our-team"><?php print t('TEAM'); ?></a>
+    <a class="nav-link" href="/winners"><?php print t('WINNERS'); ?></a>
+    <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
+  </div>
+</nav>
+<?php endif; ?>
 <main class="content-body-home">
   <div class="content-container">
     <?php //print render($title_prefix); ?>

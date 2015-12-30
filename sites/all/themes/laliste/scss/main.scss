@@ -400,9 +400,13 @@ strong {
     @include flex-direction(column);
 }
 
-.footer-main, .header-main {
+.footer-main, .header-main, .nav-main {
     @include flexbox;
     @include flex(0);
+}
+
+.nav-main {
+    margin: 1rem 0;
 }
 
 .header-main {
@@ -431,17 +435,18 @@ strong {
     padding-right: 0.5rem;
 }
 
-.footer-main {
+.footer-main,
+.nav-main {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
 }
 
-.footer-container {
+.footer-container,
+.nav-container {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
-    //@extend .Grid--1of4;
     @extend .u-small-full;
     @extend .u-med-full;
     @extend .u-large-full;
@@ -850,6 +855,12 @@ div.view-header > div.view-la-liste-country-map {
         margin-bottom: 0;
     }
 
+    body > header.header-page > div.header-utils,
+    body > header.header-page > div.header-utils > div.region.region-header {
+        @include justify-content(center);
+        //margin-right: 0;
+    }
+
     .header-branding {
         padding-left: 0 !important;
         @include justify-content(center);
@@ -857,6 +868,11 @@ div.view-header > div.view-la-liste-country-map {
             width: 15rem;
             height: 100%;
         }
+    }
+
+    .language-switcher-locale-url {
+        margin-top: 1rem;
+        font-size: 0.8rem;
     }
 
     .row-height-med {
@@ -988,7 +1004,8 @@ div.view-header > div.view-la-liste-country-map {
         height: 8.75rem;
     }
 
-    a.footer-link {
+    a.footer-link,
+    a.nav-link {
         font-size: 1rem;
     }
 
@@ -1192,6 +1209,17 @@ div.view-header > div.view-la-liste-country-map {
         }
     }
 
+    body > header.header-page > div.header-utils,
+    body > header.header-page > div.header-utils > div.region.region-header {
+        @include justify-content(flex-end);
+        //margin-right: 0;
+    }
+
+    .language-switcher-locale-url {
+        margin-top: 0;
+        font-size: 1rem;
+    }
+
     .laliste-ads, .laliste-nav {
         @include flex(0,0,12rem);
     }
@@ -1317,12 +1345,17 @@ div.view-header > div.view-la-liste-country-map {
         font-weight: 400;
     }
 
-    a.footer-link {
+    a.footer-link,
+    a.nav-link {
         font-size: 1.5rem;
     }
 
     .footer-main {
         height: 12.5rem;
+    }
+
+    .nav-main {
+        height: 4rem !important;
     }
 
     a.sub-footer-link {
@@ -1611,8 +1644,16 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 2.2rem  !important;
     }
 
+    a.nav-link {
+        font-size: 1.8rem !important;
+    }
+
     .footer-main {
         height: 18.75rem  !important;
+    }
+
+    .nav-main {
+        height: 8rem !important;
     }
 
     a.sub-footer-link {
@@ -1649,7 +1690,7 @@ div.view-header > div.view-la-liste-country-map {
     }
     #block-views-homepage-slider-block + #block-search-form {
         position: absolute !important;
-        top: 16.3rem !important;
+        top: 26.3rem !important;
     }
     input.fpage-search-box {
         height: 4.375rem !important;
@@ -1950,7 +1991,7 @@ div.view-header > div.view-la-liste-country-map {
     }
     #block-views-homepage-slider-block + #block-search-form {
         position: absolute !important;
-        top: 19.3125rem !important;
+        top: 27.3125rem !important;
     }
     input.fpage-search-box {
         height: 6.375rem !important;
@@ -2042,7 +2083,7 @@ div.view-header > div.view-la-liste-country-map {
     }
     #block-views-homepage-slider-block + #block-search-form {
         position: absolute !important;
-        top: 21.3125rem !important;
+        top: 30.3125rem !important;
     }
     input.fpage-search-box {
         height: 6.375rem !important;
