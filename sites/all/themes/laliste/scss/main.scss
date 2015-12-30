@@ -523,6 +523,11 @@ body > header > div.header-utils > div.region.region-header {
     @extend .Grid-cell;
 }
 
+#block-search-form {
+    @include align-items(flex-end);
+    padding-bottom: 0.5rem;
+}
+
 .content-container {
     max-width: 88rem;
     margin: 0 auto;
@@ -1013,7 +1018,8 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     // world map
-    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div {
+    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div,
+    #ip-geoloc-map-of-view-la_liste_country_map-block-00984e5137337583a3eba84f65f35cdd {
         height: 250px !important;
     }
 
@@ -1117,7 +1123,8 @@ div.view-header > div.view-la-liste-country-map {
 @media screen and (min-width: 36rem) {
 
     // world map
-    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div {
+    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div,
+    #ip-geoloc-map-of-view-la_liste_country_map-block-00984e5137337583a3eba84f65f35cdd {
         height: 21.875rem !important;
     }
 
@@ -1429,7 +1436,8 @@ div.view-header > div.view-la-liste-country-map {
 @media screen and (min-width: 48rem) {
 
     // world map
-    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div {
+    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-header > div > div,
+    #ip-geoloc-map-of-view-la_liste_country_map-block-00984e5137337583a3eba84f65f35cdd {
         height: 31.875rem !important;
     }
     .content-body,
