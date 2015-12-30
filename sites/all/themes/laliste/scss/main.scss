@@ -523,6 +523,17 @@ body > header > div.header-utils > div.region.region-header {
     @extend .Grid-cell;
 }
 
+.region-header {
+    position: relative; //added today
+}
+
+#block-locale-language { // added today
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+
 #block-search-form {
     @include align-items(flex-end);
     padding-bottom: 0.5rem;
@@ -738,6 +749,7 @@ body > header > div.header-utils > div.region.region-header {
     @extend .laliste-box-bg;
     @extend .row-height-med;
     @extend .u-textLeft;
+    @extend .u-small-full;
 }
 
 .restaurant-details ul li {
@@ -1503,7 +1515,7 @@ div.view-header > div.view-la-liste-country-map {
         left: 0.4rem;
     }
     .fa-angle-right {
-        bottom: 3.4rem;
+        bottom: 2.6rem;
         right: 0.4rem;
     }
 
@@ -1559,7 +1571,7 @@ div.view-header > div.view-la-liste-country-map {
     h1#node-title,
     h1#liste-title,
     h1#page-title {
-        font-size: 3.4rem !important;
+        font-size: 2.6rem !important;
         //padding: 0 2.5rem;
         margin-top: 1rem !important;
         margin-bottom: 0.5rem !important;
@@ -1595,7 +1607,7 @@ div.view-header > div.view-la-liste-country-map {
 
     span.info-title,
     .restaurant-details ul li .info-content{
-        font-size: 1.6rem !important;
+        font-size: 1.4rem !important;
     }
 
     p.info-content {
