@@ -512,7 +512,7 @@ body > header > div.header-utils,
 body > header > div.header-utils > div.region.region-header {
     @extend .Grid;
     @extend .Grid--full;
-    @include flex-wrap(nowrap);
+    @include flex-wrap(wrap);
     @include justify-content(flex-end);
     margin-right: 0;
 }
