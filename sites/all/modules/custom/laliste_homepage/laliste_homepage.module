@@ -48,7 +48,7 @@ function generate_home_video_block(){
   global $language;
   $lang_name = $language->language ;
   if($lang_name == 'en') {
-    $title = t('2015 Launch Party');
+    $title = t('The Launch Party!');
   }
   elseif($lang_name == 'fr') {
     $title = t('Palmarès 2015');
