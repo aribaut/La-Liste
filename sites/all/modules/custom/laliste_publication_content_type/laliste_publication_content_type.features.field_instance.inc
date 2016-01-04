@@ -51,6 +51,47 @@ function laliste_publication_content_type_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-publication-field_publication_source'
+  $field_instances['node-publication-field_publication_source'] = array(
+    'bundle' => 'publication',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_publication_source',
+    'label' => 'Source',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-publication-field_published_article'
   $field_instances['node-publication-field_published_article'] = array(
     'bundle' => 'publication',
@@ -170,6 +211,7 @@ function laliste_publication_content_type_field_default_field_instances() {
   t('Geographic Zone');
   t('Published Article');
   t('Published Date');
+  t('Source');
   t('Storea when was the publication published.');
 
   return $field_instances;

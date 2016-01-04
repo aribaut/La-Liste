@@ -278,12 +278,13 @@ function laliste_views_views_default_views() {
       'rendered_strip' => 0,
     ),
   );
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['inline'] = array(
     'title' => 'title',
     'field_published_date' => 'field_published_date',
   );
-  $handler->display->display_options['row_options']['separator'] = '&middot;';
   /* Field: Content: Geographic Zone */
   $handler->display->display_options['fields']['field_geographic_zone']['id'] = 'field_geographic_zone';
   $handler->display->display_options['fields']['field_geographic_zone']['table'] = 'field_data_field_geographic_zone';
@@ -305,24 +306,31 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Source */
+  $handler->display->display_options['fields']['field_publication_source']['id'] = 'field_publication_source';
+  $handler->display->display_options['fields']['field_publication_source']['table'] = 'field_data_field_publication_source';
+  $handler->display->display_options['fields']['field_publication_source']['field'] = 'field_publication_source';
+  $handler->display->display_options['fields']['field_publication_source']['label'] = '';
+  $handler->display->display_options['fields']['field_publication_source']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_publication_source']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_publication_source']['element_default_classes'] = FALSE;
   /* Field: Content: Published Date */
   $handler->display->display_options['fields']['field_published_date']['id'] = 'field_published_date';
   $handler->display->display_options['fields']['field_published_date']['table'] = 'field_data_field_published_date';
   $handler->display->display_options['fields']['field_published_date']['field'] = 'field_published_date';
   $handler->display->display_options['fields']['field_published_date']['label'] = '';
-  $handler->display->display_options['fields']['field_published_date']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_published_date']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_published_date']['alter']['text'] = '[field_publication_source] - [field_published_date]';
   $handler->display->display_options['fields']['field_published_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_published_date']['element_wrapper_type'] = '0';
-  $handler->display->display_options['fields']['field_published_date']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_published_date']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['field_published_date']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'short',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
-  $handler->display->display_options['fields']['field_published_date']['field_api_classes'] = TRUE;
   /* Field: Content: Published Article */
   $handler->display->display_options['fields']['field_published_article']['id'] = 'field_published_article';
   $handler->display->display_options['fields']['field_published_article']['table'] = 'field_data_field_published_article';
@@ -369,6 +377,7 @@ function laliste_views_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('[field_publication_source] - [field_published_date]'),
     t('Block'),
   );
   $export['laliste_publications_view'] = $view;
