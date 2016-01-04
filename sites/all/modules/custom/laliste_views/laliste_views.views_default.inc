@@ -346,11 +346,14 @@ function laliste_views_views_default_views() {
     'text' => '[file:name]',
   );
   $handler->display->display_options['fields']['field_published_article']['field_api_classes'] = TRUE;
+  /* Sort criterion: Content: Geographic Zone (field_geographic_zone) */
+  $handler->display->display_options['sorts']['field_geographic_zone_value']['id'] = 'field_geographic_zone_value';
+  $handler->display->display_options['sorts']['field_geographic_zone_value']['table'] = 'field_data_field_geographic_zone';
+  $handler->display->display_options['sorts']['field_geographic_zone_value']['field'] = 'field_geographic_zone_value';
   /* Sort criterion: Content: Published Date (field_published_date) */
   $handler->display->display_options['sorts']['field_published_date_value']['id'] = 'field_published_date_value';
   $handler->display->display_options['sorts']['field_published_date_value']['table'] = 'field_data_field_published_date';
   $handler->display->display_options['sorts']['field_published_date_value']['field'] = 'field_published_date_value';
-  $handler->display->display_options['sorts']['field_published_date_value']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
