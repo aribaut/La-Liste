@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Publication Content Type feature.
+ */
+
+include_once 'laliste_publication_content_type.features.inc';

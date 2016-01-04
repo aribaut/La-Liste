@@ -117,7 +117,7 @@ function laliste_views_views_default_views() {
   );
   $handler->display->display_options['style_options']['ip_geoloc_views_plugin_longitude'] = '';
   $handler->display->display_options['style_options']['visitor_marker']['visitor_marker_accuracy_circle'] = 0;
-  $handler->display->display_options['style_options']['center_option'] = '0';
+  $handler->display->display_options['style_options']['center_option'] = '4';
   $handler->display->display_options['style_options']['sync']['2'] = 0;
   $handler->display->display_options['style_options']['sync']['4'] = 0;
   $handler->display->display_options['style_options']['sync']['8'] = 1;
@@ -140,6 +140,11 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['cluster_differentiator']['cluster_differentiator_fields'] = array(
     '' => '',
   );
+  $handler->display->display_options['style_options']['cluster_differentiator']['zoom_ranges'] = array(
+    1 => '',
+  );
+  $handler->display->display_options['style_options']['cluster_differentiator']['cluster_tooltips'] = 1;
+  $handler->display->display_options['style_options']['cluster_differentiator']['cluster_outline'] = '0';
   $handler->display->display_options['style_options']['cluster_aggregation']['aggregation_function'] = 'average';
   $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['small'] = '10';
   $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['medium'] = '100';
@@ -245,6 +250,128 @@ function laliste_views_views_default_views() {
     t('Block'),
   );
   $export['la_liste_country_map'] = $view;
+
+  $view = new view();
+  $view->name = 'laliste_publications_view';
+  $view->description = 'Provides a list of all the published publications for LA LISTE across the globe';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'laliste_publications_view';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Published Articles';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_geographic_zone',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'title' => 'title',
+    'field_published_date' => 'field_published_date',
+  );
+  $handler->display->display_options['row_options']['separator'] = '&middot;';
+  /* Field: Content: Geographic Zone */
+  $handler->display->display_options['fields']['field_geographic_zone']['id'] = 'field_geographic_zone';
+  $handler->display->display_options['fields']['field_geographic_zone']['table'] = 'field_data_field_geographic_zone';
+  $handler->display->display_options['fields']['field_geographic_zone']['field'] = 'field_geographic_zone';
+  $handler->display->display_options['fields']['field_geographic_zone']['group_type'] = 'count';
+  $handler->display->display_options['fields']['field_geographic_zone']['label'] = '';
+  $handler->display->display_options['fields']['field_geographic_zone']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_geographic_zone']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_geographic_zone']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_geographic_zone']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_geographic_zone']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_geographic_zone']['field_api_classes'] = TRUE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Published Date */
+  $handler->display->display_options['fields']['field_published_date']['id'] = 'field_published_date';
+  $handler->display->display_options['fields']['field_published_date']['table'] = 'field_data_field_published_date';
+  $handler->display->display_options['fields']['field_published_date']['field'] = 'field_published_date';
+  $handler->display->display_options['fields']['field_published_date']['label'] = '';
+  $handler->display->display_options['fields']['field_published_date']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_published_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_published_date']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_published_date']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_published_date']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_remaining_days' => 0,
+  );
+  $handler->display->display_options['fields']['field_published_date']['field_api_classes'] = TRUE;
+  /* Field: Content: Published Article */
+  $handler->display->display_options['fields']['field_published_article']['id'] = 'field_published_article';
+  $handler->display->display_options['fields']['field_published_article']['table'] = 'field_data_field_published_article';
+  $handler->display->display_options['fields']['field_published_article']['field'] = 'field_published_article';
+  $handler->display->display_options['fields']['field_published_article']['label'] = '';
+  $handler->display->display_options['fields']['field_published_article']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_published_article']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_published_article']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_published_article']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_published_article']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_published_article']['type'] = 'file_download_link';
+  $handler->display->display_options['fields']['field_published_article']['settings'] = array(
+    'text' => '[file:name]',
+  );
+  $handler->display->display_options['fields']['field_published_article']['field_api_classes'] = TRUE;
+  /* Sort criterion: Content: Published Date (field_published_date) */
+  $handler->display->display_options['sorts']['field_published_date_value']['id'] = 'field_published_date_value';
+  $handler->display->display_options['sorts']['field_published_date_value']['table'] = 'field_data_field_published_date';
+  $handler->display->display_options['sorts']['field_published_date_value']['field'] = 'field_published_date_value';
+  $handler->display->display_options['sorts']['field_published_date_value']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'publication' => 'publication',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['laliste_publications_view'] = array(
+    t('Master'),
+    t('Published Articles'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Block'),
+  );
+  $export['laliste_publications_view'] = $view;
 
   $view = new view();
   $view->name = 'laliste_rr_countries_view';
