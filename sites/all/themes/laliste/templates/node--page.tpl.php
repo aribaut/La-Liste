@@ -102,14 +102,12 @@
       hide($content['comments']);
       hide($content['links']);
       print render($content); ?>
-      <!--
-      <?php //if (drupal_get_path_alias(current_path()) == 'news'): ?>
-      <div class="restaurant-info-map">
-        <h2><?php //print t('Published Articles'); ?></h2>
-        <?php //print views_embed_view('laliste_publications_view', 'block'); ?>
+      <?php if (drupal_get_path_alias(current_path()) == 'news'): ?>
+      <div class="field-body">
+        <h2><?php print t('Published Articles'); ?></h2>
+        <?php print views_embed_view('laliste_publications_view', 'block'); ?>
       </div>
-      <?php //endif; ?>
-      -->
+      <?php endif; ?>
   </div>
 
   <?php print render($content['links']); ?>
