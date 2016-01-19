@@ -88,6 +88,7 @@
     <a class="nav-link" href="/fr/about"><?php print t('MÉTHODE'); ?></a>
     <a class="nav-link" href="/fr/our-team"><?php print t("L'ÉQUIPE"); ?></a>
     <a class="nav-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
+    <a class="nav-link" href="/fr/sponsors"><?php print t('SPONSORS'); ?></a>
     <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
   </div>
 </nav>
@@ -97,6 +98,7 @@
     <a class="nav-link" href="/about"><?php print t('METHOD'); ?></a>
     <a class="nav-link" href="/our-team"><?php print t('TEAM'); ?></a>
     <a class="nav-link" href="/winners"><?php print t('WINNERS'); ?></a>
+    <a class="nav-link" href="/sponsors"><?php print t('SPONSORS'); ?></a>
     <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
   </div>
 </nav>
@@ -135,6 +137,7 @@
     <a class="footer-link" href="/fr/about"><?php print t('MÉTHODE'); ?></a>
     <a class="footer-link" href="/fr/our-team"><?php print t("L'ÉQUIPE"); ?></a>
     <a class="footer-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
+    <a class="footer-link" href="/fr/sponsors"><?php print t('SPONSORS'); ?></a>
     <a class="footer-link" href="/fr/news"><?php print t('NEWS'); ?></a>
   </div>
   <div class="sub-footer">
@@ -149,6 +152,7 @@
     <a class="footer-link" href="/about"><?php print t('METHOD'); ?></a>
     <a class="footer-link" href="/our-team"><?php print t('TEAM'); ?></a>
     <a class="footer-link" href="/winners"><?php print t('WINNERS'); ?></a>
+    <a class="footer-link" href="/sponsors"><?php print t('SPONSORS'); ?></a>
     <a class="footer-link" href="/news"><?php print t('NEWS'); ?></a>
   </div>
   <div class="sub-footer">
