@@ -196,7 +196,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['label'] = '';
   $handler->display->display_options['fields']['score_laliste']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = ' is in the [rank]th position';
+  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = '[title] is in the [rank]th position';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '0';
   /* Contextual filter: Content: Address - Country */
@@ -245,7 +245,7 @@ function laliste_views_views_default_views() {
     t('Desc'),
     t('.'),
     t(','),
-    t(' is in the [rank]th position'),
+    t('[title] is in the [rank]th position'),
     t('All'),
     t('Block'),
   );
