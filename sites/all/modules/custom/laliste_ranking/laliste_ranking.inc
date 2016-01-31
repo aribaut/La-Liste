@@ -1593,3 +1593,48 @@ function laliste_ranking_get_guide_factor($guide_name) {
   }
   return $guide_data;
 }
+
+/**
+ * Inserts restaurants scores into the restaurant content type
+ * in order to be indexed by SOLR
+ */
+function update_scores_search() {
+  // for all restaurants enabled (default) to be on LA LISTE, select their scores
+  $restaurants = db_query("
+   SELECT restaurant_id, score_laliste from {restaurant_stats}
+   LEFT JOIN {field_data_field_restaurant_score} ON field_data_field_restaurant_score.entity_id = restaurant_stats.restaurant_id WHERE field_data_field_restaurant_score.field_restaurant_score_value IS NULL")->fetchAll();
+  foreach($restaurants as $restaurant) {
+    // inserting into field data table
+    db_insert('field_data_field_restaurant_score')
+    ->fields(array(
+      'entity_type' => 'node',
+      'bundle' => 'restaurant',
+      'deleted' => 0,
+      'entity_id' => $restaurant->restaurant_id,
+      'revision_id' => $restaurant->restaurant_id,
+      'language' => 'und',
+      'delta' => 0,
+      'field_restaurant_score_value' => $restaurant->score_laliste,
+    ))
+    ->execute();
+    // inserting into field revision table
+    db_insert('field_revision_field_restaurant_score')
+    ->fields(array(
+      'entity_type' => 'node',
+      'bundle' => 'restaurant',
+      'deleted' => 0,
+      'entity_id' => $restaurant->restaurant_id,
+      'revision_id' => $restaurant->restaurant_id,
+      'language' => 'und',
+      'delta' => 0,
+      'field_restaurant_score_value' => $restaurant->score_laliste,
+    ))
+    ->execute();
+    // counter
+    $inserted++;
+  }
+  // output log
+  echo "LALISTE (SOLR) SCORES ARE UP TO DATE!\n";
+  echo "================================\n";
+  echo "Number of new records added : ".$inserted."\n";
+}
