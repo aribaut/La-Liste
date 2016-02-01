@@ -3250,12 +3250,26 @@ li.search-result {
     @extend .u-large-1of2;
 }
 
+.home-video-title {
+    @include align-self(flex-start);
+}
+
 #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
     color: $white;
     font-family: 'Mrs Eaves Italic', sans-serif;
     font-size: 3rem;
     letter-spacing: 0.1rem;
 }
+
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title > p,
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title {
+    color: $white;
+}
+
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title {
+    padding: 1.2rem;
+}
+
 
 .country-restaurant-flag {
     padding-top: 1.5rem;

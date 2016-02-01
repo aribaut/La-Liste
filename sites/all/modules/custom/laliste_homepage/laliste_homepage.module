@@ -37,33 +37,59 @@ function laliste_homepage_block_view($delta='') {
       $block = generate_home_methodology_block();
     break;
     case 'home_video':
-      $block = generate_home_video_block();
+      $block = generate_home_annoucement_block();
     break;
   }
 
   return $block;
 }
 
-function generate_home_video_block(){
+function generate_home_annoucement_block(){
   global $language;
   $lang_name = $language->language ;
   if($lang_name == 'en') {
-    $title = t('The Launch Party!');
+    $title = t('Loss of chef Benoît Violier');
   }
   elseif($lang_name == 'fr') {
-    $title = t('Palmarès 2015');
+    $title = t('Disparition de Benoît Violier');
   }
   $block = array();
   $block['subject'] = '';
+  if($lang_name == 'en') {
   $block['content'] = '
   <div class="home-video">
     <div class="home-video-title">
       <h2>'.$title.'</h2>
+      <p>The team of La Liste is deeply saddened by the loss of Benoit Violier, head chef of Restaurant de l’Hôtel de Ville in Crissier, Switzerland.</p><br/>
+      <p>Trained under Joël Robuchon and Philippe Rochat, this exceptional chef was the owner of the legendary Hôtel de Ville Restaurant since 2012. He was also the author of several culinary books and had recently joined the “Good France” committee.</p><br/>
+      <p>Unanimously celebrated by food lovers and critics, his restaurant was ranked #1 in the world by the 2015 edition of La Liste. Our thoughts are with his wife, relatives and the Crissier team.</p>
+      <br/><br/>
+      <p style="margin-top:1rem;">Philippe Faure,<br/>President of the French Tourism Board, Founder of La Liste</p>
     </div>
     <div class="home-video-iframe">
-    <iframe width="480" height="270" border="0" frameborder="0" scrolling="no" src="http://www.restovisio.com/api/v2/video/embed.html?video_id=5198&width=640&height=360&source=embed&autostart=no&format=hd" allowfullscreen webkitallowfullscreen mozallowfullscreen ></iframe>
+    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Loss of chef Benoit Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px">
     </div>
   </div>';
+  }
+  elseif($lang_name == 'fr') {
+    $block['content'] = '
+    <div class="home-video">
+    <div class="home-video-title">
+      <h2>'.$title.'</h2>
+      <p>Nous venons d’apprendre avec une grande tristesse la disparition du cuisinier Benoît Violier, survenue le 31 janvier.</p>
+      <br/>
+      <p>Âgé de 44 ans, Benoît Violier incarnait le renouveau de la gastronomie française. Après avoir fait ses classes auprès des plus grands chefs et obtenu le titre de « meilleur ouvrier de France » en 2000, il dirigeait depuis quatre ans le restaurant de l’Hôtel de Ville à Crissier (Suisse). Bien connu des gourmets, l’établissement était plébiscité par les guides gastronomiques, ce qui lui a valu d’être sacré &laquo; meilleur restaurant du monde &raquo; dans l’édition 2015 de La Liste, le classement des classements gastronomiques.</p>
+      <br/>
+      <p>A l’image de sa cuisine, Benoît Violier faisait l’unanimité. Son humilité, sa générosité et son immense talent lui valaient l’estime de ses pairs et la reconnaissance de ses équipes. Amoureux de la chasse, il était l’auteur de plusieurs ouvrages spécialisés dont La cuisine du gibier à plumes d’Europe, qu’il devait présenter prochainement à Paris.</p>
+      <br/>
+      <p>Nos pensées émues vont à sa femme Brigitte et à ses proches, ainsi qu’à l’équipe de Crissier, dont nous savons qu’elle saura perpétuer son héritage.</p><br/>Philippe Faure, Président d’Atout France, fondateur de La Liste
+      <br/>Et l’équipe de La Liste
+    </div>
+    <div class="home-video-iframe">
+    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Disparition du cuisinier Benoît Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px">
+    </div>
+  </div>';
+  }
   return $block;
 }
 
