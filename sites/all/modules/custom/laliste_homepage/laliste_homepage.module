@@ -48,7 +48,7 @@ function generate_home_annoucement_block(){
   global $language;
   $lang_name = $language->language ;
   if($lang_name == 'en') {
-    $title = t('Loss of chef Benoît Violier');
+    $title = t('RIP Benoît Violier');
   }
   elseif($lang_name == 'fr') {
     $title = t('Disparition de Benoît Violier');
