@@ -60,7 +60,7 @@ function generate_home_annoucement_block(){
   <div class="home-video">
     <div class="home-video-title">
       <h2>'.$title.'</h2>
-      <p>The team of La Liste is deeply saddened by the loss of Benoit Violier, head chef of Restaurant de l’Hôtel de Ville in Crissier, Switzerland.</p><br/>
+      <p>The team of La Liste is deeply saddened by the loss of <a href="'.base_path().'sites/default/files/in-memoriam-benoit-violier.pdf" target="_blank">Benoit Violier</a>, head chef of Restaurant de l’Hôtel de Ville in Crissier, Switzerland.</p><br/>
       <p>Trained under Joël Robuchon and Philippe Rochat, this exceptional chef was the owner of the legendary Hôtel de Ville Restaurant since 2012. He was also the author of several culinary books and had recently joined the “Good France” committee.</p><br/>
       <p>Unanimously celebrated by food lovers and critics, his restaurant was ranked #1 in the world by the 2015 edition of La Liste. Our thoughts are with his wife, relatives and the Crissier team.</p>
       <br/><br/>
