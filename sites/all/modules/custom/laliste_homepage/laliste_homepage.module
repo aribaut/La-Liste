@@ -48,7 +48,7 @@ function generate_home_annoucement_block(){
   global $language;
   $lang_name = $language->language ;
   if($lang_name == 'en') {
-    $title = t('RIP Benoît Violier');
+    $title = t('Benoît Violier 1971-2016');
   }
   elseif($lang_name == 'fr') {
     $title = t('Disparition de Benoît Violier');
@@ -86,7 +86,7 @@ function generate_home_annoucement_block(){
       <br/>Et l’équipe de La Liste
     </div>
     <div class="home-video-iframe">
-    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Disparition du cuisinier Benoît Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px"><br/><a href="'.base_path().'sites/default/files/Benoit-Violier-Necrologie.pdf" target="_blank">Nécrologie de Benoît Violier par Jean-Claude Ribaut</a>
+    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Disparition du cuisinier Benoît Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px"><br/><a href="'.base_path().'sites/default/files/Benoit-Violier-Necrologie.pdf" target="_blank">Hommage à Benoît Violier (1971&middot;2016) par Jean-Claude Ribaut</a>
     </div>
   </div>';
   }
