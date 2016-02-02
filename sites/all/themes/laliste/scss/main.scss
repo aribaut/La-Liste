@@ -3235,7 +3235,7 @@ li.search-result {
     @extend .Grid;
     @extend .Grid-cell;
     @include justify-content(center);
-    background: $gold_darker3;
+    background: $gold_darker4;
     padding: 1.5% 1.5%;
     margin: 0 0.25rem;
 }
@@ -3262,7 +3262,8 @@ li.search-result {
 }
 
 #block-laliste-homepage-home-video > div.content > div > div.home-video-title > p,
-#block-laliste-homepage-home-video > div.content > div > div.home-video-title {
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title,
+#block-laliste-homepage-home-video > div.content > div > div.home-video-iframe a {
     color: $white;
 }
 

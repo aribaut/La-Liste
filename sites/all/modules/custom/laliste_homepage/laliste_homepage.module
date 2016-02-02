@@ -67,7 +67,7 @@ function generate_home_annoucement_block(){
       <p style="margin-top:1rem;">Philippe Faure,<br/>President of the French Tourism Board, Founder of La Liste</p>
     </div>
     <div class="home-video-iframe">
-    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Loss of chef Benoit Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px">
+    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Loss of chef Benoit Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px"><br/><a href="'.base_path().'sites/default/files/Benoit-Violier-Nécrologie.pdf" target="_blank">Obituary of Benoît Violier by Jean-Claude Ribaut (French)</a>
     </div>
   </div>';
   }
@@ -76,17 +76,17 @@ function generate_home_annoucement_block(){
     <div class="home-video">
     <div class="home-video-title">
       <h2>'.$title.'</h2>
-      <p>Nous venons d’apprendre avec une grande tristesse la disparition du cuisinier Benoît Violier, survenue le 31 janvier.</p>
+      <p>Nous venons d’apprendre avec une grande tristesse la disparition du cuisinier <a href="'.base_path().'sites/default/files/Benoit-Violier-Nécrologie.pdf" target="_blank">Benoît Violier</a>, survenue le 31 janvier.</p>
       <br/>
-      <p>Âgé de 44 ans, Benoît Violier incarnait le renouveau de la gastronomie française. Après avoir fait ses classes auprès des plus grands chefs et obtenu le titre de « meilleur ouvrier de France » en 2000, il dirigeait depuis quatre ans le restaurant de l’Hôtel de Ville à Crissier (Suisse). Bien connu des gourmets, l’établissement était plébiscité par les guides gastronomiques, ce qui lui a valu d’être sacré &laquo; meilleur restaurant du monde &raquo; dans l’édition 2015 de La Liste, le classement des classements gastronomiques.</p>
+      <p>Âgé de 44 ans, <a href="'.base_path().'sites/default/files/Benoit-Violier-Nécrologie.pdf" target="_blank">Benoît Violier</a> incarnait le renouveau de la gastronomie française. Après avoir fait ses classes auprès des plus grands chefs et obtenu le titre de « meilleur ouvrier de France » en 2000, il dirigeait depuis quatre ans le restaurant de l’Hôtel de Ville à Crissier (Suisse). Bien connu des gourmets, l’établissement était plébiscité par les guides gastronomiques, ce qui lui a valu d’être sacré &laquo; meilleur restaurant du monde &raquo; dans l’édition 2015 de La Liste, le classement des classements gastronomiques.</p>
       <br/>
-      <p>A l’image de sa cuisine, Benoît Violier faisait l’unanimité. Son humilité, sa générosité et son immense talent lui valaient l’estime de ses pairs et la reconnaissance de ses équipes. Amoureux de la chasse, il était l’auteur de plusieurs ouvrages spécialisés dont La cuisine du gibier à plumes d’Europe, qu’il devait présenter prochainement à Paris.</p>
+      <p>A l’image de sa cuisine, <a href="'.base_path().'sites/default/files/Benoit-Violier-Nécrologie.pdf" target="_blank">Benoît Violier</a> faisait l’unanimité. Son humilité, sa générosité et son immense talent lui valaient l’estime de ses pairs et la reconnaissance de ses équipes. Amoureux de la chasse, il était l’auteur de plusieurs ouvrages spécialisés dont La cuisine du gibier à plumes d’Europe, qu’il devait présenter prochainement à Paris.</p>
       <br/>
       <p>Nos pensées émues vont à sa femme Brigitte et à ses proches, ainsi qu’à l’équipe de Crissier, dont nous savons qu’elle saura perpétuer son héritage.</p><br/>Philippe Faure, Président d’Atout France, fondateur de La Liste
       <br/>Et l’équipe de La Liste
     </div>
     <div class="home-video-iframe">
-    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Disparition du cuisinier Benoît Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px">
+    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Disparition du cuisinier Benoît Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px"><br/><a href="'.base_path().'sites/default/files/Benoit-Violier-Nécrologie.pdf" target="_blank">Nécrologie de Benoît Violier par Jean-Claude Ribaut</a>
     </div>
   </div>';
   }
