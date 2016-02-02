@@ -67,7 +67,7 @@ function generate_home_annoucement_block(){
       <p style="margin-top:1rem;">Philippe Faure,<br/>President of the French Tourism Board, Founder of La Liste</p>
     </div>
     <div class="home-video-iframe">
-    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Loss of chef Benoit Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px"><br/><a href="'.base_path().'sites/default/files/Benoit-Violier-Necrologie.pdf" target="_blank">Obituary of Benoît Violier by Jean-Claude Ribaut (French)</a>
+    <img src='.base_path().path_to_theme().'/img/violier.jpg'.' alt="Loss of chef Benoit Violier" style="display: block;max-width:420px;max-height:630px;width: auto; height: auto;min-width:320px"><br/><a href="'.base_path().'sites/default/files/in-memoriam-benoit-violier.pdf" target="_blank">In memoriam of Benoît Violier by Jean-Claude Ribaut</a>
     </div>
   </div>';
   }
