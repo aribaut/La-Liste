@@ -101,7 +101,7 @@
     <div class="restaurant-rank-big">
     <?php if (isset($prev_link)): ?><a href="<?php print $prev_link; ?>"><i class="fa fa-angle-left"></i></a><?php endif; ?>
       <div class="restaurant-country">
-        <?php if (isset($country_icon) && isset($country_code)): ?><!--<div class="country simple"><?php //print $country_icon; ?></div>-->
+        <?php if (isset($country_icon) && isset($country_code)): ?>
         <div class="country simple">
           <a href="<?php print $GLOBALS['base_url'].'/country/'.$country_code.'/laliste/view'?>"><ul class="country-restaurant-flag"><li class='<?php print strtolower($country_code);?>' src='<?php print $country_icon;?>'></li></ul></a>
         </div>
@@ -109,8 +109,10 @@
         <?php if (isset($rank)): ?><div class="simple"><p class="rank"><?php print $rank; ?></p></div><?php endif; ?>
         <?php if (isset($score)): ?><div class="simple"><p class="score"><?php print $score; ?></p></div><?php endif; ?>
       </div>
-      <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
       <?php if (isset($next_link)): ?><a href="<?php print $next_link; ?>"><i class="fa fa-angle-right"></i></a><?php endif; ?>
+      <div class="restaurant-title">
+        <?php if ($title): ?><h1 id="node-title"><?php print $title; ?></h1><?php endif; ?>
+      </div>
     </div>
     <div class="restaurant-details-container">
       <div class="restaurant-details">
