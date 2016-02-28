@@ -129,7 +129,8 @@ function laliste_preprocess_page(&$vars) {
 
 function laliste_preprocess_node(&$variables) {
   if($variables['type'] == 'restaurant') {
-    //var_dump($variables);
+    global $language_content;
+    $language_current = $language_content->language;
     // getting restaurant rank & score
      $ranking = db_query("
       SELECT rank, ROUND(score_laliste,2) as score_laliste FROM {restaurant_stats}
@@ -165,21 +166,21 @@ function laliste_preprocess_node(&$variables) {
 
     }
     // Addresses for search
-    if(!empty($variables['field_address'][LANGUAGE_NONE][0]['thoroughfare'])) {
-      $variables['address1'] = $variables['field_address'][LANGUAGE_NONE][0]['thoroughfare'];
+    if(!empty($variables['field_address'][$language_current][0]['thoroughfare'])) {
+      $variables['address1'] = $variables['field_address'][$language_current][0]['thoroughfare'];
     }
-    if(!empty($variables['field_address'][LANGUAGE_NONE][0]['premise'])) {
-      $variables['address2'] = $variables['field_address'][LANGUAGE_NONE][0]['premise'];
+    if(!empty($variables['field_address'][$language_current][0]['premise'])) {
+      $variables['address2'] = $variables['field_address'][$language_current][0]['premise'];
     }
-    if(!empty($variables['field_address'][LANGUAGE_NONE][0]['postal_code'])) {
-      $variables['postal_code'] = $variables['field_address'][LANGUAGE_NONE][0]['postal_code'];
+    if(!empty($variables['field_address'][$language_current][0]['postal_code'])) {
+      $variables['postal_code'] = $variables['field_address'][$language_current][0]['postal_code'];
     }
-    if(!empty($variables['field_address'][LANGUAGE_NONE][0]['locality'])) {
-      $variables['city'] = $variables['field_address'][LANGUAGE_NONE][0]['locality'];
+    if(!empty($variables['field_address'][$language_current][0]['locality'])) {
+      $variables['city'] = $variables['field_address'][$language_current][0]['locality'];
     }
-    if(!empty($variables['field_address'][LANGUAGE_NONE][0]['country'])) {
+    if(!empty($variables['field_address'][$language_current][0]['country'])) {
       $variables['country_icon'] = base_path() . path_to_theme() . '/img/flat-large-countries.png';
-      $variables['country_code'] = $variables['field_address'][LANGUAGE_NONE][0]['country'];
+      $variables['country_code'] = $variables['field_address'][$language_current][0]['country'];
       // let's translate the 2 letter ISO code into the full country name
       include_once DRUPAL_ROOT . '/includes/locale.inc';
       $country_list = country_get_list();
@@ -209,14 +210,14 @@ function laliste_preprocess_node(&$variables) {
     $variables['address_full'] .= (isset($variables['city']) ? ', '.$variables['city'] : null);
     $variables['address_full'] .= (isset($variables['country']) ? ' - '.$variables['country'] : null);
     // Other infos search
-    if(!empty($variables['field_cooking_type'][LANGUAGE_NONE][0]['url'])) {
-      $variables['cooking_type'] = $variables['field_cooking_type'][LANGUAGE_NONE][0]['value'];
+    if(!empty($variables['field_cooking_type'][$language_current][0]['url'])) {
+      $variables['cooking_type'] = $variables['field_cooking_type'][$language_current][0]['value'];
     }
-    if(!empty($variables['field_website'][LANGUAGE_NONE][0]['url'])) {
-      $variables['website'] = $variables['field_website'][LANGUAGE_NONE][0]['url'];
+    if(!empty($variables['field_website'][$language_current][0]['url'])) {
+      $variables['website'] = $variables['field_website'][$language_current][0]['url'];
     }
-    if(!empty($variables['field_phone'][LANGUAGE_NONE][0]['value'])) {
-      $variables['phone'] = $variables['field_phone'][LANGUAGE_NONE][0]['value'];
+    if(!empty($variables['field_phone'][$language_current][0]['value'])) {
+      $variables['phone'] = $variables['field_phone'][$language_current][0]['value'];
     }
     // Other infos node view
     if(!empty($variables['field_cooking_type'][0]['url'])) {
@@ -253,7 +254,6 @@ function laliste_preprocess_node(&$variables) {
         $variables['guides'][$terms[$tid]->name] = $link;
       }
     }
-    //dpm($variables);
     // if not geocoder location exists, we put a default map instead
   }
   elseif($variables['type'] == 'liste') {
