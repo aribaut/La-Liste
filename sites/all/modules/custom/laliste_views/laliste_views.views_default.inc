@@ -196,7 +196,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['label'] = '';
   $handler->display->display_options['fields']['score_laliste']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = '[title] is in the [rank]th position';
+  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = ' is in the [rank]th position';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '0';
   /* Contextual filter: Content: Address - Country */
@@ -245,7 +245,7 @@ function laliste_views_views_default_views() {
     t('Desc'),
     t('.'),
     t(','),
-    t('[title] is in the [rank]th position'),
+    t(' is in the [rank]th position'),
     t('All'),
     t('Block'),
   );
@@ -346,14 +346,11 @@ function laliste_views_views_default_views() {
     'text' => '[file:name]',
   );
   $handler->display->display_options['fields']['field_published_article']['field_api_classes'] = TRUE;
-  /* Sort criterion: Content: Geographic Zone (field_geographic_zone) */
-  $handler->display->display_options['sorts']['field_geographic_zone_value']['id'] = 'field_geographic_zone_value';
-  $handler->display->display_options['sorts']['field_geographic_zone_value']['table'] = 'field_data_field_geographic_zone';
-  $handler->display->display_options['sorts']['field_geographic_zone_value']['field'] = 'field_geographic_zone_value';
   /* Sort criterion: Content: Published Date (field_published_date) */
   $handler->display->display_options['sorts']['field_published_date_value']['id'] = 'field_published_date_value';
   $handler->display->display_options['sorts']['field_published_date_value']['table'] = 'field_data_field_published_date';
   $handler->display->display_options['sorts']['field_published_date_value']['field'] = 'field_published_date_value';
+  $handler->display->display_options['sorts']['field_published_date_value']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1379,7 +1376,7 @@ function laliste_views_views_default_views() {
 
   /* Display: Default */
   $handler = $view->new_display('default', 'Default', 'default');
-  $handler->display->display_options['title'] = '1,000 Outstanding Restaurants';
+  $handler->display->display_options['title'] = '1,000 Remarkable Restaurants';
   $handler->display->display_options['css_class'] = 'laliste-winners-home';
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -1584,7 +1581,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['rank']['value']['max'] = '1000';
   $translatables['laliste_rr_restaurants_country_winners_view'] = array(
     t('Default'),
-    t('1,000 Outstanding Restaurants'),
+    t('1,000 Remarkable Restaurants'),
     t('See all restaurants in La Liste'),
     t('Apply'),
     t('Reset'),

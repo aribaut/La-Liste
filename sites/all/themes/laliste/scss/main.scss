@@ -523,7 +523,8 @@ body > header > div.header-utils > div.region.region-header {
 }
 
 #block-search-form,
-#block-locale-language {
+#block-locale-language,
+#block-views-exp-laliste-search-view-page {
     @extend .Grid;
     @extend .Grid-cell;
 }
@@ -551,7 +552,8 @@ body > header > div.header-utils > div.region.region-header {
     width: 90%;
 }
 
-#block-search-form {
+#block-search-form,
+#block-views-exp-laliste-search-view-page {
     @include align-items(flex-end);
     padding-bottom: 0.5rem;
     padding-right: 2rem;
@@ -1036,12 +1038,14 @@ div.view-header > div.view-la-liste-country-map {
     }
 
     //homepage search box
-    .content-body-home #block-search-form {
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-exp-laliste-search-view-page {
         margin: 0 auto !important;
         width: 24rem !important;
         //padding-left: 1rem;
     }
-    #block-views-homepage-slider-block + #block-search-form {
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
         position: inherit !important;
     }
     input.fpage-search-box {
@@ -1139,7 +1143,9 @@ div.view-header > div.view-la-liste-country-map {
     }
     // pager page view
     div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
-    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list ul li.pager-current {
+    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list ul li.pager-current,
+    div.view-laliste-search-view > div.item-list,
+    div.view-laliste-search-view > div.item-list ul li.pager-current {
         font-size: 0.9rem !important;
     }
     // mapping
@@ -1386,11 +1392,13 @@ div.view-header > div.view-la-liste-country-map {
     **/
 
     //homepage search box
-    .content-body-home #block-search-form {
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-exp-laliste-search-view-page {
         margin: 0 auto !important;
         width: 24rem !important;
     }
-    #block-views-homepage-slider-block + #block-search-form {
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
         top: 10.3125rem !important;
     }
     input.fpage-search-box {
@@ -1693,11 +1701,13 @@ div.view-header > div.view-la-liste-country-map {
     * homepage
     **/
     //homepage search box
-    .content-body-home #block-search-form {
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-exp-laliste-search-view-page {
         margin: 0 auto !important;
         width: 32rem !important;
     }
-    #block-views-homepage-slider-block + #block-search-form {
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
         position: absolute !important;
         top: 26.3rem !important;
     }
@@ -1994,11 +2004,13 @@ div.view-header > div.view-la-liste-country-map {
         padding-left: 8.5625rem !important;
     }
     //homepage search box
-    .content-body-home #block-search-form {
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-exp-laliste-search-view-page {
         margin: 0 auto !important;
         width: 50% !important;
     }
-    #block-views-homepage-slider-block + #block-search-form {
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
         position: absolute !important;
         top: 27.3125rem !important;
     }
@@ -2039,10 +2051,12 @@ div.view-header > div.view-la-liste-country-map {
     div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
         display: none;
     }
-    #block-views-homepage-slider-block + #block-search-form {
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
         top: 15.3125rem;
     }
-    .content-body-home #block-search-form {
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-exp-laliste-search-view-page {
         margin: 0 auto !important;
         width: 50% !important;
     }
@@ -2086,11 +2100,13 @@ div.view-header > div.view-la-liste-country-map {
         display: none;
     }
     //homepage search box
-    .content-body-home #block-search-form {
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-exp-laliste-search-view-page {
         margin: 0 auto !important;
         width: 37% !important;
     }
-    #block-views-homepage-slider-block + #block-search-form {
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
         position: absolute !important;
         top: 30.3125rem !important;
     }
@@ -2409,22 +2425,25 @@ sup {
 /**
  * User login block in footer.
  */
-#block-user-login, #block-search-form {
+#block-user-login, #block-search-form, #block-views-exp-laliste-search-view-page {
   width: 100%;
   text-align: center;
 }
-.content-body-home #block-search-form {
+.content-body-home #block-search-form,
+.content-body-home #block-views-exp-laliste-search-view-page {
     width: 50%;
     margin: 0 auto;
 }
 
 #block-user-login .block-title,
-#block-search-form .block-title {
+#block-search-form .block-title,
+#block-views-exp-laliste-search-view-page .block-title {
   margin-bottom: 0.5rem;
   text-align: center;
 }
 #block-user-login .content *,
-#block-search-form .content * {
+#block-search-form .content *,
+#block-views-exp-laliste-search-view-page .content * {
   @include flexbox;
 }
 
@@ -2458,6 +2477,7 @@ input.fpage-search-box {
 
 input.fpage-search-icon,
 input.other-page-search-icon,
+#edit-submit-laliste-search-view,
 #edit-submit {
     border: 0;
     font-family: 'FontAwesome';
@@ -2479,6 +2499,7 @@ input.fpage-search-icon,
 }
 
 input.other-page-search-icon,
+#edit-submit-laliste-search-view,
 #edit-submit {
     width: 3.125rem;
     height: 2.625rem;
@@ -2956,7 +2977,8 @@ span.laliste-winners-field-address-country-1 > a > li {
     position: relative;
 }
 
-#block-views-homepage-slider-block + #block-search-form {
+#block-views-homepage-slider-block + #block-search-form,
+#block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
     position: absolute;
     top: 17.3125rem;
     left: 0;
@@ -2996,7 +3018,8 @@ a:focus.logo, a:hover.logo {
 }
 
 // LA LISTE view page pager
-div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
+div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
+div.view-laliste-search-view > div.item-list {
     @extend .Grid;
     margin: 0rem;
     font-size: 1rem;
@@ -3126,17 +3149,61 @@ div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list {
     display: none;
 }
 
+/**
+ * SEARCH RESULTS
+ */
+
 li.search-result {
     @extend .Grid;
     @extend .Grid-cell;
     @extend .Grid--center;
-    @extend .Grid--full;
     @include justify-content(flex-start);
     @include align-items(flex-start);
     h3.title {
         margin-left: 1rem;
         font-size: 2rem;
     }
+}
+
+.view-laliste-search-view .view-content,
+.view-laliste-search-view .view-content .views-row {
+    @extend .Grid;
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+}
+
+.ds-2col {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+}
+
+.ds-2col > .group-left,
+.ds-2col > .group-right {
+    @include align-items(flex-start);
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    @include flex-direction(column);
+    //padding-bottom: 2rem;
+}
+
+.ds-2col > .group-left {
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of4;
+    width: 110px !important;
+}
+
+.ds-2col > .group-right {
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-3of4;
+}
+
+.view-laliste-search-view .view-header {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
 }
 
 form.search-form {
@@ -3160,14 +3227,27 @@ li.search-result > h3 > p > a {
     margin: 0 0.25rem;
 }
 
+.search-container > .simple {
+    padding: 0;
+    margin-top: -0.5rem;
+    .search-country {
+        padding-top: 0.5rem;
+        @include align-self(baseline);
+    }
+    .countryicon {
+        border : 1px solid $light_grey;
+    }
+}
+
 li.search-result {
     margin-bottom: 2rem;
 }
 .search-result p.rank > a {
     margin-right: 0.5rem;
 }
-.search-result p.score {
-    font-size: 1.65rem !important;
+.search-result p.score,
+.group-right .field-restaurant-score {
+    font-size: 1.4rem !important;
     color: $dark_grey;
     sup {
         color: $dark_grey;
@@ -3185,6 +3265,8 @@ li.search-result {
 .search-container {
     @extend .Grid;
     @include flex-direction(column);
+    @include align-items(flex-start);
+    margin-top: -0.25rem;
 }
 
 .search-title {
@@ -3205,8 +3287,6 @@ li.search-result {
 .search-country {
     @extend .Grid;
     @extend .Grid-cell;
-    margin-left: -1.5rem;
-    margin-top: 0.5rem;
     p {
         margin-top : 0;
     }
@@ -3215,11 +3295,20 @@ li.search-result {
     }
 }
 
+.search-score > .score {
+    font-size: 1.7rem !important;
+    color: $black;
+}
+
 .search-country {
     @include align-self(flex-end);
     a > ul > li {
         zoom: 0.8;
     }
+}
+
+.search-rank {
+    padding: 0 2rem;
 }
 
 .search-snippet-info {
@@ -3236,8 +3325,36 @@ li.search-result {
     }
 }
 
-.search-results-title {
-    margin : 1.5rem 0;
+.search-results-title,
+.group-right .field-title {
+    margin : 0;
+    h2 {
+        font-size: 1.7rem !important;
+        margin : 0;
+    }
+}
+
+.group-right > .field-address {
+    @extend .Grid;
+    @extend .Grid-cell;
+    max-height: 80%;
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    @include align-content(flex-start);
+}
+
+.group-right > .field-address > * {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+}
+
+.group-right > .field-phone > * {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include flex-wrap(nowrap);
+    @include justify-content(flex-start);
 }
 
 .home-video {

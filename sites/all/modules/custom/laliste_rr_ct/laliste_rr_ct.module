@@ -242,3 +242,40 @@ function laliste_rr_ct_menu_local_tasks_alter(&$data, $router_item, $root_path) 
     $data['tabs'][0]['output'][$count]['#active'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_apachesolr_index_document_build_ENTITY_TYPE().
+ */
+function laliste_rr_ct_apachesolr_index_document_build_node(ApacheSolrDocument $document, $entity, $env_id) {
+  // while indexing restaurant node content
+  if ($entity->type == 'restaurant') {
+    //var_dump($entity);
+    if (isset($entity->field_restaurant_score[LANGUAGE_NONE][0]['value'])) {
+      $value = $entity->field_restaurant_score[LANGUAGE_NONE][0]['value'];
+       $document->setField('fts_field_restaurant_score', $value);
+       $document->setField('ftm_field_restaurant_score', $value);
+    }
+  }
+}
+
+/**
+ * Implements hook_apachesolr_query_prepare().
+ */
+function laliste_rr_ct_apachesolr_query_prepare(DrupalSolrQueryInterface $query) {
+  $query->addParam('fl', 'fts_field_restaurant_score');
+  $query->addParam('fl', 'ftm_field_restaurant_score');
+  // If no manual sort set in querystring, set default sort to created desc
+  if (!isset($_GET['solrsort'])) {
+    $query->setSolrSort('fts_field_restaurant_score', 'desc');
+  }
+}
+
+/**
+ * Implements hook_apachesolr_query_alter().
+ */
+/*
+function laliste_rr_ct_apachesolr_query_alter(&$query) {
+  //Set the sort default options.
+  $query->setSolrsort('ftm_field_restaurant_score', 'desc');     // by best score
+}
+*/

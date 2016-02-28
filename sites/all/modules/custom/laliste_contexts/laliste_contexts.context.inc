@@ -38,23 +38,23 @@ function laliste_contexts_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
+        'views--exp-laliste_search_view-page' => array(
+          'module' => 'views',
+          'delta' => '-exp-laliste_search_view-page',
           'region' => 'content',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'laliste_homepage-home_highlight' => array(
           'module' => 'laliste_homepage',
           'delta' => 'home_highlight',
           'region' => 'content',
-          'weight' => '-8',
+          'weight' => '-7',
         ),
         'views-cbbe77509a0d5dfa927448406b230347' => array(
           'module' => 'views',
           'delta' => 'cbbe77509a0d5dfa927448406b230347',
           'region' => 'content',
-          'weight' => '-7',
+          'weight' => '-6',
         ),
       ),
     ),
@@ -66,48 +66,6 @@ function laliste_contexts_context_default_contexts() {
   t('Default Homepage for LA LISTE');
   t('homepage');
   $export['laliste_layout_homepage_context'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'laliste_layout_liste_node_context';
-  $context->description = 'View a Liste';
-  $context->tag = 'layout';
-  $context->conditions = array(
-    'node' => array(
-      'values' => array(
-        'liste' => 'liste',
-      ),
-      'options' => array(
-        'node_form' => '1',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
-          'region' => 'header',
-          'weight' => '-10',
-        ),
-        'locale-language' => array(
-          'module' => 'locale',
-          'delta' => 'language',
-          'region' => 'header',
-          'weight' => '-9',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('View a Liste');
-  t('layout');
-  $export['laliste_layout_liste_node_context'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */

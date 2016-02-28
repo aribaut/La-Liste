@@ -54,10 +54,29 @@ function laliste_contexts_field_default_field_bases() {
     'module' => 'geofield',
     'settings' => array(
       'backend' => 'default',
+      'entity_translation_sync' => FALSE,
       'srid' => 4326,
     ),
     'translatable' => 0,
     'type' => 'geofield',
+  );
+
+  // Exported field_base: 'field_restaurant_score'
+  $field_bases['field_restaurant_score'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_restaurant_score',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'decimal_separator' => '.',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'number_float',
   );
 
   return $field_bases;

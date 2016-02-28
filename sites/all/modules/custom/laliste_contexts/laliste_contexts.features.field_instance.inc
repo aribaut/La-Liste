@@ -46,17 +46,6 @@ function laliste_contexts_field_default_field_instances() {
             'shadowUrl' => '',
           ),
           'leaflet_map' => 'OSM Mapnik',
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
           'popup' => array(
             'show' => 0,
             'text' => '',
@@ -83,6 +72,12 @@ function laliste_contexts_field_default_field_instances() {
         'type' => 'geofield_leaflet',
         'weight' => 11,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -96,6 +91,7 @@ function laliste_contexts_field_default_field_instances() {
     'label' => 'Position',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -128,10 +124,65 @@ function laliste_contexts_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-restaurant-field_restaurant_score'
+  $field_instances['node-restaurant-field_restaurant_score'] = array(
+    'bundle' => 'restaurant',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 12,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'fences_wrapper' => 'div',
+    'field_name' => 'field_restaurant_score',
+    'label' => 'Score',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 2,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Position');
   t('Provides GPS data point for addresses entered in the address field');
+  t('Score');
 
   return $field_instances;
 }
