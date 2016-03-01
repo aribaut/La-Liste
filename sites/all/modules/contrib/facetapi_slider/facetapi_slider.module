@@ -39,7 +39,7 @@ function facetapi_slider_facetapi_widgets() {
       'handler' => array(
         'label' => t('Slider'),
         'class' => 'FacetapiWidgetSlider',
-        'query types' => array('numeric_range'),
+        'query types' => array('term', 'numeric_range'),
       ),
     ),
   );

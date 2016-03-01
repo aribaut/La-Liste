@@ -899,17 +899,3 @@ function _addressfield_country_options_list($field = NULL, $instance = NULL) {
 
   return $countries;
 }
-
-/**
- * Implements hook_search_api_processor_info().
- */
-function addressfield_search_api_processor_info() {
-  $callbacks['search_api_addressfield'] = array(
-    'name' => t('Address field'),
-    'description' => t('This processor appends full text value of administrative_area (state) to its abbreviation ' .
-      '(i.e., "CA" => "CA California"). '),
-    'class' => 'SearchApiAddressfield',
-  );
-
-  return $callbacks;
-}

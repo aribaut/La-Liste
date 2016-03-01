@@ -1,0 +1,62 @@
+diff --git a/facetapi_slider.module b/facetapi_slider.module
+index f5cfa46..895c508 100644
+--- a/facetapi_slider.module
++++ b/facetapi_slider.module
+@@ -39,7 +39,7 @@ function facetapi_slider_facetapi_widgets() {
+       'handler' => array(
+         'label' => t('Slider'),
+         'class' => 'FacetapiWidgetSlider',
+-        'query types' => array('numeric_range'),
++        'query types' => array('term', 'numeric_range'),
+       ),
+     ),
+   );
+diff --git a/plugins/facetapi/widget_slider.inc b/plugins/facetapi/widget_slider.inc
+index 47079a3..278f897 100644
+--- a/plugins/facetapi/widget_slider.inc
++++ b/plugins/facetapi/widget_slider.inc
+@@ -53,6 +53,33 @@ class FacetapiWidgetSlider extends FacetapiWidget {
+     $build = $this->facet->getBuild();
+     $slider = reset($build);
+ 
++    // Set the minimum and maximum range if nonexistent.
++    if(!isset($slider['#range_min']) || !isset($slider['#range_max']) ||
++      !isset($slider['#global_range_min']) || !isset($slider['#global_range_max'])){
++
++      // Only try this if we have a number field to work with.
++      $field_names = explode(':', $facet['field']);
++      $field_name = $field_names[count($field_names)-1];
++      $field_info = field_info_field($field_name);
++      if($field_info['module'] == 'number'){
++
++        // Query the database for the absolute minimum and maximum
++        // values for this field.
++        $table = 'field_data_'.$field_name;
++        $column = $field_name.'_value';
++        $query = db_select($table);
++        $query->addField($table, $column);
++        $query->orderBy($column);
++        $query->distinct();
++        $result = $query->execute()->fetchCol($column);
++
++        $slider['#range_min'] = isset($slider['#range_min']) ? $slider['#range_min'] : $result[0];
++        $slider['#range_max'] = isset($slider['#range_max']) ? $slider['#range_max'] : $result[count($result)-1];
++        $slider['#global_range_min'] = isset($slider['#global_range_min']) ? $slider['#global_range_min'] : $slider['#range_min'];
++        $slider['#global_range_max'] = isset($slider['#global_range_max']) ? $slider['#global_range_max'] : $slider['#range_max'];
++      }
++    }
++
+     $slider_min = $slider['#range_min'];
+     $slider_max = $slider['#range_max'];
+     $slider_min_global = $slider['#global_range_min'];
+@@ -81,8 +108,8 @@ class FacetapiWidgetSlider extends FacetapiWidget {
+       return;
+     }
+ 
+-    $this->jsSettings['sliderMin'] = $slider_min;
+-    $this->jsSettings['sliderMax'] = $slider_max;
++    $this->jsSettings['sliderMin'] = isset($slider_min_handle) ? $slider_min_handle :$slider_min;
++    $this->jsSettings['sliderMax'] = isset($slider_max_handle) ? $slider_max_handle : $slider_max;
+     $this->jsSettings['sliderMinGlobal'] = $slider_min_global;
+     $this->jsSettings['sliderMaxGlobal'] = $slider_max_global;
+     $this->jsSettings['prefix'] = $this->settings->settings['prefix'];

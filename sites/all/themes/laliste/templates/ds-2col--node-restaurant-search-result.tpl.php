@@ -35,6 +35,10 @@
       <div class="search-rank">
         <p class="rank"><?php print $rank;?></p>
       </div>
+    <?php else: ?>
+        <div class="search-score">
+        <p class="score no-ranking"><?php print t('No ranking.');?></p>
+      </div>
     <?php endif; ?>
     <?php if (isset($score)): ?>
       <div class="search-score">

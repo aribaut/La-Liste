@@ -3202,7 +3202,7 @@ li.search-result {
 }
 
 .view-laliste-search-view .view-header {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
 }
 
@@ -3256,6 +3256,13 @@ li.search-result {
     sup {
         color: $dark_grey;
     }
+}
+
+p.score.no-ranking {
+    font-size: 1rem !important;
+    width: 8rem !important;
+    padding-left: 2rem;
+    color: $dark_grey;
 }
 
 .search-result h3 {
@@ -3359,6 +3366,23 @@ li.search-result {
     @extend .Grid-cell;
     @include flex-wrap(nowrap);
     @include justify-content(flex-start);
+}
+
+/**
+ * Faceted Search
+ */
+.block-facetapi {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    h2 {
+        font-size: 0.8rem;
+        color: $dark_grey;
+    }
+    .content {
+        margin-top: -0.15rem !important;
+        padding-left: 1rem;
+    }
 }
 
 .home-video {

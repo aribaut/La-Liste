@@ -522,3 +522,27 @@ function laliste_preprocess_search_result(&$variables) {
     }
   }
 }
+
+function laliste_facet_items_alter(&$build, &$settings) {
+  if ($settings->facet == "field_address:country") {
+    // let's translate the 2 letter ISO code into the full country name
+    include_once DRUPAL_ROOT . '/includes/locale.inc';
+    $country_list = country_get_list();
+    foreach($build as $key => $item) {
+      if(strlen($item["#markup"])==2) {
+        $markup = strtoupper(trim($item["#markup"]));
+        $build[$key]["#markup"] = $country_list[$markup];
+      }
+      else {
+        unset($build[$key]);
+      }
+    }
+  }
+  /*
+  elseif($settings->facet == "field_address:locality") {
+    foreach($build as $key => $item) {
+      //var_dump($item);
+      //$build[$key]["#markup"] = drupal_strtoupper($item["#markup"]);
+    }
+  }*/
+}
