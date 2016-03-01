@@ -151,7 +151,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['large'] = '1000';
   $handler->display->display_options['style_options']['map_options']['maxzoom'] = '18';
   $handler->display->display_options['style_options']['map_options']['zoom'] = '2';
-  $handler->display->display_options['style_options']['map_options']['scrollwheelzoom'] = '1';
+  $handler->display->display_options['style_options']['map_options']['scrollwheelzoom'] = '0';
   $handler->display->display_options['style_options']['map_options']['dragging'] = '1';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
