@@ -95,8 +95,6 @@ function laliste_form_views_exposed_form_alter(&$form, &$form_state) {
   $form['search_api_views_fulltext']['#size'] = 40;  // define size of the textfield
    // Set a default value for the textfield
   $form['submit']['#value'] = ''; // Change the text on the submit button
-  // Prevent user from searching the default text
-  $form['#attributes']['onsubmit'] = "if(this.views_exposed_form.value=='Search'){ alert('Please enter a search'); return false; }";
   // we customize the search appearance on the homepage
   if(drupal_is_front_page()) {
     $form['submit']['#attributes']['class'][] = 'fpage-search-icon';
@@ -107,6 +105,8 @@ function laliste_form_views_exposed_form_alter(&$form, &$form_state) {
     $form['search_api_views_fulltext']['#attributes']['onfocus'] = "if (this.value == '".t('Search a restaurant, a city, a country...')."') {this.value = '';}";
       // Alternative (HTML5) placeholder attribute instead of using the javascript
     $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search a restaurant, a city, a country...');
+    // Prevent user from searching the default text
+    $form['#attributes']['onsubmit'] = "if(this.search_api_views_fulltext.value=='Search a restaurant, a city, a country...'){ alert('Please enter a search'); return false; }";
   }
   else {
     $form['submit']['#attributes']['class'][] = 'other-page-search-icon';
@@ -115,8 +115,10 @@ function laliste_form_views_exposed_form_alter(&$form, &$form_state) {
     $form['search_api_views_fulltext']['#default_value'] = t('Search');
     $form['search_api_views_fulltext']['#attributes']['onblur'] = "if (this.value == '') {this.value = '".t('Search')."';}";
     $form['search_api_views_fulltext']['#attributes']['onfocus'] = "if (this.value == '".t('Search')."') {this.value = '';}";
-      // Alternative (HTML5) placeholder attribute instead of using the javascript
-  $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
+    // Alternative (HTML5) placeholder attribute instead of using the javascript
+    $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
+    // Prevent user from searching the default text
+    $form['#attributes']['onsubmit'] = "if(this.search_api_views_fulltext.value=='Search'){ alert('Please enter a search'); return false; }";
   }
 }
 
