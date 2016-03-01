@@ -20,6 +20,7 @@ dependencies[] = views
 features[context][] = laliste_layout_homepage_context
 features[context][] = laliste_layout_liste_search_context
 features[context][] = laliste_layout_restaurant_node_page_context
+features[context][] = laliste_sidewide_context
 features[ctools][] = context:context:3
 features[features_api][] = api:2
 features[field_base][] = field_restaurant_position
