@@ -85,7 +85,7 @@ function laliste_views_views_default_views() {
 
   $view = new view();
   $view->name = 'la_liste_country_map';
-  $view->description = 'Provides a specific restaurant map';
+  $view->description = 'Provides a world overview map';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'LA LISTE country map';
@@ -111,25 +111,26 @@ function laliste_views_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['map'] = 'leaflet-mapbox';
-  $handler->display->display_options['style_options']['map_height'] = '545';
+  $handler->display->display_options['style_options']['map_height'] = '575';
   $handler->display->display_options['style_options']['ip_geoloc_views_plugin_latitude'] = array(
     'field_restaurant_position' => 'field_restaurant_position',
   );
   $handler->display->display_options['style_options']['ip_geoloc_views_plugin_longitude'] = '';
-  $handler->display->display_options['style_options']['visitor_marker']['visitor_marker_accuracy_circle'] = 0;
-  $handler->display->display_options['style_options']['center_option'] = '4';
+  $handler->display->display_options['style_options']['visitor_marker']['visitor_marker_accuracy_circle'] = 1;
+  $handler->display->display_options['style_options']['center_option'] = '2';
   $handler->display->display_options['style_options']['sync']['2'] = 0;
   $handler->display->display_options['style_options']['sync']['4'] = 0;
   $handler->display->display_options['style_options']['sync']['8'] = 1;
   $handler->display->display_options['style_options']['sync']['16'] = 1;
-  $handler->display->display_options['style_options']['full_screen'] = 0;
+  $handler->display->display_options['style_options']['full_screen'] = 1;
   $handler->display->display_options['style_options']['scale_metric'] = 0;
   $handler->display->display_options['style_options']['scale_imperial'] = 0;
   $handler->display->display_options['style_options']['zoom_indicator'] = 0;
   $handler->display->display_options['style_options']['open_balloons_on_click'] = 1;
   $handler->display->display_options['style_options']['open_balloons_on_hover'] = 0;
   $handler->display->display_options['style_options']['goto_content_on_click'] = 0;
-  $handler->display->display_options['style_options']['map_reset'] = 0;
+  $handler->display->display_options['style_options']['map_reset'] = 1;
+  $handler->display->display_options['style_options']['map_reset_css_class'] = 'fa fa-repeat';
   $handler->display->display_options['style_options']['map_cluster_toggle'] = 0;
   $handler->display->display_options['style_options']['mini_map']['on'] = 0;
   $handler->display->display_options['style_options']['mini_map']['height'] = '100';
@@ -137,11 +138,12 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['mini_map']['toggle'] = 1;
   $handler->display->display_options['style_options']['mini_map']['zoom_delta'] = '-5';
   $handler->display->display_options['style_options']['cluster_radius'] = '80';
+  $handler->display->display_options['style_options']['disable_clustering_at_zoom'] = '14';
   $handler->display->display_options['style_options']['cluster_differentiator']['cluster_differentiator_fields'] = array(
-    '' => '',
+    'field_address_country' => 'field_address_country',
   );
   $handler->display->display_options['style_options']['cluster_differentiator']['zoom_ranges'] = array(
-    1 => '',
+    1 => '3--6',
   );
   $handler->display->display_options['style_options']['cluster_differentiator']['cluster_tooltips'] = 1;
   $handler->display->display_options['style_options']['cluster_differentiator']['cluster_outline'] = '0';
@@ -149,6 +151,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['small'] = '10';
   $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['medium'] = '100';
   $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['large'] = '1000';
+  $handler->display->display_options['style_options']['empty_map_center'] = 'visitor';
   $handler->display->display_options['style_options']['map_options']['maxzoom'] = '18';
   $handler->display->display_options['style_options']['map_options']['zoom'] = '2';
   $handler->display->display_options['style_options']['map_options']['scrollwheelzoom'] = '0';
@@ -196,7 +199,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['label'] = '';
   $handler->display->display_options['fields']['score_laliste']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = ' is in the [rank]th position';
+  $handler->display->display_options['fields']['score_laliste']['alter']['text'] = '[title] is in the [rank]th position';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '0';
   /* Contextual filter: Content: Address - Country */
@@ -245,7 +248,7 @@ function laliste_views_views_default_views() {
     t('Desc'),
     t('.'),
     t(','),
-    t(' is in the [rank]th position'),
+    t('[title] is in the [rank]th position'),
     t('All'),
     t('Block'),
   );
@@ -1986,20 +1989,59 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
-  $handler->display->display_options['style_plugin'] = 'leaflet';
-  $handler->display->display_options['style_options']['entity_type'] = 'node';
-  $handler->display->display_options['style_options']['data_source'] = 'field_restaurant_position';
-  $handler->display->display_options['style_options']['name_field'] = 'title';
-  $handler->display->display_options['style_options']['description_field'] = 'score_laliste';
-  $handler->display->display_options['style_options']['map'] = 'mapbox-warden';
-  $handler->display->display_options['style_options']['hide_empty'] = 1;
-  $handler->display->display_options['style_options']['zoom']['initialZoom'] = '16';
-  $handler->display->display_options['style_options']['zoom']['minZoom'] = '10';
-  $handler->display->display_options['style_options']['zoom']['maxZoom'] = '18';
-  $handler->display->display_options['style_options']['zoom']['scrollWheelZoom'] = 0;
-  $handler->display->display_options['style_options']['vector_display']['stroke'] = 0;
-  $handler->display->display_options['style_options']['vector_display']['fill'] = 0;
-  $handler->display->display_options['style_options']['vector_display']['clickable'] = 0;
+  $handler->display->display_options['style_plugin'] = 'ip_geoloc_leaflet';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => '',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['map'] = 'leaflet-mapbox';
+  $handler->display->display_options['style_options']['map_height'] = '336';
+  $handler->display->display_options['style_options']['ip_geoloc_views_plugin_latitude'] = array(
+    'field_restaurant_position' => 'field_restaurant_position',
+  );
+  $handler->display->display_options['style_options']['ip_geoloc_views_plugin_longitude'] = '';
+  $handler->display->display_options['style_options']['visitor_marker']['visitor_marker_accuracy_circle'] = 0;
+  $handler->display->display_options['style_options']['center_option'] = '0';
+  $handler->display->display_options['style_options']['sync']['2'] = 0;
+  $handler->display->display_options['style_options']['sync']['4'] = 0;
+  $handler->display->display_options['style_options']['sync']['8'] = 1;
+  $handler->display->display_options['style_options']['sync']['16'] = 1;
+  $handler->display->display_options['style_options']['full_screen'] = 1;
+  $handler->display->display_options['style_options']['scale_metric'] = 1;
+  $handler->display->display_options['style_options']['scale_imperial'] = 1;
+  $handler->display->display_options['style_options']['zoom_indicator'] = 0;
+  $handler->display->display_options['style_options']['open_balloons_on_click'] = 0;
+  $handler->display->display_options['style_options']['open_balloons_on_hover'] = 0;
+  $handler->display->display_options['style_options']['goto_content_on_click'] = 0;
+  $handler->display->display_options['style_options']['map_reset'] = 1;
+  $handler->display->display_options['style_options']['map_reset_css_class'] = 'fa fa-repeat';
+  $handler->display->display_options['style_options']['map_cluster_toggle'] = 0;
+  $handler->display->display_options['style_options']['mini_map']['on'] = 0;
+  $handler->display->display_options['style_options']['mini_map']['height'] = '100';
+  $handler->display->display_options['style_options']['mini_map']['width'] = '150';
+  $handler->display->display_options['style_options']['mini_map']['toggle'] = 1;
+  $handler->display->display_options['style_options']['mini_map']['zoom_delta'] = '-5';
+  $handler->display->display_options['style_options']['cluster_radius'] = '80';
+  $handler->display->display_options['style_options']['cluster_differentiator']['cluster_differentiator_fields'] = array(
+    '' => '',
+  );
+  $handler->display->display_options['style_options']['cluster_differentiator']['zoom_ranges'] = array(
+    1 => '',
+  );
+  $handler->display->display_options['style_options']['cluster_differentiator']['cluster_tooltips'] = 1;
+  $handler->display->display_options['style_options']['cluster_differentiator']['cluster_outline'] = '0';
+  $handler->display->display_options['style_options']['cluster_aggregation']['aggregation_function'] = 'average';
+  $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['small'] = '10';
+  $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['medium'] = '100';
+  $handler->display->display_options['style_options']['cluster_aggregation']['ranges']['large'] = '1000';
+  $handler->display->display_options['style_options']['empty_map_center'] = 'visitor';
+  $handler->display->display_options['style_options']['map_options']['maxzoom'] = '17';
+  $handler->display->display_options['style_options']['map_options']['zoom'] = '15';
+  $handler->display->display_options['style_options']['map_options']['scrollwheelzoom'] = '0';
+  $handler->display->display_options['style_options']['map_options']['dragging'] = '1';
   /* No results behavior: Entity: Rendered entity */
   $handler->display->display_options['empty']['entity']['id'] = 'entity';
   $handler->display->display_options['empty']['entity']['table'] = 'entity__global';
