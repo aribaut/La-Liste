@@ -16,6 +16,10 @@ function laliste_ranking_drush_command() {
       'description' => t('Update Restaurants with LA LISTE scores for Search'),
       'alias' => array('upsc'),
     ),
+    'translate-restaurant-nodes' => array(
+      'description' => t('Translate Restaurant nodes'),
+      'alias' => array('translate'),
+    ),
   );
 }
 
@@ -33,4 +37,12 @@ function drush_laliste_ranking_update_laliste($pro = false) {
 function drush_laliste_ranking_update_scores_search() {
   module_load_include('inc', 'laliste_ranking');
   update_scores_search();
+}
+
+/**
+ * Create translations for all restaurant nodes
+ */
+function drush_laliste_ranking_translate_restaurant_nodes() {
+  module_load_include('inc', 'laliste_ranking');
+  translate_restaurant_nodes();
 }

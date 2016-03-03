@@ -1638,3 +1638,66 @@ function update_scores_search() {
   echo "================================\n";
   echo "Number of new records added : ".$inserted."\n";
 }
+
+/**
+ * Translate restaurant nodes
+ * from https://www.drupal.org/node/1069774
+ */
+function translate_restaurant_nodes() {
+  // select all restaurant nodes
+  $restaurants = db_query("
+   SELECT * from {node} WHERE type='restaurant'")->fetchAll();
+  foreach($restaurants as $restaurant) {
+    // set new language
+    $old_language = 'en';
+    $new_lang = 'fr';
+    // load current node
+    $node = node_load($restaurant->nid);
+    // new city / country
+    if(isset($node->field_address[$old_language][0])
+      && !isset($node->field_address[$new_lang][0])) {
+      $old_address = $node->field_address[$old_language][0];
+      // we create and add a translated address field
+      $node->field_address[$new_lang][0] = array(
+        'country' => $old_address['country'],
+        'administrative_area' => $old_address['administrative_area'],
+        'sub_administrative_area' => $old_address['sub_administrative_area'],
+        'locality' => $old_address['locality'],
+        'dependent_locality' => $old_address['dependent_locality'],
+        'postal_code' => $old_address['postal_code'],
+        'thoroughfare' => $old_address['thoroughfare'],
+        'premise' => $old_address['premise'],
+        'sub_premise' => $old_address['sub_premise'],
+        'organisation_name' => $old_address['organisation_name'],
+        'name_line' => $old_address['name_line'],
+        'first_name' => $old_address['first_name'],
+        'last_name' => $old_address['last_name'],
+        'data' => $old_address['data'],
+      );
+      // tell the handler to replace the cached entity with the updated one
+      $handler = entity_translation_get_handler('node', $node, TRUE);
+
+      $translation = array(
+        'translate' => 0,
+        'status' => 1,
+        'language' => $new_lang,
+        'source' => $node->language,
+      );
+
+      $handler->setTranslation($translation, $node);
+      // we're done
+      node_save($node);
+      // Create url alias for translation
+      /*
+      if (module_exists('pathauto') && is_callable('pathauto_node_update_alias')) {
+        call_user_func('pathauto_node_update_alias', $node, 'update', array('language' => $new_lang));
+      } */
+      // output log
+      echo "+created translation for node : ".$node->nid."\n";
+    } else {
+      echo "-translation exists for node : ".$node->nid."\n";
+    }
+    // cleanup
+    unset($node);
+  }
+}

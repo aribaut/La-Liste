@@ -1,7 +1,23 @@
 
 Entity Translation 7.x-1.x, xxxx-xx-xx
 --------------------------------------
-
+#2444203 by Leksat, badrange, attiks: Show fallback information on the translation
+  overview.
+#2458393 by catch, plach, douggreen: Fixed unindexed query in
+  EntityTranslationDefaultHandler::loadMultiple().
+#2462909 by GeduR: Misspelling translation exists help in views handler
+  definition.
+#2166157 by rsmylski, ciss: entity translation handler id for new entities not
+  unique enough - can cause infinite/circular child reference.
+#2452279 by GeduR: Duplicated variable $language in
+  entity_translation_edit_access().
+#2423661 by marcoscano: Module api documentation has wrong example ("path sets"
+  instead of "path schemes").
+#2305547 by das-peter: Fixed undefined index name.
+#1989084 by jsacksick, candelas: Fixed <nolink> and validation.
+#2203801 by idflood: Impossible to update taxonomy term after enabling
+  i18n_taxonomy.
+#2415189 by catch: Translation deletion bypasses entity saving.
 
 Entity Translation 7.x-1.0-beta4, 2015-01-23
 --------------------------------------------

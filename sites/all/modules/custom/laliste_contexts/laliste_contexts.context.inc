@@ -38,23 +38,23 @@ function laliste_contexts_context_default_contexts() {
           'region' => 'content',
           'weight' => '-10',
         ),
-        'views--exp-laliste_search_view-page' => array(
+        'views-68034fa5b32e0ac3ea4ae93d4e474819' => array(
           'module' => 'views',
-          'delta' => '-exp-laliste_search_view-page',
+          'delta' => '68034fa5b32e0ac3ea4ae93d4e474819',
           'region' => 'content',
-          'weight' => '-8',
+          'weight' => '-9',
         ),
         'laliste_homepage-home_highlight' => array(
           'module' => 'laliste_homepage',
           'delta' => 'home_highlight',
           'region' => 'content',
-          'weight' => '-7',
+          'weight' => '-8',
         ),
         'views-cbbe77509a0d5dfa927448406b230347' => array(
           'module' => 'views',
           'delta' => 'cbbe77509a0d5dfa927448406b230347',
           'region' => 'content',
-          'weight' => '-6',
+          'weight' => '-7',
         ),
       ),
     ),
@@ -66,87 +66,6 @@ function laliste_contexts_context_default_contexts() {
   t('Default Homepage for LA LISTE');
   t('homepage');
   $export['laliste_layout_homepage_context'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'laliste_layout_liste_search_context';
-  $context->description = 'Provides search results context';
-  $context->tag = 'layout';
-  $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        'search' => 'search',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'facetapi-yDMzc33kVCDO4YfpmUWiy7js1fiayAS2' => array(
-          'module' => 'facetapi',
-          'delta' => 'yDMzc33kVCDO4YfpmUWiy7js1fiayAS2',
-          'region' => 'content',
-          'weight' => '-23',
-        ),
-        'facetapi-x2leFi58XFJeG5pw4wqUQBtLOw4m1gAx' => array(
-          'module' => 'facetapi',
-          'delta' => 'x2leFi58XFJeG5pw4wqUQBtLOw4m1gAx',
-          'region' => 'content',
-          'weight' => '-22',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Provides search results context');
-  t('layout');
-  $export['laliste_layout_liste_search_context'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'laliste_layout_restaurant_node_page_context';
-  $context->description = 'Provides a layout for a restaurant node';
-  $context->tag = 'layout';
-  $context->conditions = array(
-    'node' => array(
-      'values' => array(
-        'restaurant' => 'restaurant',
-      ),
-      'options' => array(
-        'node_form' => '0',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'search-form' => array(
-          'module' => 'search',
-          'delta' => 'form',
-          'region' => 'header',
-          'weight' => '-10',
-        ),
-        'locale-language' => array(
-          'module' => 'locale',
-          'delta' => 'language',
-          'region' => 'header',
-          'weight' => '-8',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Provides a layout for a restaurant node');
-  t('layout');
-  $export['laliste_layout_restaurant_node_page_context'] = $context;
 
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
@@ -175,11 +94,11 @@ function laliste_contexts_context_default_contexts() {
           'region' => 'header',
           'weight' => '-10',
         ),
-        'views--exp-laliste_search_view-page' => array(
+        'views-68034fa5b32e0ac3ea4ae93d4e474819' => array(
           'module' => 'views',
-          'delta' => '-exp-laliste_search_view-page',
+          'delta' => '68034fa5b32e0ac3ea4ae93d4e474819',
           'region' => 'header',
-          'weight' => '-8',
+          'weight' => '-9',
         ),
       ),
     ),
@@ -191,6 +110,39 @@ function laliste_contexts_context_default_contexts() {
   t('Provides a sitewide context');
   t('sitewide');
   $export['laliste_sidewide_context'] = $context;
+
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'laliste_layout_liste_search_context';
+  $context->description = 'Provides search results context';
+  $context->tag = 'layout';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        'search' => 'search',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'facetapi-0' => array(
+          'module' => 'facetapi',
+          'delta' => '0',
+          'region' => 'content',
+          'weight' => '-10',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Provides search results context');
+  t('layout');
+  $export['laliste_layout_liste_search_context'] = $context;
 
   return $export;
 }

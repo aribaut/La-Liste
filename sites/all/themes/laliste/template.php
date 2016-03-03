@@ -226,7 +226,12 @@ function laliste_preprocess_node(&$variables) {
       $variables['cooking_type'] = $variables['field_cooking_type'][0]['value'];
     }
     if(!empty($variables['field_website'][0]['url'])) {
-      $variables['website'] = $variables['field_website'][0]['url'];
+      $url = $variables['field_website'][0]['url'];
+      $scheme = parse_url($url, PHP_URL_SCHEME);
+      $host = parse_url($url, PHP_URL_HOST);
+      $variables['website_url'] = $url;
+      $variables['website_scheme'] = $scheme;
+      $variables['website_host'] = $host;
     }
     if(!empty($variables['field_phone'][0]['value'])) {
       $variables['phone'] = $variables['field_phone'][0]['value'];

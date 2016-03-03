@@ -126,8 +126,8 @@
           <?php if (isset($phone)): ?>
             <li><span class="info-title"><?php print t('Phone');?>:</span><p class="info-content"><?php print $phone; ?></p></li>
           <?php endif; ?>
-          <?php if (isset($website)): ?>
-            <li><span class="info-title"><?php print t('Internet');?>:</span><p class="info-content"><a href="<?php print $website; ?>" target="_blank"><?php print $website; ?></a></p></li>
+          <?php if (isset($website_url)): ?>
+            <li><span class="info-title"><?php print t('Internet');?>:</span><p class="info-content"><a href="<?php print $website_url; ?>" target="_blank"><?php print $website_host; ?></a></p></li>
           <?php endif; ?>
           <?php if (isset($tags)): ?>
             <?php $n = count($tags); $i=0; ?>

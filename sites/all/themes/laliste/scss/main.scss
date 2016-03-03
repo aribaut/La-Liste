@@ -524,7 +524,7 @@ body > header > div.header-utils > div.region.region-header {
 
 #block-search-form,
 #block-locale-language,
-#block-views-exp-laliste-search-view-page {
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
     @extend .Grid;
     @extend .Grid-cell;
 }
@@ -553,7 +553,7 @@ body > header > div.header-utils > div.region.region-header {
 }
 
 #block-search-form,
-#block-views-exp-laliste-search-view-page {
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
     @include align-items(flex-end);
     padding-bottom: 0.5rem;
     padding-right: 2rem;
@@ -1039,13 +1039,13 @@ div.view-header > div.view-la-liste-country-map {
 
     //homepage search box
     .content-body-home #block-search-form,
-    .content-body-home #block-views-exp-laliste-search-view-page {
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         margin: 0 auto !important;
         width: 24rem !important;
         //padding-left: 1rem;
     }
     #block-views-homepage-slider-block + #block-search-form,
-    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         position: inherit !important;
     }
     input.fpage-search-box {
@@ -1144,8 +1144,8 @@ div.view-header > div.view-la-liste-country-map {
     // pager page view
     div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
     div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list ul li.pager-current,
-    div.view-laliste-search-view > div.item-list,
-    div.view-laliste-search-view > div.item-list ul li.pager-current {
+    div.view-laliste-multi-search-view > div.item-list,
+    div.view-laliste-multi-search-view > div.item-list ul li.pager-current {
         font-size: 0.9rem !important;
     }
     // mapping
@@ -1393,12 +1393,14 @@ div.view-header > div.view-la-liste-country-map {
 
     //homepage search box
     .content-body-home #block-search-form,
-    .content-body-home #block-views-exp-laliste-search-view-page {
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         margin: 0 auto !important;
         width: 24rem !important;
     }
     #block-views-homepage-slider-block + #block-search-form,
-    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         top: 10.3125rem !important;
     }
     input.fpage-search-box {
@@ -1702,12 +1704,12 @@ div.view-header > div.view-la-liste-country-map {
     **/
     //homepage search box
     .content-body-home #block-search-form,
-    .content-body-home #block-views-exp-laliste-search-view-page {
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         margin: 0 auto !important;
         width: 32rem !important;
     }
     #block-views-homepage-slider-block + #block-search-form,
-    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         position: absolute !important;
         top: 26.3rem !important;
     }
@@ -2007,12 +2009,12 @@ div.view-header > div.view-la-liste-country-map {
     }
     //homepage search box
     .content-body-home #block-search-form,
-    .content-body-home #block-views-exp-laliste-search-view-page {
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         margin: 0 auto !important;
         width: 50% !important;
     }
     #block-views-homepage-slider-block + #block-search-form,
-    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         position: absolute !important;
         top: 27.3125rem !important;
     }
@@ -2054,11 +2056,11 @@ div.view-header > div.view-la-liste-country-map {
         display: none;
     }
     #block-views-homepage-slider-block + #block-search-form,
-    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         top: 15.3125rem;
     }
     .content-body-home #block-search-form,
-    .content-body-home #block-views-exp-laliste-search-view-page {
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         margin: 0 auto !important;
         width: 50% !important;
     }
@@ -2103,12 +2105,12 @@ div.view-header > div.view-la-liste-country-map {
     }
     //homepage search box
     .content-body-home #block-search-form,
-    .content-body-home #block-views-exp-laliste-search-view-page {
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         margin: 0 auto !important;
         width: 37% !important;
     }
     #block-views-homepage-slider-block + #block-search-form,
-    #block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
         position: absolute !important;
         top: 30.3125rem !important;
     }
@@ -2427,25 +2429,25 @@ sup {
 /**
  * User login block in footer.
  */
-#block-user-login, #block-search-form, #block-views-exp-laliste-search-view-page {
+#block-user-login, #block-search-form, #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
   width: 100%;
   text-align: center;
 }
 .content-body-home #block-search-form,
-.content-body-home #block-views-exp-laliste-search-view-page {
+.content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
     width: 50%;
     margin: 0 auto;
 }
 
 #block-user-login .block-title,
 #block-search-form .block-title,
-#block-views-exp-laliste-search-view-page .block-title {
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 .block-title {
   margin-bottom: 0.5rem;
   text-align: center;
 }
 #block-user-login .content *,
 #block-search-form .content *,
-#block-views-exp-laliste-search-view-page .content * {
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 .content * {
   @include flexbox;
 }
 
@@ -2980,7 +2982,7 @@ span.laliste-winners-field-address-country-1 > a > li {
 }
 
 #block-views-homepage-slider-block + #block-search-form,
-#block-views-homepage-slider-block + #block-views-exp-laliste-search-view-page {
+#block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
     position: absolute;
     top: 17.3125rem;
     left: 0;
@@ -3021,7 +3023,7 @@ a:focus.logo, a:hover.logo {
 
 // LA LISTE view page pager
 div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
-div.view-laliste-search-view > div.item-list {
+div.view-laliste-multi-search-view > div.item-list {
     @extend .Grid;
     margin: 0rem;
     font-size: 1rem;
@@ -3167,8 +3169,8 @@ li.search-result {
     }
 }
 
-.view-laliste-search-view .view-content,
-.view-laliste-search-view .view-content .views-row {
+.view-laliste-multi-search-view .view-content,
+.view-laliste-multi-search-view .view-content .views-row {
     @extend .Grid;
     @include flex-direction(column);
     @include justify-content(flex-start);
@@ -3203,12 +3205,12 @@ li.search-result {
     @extend .u-large-3of4;
 }
 
-.view-laliste-search-view .view-header {
+.view-laliste-multi-search-view .view-header {
     font-size: 1.8rem;
     margin-bottom: 2rem;
 }
 
-.view-laliste-search-view > .view-content > .views-row {
+.view-laliste-multi-search-view > .view-content > .views-row {
     //height: 10rem !important;
 }
 
