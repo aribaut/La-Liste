@@ -1650,6 +1650,13 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['rank']['operator'] = 'between';
   $handler->display->display_options['filters']['rank']['value']['min'] = '1';
   $handler->display->display_options['filters']['rank']['value']['max'] = '1000';
+  /* Filter criterion: Content: Address (field_address:language) */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_address';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
   $handler->display->display_options['path'] = 'country/%/laliste/view';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Restaurant Guide Ranking';
