@@ -1654,8 +1654,7 @@ function translate_restaurant_nodes() {
     // load current node
     $node = node_load($restaurant->nid);
     // new city / country
-    if(isset($node->field_address[$old_language][0])
-      && !isset($node->field_address[$new_lang][0])) {
+    if(isset($node->field_address[$old_language][0])) {
       $old_address = $node->field_address[$old_language][0];
       // we create and add a translated address field
       $node->field_address[$new_lang][0] = array(
@@ -1688,10 +1687,9 @@ function translate_restaurant_nodes() {
       // we're done
       node_save($node);
       // Create url alias for translation
-      /*
       if (module_exists('pathauto') && is_callable('pathauto_node_update_alias')) {
         call_user_func('pathauto_node_update_alias', $node, 'update', array('language' => $new_lang));
-      } */
+      }
       // output log
       echo "+created translation for node : ".$node->nid."\n";
     } else {
