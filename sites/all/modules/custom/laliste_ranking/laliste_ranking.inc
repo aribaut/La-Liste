@@ -1653,7 +1653,39 @@ function translate_restaurant_nodes() {
     $new_lang = 'fr';
     // load current node
     $node = node_load($restaurant->nid);
-    // new city / country
+    // if node set to neutral language, we correct it!
+    if($node->language == LANGUAGE_NONE) {
+      // we treat the address field specificaly
+      $old_address = $node->field_address[LANGUAGE_NONE][0];
+      // we remove the neutral language reference
+      unset($node->field_address[LANGUAGE_NONE]);
+      // we create and add a translated address field
+      $node->field_address['en'][0] = array(
+        'country' => $old_address['country'],
+        'administrative_area' => $old_address['administrative_area'],
+        'sub_administrative_area' => $old_address['sub_administrative_area'],
+        'locality' => $old_address['locality'],
+        'dependent_locality' => $old_address['dependent_locality'],
+        'postal_code' => $old_address['postal_code'],
+        'thoroughfare' => $old_address['thoroughfare'],
+        'premise' => $old_address['premise'],
+        'sub_premise' => $old_address['sub_premise'],
+        'organisation_name' => $old_address['organisation_name'],
+        'name_line' => $old_address['name_line'],
+        'first_name' => $old_address['first_name'],
+        'last_name' => $old_address['last_name'],
+        'data' => $old_address['data'],
+      );
+      // set the node language
+      $node->language = 'en'; // set the node language to english
+      field_attach_update('node', $node);
+      entity_get_controller('node')->resetCache(array($node->nid));
+      // Create url alias for translation
+      if (module_exists('pathauto') && is_callable('pathauto_node_update_alias')) {
+        call_user_func('pathauto_node_update_alias', $node, 'update', array('language' => 'en'));
+      }
+    }
+    // now let's convert the node properly
     if(isset($node->field_address[$old_language][0])) {
       $old_address = $node->field_address[$old_language][0];
       // we create and add a translated address field
@@ -1682,20 +1714,18 @@ function translate_restaurant_nodes() {
         'language' => $new_lang,
         'source' => $node->language,
       );
-
       $handler->setTranslation($translation, $node);
-      // we're done
-      node_save($node);
+      // we remove the neutral language reference if is exists
+      unset($node->field_address[LANGUAGE_NONE]);
+      // alternative to node_save
+      field_attach_update('node', $node);
+      entity_get_controller('node')->resetCache(array($node->nid));
       // Create url alias for translation
       if (module_exists('pathauto') && is_callable('pathauto_node_update_alias')) {
         call_user_func('pathauto_node_update_alias', $node, 'update', array('language' => $new_lang));
       }
       // output log
       echo "+created translation for node : ".$node->nid."\n";
-    } else {
-      echo "-translation exists for node : ".$node->nid."\n";
     }
-    // cleanup
-    unset($node);
   }
 }
