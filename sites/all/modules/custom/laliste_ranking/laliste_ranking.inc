@@ -1644,6 +1644,19 @@ function update_scores_search() {
  * from https://www.drupal.org/node/1069774
  */
 function translate_restaurant_nodes() {
+    // select all restaurant nodes
+  $restaurants = db_query("
+   SELECT * from {node} WHERE type='restaurant'")->fetchAll();
+  foreach($restaurants as $restaurant) {
+    // load current node
+    $node = node_load($restaurant->nid);
+    usleep(250000);
+    node_save($node);
+    // output log
+    echo "+refreshed node : ".$node->nid."\n";
+    }
+}
+  /*
   // select all restaurant nodes
   $restaurants = db_query("
    SELECT * from {node} WHERE type='restaurant'")->fetchAll();
@@ -1728,4 +1741,4 @@ function translate_restaurant_nodes() {
       echo "+created translation for node : ".$node->nid."\n";
     }
   }
-}
+  */
