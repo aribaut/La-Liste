@@ -182,11 +182,18 @@ function laliste_preprocess_node(&$variables) {
     }
     if(!empty($variables['field_address'][$language_current][0]['country'])) {
       $variables['country_icon'] = base_path() . path_to_theme() . '/img/flat-large-countries.png';
-      $variables['country_code'] = $variables['field_address'][$language_current][0]['country'];
+      $variables['country_code'] = strtolower($variables['field_address'][$language_current][0]['country']);
       // let's translate the 2 letter ISO code into the full country name
       include_once DRUPAL_ROOT . '/includes/locale.inc';
       $country_list = country_get_list();
-      $variables['country'] = $country_list[$variables['country_code']];
+      $variables['country'] = $country_list[strtoupper($variables['country_code'])];
+      // we create the proper country view link according to current language
+      if($language_current != 'en') {
+        $variables['country_view_url'] = $GLOBALS['base_url'].'/'.$language_current.'/country/'.$variables['country_code'].'/laliste/view';
+      }
+      else {
+        $variables['country_view_url'] = $GLOBALS['base_url'].'/country/'.$variables['country_code'].'/laliste/view';
+      }
     }
     // Addresses for node view
     if(!empty($variables['field_address'][0]['thoroughfare'])) {
@@ -203,7 +210,13 @@ function laliste_preprocess_node(&$variables) {
     }
     if(!empty($variables['field_address'][0]['country'])) {
       $variables['country_icon'] = base_path() . path_to_theme() . '/img/flat-large-countries.png';
-      $variables['country_code'] = $variables['field_address'][0]['country'];
+      $variables['country_code'] = strtolower($variables['field_address'][0]['country']);
+      if($language_current != 'en') {
+        $variables['country_view_url'] = $GLOBALS['base_url'].'/'.$language_current.'/country/'.$variables['country_code'].'/laliste/view';
+      }
+      else {
+        $variables['country_view_url'] = $GLOBALS['base_url'].'/country/'.$variables['country_code'].'/laliste/view';
+      }
     }
     // full address
     $variables['address_full'] = (isset($variables['address1']) ? $variables['address1'] : null);
@@ -228,6 +241,7 @@ function laliste_preprocess_node(&$variables) {
     if(!empty($variables['field_website'][0]['url'])) {
       $url = $variables['field_website'][0]['url'];
       $scheme = parse_url($url, PHP_URL_SCHEME);
+      //if(isset($scheme)) @TODO
       $host = parse_url($url, PHP_URL_HOST);
       $variables['website_url'] = $url;
       $variables['website_scheme'] = $scheme;
@@ -454,7 +468,7 @@ function laliste_views_pre_render($view) {
         if($view->args[0] != 'world') {
           include_once DRUPAL_ROOT . '/includes/locale.inc';
           $country_names = country_get_list();
-          $country = $country_names[$view->args[0]];
+          $country = $country_names[strtoupper($view->args[0])];
           $view->set_title(t('Restaurants in') . ' ' . t($country));
         }
         else {

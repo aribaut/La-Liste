@@ -30,7 +30,7 @@ $img_path = base_path() . path_to_theme() . '/img/flat-large-countries.png';
     <?php //print $field->label_html; ?>
     <span class='laliste-winners-<?php print $field->class; ?>'>
     <?php if($field->class == 'field-address-country-1'): ?>
-      <a href="<?php print $GLOBALS['base_url'].'/country/'.$field->raw.'/laliste/view'?>"><li class='<?php print strtolower($field->raw);?>' src='<?php print $img_path;?>'></li></a>
+      <a href="<?php print $GLOBALS['base_url'].'/country/'.strtolower($field->raw).'/laliste/view'?>"><li class='<?php print strtolower($field->raw);?>' src='<?php print $img_path;?>'></li></a>
     <?php else: ?>
       <?php print $field->content; ?>
     <?php endif; ?>

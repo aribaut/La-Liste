@@ -24,9 +24,9 @@
       </div>
     <?php endif; ?>
     <div class="simple">
-    <?php if (isset($country_code)): ?>
+    <?php if (isset($country_code) && isset($country_view_url)): ?>
         <div class="search-country">
-          <a href="<?php print $GLOBALS['base_url'].'/country/'.$country_code.'/laliste/view'?>">
+          <a href="<?php print $country_view_url; ?>">
             <?php print theme('countryicons_icon', array('code' =>  $country_code, 'iconset' =>  'gosquared_flat_large')); ?>
           </a>
         </div>

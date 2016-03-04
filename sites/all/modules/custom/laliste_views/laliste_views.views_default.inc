@@ -218,6 +218,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['field_address_country']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_address_country']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_address_country']['limit'] = '0';
+  $handler->display->display_options['arguments']['field_address_country']['path_case'] = 'lower';
   /* Filter criterion: Contenu: Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1447,7 +1448,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['field_address_country']['default_action'] = 'not found';
   $handler->display->display_options['arguments']['field_address_country']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['field_address_country']['title_enable'] = TRUE;
-  $handler->display->display_options['arguments']['field_address_country']['title'] = 'Restaurants en %1';
+  $handler->display->display_options['arguments']['field_address_country']['title'] = '%1: Restaurants';
   $handler->display->display_options['arguments']['field_address_country']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['field_address_country']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_address_country']['summary']['format'] = 'default_summary';
@@ -1504,7 +1505,7 @@ function laliste_views_views_default_views() {
     t('.'),
     t(','),
     t('Tout'),
-    t('Restaurants en %1'),
+    t('%1: Restaurants'),
     t('Page'),
   );
   $export['laliste_rr_restaurants_country_view'] = $view;
