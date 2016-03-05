@@ -1650,7 +1650,6 @@ function translate_restaurant_nodes() {
   foreach($restaurants as $restaurant) {
     // load current node
     $node = node_load($restaurant->nid);
-    usleep(250000);
     node_save($node);
     // output log
     echo "+refreshed node : ".$node->nid."\n";
