@@ -114,7 +114,8 @@ function laliste_form_views_exposed_form_alter(&$form, &$form_state) {
     // Add extra attributes to the text box
     $form['search_api_views_fulltext']['#default_value'] = t('Search');
     $form['search_api_views_fulltext']['#attributes']['onblur'] = "if (this.value == '') {this.value = '".t('Search')."';}";
-    $form['search_api_views_fulltext']['#attributes']['onfocus'] = "if (this.value == '".t('Search')."') {this.value = '';}";
+    //$form['search_api_views_fulltext']['#attributes']['onfocus'] = "if (this.value == '".t('Search')."') {this.value = '';}";
+    $form['search_api_views_fulltext']['#attributes']['onfocus'] = "this.value = '';";
     // Alternative (HTML5) placeholder attribute instead of using the javascript
     $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
     // Prevent user from searching the default text
@@ -491,7 +492,7 @@ function laliste_language_switch_links_alter(array &$links, $type, $path) {
 }
 
 /*
-** Theming node search results
+** Theming node search results - DEPRECATED?
 ** configured for Apache Solr!
  */
 function laliste_preprocess_search_result(&$variables) {

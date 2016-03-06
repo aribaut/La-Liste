@@ -33,12 +33,14 @@ function laliste_search_default_search_api_index() {
       "cron_limit" : "200",
       "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
-        "field_address:country" : { "type" : "text" },
-        "field_address:locality" : { "type" : "text" },
-        "field_restaurant_score" : { "type" : "decimal" },
+        "field_address:country" : { "type" : "text", "boost" : "0.8" },
+        "field_address:locality" : { "type" : "text", "boost" : "0.5" },
+        "field_address:postal_code" : { "type" : "text", "boost" : "0.5" },
+        "field_restaurant_rank" : { "type" : "integer" },
+        "field_restaurant_score" : { "type" : "decimal", "boost" : "0.8" },
         "search_api_language" : { "type" : "string" },
         "search_api_viewed" : { "type" : "text" },
-        "title" : { "type" : "text" }
+        "title" : { "type" : "text", "boost" : "0.3" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -150,6 +152,40 @@ function laliste_search_default_search_api_server() {
       "http_method" : "AUTO"
     },
     "enabled" : "1",
+    "rdf_mapping" : []
+  }');
+  return $items;
+}
+
+/**
+ * Implements hook_default_search_api_sort().
+ */
+function laliste_search_default_search_api_sort() {
+  $items = array();
+  $items['la_liste_solr_multilingual_index__field_restaurant_rank'] = entity_import('search_api_sort', '{
+    "index_id" : "la_liste_solr_multilingual_index",
+    "field" : "field_restaurant_rank",
+    "name" : "LA LISTE Ranking",
+    "enabled" : "1",
+    "weight" : "0",
+    "identifier" : "la_liste_solr_multilingual_index__field_restaurant_rank",
+    "default_sort" : "1",
+    "default_sort_no_terms" : "1",
+    "default_order" : "asc",
+    "options" : { "field_name" : "Rank" },
+    "rdf_mapping" : []
+  }');
+  $items['la_liste_solr_multilingual_index__search_api_relevance'] = entity_import('search_api_sort', '{
+    "index_id" : "la_liste_solr_multilingual_index",
+    "field" : "search_api_relevance",
+    "name" : "Search Relevance",
+    "enabled" : "1",
+    "weight" : "0",
+    "identifier" : "la_liste_solr_multilingual_index__search_api_relevance",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "0",
+    "default_order" : "desc",
+    "options" : { "field_name" : "search_api_relevance" },
     "rdf_mapping" : []
   }');
   return $items;

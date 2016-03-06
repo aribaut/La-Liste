@@ -3375,7 +3375,8 @@ p.score.no-ranking {
 /**
  * Faceted Search
  */
-.block-facetapi {
+.block-facetapi,
+.block-search-api-sorts {
     @extend .Grid;
     @extend .Grid-cell;
     @include justify-content(flex-start);
@@ -3384,9 +3385,19 @@ p.score.no-ranking {
         color: $dark_grey;
     }
     .content {
+        font-size: 0.8rem;
         margin-top: -0.15rem !important;
-        padding-left: 1rem;
     }
+}
+
+.form-item-facetapi-select-facet-form-1 {
+    padding-left: 1.4rem;
+}
+
+.block-search-api-sorts .content {
+    font-size: 0.8rem;
+    padding-left: 6rem;
+    margin-top: -1rem;
 }
 
 .home-video {

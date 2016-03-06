@@ -1599,11 +1599,14 @@ function laliste_ranking_get_guide_factor($guide_name) {
  * in order to be indexed by SOLR
  */
 function update_scores_search() {
+  // counter
+  $inserted = 0;
   // for all restaurants enabled (default) to be on LA LISTE, select their scores
   $restaurants = db_query("
-   SELECT restaurant_id, score_laliste from {restaurant_stats}
+   SELECT restaurant_id, score_laliste, rank from {restaurant_stats}
    LEFT JOIN {field_data_field_restaurant_score} ON field_data_field_restaurant_score.entity_id = restaurant_stats.restaurant_id WHERE field_data_field_restaurant_score.field_restaurant_score_value IS NULL")->fetchAll();
   foreach($restaurants as $restaurant) {
+    // RESTAURANT SCORE
     // inserting into field data table
     db_insert('field_data_field_restaurant_score')
     ->fields(array(
@@ -1630,11 +1633,38 @@ function update_scores_search() {
       'field_restaurant_score_value' => $restaurant->score_laliste,
     ))
     ->execute();
+    // RESTAURANT RANK
+    // inserting into field data table
+    db_insert('field_data_field_restaurant_rank')
+    ->fields(array(
+      'entity_type' => 'node',
+      'bundle' => 'restaurant',
+      'deleted' => 0,
+      'entity_id' => $restaurant->restaurant_id,
+      'revision_id' => $restaurant->restaurant_id,
+      'language' => 'und',
+      'delta' => 0,
+      'field_restaurant_rank_value' => $restaurant->rank,
+    ))
+    ->execute();
+    // inserting into field revision table
+    db_insert('field_revision_field_restaurant_rank')
+    ->fields(array(
+      'entity_type' => 'node',
+      'bundle' => 'restaurant',
+      'deleted' => 0,
+      'entity_id' => $restaurant->restaurant_id,
+      'revision_id' => $restaurant->restaurant_id,
+      'language' => 'und',
+      'delta' => 0,
+      'field_restaurant_rank_value' => $restaurant->rank,
+    ))
+    ->execute();
     // counter
     $inserted++;
   }
   // output log
-  echo "LALISTE (SOLR) SCORES ARE UP TO DATE!\n";
+  echo "LALISTE (SOLR) STATS ARE UP TO DATE!\n";
   echo "================================\n";
   echo "Number of new records added : ".$inserted."\n";
 }
