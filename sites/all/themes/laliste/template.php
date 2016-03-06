@@ -553,7 +553,12 @@ function laliste_facet_items_alter(&$build, &$settings) {
     foreach($build as $key => $item) {
       if(strlen($item["#markup"])==2) {
         $markup = strtoupper(trim($item["#markup"]));
-        $build[$key]["#markup"] = $country_list[$markup];
+        if(isset($country_list[$markup])) {
+          $build[$key]["#markup"] = $country_list[$markup];
+        }
+        else {
+          unset($build[$key]);
+        }
       }
       else {
         unset($build[$key]);
