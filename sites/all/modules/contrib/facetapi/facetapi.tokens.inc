@@ -97,6 +97,11 @@ function facetapi_token_info() {
     'description' => t('The human readable label of the active item\'s facet.'),
   );
 
+  $active['facet-title'] = array(
+    'name' => t('Facet title'),
+    'description' => t('The overridden title of the active item\'s facet block, if it was overridden. Otherwise, it defaults to facet label.'),
+  );
+
   $active['facet-name'] = array(
     'name' => t('Facet name'),
     'description' => t('The machine readable name of the active item\'s facet.'),
@@ -202,6 +207,13 @@ function facetapi_tokens($type, $tokens, array $data = array(), array $options =
         case 'facet-label':
           if ($facet = facetapi_facet_load($item['facets'][0], $adapter->getSearcher())) {
             $replacements[$original] = check_plain($facet['label']);
+          }
+          break;
+
+        case 'facet-title':
+          if ($facet = facetapi_facet_load($item['facets'][0], $adapter->getSearcher())) {
+            $facet_settings = $adapter->getFacet($facet)->getSettings('block');
+            $replacements[$original] = isset($facet_settings->settings['title_override']) && !empty($facet_settings->settings['title_override']) ? check_plain($facet_settings->settings['title']) : check_plain($facet['label']);
           }
           break;
 

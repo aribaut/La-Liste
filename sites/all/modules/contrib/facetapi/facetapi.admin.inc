@@ -423,6 +423,29 @@ function facetapi_facet_display_form($form, &$form_state, FacetapiAdapter $adapt
     $plugin->settingsForm($form, $form_state);
   }
 
+  $form['widget']['title_override'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Override Facet Title %default_title', array('%default_title' => '(' . t('Default') . ': ' . $facet['label'] . ')')),
+    '#default_value' => $facet_settings->settings['title_override'],
+    '#weight' => -12,
+  );
+  $form['widget']['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Facet Title'),
+    '#description' => t('To remove or alter the default title prefix: "Filter by @title:", implement the following hook in your theme: !url.', array(
+      '!url' => l('THEME_facetapi_title()', 'http://drupalcontrib.org/api/drupal/contributions!facetapi!facetapi.theme.inc/function/theme_facetapi_title/7', array(
+        'attributes' => array('target' => '_blank'),
+      ))
+    )),
+    '#default_value' => $facet_settings->settings['title'],
+    '#states' => array(
+      'visible' => array(
+        'input[name="title_override"]' => array('checked' => TRUE),
+      ),
+    ),
+    '#weight' => -11,
+  );
+
   $form['widget']['widget'] = array(
     '#type' => 'select',
     '#title' => t('Display widget'),

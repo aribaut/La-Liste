@@ -102,8 +102,8 @@ abstract class FacetapiWidget {
     $this->id = $id;
     $this->realm = $realm;
     $this->settings = $settings;
-    $this->settings->settings += $this->getDefaultSettings();
     $this->facet = $facet;
+    $this->settings->settings += $this->getDefaultSettings();
 
     // Set the default key as the facet's alias.
     $this->key = $facet['field alias'];
@@ -112,7 +112,7 @@ abstract class FacetapiWidget {
   /**
    * Initializes the build, must be invoked prior to executing this widget.
    *
-   * This method is called automatically by FacetapiFacet::build() and shoud
+   * This method is called automatically by FacetapiFacet::build() and should
    * rarely be invoked outside of that context. It is responsible for getting
    * the base render array stored in the FacetapiFacet object and appending it
    * to the container that will be returned, sorting the facets, and adding some
@@ -128,7 +128,7 @@ abstract class FacetapiWidget {
 
     // Initialize the render array.
     $this->build = array(
-      '#title' => $this->facet['label'],
+      '#title' => isset($this->settings->settings['title_override']) && !empty($this->settings->settings['title_override']) ? $this->settings->settings['title'] : $this->facet['label'],
       '#description' => $this->facet['description'],
       '#weight' => $this->facet['weight'],
       '#adapter' => $this->facet->getAdapter(),

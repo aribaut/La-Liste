@@ -781,6 +781,8 @@ abstract class FacetapiAdapter {
         'empty_behavior' => 'none',
         'facet_more_text' => 'Show more',
         'facet_fewer_text' => 'Show fewer',
+        'title_override' => 0,
+        'title' => $facet['label'],
       );
 
       // Apply default sort info only if the configuration is "new".
