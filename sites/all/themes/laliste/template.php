@@ -573,3 +573,11 @@ function laliste_facet_items_alter(&$build, &$settings) {
     }
   }*/
 }
+
+function laliste_preprocess_views_view(&$vars) {
+  // we are hidding the world view map when showing LA LISTE page view
+  if (($vars['view']->name == "laliste_rr_restaurants_country_winners_view")
+    && (strpos(current_path(),'country/world') !== FALSE)) {
+    $vars['header'] = array();
+  }
+}

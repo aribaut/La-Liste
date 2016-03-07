@@ -3382,6 +3382,7 @@ p.score.no-ranking {
     @include justify-content(flex-start);
     h2 {
         font-size: 0.8rem;
+        font-weight: bold;
         color: $dark_grey;
     }
     .content {
