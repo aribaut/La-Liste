@@ -10,15 +10,6 @@
 function laliste_roles_and_permissions_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'access devel information'.
-  $permissions['access devel information'] = array(
-    'name' => 'access devel information',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'devel',
-  );
-
   // Exported permission: 'search content'.
   $permissions['search content'] = array(
     'name' => 'search content',
