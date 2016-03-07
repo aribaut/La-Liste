@@ -27,6 +27,9 @@ function laliste_basic_page_type_field_default_field_bases() {
     'settings' => array(
       'display_default' => 1,
       'display_field' => 1,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
@@ -56,6 +59,7 @@ function laliste_basic_page_type_field_default_field_bases() {
         'upload' => '',
         'upload_button' => 'Upload',
       ),
+      'entity_translation_sync' => FALSE,
       'presets' => array(
         'laliste_video_preset' => 'laliste_video_preset',
       ),

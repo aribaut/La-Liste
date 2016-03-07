@@ -40,6 +40,7 @@ function laliste_basic_page_type_field_default_field_instances() {
     'required' => FALSE,
     'settings' => array(
       'display_summary' => TRUE,
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -64,9 +65,9 @@ function laliste_basic_page_type_field_default_field_instances() {
         'label' => 'above',
         'module' => 'file_entity',
         'settings' => array(
-          'text' => 'Download [file:name]',
+          'file_view_mode' => 'teaser',
         ),
-        'type' => 'file_download_link',
+        'type' => 'file_rendered',
         'weight' => 1,
       ),
       'teaser' => array(
@@ -83,6 +84,7 @@ function laliste_basic_page_type_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
+      'entity_translation_sync' => FALSE,
       'file_directory' => '',
       'file_extensions' => 'txt pdf png',
       'max_filesize' => '',
@@ -143,6 +145,7 @@ function laliste_basic_page_type_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'default_dimensions' => '640x360',
+      'entity_translation_sync' => FALSE,
       'file_directory' => 'videos/original',
       'file_extensions' => 'mp4 ogg avi mov wmv flv ogv webm',
       'max_filesize' => '',

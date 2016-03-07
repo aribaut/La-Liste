@@ -33,14 +33,14 @@ function laliste_search_default_search_api_index() {
       "cron_limit" : "200",
       "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
-        "field_address:country" : { "type" : "text", "boost" : "0.8" },
-        "field_address:locality" : { "type" : "text", "boost" : "0.5" },
+        "field_address:country" : { "type" : "text", "boost" : "3.0" },
+        "field_address:locality" : { "type" : "text", "boost" : "2.0" },
         "field_address:postal_code" : { "type" : "text", "boost" : "0.5" },
         "field_restaurant_rank" : { "type" : "integer" },
-        "field_restaurant_score" : { "type" : "decimal", "boost" : "0.8" },
+        "field_restaurant_score" : { "type" : "decimal" },
+        "search_api_aggregation_1" : { "type" : "text" },
         "search_api_language" : { "type" : "string" },
-        "search_api_viewed" : { "type" : "text" },
-        "title" : { "type" : "text", "boost" : "0.3" }
+        "title" : { "type" : "string", "boost" : "0.3" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -55,9 +55,20 @@ function laliste_search_default_search_api_index() {
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
         },
-        "search_api_alter_add_viewed_entity" : { "status" : 1, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
         "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : { "search_api_aggregation_1" : {
+                "name" : "Title (Fulltext)",
+                "type" : "fulltext",
+                "fields" : [ "title" ],
+                "description" : "A Fulltext aggregation of the following fields: Title."
+              }
+            }
+          }
+        },
         "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
       },
       "processors" : {
@@ -165,27 +176,53 @@ function laliste_search_default_search_api_sort() {
   $items['la_liste_solr_multilingual_index__field_restaurant_rank'] = entity_import('search_api_sort', '{
     "index_id" : "la_liste_solr_multilingual_index",
     "field" : "field_restaurant_rank",
-    "name" : "LA LISTE Ranking",
-    "enabled" : "1",
-    "weight" : "0",
+    "name" : "LA LISTE",
+    "enabled" : "0",
+    "weight" : "-100",
     "identifier" : "la_liste_solr_multilingual_index__field_restaurant_rank",
-    "default_sort" : "1",
-    "default_sort_no_terms" : "1",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "0",
     "default_order" : "asc",
     "options" : { "field_name" : "Rank" },
+    "rdf_mapping" : []
+  }');
+  $items['la_liste_solr_multilingual_index__field_restaurant_score'] = entity_import('search_api_sort', '{
+    "index_id" : "la_liste_solr_multilingual_index",
+    "field" : "field_restaurant_score",
+    "name" : "LA LISTE",
+    "enabled" : "1",
+    "weight" : "-99",
+    "identifier" : "la_liste_solr_multilingual_index__field_restaurant_score",
+    "default_sort" : "1",
+    "default_sort_no_terms" : "0",
+    "default_order" : "desc",
+    "options" : { "field_name" : "Score" },
     "rdf_mapping" : []
   }');
   $items['la_liste_solr_multilingual_index__search_api_relevance'] = entity_import('search_api_sort', '{
     "index_id" : "la_liste_solr_multilingual_index",
     "field" : "search_api_relevance",
-    "name" : "Search Relevance",
-    "enabled" : "1",
-    "weight" : "0",
+    "name" : "Search keyword(s)",
+    "enabled" : "0",
+    "weight" : "-97",
     "identifier" : "la_liste_solr_multilingual_index__search_api_relevance",
     "default_sort" : "0",
     "default_sort_no_terms" : "0",
     "default_order" : "desc",
     "options" : { "field_name" : "search_api_relevance" },
+    "rdf_mapping" : []
+  }');
+  $items['la_liste_solr_multilingual_index__title'] = entity_import('search_api_sort', '{
+    "index_id" : "la_liste_solr_multilingual_index",
+    "field" : "title",
+    "name" : "Alphabetical",
+    "enabled" : "1",
+    "weight" : "-98",
+    "identifier" : "la_liste_solr_multilingual_index__title",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "0",
+    "default_order" : "asc",
+    "options" : { "field_name" : "Title" },
     "rdf_mapping" : []
   }');
   return $items;

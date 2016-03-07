@@ -36,7 +36,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'flexslider';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Champ: Contenu: Slideshow image */
+  /* Field: Content: Slideshow image */
   $handler->display->display_options['fields']['field_slideshow_image']['id'] = 'field_slideshow_image';
   $handler->display->display_options['fields']['field_slideshow_image']['table'] = 'field_data_field_slideshow_image';
   $handler->display->display_options['fields']['field_slideshow_image']['field'] = 'field_slideshow_image';
@@ -47,19 +47,19 @@ function laliste_views_views_default_views() {
     'image_style' => 'full-width_slider_image',
     'image_link' => '',
   );
-  /* Sort criterion: Contenu: Post date */
+  /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Contenu: Publié */
+  /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Contenu: Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -162,7 +162,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['map_options']['zoom'] = '2';
   $handler->display->display_options['style_options']['map_options']['scrollwheelzoom'] = '0';
   $handler->display->display_options['style_options']['map_options']['dragging'] = '1';
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -171,7 +171,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Position */
+  /* Field: Content: Position */
   $handler->display->display_options['fields']['field_restaurant_position']['id'] = 'field_restaurant_position';
   $handler->display->display_options['fields']['field_restaurant_position']['table'] = 'field_data_field_restaurant_position';
   $handler->display->display_options['fields']['field_restaurant_position']['field'] = 'field_restaurant_position';
@@ -183,7 +183,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_restaurant_position']['settings'] = array(
     'data' => 'full',
   );
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -192,14 +192,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_country']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Restaurant stats: Rank */
+  /* Field: Restaurant stats: Rank */
   $handler->display->display_options['fields']['rank']['id'] = 'rank';
   $handler->display->display_options['fields']['rank']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['rank']['field'] = 'rank';
   $handler->display->display_options['fields']['rank']['label'] = '';
   $handler->display->display_options['fields']['rank']['exclude'] = TRUE;
   $handler->display->display_options['fields']['rank']['element_label_colon'] = FALSE;
-  /* Champ: Restaurant stats: Score laliste */
+  /* Field: Restaurant stats: Score laliste */
   $handler->display->display_options['fields']['score_laliste']['id'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
@@ -208,7 +208,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['score_laliste']['alter']['text'] = '[title] is in the [rank]th position';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '0';
-  /* Contextual filter: Contenu: Address - Country */
+  /* Contextual filter: Content: Address - Country */
   $handler->display->display_options['arguments']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['arguments']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['arguments']['field_address_country']['field'] = 'field_address_country';
@@ -219,21 +219,21 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['field_address_country']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_address_country']['limit'] = '0';
   $handler->display->display_options['arguments']['field_address_country']['path_case'] = 'lower';
-  /* Filter criterion: Contenu: Publié */
+  /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Contenu: Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'restaurant' => 'restaurant',
   );
-  /* Filter criterion: Contenu: Position (field_restaurant_position:lat) */
+  /* Filter criterion: Content: Position (field_restaurant_position:lat) */
   $handler->display->display_options['filters']['field_restaurant_position_lat']['id'] = 'field_restaurant_position_lat';
   $handler->display->display_options['filters']['field_restaurant_position_lat']['table'] = 'field_data_field_restaurant_position';
   $handler->display->display_options['filters']['field_restaurant_position_lat']['field'] = 'field_restaurant_position_lat';
@@ -243,7 +243,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['rank']['table'] = 'restaurant_stats';
   $handler->display->display_options['filters']['rank']['field'] = 'rank';
   $handler->display->display_options['filters']['rank']['operator'] = 'not empty';
-  /* Filter criterion: Contenu: Address (field_address:language) */
+  /* Filter criterion: Content: Address (field_address:language) */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'field_data_field_address';
   $handler->display->display_options['filters']['language']['field'] = 'language';
@@ -297,7 +297,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'search_result';
-  /* Entête: Global: Result summary */
+  /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
@@ -309,16 +309,11 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun résultat ne correspond à votre recherche.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
-  /* Champ: Indexed Multilingual Contenu: Multilingual ID */
+  /* Field: Indexed Multilingual Content: Multilingual ID */
   $handler->display->display_options['fields']['search_api_et_id']['id'] = 'search_api_et_id';
   $handler->display->display_options['fields']['search_api_et_id']['table'] = 'search_api_index_la_liste_solr_multilingual_index';
   $handler->display->display_options['fields']['search_api_et_id']['field'] = 'search_api_et_id';
-  /* Sort criterion: Indexed Multilingual Contenu: Score */
-  $handler->display->display_options['sorts']['field_restaurant_score']['id'] = 'field_restaurant_score';
-  $handler->display->display_options['sorts']['field_restaurant_score']['table'] = 'search_api_index_la_liste_solr_multilingual_index';
-  $handler->display->display_options['sorts']['field_restaurant_score']['field'] = 'field_restaurant_score';
-  $handler->display->display_options['sorts']['field_restaurant_score']['order'] = 'DESC';
-  /* Filter criterion: Rechercher: Fulltext search */
+  /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_la_liste_solr_multilingual_index';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
@@ -334,7 +329,7 @@ function laliste_views_views_default_views() {
     4 => 0,
     5 => 0,
   );
-  /* Filter criterion: Indexed Multilingual Contenu: Item language */
+  /* Filter criterion: Indexed Multilingual Content: Item language */
   $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
   $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_la_liste_solr_multilingual_index';
   $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
@@ -404,7 +399,7 @@ function laliste_views_views_default_views() {
     'title' => 'title',
     'field_published_date' => 'field_published_date',
   );
-  /* Champ: Contenu: Geographic Zone */
+  /* Field: Content: Geographic Zone */
   $handler->display->display_options['fields']['field_geographic_zone']['id'] = 'field_geographic_zone';
   $handler->display->display_options['fields']['field_geographic_zone']['table'] = 'field_data_field_geographic_zone';
   $handler->display->display_options['fields']['field_geographic_zone']['field'] = 'field_geographic_zone';
@@ -416,7 +411,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_geographic_zone']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['field_geographic_zone']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_geographic_zone']['field_api_classes'] = TRUE;
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -425,7 +420,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Champ: Contenu: Source */
+  /* Field: Content: Source */
   $handler->display->display_options['fields']['field_publication_source']['id'] = 'field_publication_source';
   $handler->display->display_options['fields']['field_publication_source']['table'] = 'field_data_field_publication_source';
   $handler->display->display_options['fields']['field_publication_source']['field'] = 'field_publication_source';
@@ -433,7 +428,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_publication_source']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_publication_source']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_publication_source']['element_default_classes'] = FALSE;
-  /* Champ: Contenu: Published Date */
+  /* Field: Content: Published Date */
   $handler->display->display_options['fields']['field_published_date']['id'] = 'field_published_date';
   $handler->display->display_options['fields']['field_published_date']['table'] = 'field_data_field_published_date';
   $handler->display->display_options['fields']['field_published_date']['field'] = 'field_published_date';
@@ -450,7 +445,7 @@ function laliste_views_views_default_views() {
     'multiple_to' => '',
     'show_remaining_days' => 0,
   );
-  /* Champ: Contenu: Published Article */
+  /* Field: Content: Published Article */
   $handler->display->display_options['fields']['field_published_article']['id'] = 'field_published_article';
   $handler->display->display_options['fields']['field_published_article']['table'] = 'field_data_field_published_article';
   $handler->display->display_options['fields']['field_published_article']['field'] = 'field_published_article';
@@ -465,19 +460,19 @@ function laliste_views_views_default_views() {
     'text' => '[file:name]',
   );
   $handler->display->display_options['fields']['field_published_article']['field_api_classes'] = TRUE;
-  /* Sort criterion: Contenu: Published Date (field_published_date) */
+  /* Sort criterion: Content: Published Date (field_published_date) */
   $handler->display->display_options['sorts']['field_published_date_value']['id'] = 'field_published_date_value';
   $handler->display->display_options['sorts']['field_published_date_value']['table'] = 'field_data_field_published_date';
   $handler->display->display_options['sorts']['field_published_date_value']['field'] = 'field_published_date_value';
   $handler->display->display_options['sorts']['field_published_date_value']['order'] = 'DESC';
-  /* Filter criterion: Contenu: Publié */
+  /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Contenu: Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -546,7 +541,7 @@ function laliste_views_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['sticky'] = TRUE;
-  /* Entête: Global: Result summary */
+  /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
@@ -568,7 +563,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['relationships']['restaurant_id']['id'] = 'restaurant_id';
   $handler->display->display_options['relationships']['restaurant_id']['table'] = 'restaurantguideranking';
   $handler->display->display_options['relationships']['restaurant_id']['field'] = 'restaurant_id';
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country_1']['id'] = 'field_address_country_1';
   $handler->display->display_options['fields']['field_address_country_1']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country_1']['field'] = 'field_address_country';
@@ -576,7 +571,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_address_country_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_country_1']['display_name'] = 0;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -584,7 +579,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_address_country']['alter']['path'] = 'country/[field_address_country_1]/view';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Sort criterion: Contenu: Address - Country */
+  /* Sort criterion: Content: Address - Country */
   $handler->display->display_options['sorts']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['sorts']['field_address_country']['field'] = 'field_address_country';
@@ -692,54 +687,54 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['relationships']['restaurant_id']['id'] = 'restaurant_id';
   $handler->display->display_options['relationships']['restaurant_id']['table'] = 'restaurantguideranking';
   $handler->display->display_options['relationships']['restaurant_id']['field'] = 'restaurant_id';
-  /* Champ: Contenu: Title form field */
+  /* Field: Content: Title form field */
   $handler->display->display_options['fields']['title_edit']['id'] = 'title_edit';
   $handler->display->display_options['fields']['title_edit']['table'] = 'node';
   $handler->display->display_options['fields']['title_edit']['field'] = 'title_edit';
   $handler->display->display_options['fields']['title_edit']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['title_edit']['label'] = 'Nom';
-  /* Champ: Ranking: Food form field */
+  /* Field: Ranking: Food form field */
   $handler->display->display_options['fields']['food']['id'] = 'food';
   $handler->display->display_options['fields']['food']['table'] = 'ranking';
   $handler->display->display_options['fields']['food']['field'] = 'food';
   $handler->display->display_options['fields']['food']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['food']['label'] = 'Food';
-  /* Champ: Ranking: Atmosphere form field */
+  /* Field: Ranking: Atmosphere form field */
   $handler->display->display_options['fields']['atmosphere']['id'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['table'] = 'ranking';
   $handler->display->display_options['fields']['atmosphere']['field'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['atmosphere']['label'] = 'Ambiance';
-  /* Champ: Ranking: Service form field */
+  /* Field: Ranking: Service form field */
   $handler->display->display_options['fields']['service']['id'] = 'service';
   $handler->display->display_options['fields']['service']['table'] = 'ranking';
   $handler->display->display_options['fields']['service']['field'] = 'service';
   $handler->display->display_options['fields']['service']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['service']['label'] = 'Service';
-  /* Champ: Ranking: Wine form field */
+  /* Field: Ranking: Wine form field */
   $handler->display->display_options['fields']['wine']['id'] = 'wine';
   $handler->display->display_options['fields']['wine']['table'] = 'ranking';
   $handler->display->display_options['fields']['wine']['field'] = 'wine';
   $handler->display->display_options['fields']['wine']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['wine']['label'] = 'Wine';
-  /* Champ: Ranking: Value form field */
+  /* Field: Ranking: Value form field */
   $handler->display->display_options['fields']['value']['id'] = 'value';
   $handler->display->display_options['fields']['value']['table'] = 'ranking';
   $handler->display->display_options['fields']['value']['field'] = 'value';
   $handler->display->display_options['fields']['value']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['value']['label'] = 'Value';
-  /* Champ: Ranking: Votes form field */
+  /* Field: Ranking: Votes form field */
   $handler->display->display_options['fields']['votes']['id'] = 'votes';
   $handler->display->display_options['fields']['votes']['table'] = 'ranking';
   $handler->display->display_options['fields']['votes']['field'] = 'votes';
   $handler->display->display_options['fields']['votes']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['votes']['label'] = 'Votes';
-  /* Champ: Restaurantguideranking: Updated */
+  /* Field: Restaurantguideranking: Updated */
   $handler->display->display_options['fields']['updated']['id'] = 'updated';
   $handler->display->display_options['fields']['updated']['table'] = 'restaurantguideranking';
   $handler->display->display_options['fields']['updated']['field'] = 'updated';
   $handler->display->display_options['fields']['updated']['label'] = 'Mis à jour';
-  /* Champ: Ranking: Ranking ID */
+  /* Field: Ranking: Ranking ID */
   $handler->display->display_options['fields']['ranking_id']['id'] = 'ranking_id';
   $handler->display->display_options['fields']['ranking_id']['table'] = 'ranking';
   $handler->display->display_options['fields']['ranking_id']['field'] = 'ranking_id';
@@ -863,7 +858,7 @@ function laliste_views_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['sticky'] = TRUE;
-  /* Entête: Global: Result summary */
+  /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
@@ -885,20 +880,20 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['relationships']['restaurant_id']['id'] = 'restaurant_id';
   $handler->display->display_options['relationships']['restaurant_id']['table'] = 'restaurantguideranking';
   $handler->display->display_options['relationships']['restaurant_id']['field'] = 'restaurant_id';
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['title']['label'] = 'Restaurant';
-  /* Champ: Terme de taxonomie: Nom */
+  /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'guide_id';
   $handler->display->display_options['fields']['name']['label'] = 'Guide';
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -906,68 +901,68 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['label'] = 'Country';
   $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Ranking: Food form field */
+  /* Field: Ranking: Food form field */
   $handler->display->display_options['fields']['food']['id'] = 'food';
   $handler->display->display_options['fields']['food']['table'] = 'ranking';
   $handler->display->display_options['fields']['food']['field'] = 'food';
   $handler->display->display_options['fields']['food']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['food']['label'] = 'Food';
-  /* Champ: Ranking: Bonus form field */
+  /* Field: Ranking: Bonus form field */
   $handler->display->display_options['fields']['bonus']['id'] = 'bonus';
   $handler->display->display_options['fields']['bonus']['table'] = 'ranking';
   $handler->display->display_options['fields']['bonus']['field'] = 'bonus';
   $handler->display->display_options['fields']['bonus']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['bonus']['label'] = 'Bonus';
-  /* Champ: Ranking: Atmosphere form field */
+  /* Field: Ranking: Atmosphere form field */
   $handler->display->display_options['fields']['atmosphere']['id'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['table'] = 'ranking';
   $handler->display->display_options['fields']['atmosphere']['field'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['atmosphere']['label'] = 'Ambiance';
-  /* Champ: Ranking: Service form field */
+  /* Field: Ranking: Service form field */
   $handler->display->display_options['fields']['service']['id'] = 'service';
   $handler->display->display_options['fields']['service']['table'] = 'ranking';
   $handler->display->display_options['fields']['service']['field'] = 'service';
   $handler->display->display_options['fields']['service']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['service']['label'] = 'Service';
-  /* Champ: Ranking: Wine form field */
+  /* Field: Ranking: Wine form field */
   $handler->display->display_options['fields']['wine']['id'] = 'wine';
   $handler->display->display_options['fields']['wine']['table'] = 'ranking';
   $handler->display->display_options['fields']['wine']['field'] = 'wine';
   $handler->display->display_options['fields']['wine']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['wine']['label'] = 'Wine List';
-  /* Champ: Ranking: Panorama form field */
+  /* Field: Ranking: Panorama form field */
   $handler->display->display_options['fields']['panorama']['id'] = 'panorama';
   $handler->display->display_options['fields']['panorama']['table'] = 'ranking';
   $handler->display->display_options['fields']['panorama']['field'] = 'panorama';
   $handler->display->display_options['fields']['panorama']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['panorama']['label'] = 'Panorama';
-  /* Champ: Ranking: Quiet form field */
+  /* Field: Ranking: Quiet form field */
   $handler->display->display_options['fields']['quiet']['id'] = 'quiet';
   $handler->display->display_options['fields']['quiet']['table'] = 'ranking';
   $handler->display->display_options['fields']['quiet']['field'] = 'quiet';
   $handler->display->display_options['fields']['quiet']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['quiet']['label'] = 'Terrace';
-  /* Champ: Ranking: Value form field */
+  /* Field: Ranking: Value form field */
   $handler->display->display_options['fields']['value']['id'] = 'value';
   $handler->display->display_options['fields']['value']['table'] = 'ranking';
   $handler->display->display_options['fields']['value']['field'] = 'value';
   $handler->display->display_options['fields']['value']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['value']['label'] = 'Value';
-  /* Champ: Ranking: Votes form field */
+  /* Field: Ranking: Votes form field */
   $handler->display->display_options['fields']['votes']['id'] = 'votes';
   $handler->display->display_options['fields']['votes']['table'] = 'ranking';
   $handler->display->display_options['fields']['votes']['field'] = 'votes';
   $handler->display->display_options['fields']['votes']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['votes']['label'] = 'Votes';
-  /* Champ: Ranking: Link form field */
+  /* Field: Ranking: Link form field */
   $handler->display->display_options['fields']['link']['id'] = 'link';
   $handler->display->display_options['fields']['link']['table'] = 'ranking';
   $handler->display->display_options['fields']['link']['field'] = 'link';
   $handler->display->display_options['fields']['link']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['link']['label'] = 'Lien';
   $handler->display->display_options['fields']['link']['element_label_colon'] = FALSE;
-  /* Champ: Ranking: Ranking ID */
+  /* Field: Ranking: Ranking ID */
   $handler->display->display_options['fields']['ranking_id']['id'] = 'ranking_id';
   $handler->display->display_options['fields']['ranking_id']['table'] = 'ranking';
   $handler->display->display_options['fields']['ranking_id']['field'] = 'ranking_id';
@@ -975,12 +970,12 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['ranking_id']['label'] = '';
   $handler->display->display_options['fields']['ranking_id']['exclude'] = TRUE;
   $handler->display->display_options['fields']['ranking_id']['element_label_colon'] = FALSE;
-  /* Sort criterion: Contenu: Address - Country */
+  /* Sort criterion: Content: Address - Country */
   $handler->display->display_options['sorts']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['sorts']['field_address_country']['field'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['relationship'] = 'restaurant_id';
-  /* Sort criterion: Contenu: Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
@@ -1002,7 +997,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['restaurant_id']['validate_options']['types'] = array(
     'restaurant' => 'restaurant',
   );
-  /* Filter criterion: Contenu: Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
@@ -1119,7 +1114,7 @@ function laliste_views_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['sticky'] = TRUE;
-  /* Entête: Global: Result summary */
+  /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
@@ -1129,40 +1124,40 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['empty']['text']['field'] = 'area';
   $handler->display->display_options['empty']['text']['content'] = 'There is no data in this table.';
   $handler->display->display_options['empty']['text']['format'] = '1';
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['title']['label'] = 'Restaurant';
-  /* Champ: Contenu: Address - Thoroughfare (i.e. Street address) */
+  /* Field: Content: Address - Thoroughfare (i.e. Street address) */
   $handler->display->display_options['fields']['field_address_thoroughfare']['id'] = 'field_address_thoroughfare';
   $handler->display->display_options['fields']['field_address_thoroughfare']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_thoroughfare']['field'] = 'field_address_thoroughfare';
   $handler->display->display_options['fields']['field_address_thoroughfare']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['field_address_thoroughfare']['label'] = 'Adresse';
   $handler->display->display_options['fields']['field_address_thoroughfare']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Address - Premise (i.e. Apartment / Suite number) */
+  /* Field: Content: Address - Premise (i.e. Apartment / Suite number) */
   $handler->display->display_options['fields']['field_address_premise']['id'] = 'field_address_premise';
   $handler->display->display_options['fields']['field_address_premise']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_premise']['field'] = 'field_address_premise';
   $handler->display->display_options['fields']['field_address_premise']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['field_address_premise']['label'] = 'Address (suite)';
   $handler->display->display_options['fields']['field_address_premise']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Address - Postal code */
+  /* Field: Content: Address - Postal code */
   $handler->display->display_options['fields']['field_address_postal_code']['id'] = 'field_address_postal_code';
   $handler->display->display_options['fields']['field_address_postal_code']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_postal_code']['field'] = 'field_address_postal_code';
   $handler->display->display_options['fields']['field_address_postal_code']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['field_address_postal_code']['label'] = 'Postal code';
   $handler->display->display_options['fields']['field_address_postal_code']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Address - Locality (i.e. City) */
+  /* Field: Content: Address - Locality (i.e. City) */
   $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
   $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
   $handler->display->display_options['fields']['field_address_locality']['label'] = 'City';
   $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -1170,29 +1165,29 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['label'] = 'Country';
   $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Contenu: Phone */
+  /* Field: Content: Phone */
   $handler->display->display_options['fields']['field_phone']['id'] = 'field_phone';
   $handler->display->display_options['fields']['field_phone']['table'] = 'field_data_field_phone';
   $handler->display->display_options['fields']['field_phone']['field'] = 'field_phone';
   $handler->display->display_options['fields']['field_phone']['label'] = 'Téléphone';
   $handler->display->display_options['fields']['field_phone']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Website */
+  /* Field: Content: Website */
   $handler->display->display_options['fields']['field_website']['id'] = 'field_website';
   $handler->display->display_options['fields']['field_website']['table'] = 'field_data_field_website';
   $handler->display->display_options['fields']['field_website']['field'] = 'field_website';
   $handler->display->display_options['fields']['field_website']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website']['click_sort_column'] = 'url';
-  /* Sort criterion: Contenu: Address - Country */
+  /* Sort criterion: Content: Address - Country */
   $handler->display->display_options['sorts']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['sorts']['field_address_country']['field'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['relationship'] = 'restaurant_id';
-  /* Sort criterion: Contenu: Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'restaurant_id';
-  /* Contextual filter: Contenu: Address - Country */
+  /* Contextual filter: Content: Address - Country */
   $handler->display->display_options['arguments']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['arguments']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['arguments']['field_address_country']['field'] = 'field_address_country';
@@ -1205,13 +1200,13 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['field_address_country']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_address_country']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_address_country']['limit'] = '0';
-  /* Filter criterion: Contenu: Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
   $handler->display->display_options['filters']['title']['relationship'] = 'restaurant_id';
   $handler->display->display_options['filters']['title']['operator'] = '!=';
-  /* Filter criterion: Contenu: Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title_1']['id'] = 'title_1';
   $handler->display->display_options['filters']['title_1']['table'] = 'node';
   $handler->display->display_options['filters']['title_1']['field'] = 'title';
@@ -1318,7 +1313,7 @@ function laliste_views_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['sticky'] = TRUE;
-  /* Entête: Global: Result summary */
+  /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
@@ -1340,20 +1335,20 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['relationships']['restaurant_id']['id'] = 'restaurant_id';
   $handler->display->display_options['relationships']['restaurant_id']['table'] = 'restaurantguideranking';
   $handler->display->display_options['relationships']['restaurant_id']['field'] = 'restaurant_id';
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['title']['label'] = 'Restaurant';
-  /* Champ: Terme de taxonomie: Nom */
+  /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'guide_id';
   $handler->display->display_options['fields']['name']['label'] = 'Guide';
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -1361,68 +1356,68 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['label'] = 'Country';
   $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Ranking: Food form field */
+  /* Field: Ranking: Food form field */
   $handler->display->display_options['fields']['food']['id'] = 'food';
   $handler->display->display_options['fields']['food']['table'] = 'ranking';
   $handler->display->display_options['fields']['food']['field'] = 'food';
   $handler->display->display_options['fields']['food']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['food']['label'] = 'Food';
-  /* Champ: Ranking: Bonus form field */
+  /* Field: Ranking: Bonus form field */
   $handler->display->display_options['fields']['bonus']['id'] = 'bonus';
   $handler->display->display_options['fields']['bonus']['table'] = 'ranking';
   $handler->display->display_options['fields']['bonus']['field'] = 'bonus';
   $handler->display->display_options['fields']['bonus']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['bonus']['label'] = 'Bonus';
-  /* Champ: Ranking: Atmosphere form field */
+  /* Field: Ranking: Atmosphere form field */
   $handler->display->display_options['fields']['atmosphere']['id'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['table'] = 'ranking';
   $handler->display->display_options['fields']['atmosphere']['field'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['atmosphere']['label'] = 'Ambiance';
-  /* Champ: Ranking: Service form field */
+  /* Field: Ranking: Service form field */
   $handler->display->display_options['fields']['service']['id'] = 'service';
   $handler->display->display_options['fields']['service']['table'] = 'ranking';
   $handler->display->display_options['fields']['service']['field'] = 'service';
   $handler->display->display_options['fields']['service']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['service']['label'] = 'Service';
-  /* Champ: Ranking: Wine form field */
+  /* Field: Ranking: Wine form field */
   $handler->display->display_options['fields']['wine']['id'] = 'wine';
   $handler->display->display_options['fields']['wine']['table'] = 'ranking';
   $handler->display->display_options['fields']['wine']['field'] = 'wine';
   $handler->display->display_options['fields']['wine']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['wine']['label'] = 'Wine List';
-  /* Champ: Ranking: Panorama form field */
+  /* Field: Ranking: Panorama form field */
   $handler->display->display_options['fields']['panorama']['id'] = 'panorama';
   $handler->display->display_options['fields']['panorama']['table'] = 'ranking';
   $handler->display->display_options['fields']['panorama']['field'] = 'panorama';
   $handler->display->display_options['fields']['panorama']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['panorama']['label'] = 'Panorama';
-  /* Champ: Ranking: Quiet form field */
+  /* Field: Ranking: Quiet form field */
   $handler->display->display_options['fields']['quiet']['id'] = 'quiet';
   $handler->display->display_options['fields']['quiet']['table'] = 'ranking';
   $handler->display->display_options['fields']['quiet']['field'] = 'quiet';
   $handler->display->display_options['fields']['quiet']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['quiet']['label'] = 'Terrace';
-  /* Champ: Ranking: Value form field */
+  /* Field: Ranking: Value form field */
   $handler->display->display_options['fields']['value']['id'] = 'value';
   $handler->display->display_options['fields']['value']['table'] = 'ranking';
   $handler->display->display_options['fields']['value']['field'] = 'value';
   $handler->display->display_options['fields']['value']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['value']['label'] = 'Value';
-  /* Champ: Ranking: Votes form field */
+  /* Field: Ranking: Votes form field */
   $handler->display->display_options['fields']['votes']['id'] = 'votes';
   $handler->display->display_options['fields']['votes']['table'] = 'ranking';
   $handler->display->display_options['fields']['votes']['field'] = 'votes';
   $handler->display->display_options['fields']['votes']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['votes']['label'] = 'Votes';
-  /* Champ: Ranking: Link form field */
+  /* Field: Ranking: Link form field */
   $handler->display->display_options['fields']['link']['id'] = 'link';
   $handler->display->display_options['fields']['link']['table'] = 'ranking';
   $handler->display->display_options['fields']['link']['field'] = 'link';
   $handler->display->display_options['fields']['link']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['link']['label'] = 'Lien';
   $handler->display->display_options['fields']['link']['element_label_colon'] = FALSE;
-  /* Champ: Ranking: Ranking ID */
+  /* Field: Ranking: Ranking ID */
   $handler->display->display_options['fields']['ranking_id']['id'] = 'ranking_id';
   $handler->display->display_options['fields']['ranking_id']['table'] = 'ranking';
   $handler->display->display_options['fields']['ranking_id']['field'] = 'ranking_id';
@@ -1430,17 +1425,17 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['ranking_id']['label'] = '';
   $handler->display->display_options['fields']['ranking_id']['exclude'] = TRUE;
   $handler->display->display_options['fields']['ranking_id']['element_label_colon'] = FALSE;
-  /* Sort criterion: Contenu: Address - Country */
+  /* Sort criterion: Content: Address - Country */
   $handler->display->display_options['sorts']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['sorts']['field_address_country']['field'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['relationship'] = 'restaurant_id';
-  /* Sort criterion: Contenu: Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'restaurant_id';
-  /* Contextual filter: Contenu: Address - Country */
+  /* Contextual filter: Content: Address - Country */
   $handler->display->display_options['arguments']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['arguments']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['arguments']['field_address_country']['field'] = 'field_address_country';
@@ -1454,7 +1449,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['field_address_country']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_address_country']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_address_country']['limit'] = '0';
-  /* Filter criterion: Contenu: Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
@@ -1546,7 +1541,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Entête: Global: View area */
+  /* Header: Global: View area */
   $handler->display->display_options['header']['view']['id'] = 'view';
   $handler->display->display_options['header']['view']['table'] = 'views';
   $handler->display->display_options['header']['view']['field'] = 'view';
@@ -1559,14 +1554,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['empty']['text']['field'] = 'area';
   $handler->display->display_options['empty']['text']['content'] = 'There is no data in this table.';
   $handler->display->display_options['empty']['text']['format'] = '1';
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country_1']['id'] = 'field_address_country_1';
   $handler->display->display_options['fields']['field_address_country_1']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country_1']['field'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country_1']['label'] = '';
   $handler->display->display_options['fields']['field_address_country_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_country_1']['display_name'] = 0;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -1576,7 +1571,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['alter']['path'] = 'country/[field_address_country_1]/laliste/view';
   $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Contenu: Address - Locality (i.e. City) */
+  /* Field: Content: Address - Locality (i.e. City) */
   $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
   $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
@@ -1586,7 +1581,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_locality']['alter']['text'] = '<span class="field-localization">   - [field_address_locality]</span>';
   $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_locality']['element_default_classes'] = FALSE;
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -1594,14 +1589,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['text'] = '[title]     [field_address_locality]';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Restaurant stats: Score laliste */
+  /* Field: Restaurant stats: Score laliste */
   $handler->display->display_options['fields']['score_laliste']['id'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['set_precision'] = TRUE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '3';
-  /* Champ: Restaurant stats: Rank */
+  /* Field: Restaurant stats: Rank */
   $handler->display->display_options['fields']['rank']['id'] = 'rank';
   $handler->display->display_options['fields']['rank']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['rank']['field'] = 'rank';
@@ -1610,7 +1605,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['sorts']['rank']['id'] = 'rank';
   $handler->display->display_options['sorts']['rank']['table'] = 'restaurant_stats';
   $handler->display->display_options['sorts']['rank']['field'] = 'rank';
-  /* Contextual filter: Contenu: Address - Country */
+  /* Contextual filter: Content: Address - Country */
   $handler->display->display_options['arguments']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['arguments']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['arguments']['field_address_country']['field'] = 'field_address_country';
@@ -1651,14 +1646,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country_1']['id'] = 'field_address_country_1';
   $handler->display->display_options['fields']['field_address_country_1']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country_1']['field'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country_1']['label'] = '';
   $handler->display->display_options['fields']['field_address_country_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_country_1']['display_name'] = 0;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -1668,7 +1663,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['alter']['path'] = 'country/[field_address_country_1]/laliste/view';
   $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Contenu: Address - Locality (i.e. City) */
+  /* Field: Content: Address - Locality (i.e. City) */
   $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
   $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
@@ -1678,7 +1673,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_locality']['alter']['text'] = '<span class="field-localization">   - [field_address_locality]</span>';
   $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_address_locality']['element_default_classes'] = FALSE;
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -1686,14 +1681,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['text'] = '[title]     [field_address_locality]';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Restaurant stats: Score laliste */
+  /* Field: Restaurant stats: Score laliste */
   $handler->display->display_options['fields']['score_laliste']['id'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['set_precision'] = TRUE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '3';
-  /* Champ: Restaurant stats: Rank */
+  /* Field: Restaurant stats: Rank */
   $handler->display->display_options['fields']['rank']['id'] = 'rank';
   $handler->display->display_options['fields']['rank']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['rank']['field'] = 'rank';
@@ -1708,7 +1703,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['rank']['operator'] = 'between';
   $handler->display->display_options['filters']['rank']['value']['min'] = '1';
   $handler->display->display_options['filters']['rank']['value']['max'] = '1000';
-  /* Filter criterion: Contenu: Address (field_address:language) */
+  /* Filter criterion: Content: Address (field_address:language) */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'field_data_field_address';
   $handler->display->display_options['filters']['language']['field'] = 'language';
@@ -1742,7 +1737,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['filters']['rank']['operator'] = 'between';
   $handler->display->display_options['filters']['rank']['value']['min'] = '1';
   $handler->display->display_options['filters']['rank']['value']['max'] = '1000';
-  /* Filter criterion: Contenu: Address (field_address:language) */
+  /* Filter criterion: Content: Address (field_address:language) */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'field_data_field_address';
   $handler->display->display_options['filters']['language']['field'] = 'language';
@@ -1843,7 +1838,7 @@ function laliste_views_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['sticky'] = TRUE;
-  /* Entête: Global: Result summary */
+  /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
@@ -1865,20 +1860,20 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['relationships']['restaurant_id']['id'] = 'restaurant_id';
   $handler->display->display_options['relationships']['restaurant_id']['table'] = 'restaurantguideranking';
   $handler->display->display_options['relationships']['restaurant_id']['field'] = 'restaurant_id';
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['relationship'] = 'restaurant_id';
   $handler->display->display_options['fields']['title']['label'] = 'Restaurant';
-  /* Champ: Terme de taxonomie: Nom */
+  /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'guide_id';
   $handler->display->display_options['fields']['name']['label'] = 'Guide';
   $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
-  /* Champ: Contenu: Address - Country */
+  /* Field: Content: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
@@ -1886,68 +1881,68 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['label'] = 'Country';
   $handler->display->display_options['fields']['field_address_country']['empty'] = 'France';
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
-  /* Champ: Ranking: Food form field */
+  /* Field: Ranking: Food form field */
   $handler->display->display_options['fields']['food']['id'] = 'food';
   $handler->display->display_options['fields']['food']['table'] = 'ranking';
   $handler->display->display_options['fields']['food']['field'] = 'food';
   $handler->display->display_options['fields']['food']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['food']['label'] = 'Food';
-  /* Champ: Ranking: Bonus form field */
+  /* Field: Ranking: Bonus form field */
   $handler->display->display_options['fields']['bonus']['id'] = 'bonus';
   $handler->display->display_options['fields']['bonus']['table'] = 'ranking';
   $handler->display->display_options['fields']['bonus']['field'] = 'bonus';
   $handler->display->display_options['fields']['bonus']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['bonus']['label'] = 'Bonus';
-  /* Champ: Ranking: Atmosphere form field */
+  /* Field: Ranking: Atmosphere form field */
   $handler->display->display_options['fields']['atmosphere']['id'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['table'] = 'ranking';
   $handler->display->display_options['fields']['atmosphere']['field'] = 'atmosphere';
   $handler->display->display_options['fields']['atmosphere']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['atmosphere']['label'] = 'Ambiance';
-  /* Champ: Ranking: Service form field */
+  /* Field: Ranking: Service form field */
   $handler->display->display_options['fields']['service']['id'] = 'service';
   $handler->display->display_options['fields']['service']['table'] = 'ranking';
   $handler->display->display_options['fields']['service']['field'] = 'service';
   $handler->display->display_options['fields']['service']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['service']['label'] = 'Service';
-  /* Champ: Ranking: Wine form field */
+  /* Field: Ranking: Wine form field */
   $handler->display->display_options['fields']['wine']['id'] = 'wine';
   $handler->display->display_options['fields']['wine']['table'] = 'ranking';
   $handler->display->display_options['fields']['wine']['field'] = 'wine';
   $handler->display->display_options['fields']['wine']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['wine']['label'] = 'Wine List';
-  /* Champ: Ranking: Panorama form field */
+  /* Field: Ranking: Panorama form field */
   $handler->display->display_options['fields']['panorama']['id'] = 'panorama';
   $handler->display->display_options['fields']['panorama']['table'] = 'ranking';
   $handler->display->display_options['fields']['panorama']['field'] = 'panorama';
   $handler->display->display_options['fields']['panorama']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['panorama']['label'] = 'Panorama';
-  /* Champ: Ranking: Quiet form field */
+  /* Field: Ranking: Quiet form field */
   $handler->display->display_options['fields']['quiet']['id'] = 'quiet';
   $handler->display->display_options['fields']['quiet']['table'] = 'ranking';
   $handler->display->display_options['fields']['quiet']['field'] = 'quiet';
   $handler->display->display_options['fields']['quiet']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['quiet']['label'] = 'Terrace';
-  /* Champ: Ranking: Value form field */
+  /* Field: Ranking: Value form field */
   $handler->display->display_options['fields']['value']['id'] = 'value';
   $handler->display->display_options['fields']['value']['table'] = 'ranking';
   $handler->display->display_options['fields']['value']['field'] = 'value';
   $handler->display->display_options['fields']['value']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['value']['label'] = 'Value';
-  /* Champ: Ranking: Votes form field */
+  /* Field: Ranking: Votes form field */
   $handler->display->display_options['fields']['votes']['id'] = 'votes';
   $handler->display->display_options['fields']['votes']['table'] = 'ranking';
   $handler->display->display_options['fields']['votes']['field'] = 'votes';
   $handler->display->display_options['fields']['votes']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['votes']['label'] = 'Votes';
-  /* Champ: Ranking: Link form field */
+  /* Field: Ranking: Link form field */
   $handler->display->display_options['fields']['link']['id'] = 'link';
   $handler->display->display_options['fields']['link']['table'] = 'ranking';
   $handler->display->display_options['fields']['link']['field'] = 'link';
   $handler->display->display_options['fields']['link']['relationship'] = 'ranking_id';
   $handler->display->display_options['fields']['link']['label'] = 'Lien';
   $handler->display->display_options['fields']['link']['element_label_colon'] = FALSE;
-  /* Champ: Ranking: Ranking ID */
+  /* Field: Ranking: Ranking ID */
   $handler->display->display_options['fields']['ranking_id']['id'] = 'ranking_id';
   $handler->display->display_options['fields']['ranking_id']['table'] = 'ranking';
   $handler->display->display_options['fields']['ranking_id']['field'] = 'ranking_id';
@@ -1955,12 +1950,12 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['ranking_id']['label'] = '';
   $handler->display->display_options['fields']['ranking_id']['exclude'] = TRUE;
   $handler->display->display_options['fields']['ranking_id']['element_label_colon'] = FALSE;
-  /* Sort criterion: Contenu: Address - Country */
+  /* Sort criterion: Content: Address - Country */
   $handler->display->display_options['sorts']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['table'] = 'field_data_field_address';
   $handler->display->display_options['sorts']['field_address_country']['field'] = 'field_address_country';
   $handler->display->display_options['sorts']['field_address_country']['relationship'] = 'restaurant_id';
-  /* Sort criterion: Contenu: Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
@@ -1984,7 +1979,7 @@ function laliste_views_views_default_views() {
   );
   $handler->display->display_options['arguments']['guide_id']['validate_options']['type'] = 'convert';
   $handler->display->display_options['arguments']['guide_id']['validate_options']['transform'] = TRUE;
-  /* Filter criterion: Contenu: Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
@@ -2123,7 +2118,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['empty']['entity']['entity_id'] = '117';
   $handler->display->display_options['empty']['entity']['view_mode'] = 'teaser';
   $handler->display->display_options['empty']['entity']['bypass_access'] = 1;
-  /* Champ: Contenu: Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -2132,7 +2127,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu: Position */
+  /* Field: Content: Position */
   $handler->display->display_options['fields']['field_restaurant_position']['id'] = 'field_restaurant_position';
   $handler->display->display_options['fields']['field_restaurant_position']['table'] = 'field_data_field_restaurant_position';
   $handler->display->display_options['fields']['field_restaurant_position']['field'] = 'field_restaurant_position';
@@ -2144,14 +2139,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['field_restaurant_position']['settings'] = array(
     'data' => 'full',
   );
-  /* Champ: Restaurant stats: Rank */
+  /* Field: Restaurant stats: Rank */
   $handler->display->display_options['fields']['rank']['id'] = 'rank';
   $handler->display->display_options['fields']['rank']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['rank']['field'] = 'rank';
   $handler->display->display_options['fields']['rank']['label'] = '';
   $handler->display->display_options['fields']['rank']['exclude'] = TRUE;
   $handler->display->display_options['fields']['rank']['element_label_colon'] = FALSE;
-  /* Champ: Restaurant stats: Score laliste */
+  /* Field: Restaurant stats: Score laliste */
   $handler->display->display_options['fields']['score_laliste']['id'] = 'score_laliste';
   $handler->display->display_options['fields']['score_laliste']['table'] = 'restaurant_stats';
   $handler->display->display_options['fields']['score_laliste']['field'] = 'score_laliste';
@@ -2160,7 +2155,7 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['fields']['score_laliste']['alter']['text'] = ' is ranked [rank] with a score of [score_laliste] points';
   $handler->display->display_options['fields']['score_laliste']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['score_laliste']['precision'] = '0';
-  /* Contextual filter: Contenu: Nid */
+  /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
   $handler->display->display_options['arguments']['nid']['field'] = 'nid';
@@ -2174,14 +2169,14 @@ function laliste_views_views_default_views() {
   $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
     'restaurant' => 'restaurant',
   );
-  /* Filter criterion: Contenu: Publié */
+  /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Contenu: Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';

@@ -37,6 +37,7 @@ function laliste_publication_content_type_field_default_field_instances() {
     'label' => 'Geographic Zone',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -78,6 +79,7 @@ function laliste_publication_content_type_field_default_field_instances() {
     'label' => 'Source',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -119,6 +121,7 @@ function laliste_publication_content_type_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
+      'entity_translation_sync' => FALSE,
       'file_directory' => '',
       'file_extensions' => 'txt pdf png jpg',
       'max_filesize' => '',
@@ -187,6 +190,7 @@ function laliste_publication_content_type_field_default_field_instances() {
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(

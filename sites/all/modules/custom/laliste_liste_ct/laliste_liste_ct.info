@@ -10,6 +10,7 @@ dependencies[] = flexslider_fields
 dependencies[] = image
 dependencies[] = laliste_rr_ct
 dependencies[] = media
+dependencies[] = node
 dependencies[] = text
 dependencies[] = views
 features[ctools][] = views:views_default:3.0

@@ -22,4 +22,6 @@ features[features_api][] = api:2
 features[search_api_index][] = la_liste_solr_multilingual_index
 features[search_api_server][] = laliste_solr
 features[search_api_sort][] = la_liste_solr_multilingual_index__field_restaurant_rank
+features[search_api_sort][] = la_liste_solr_multilingual_index__field_restaurant_score
 features[search_api_sort][] = la_liste_solr_multilingual_index__search_api_relevance
+features[search_api_sort][] = la_liste_solr_multilingual_index__title

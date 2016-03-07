@@ -120,7 +120,7 @@ function laliste_contexts_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 12,
+      'weight' => 14,
     ),
   );
 
@@ -174,7 +174,7 @@ function laliste_contexts_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 

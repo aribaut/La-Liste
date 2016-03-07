@@ -9,6 +9,7 @@ dependencies[] = file
 dependencies[] = file_entity
 dependencies[] = laliste_rr_ct
 dependencies[] = media
+dependencies[] = node
 dependencies[] = text
 dependencies[] = video
 features[features_api][] = api:2

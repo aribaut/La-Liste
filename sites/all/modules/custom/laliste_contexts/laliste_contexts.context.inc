@@ -111,38 +111,5 @@ function laliste_contexts_context_default_contexts() {
   t('sitewide');
   $export['laliste_sidewide_context'] = $context;
 
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'laliste_layout_liste_search_context';
-  $context->description = 'Provides search results context';
-  $context->tag = 'layout';
-  $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        'search' => 'search',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'facetapi-0' => array(
-          'module' => 'facetapi',
-          'delta' => '0',
-          'region' => 'content',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Provides search results context');
-  t('layout');
-  $export['laliste_layout_liste_search_context'] = $context;
-
   return $export;
 }

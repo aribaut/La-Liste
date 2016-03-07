@@ -1606,6 +1606,13 @@ function update_scores_search() {
    SELECT restaurant_id, score_laliste, rank from {restaurant_stats}
    LEFT JOIN {field_data_field_restaurant_score} ON field_data_field_restaurant_score.entity_id = restaurant_stats.restaurant_id WHERE field_data_field_restaurant_score.field_restaurant_score_value IS NULL")->fetchAll();
   foreach($restaurants as $restaurant) {
+    /*
+    if((int)$restaurant->score_laliste >=  48.9525 and !isset($restaurant->rank)) {
+      $score = 48.95;
+    }
+    else {
+      $score = $restaurant->score_laliste;
+    }*/
     // RESTAURANT SCORE
     // inserting into field data table
     db_insert('field_data_field_restaurant_score')

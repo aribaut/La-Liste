@@ -25,6 +25,10 @@ function laliste_search_facetapi_default_facet_settings() {
       'facets' => array(),
       'force_deactivation' => TRUE,
       'regex' => FALSE,
+      'roles' => array(),
+      'bundle' => 'none',
+      'bundle_selected' => array(),
+      'reverse_dependency' => FALSE,
     ),
     'facet_mincount' => '1',
     'facet_missing' => '0',
@@ -117,6 +121,8 @@ function laliste_search_facetapi_default_facet_settings() {
     'regex' => 0,
     'show_minimum_items' => 2,
     'rewrite_items' => 1,
+    'title_override' => 1,
+    'title' => 'Country',
   );
   $export['search_api@la_liste_solr_multilingual_index:block:field_address:country'] = $facet;
 

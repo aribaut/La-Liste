@@ -7,6 +7,7 @@ project = laliste_homepage_content_type
 dependencies[] = features
 dependencies[] = image
 dependencies[] = media
+dependencies[] = node
 features[features_api][] = api:2
 features[field_base][] = field_slideshow_image
 features[field_instance][] = node-homepage_featured_image-field_slideshow_image

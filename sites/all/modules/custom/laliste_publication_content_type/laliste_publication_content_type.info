@@ -8,6 +8,7 @@ dependencies[] = date
 dependencies[] = features
 dependencies[] = file
 dependencies[] = media
+dependencies[] = node
 dependencies[] = text
 features[features_api][] = api:2
 features[field_base][] = field_geographic_zone
