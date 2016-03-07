@@ -470,10 +470,10 @@ function laliste_views_pre_render($view) {
           include_once DRUPAL_ROOT . '/includes/locale.inc';
           $country_names = country_get_list();
           $country = $country_names[strtoupper($view->args[0])];
-          $view->set_title(t('Restaurants in') . ' ' . t($country));
+          $view->set_title(t('Restaurants') . ' - ' . t($country));
         }
         else {
-          $view->set_title(t('Restaurants') . ' ' . t('Worldwide'));
+          $view->set_title(t('Restaurants') . ' - ' . t('Worldwide'));
         }
       }
     }
