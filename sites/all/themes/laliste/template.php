@@ -25,6 +25,14 @@ function laliste_css_alter(&$css) {
 }
 
 /**
+ * Implements theme_html_head_alter().
+ * Removes the Generator tag from the head for Drupal 7
+ */
+function laliste_html_head_alter(&$head_elements) {
+  unset($head_elements['system_meta_generator']);
+}
+
+/**
  * Prioritizes js scripts
  * Implements hook_js_alter()
  */
@@ -279,6 +287,7 @@ function laliste_preprocess_node(&$variables) {
     // if not geocoder location exists, we put a default map instead
   }
   elseif($variables['type'] == 'liste') {
+    //var_dump($variables);
     // let's get the name of the Liste author via a fast SQL call.
     if(!empty($variables['field_liste_author'][0]['target_id'])) {
       $variables['liste_author'] = db_query("SELECT name FROM {users} WHERE uid = :uid",
@@ -287,6 +296,20 @@ function laliste_preprocess_node(&$variables) {
   }
 }
 
+/*
+ * Remove the worldwide map from the LA LISTE 1000 page view.
+ */
+function laliste_preprocess_views_view(&$vars) {
+  // we are hidding the world view map header when showing LA LISTE 1000 page(s) view
+  if (($vars['view']->name == "laliste_rr_restaurants_country_winners_view")
+    && (strpos(current_path(),'country/world') !== FALSE)) {
+    $vars['header'] = array();
+  }
+}
+
+/*
+ * Add the th / ème to the restaurant rank
+ */
 function laliste_preprocess_views_view_field(&$vars){
      $view = $vars['view'];
      $output = $vars['output'];
@@ -481,10 +504,10 @@ function laliste_views_pre_render($view) {
 }
 
 /**
+ * Language switch menu block
  * 2 letters language instead of full language name.
  * Implements hook_language_switch_links_alter().
  */
-
 function laliste_language_switch_links_alter(array &$links, $type, $path) {
   foreach($links as $key => $link) {
     $links[$key]['title'] = strtoupper($link['language']->language);
@@ -492,59 +515,8 @@ function laliste_language_switch_links_alter(array &$links, $type, $path) {
 }
 
 /*
-** Theming node search results - DEPRECATED?
-** configured for Apache Solr!
+ * Customize the Search Facet display.
  */
-function laliste_preprocess_search_result(&$variables) {
-  $result = $variables['result'];
-  //var_dump($result);
-  //if ($result['node']->type == "restaurant") {
-  if ($result['node']->bundle == "restaurant") {
-    //$nid = $result['node']->nid;
-    //$node = node_load($nid);
-    $nid = $result['node']->entity_id;
-    $node = node_load($nid);
-    //var_dump($node);
-    // Add image to restaurant
-    $restaurant_image = field_view_field('node', $node, 'field_restaurant_image', array('label'=>'hidden', 'type' => 'file_rendered', 'settings' => array('file_view_mode' => 'preview')));
-    $variables['image'] = $restaurant_image[0];
-    $links = db_query("
-      SELECT guide_id, link FROM ranking r LEFT JOIN restaurantguideranking rgr
-      ON rgr.ranking_id=r.ranking_id WHERE restaurant_id=".$nid."
-      ORDER BY guide_id")->fetchAllKeyed();
-    // we now get the taxonomy term names
-    $terms = taxonomy_term_load_multiple(array_keys($links));
-    // we load everything together : the terms and the url in one variable
-    foreach ($links as $tid => $link) {
-      $variables['guides'][$terms[$tid]->name] = $link;
-    }
-    // getting restaurant rank & score
-    $ranking = db_query("
-    SELECT rank, ROUND(score_laliste,2) as score_laliste FROM {restaurant_stats}
-    WHERE restaurant_id = ".$nid)->fetchAssoc();
-    if(isset($ranking['rank'])) {
-      if($bool = ( !is_int($ranking['rank']) ? (ctype_digit($ranking['rank'])) : true )) {
-        $variables['rank'] = t(ordinal($ranking['rank']));
-      }
-      $variables['score'] = $ranking['score_laliste'] . '<sup>' . t('SCORE') . '/100' . '</sup>';
-    }
-    // getting address from node object
-    if(isset($node->field_address['und'][0]['postal_code'])
-      && !empty($node->field_address['und'][0]['postal_code'])) {
-      $variables['postal_code'] = $node->field_address['und'][0]['postal_code'];
-    }
-    if(isset($node->field_address['und'][0]['locality'])
-      && !empty($node->field_address['und'][0]['locality'])) {
-      $variables['city'] = $node->field_address['und'][0]['locality'];
-    }
-    if(isset($node->field_address['und'][0]['country'])
-      && !empty($node->field_address['und'][0]['country'])) {
-      $variables['country_img_path'] = base_path() . path_to_theme() . '/img/flat-large-countries.png';
-      $variables['country_code'] = $node->field_address['und'][0]['country'];
-    }
-  }
-}
-
 function laliste_facet_items_alter(&$build, &$settings) {
   if ($settings->facet == "field_address:country") {
     // let's translate the 2 letter ISO code into the full country name
@@ -572,12 +544,4 @@ function laliste_facet_items_alter(&$build, &$settings) {
       //$build[$key]["#markup"] = drupal_strtoupper($item["#markup"]);
     }
   }*/
-}
-
-function laliste_preprocess_views_view(&$vars) {
-  // we are hidding the world view map when showing LA LISTE page view
-  if (($vars['view']->name == "laliste_rr_restaurants_country_winners_view")
-    && (strpos(current_path(),'country/world') !== FALSE)) {
-    $vars['header'] = array();
-  }
 }

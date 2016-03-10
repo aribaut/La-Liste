@@ -98,7 +98,11 @@
       </div>
     </div>
     <div class="liste-user-action-share">
-      <p><?php print t('Share'); ?></p>
-      <?php print render($content['addtoany']); ?>
+      <div class="restaurant-user-action-row1">
+        <p><?php print t('Share'); ?></p>
+      </div>
+      <div class="restaurant-user-action-row2">
+        <?php print render($content['addtoany']); ?>
+      </div>
     </div>
 </div>
