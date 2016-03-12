@@ -1517,7 +1517,7 @@ function laliste_views_views_default_views() {
 
   /* Display: Default */
   $handler = $view->new_display('default', 'Default', 'default');
-  $handler->display->display_options['title'] = '1,000 Remarkable Restaurants';
+  $handler->display->display_options['title'] = '1,000 Outstanding Restaurants';
   $handler->display->display_options['css_class'] = 'laliste-winners-home';
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -1746,7 +1746,7 @@ function laliste_views_views_default_views() {
   );
   $translatables['laliste_rr_restaurants_country_winners_view'] = array(
     t('Default'),
-    t('1,000 Remarkable Restaurants'),
+    t('1,000 Outstanding Restaurants'),
     t('See all restaurants in La Liste'),
     t('Apply'),
     t('Réinitialiser'),

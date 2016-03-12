@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the laliste Liste CT feature.
- */
-
-include_once 'laliste_liste_ct.features.inc';
