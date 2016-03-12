@@ -1,0 +1,11 @@
+.form-item-food, .form-item-wine, .form-item-service,
+.form-item-atmosphere, .form-item-value, .form-item-votes {
+  padding-right : 40px !important;
+  float: left;
+}
+
+.form-type-textarea {
+  padding-top: 40px !important;
+}
+
+

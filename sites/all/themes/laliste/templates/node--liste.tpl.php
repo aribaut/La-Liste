@@ -87,7 +87,7 @@
     <div class="liste-title-container">
       <?php print format_date($node->changed, 'medium'); ?>
       <?php if ($title): ?><h1 id="liste-title"><?php print $title; ?></h1><?php endif; ?>
-      <?php if (isset($liste_author)): ?><h2 id="liste-author"><?php print t('Liste réalisée par') . ' ' . $liste_author; ?></h2><?php endif; ?>
+      <?php if (isset($liste_author)): ?><h2 id="liste-author"><?php print t('Liste created by') . ' ' . $liste_author; ?></h2><?php endif; ?>
     </div>
     <div class='liste-highlight'>
       <?php print render($content['body']); ?>

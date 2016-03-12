@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Views feature.
+ */
+
+include_once 'laliste_views.features.inc';
