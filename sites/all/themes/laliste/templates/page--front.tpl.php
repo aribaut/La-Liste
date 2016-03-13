@@ -83,11 +83,11 @@
 <?php if (isset($language->language) && ($language->language == 'fr')): ?>
 <nav class="nav-main">
   <div class="nav-container">
-    <a class="nav-link" href="/fr/about"><?php print t('MÉTHODE'); ?></a>
-    <a class="nav-link" href="/fr/our-team"><?php print t("L'ÉQUIPE"); ?></a>
-    <a class="nav-link" href="/fr/winners"><?php print t('PALMARÈS'); ?></a>
+    <a class="nav-link" href="/fr/méthode"><?php print t('MÉTHODE'); ?></a>
+    <a class="nav-link" href="/fr/équipe"><?php print t("L'ÉQUIPE"); ?></a>
+    <a class="nav-link" href="/fr/palmarès"><?php print t('PALMARÈS'); ?></a>
     <a class="nav-link" href="/fr/sponsors"><?php print t('SPONSORS'); ?></a>
-    <a class="nav-link" href="/news"><?php print t('NEWS'); ?></a>
+    <a class="nav-link" href="/fr/news"><?php print t('NEWS'); ?></a>
   </div>
 </nav>
 <?php else: ?>
