@@ -52,11 +52,12 @@ function search_api_et_install() {
   if (batch_get()) {
     return;
   }
-  $name = 'Default multilingual node index';
+
+  $name = t('Default multilingual node index');
   $values = array(
-    'name' =>  st($name),
+    'name' => $name,
     'machine_name' => preg_replace('/[^a-z0-9]+/', '_', drupal_strtolower($name)),
-    'description' => st('An automatically created search index for indexing multilingual node data. Might be configured to specific needs.'),
+    'description' => t('An automatically created search index for indexing multilingual node data. Might be configured to specific needs.'),
     'server' => NULL,
     'item_type' => 'search_api_et_node',
     'options' => array(
@@ -138,5 +139,5 @@ function search_api_et_install() {
     ),
   );
   search_api_index_insert($values);
-  drupal_set_message(st('The Search API Entity Translation module was installed. A new default multilingual node index was created.'));
+  drupal_set_message('The Search API Entity Translation module was installed. A new default multilingual node index was created.');
 }

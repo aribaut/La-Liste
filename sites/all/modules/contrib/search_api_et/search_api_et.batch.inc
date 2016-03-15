@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Contains functions to handle batch processing.
- */
-
-/**
  * Batch API callback for the item queueing functionality.
  *
  * @param object $index
@@ -111,7 +106,7 @@ function search_api_et_batch_queue_entities_finished($success, $results, $operat
       // SearchApiEntityDataSourceController.)
       if (empty($index->options['fields'])) {
         $redirect .= '/fields';
-        $drupal_set_message($t('The index was successfully created. Please set up its indexed fields now.'));
+        drupal_set_message(t('The index was successfully created. Please set up its indexed fields now.'));
       }
     }
   }

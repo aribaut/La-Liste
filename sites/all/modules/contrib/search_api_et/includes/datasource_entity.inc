@@ -232,13 +232,45 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
 
     // Find out number of all entities to be processed.
     foreach ($indexes as $index) {
-      $entity_ids = $this->getTrackableEntityIds($index);
-      $steps = ceil(count($entity_ids) / $index->options['cron_limit']);
+      $entity_type = $index->getEntityType();
+      $entity_info = entity_get_info($entity_type);
+
+      if (!empty($entity_info['base table'])) {
+        // Assumes that all entities use the "base table" property and the
+        // "entity keys[id]" in the same way as the default controller.
+        $id_field = $entity_info['entity keys']['id'];
+        $table = $entity_info['base table'];
+
+        // We could also use a single insert (with a JOIN in the nested query),
+        // but this method will be mostly called with a single index, anyways.
+        // Select all entity ids.
+        $query = db_select($table, 't');
+        $query->addField('t', $id_field);
+        $item_ids = $query->execute()->fetchCol();
+
+        if (empty($item_ids)) {
+          continue;
+        }
+      }
+      else {
+        // In the absence of a 'base table', load the entities.
+        $query = new EntityFieldQuery();
+        $entities = $query->entityCondition('entity_type', $entity_type)
+          ->execute();
+
+        if (empty($entities)) {
+          continue;
+        }
+
+        $item_ids = array_keys($entities[$entity_type]);
+      }
+
+      $steps = ceil(count($item_ids) / $index->options['cron_limit']);
 
       for ($step = 0; $step < $steps; $step++) {
         $operations[] = array(
           'search_api_et_batch_queue_entities',
-          array($index, $entity_ids, $step),
+          array($index, $item_ids, $step),
         );
       }
     }
@@ -278,16 +310,13 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
       return;
     }
 
-    // Check if we get Entity IDs or Item IDs.
-    $is_entity_ids_list = FALSE == $this->getItemInfo(reset($item_ids));
-
-    // If we got Entity IDs, let's convert them to Item IDs.
-    if ($is_entity_ids_list) {
-      foreach ($indexes as $index) {
-        $item_ids = $this->getTrackableItemIds($index, $item_ids);
-      }
+    // We assume here that we got entity ids in $item_ids, not proper item ids,
+    // so first let's try to convert them to real multilingual item ids.
+    $multilingual_item_ids = array();
+    foreach ($indexes as $index) {
+      $multilingual_item_ids += $this->getAllIndexItemIds($index, $item_ids);
     }
-    // Once we have real multilingual Item IDs, we can do proper tracking.
+    // Once we have real multilingual item ids, we can do proper tracking.
 
     // There are situations where trackItemChange() is being called, but the
     // item ids do not exist in the search_api_et_item table yet. To be sure
@@ -295,15 +324,15 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
     // But then again, if they already exist in the database, we must delete
     // them first before being able to re-insert them, otherwise we'll end up
     // with Integrity constraint violation  PDOException.
-    $this->trackItemDelete($item_ids, $indexes);
-    $this->trackItemInsert($item_ids, $indexes);
+    parent::trackItemDelete($multilingual_item_ids, $indexes);
+    parent::trackItemInsert($multilingual_item_ids, $indexes);
 
     // Finally, we can mark those items for an update.
-    parent::trackItemChange($item_ids, $indexes, $dequeue);
+    parent::trackItemChange($multilingual_item_ids, $indexes, $dequeue);
   }
 
   /**
-   * Retrieves all Item IDs from the given index, filtered by the Entity IDs.
+   * Retrieves all item IDs for a given index, and, optionally, given entity IDs.
    *
    * Is used instead of SearchApiAbstractDataSourceController::getAllItemIds(),
    * since available items depend on the index configuration.
@@ -311,189 +340,28 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
    * @param SearchApiIndex $index
    *   The index for which item IDs should be retrieved.
    *
-   * @param array $entity_ids
-   *   The Entity IDs to get the ItemIDs for.
-   *
    * @return array
    *   An array with all item IDs for a given index, with keys and values both
    *   being the IDs.
    */
-  public function getTrackableItemIds(SearchApiIndex $index, $entity_ids = NULL) {
-    $ids = array();
-    $entity_type = $index->getEntityType();
-    $entity_ids = $this->getTrackableEntityIds($index, $entity_ids);
-    $entities = entity_load($entity_type, $entity_ids);
-
-    foreach ($entities as $entity_id => $entity) {
-      foreach (search_api_et_item_languages($entity, $entity_type, $index) as $lang) {
-        $item_id = $lang . '_' . $entity_id;
-        $ids[$item_id] = $item_id;
-      }
-    }
-
-    return $ids;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function trackItemInsert(array $item_ids, array $indexes) {
-    $ret = array();
-    foreach ($indexes as $index_id => $index) {
-      // Sometimes we get item_ids not meant to be tracked, just filter them out.
-      $ids = $this->filterTrackableIds($index, $item_ids);
-      if ($ids) {
-        parent::trackItemInsert($ids, array($index));
-        $ret[$index_id] = $index;
-      }
-    }
-    return $ret;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function trackItemDelete(array $item_ids, array $indexes) {
-    $ret = array();
-    foreach ($indexes as $index_id => $index) {
-      // Sometimes we get item_ids not meant to be tracked, just filter them out.
-      $ids = $this->filterTrackableIds($index, $item_ids);
-      if ($ids) {
-        parent::trackItemDelete($ids, array($index));
-        $ret[$index_id] = $index;
-      }
-    }
-    return $ret;
-  }
-
-
-
-  /**
-   * @param SearchApiIndex $index
-   *   The index for which item IDs should be retrieved.
-   * @param array $entity_ids
-   *   The
-   *
-   * @return array
-   *   An array with all trackable Entity IDs for a given index.
-   */
-  public function getTrackableEntityIds(SearchApiIndex $index, $entity_ids = NULL) {
-    $entity_type = $index->getEntityType();
-
-    if (!empty($this->entityInfo['base table']) && $this->idKey) {
-      // Assumes that all entities use the "base table" property and the
-      // "entity keys[id]" in the same way as the default controller.
-      $table = $this->entityInfo['base table'];
-
-      // Select all entity ids.
-      $query = db_select($table, 't');
-      $query->addField('t', $this->idKey);
-      if ($bundles = $this->getIndexBundles($index)) {
-        $query->condition($this->bundleKey, $bundles);
-      }
-      if ($entity_ids) {
-        $query->condition($this->idKey, $entity_ids);
-      }
-      $ids = $query->execute()->fetchCol();
-    }
-    else {
-      // In the absence of a 'base table', load the entities.
-      $query = new EntityFieldQuery();
-      $query->entityCondition('entity_type', $entity_type);
-      if ($bundles = $this->getIndexBundles($index)) {
-        $query->entityCondition('bundle', $bundles);
-      }
-      if ($entity_ids) {
-        $query->entityCondition('entity_id', $entity_ids);
-      }
-      $entities = $query->execute();
-      $ids = array_keys($entities[$entity_type]);
-    }
-
-    return $ids;
-  }
-
-
-  /**
-   * Filters the given Item IDs to include only the ones handled by the Index.
-   *
-   * @param SearchApiIndex $index
-   *   The SearchAPI index to use
-   * @param array $item_ids
-   *   A list of trackable item IDs (in the form "{language}_{id} to check
-   * @return array
-   */
-  protected function filterTrackableIds(SearchApiIndex $index, $item_ids) {
-    if (empty($item_ids))
-      return array();
-
-    $merged_ids = $this->getGroupedItemsIdsByEntity($item_ids);
-    if (empty($merged_ids)) {
-      return array();
-    }
-
-    $ret = array();
-    $ids = $this->getTrackableEntityIds($index, array_keys($merged_ids));
-
-    if (!empty($ids)) {
-      // Keeping only the Entity IDs matched by the query
-      $item_ids = array_intersect_key($merged_ids, array_flip($ids));
-
-      // Rebuilding the $ret to contain the '{id}_{lang}' IDs
-      if (!empty($item_ids)) {
-        foreach ($item_ids as $ids) {
-          $ret = array_merge($ret, $ids);
+  public function getAllIndexItemIds(SearchApiIndex $index, $item_ids = FALSE) {
+    // Try to load entities from provided $item_ids.
+    $entities = entity_load($this->entityType, $item_ids);
+    // If entities were loaded successully, it means that $item_ids do not have
+    // language prefix in them, so they are not really item ids, rather just
+    // entity ids, and we need to convert them to proper item ids.
+    if (!empty($entities)) {
+      $item_ids = array();
+      foreach ($entities as $id => $entity) {
+        foreach (search_api_et_item_languages($entity, $this->entityType, $index) as $lang) {
+          $lang_id = "{$lang}_{$id}";
+          $item_ids[$lang_id] = $lang_id;
         }
       }
     }
-
-    return $ret;
-  }
-
-  /**
-   * Helper function to group the given {language}_{entity_id} by {entity_id}.
-   *
-   * @param array $item_ids
-   *  THe list of trackable IDs (in the form "{language}_{entity_id}")
-   * @return array
-   *   A multilevel array where the outer array is keyed by the entity_id, and
-   *   contains all the corresponding Item IDs.
-   */
-  protected function getGroupedItemsIdsByEntity($item_ids) {
-    $ret = array();
-    foreach ($item_ids as $item_id) {
-      $id = $this->getItemInfo($item_id);
-      if ($id) {
-        $ret[$id][] = $item_id;
-      }
-    }
-    return $ret;
-  }
-
-  /**
-   * Helper function to split the Item ID into language or entity_id.
-   *
-   * @param string $item_id
-   *   The Item ID (as "{language}_{entity_id}")
-   * @param string $parts
-   *   The item part to return, available options. 'entity_id' or 'language'
-   * @return string|FALSE
-   *   Returns the requested part, FALSE if the item_id is not a properly
-   *   formatted Item ID
-   */
-  protected function getItemInfo($item_id, $parts = 'entity_id') {
-    // If a multilingual id is provided, then split it into {id} and {language}.
-    if (!empty($parts) && is_string($item_id) && strpos($item_id, '_') !== FALSE) {
-      list($language, $entity_id) = explode('_', $item_id, 2);
-      if ($parts == 'entity_id') {
-        return $entity_id;
-      }
-      elseif ($parts == 'language') {
-        return $language;
-      }
-    }
-
-    return FALSE;
+    // If no entities were loaded, it might mean that $item_ids might already
+    // be multilingual, and in this case let's just return them.
+    return $item_ids;
   }
 
 }
