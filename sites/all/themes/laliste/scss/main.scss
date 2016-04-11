@@ -1158,7 +1158,8 @@ div.view-header > div.view-la-liste-country-map {
         display: none !important;
     }
     .laliste-winners-result {
-        max-height: 2rem !important;
+        height: 2rem !important;
+        max-height: 2rem;
     }
     .laliste-winners-title {
         width: 77% !important;//17.675rem
@@ -1533,7 +1534,8 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 0.9rem !important;
     }
     .laliste-winners-result {
-        max-height: 2.5rem !important;
+        height: 2.5rem !important;
+        max-height: 2.5rem;
     }
     div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
         width: 77% !important;
@@ -2879,11 +2881,13 @@ div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
     height: 6.875rem;
+    max-height: 6.875rem;
     margin: 0.1875rem 0;
 }
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(n+6),
 div.view-content > div.laliste-winners-result {
+    height: 2.8rem;
     max-height: 2.8rem;
     margin: 0;
 }
