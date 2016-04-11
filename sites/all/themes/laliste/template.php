@@ -9,19 +9,19 @@
  * Removing unecassry css files bloating our site
  **/
 function laliste_css_alter(&$css) {
-    unset($css[drupal_get_path('module','system').'/system.theme.css']);
-    unset($css[drupal_get_path('module','system').'/system.base.css']);
-    unset($css[drupal_get_path('module','system').'/system.menus.css']);
+/*    unset($css[drupal_get_path('module','system').'/system.theme.css']);*/
+/*    unset($css[drupal_get_path('module','system').'/system.base.css']);*/
+/*    unset($css[drupal_get_path('module','system').'/system.menus.css']);
     unset($css[drupal_get_path('module','system').'/system.messages.css']);
     unset($css[drupal_get_path('module','system').'/system.admin.css']);
     unset($css[drupal_get_path('module','comment').'/comment.css']);
     unset($css[drupal_get_path('module','field').'/theme/field.css']);
     unset($css[drupal_get_path('module','search').'/search.css']);
-    unset($css[drupal_get_path('module','user').'/user.css']);
+ /*   unset($css[drupal_get_path('module','user').'/user.css']);*/
     unset($css[drupal_get_path('module','node').'/node.css']);
     unset($css[drupal_get_path('module','views').'/css/views.css']);
     unset($css[drupal_get_path('module','ctools').'/css/ctools.css']);
-    unset($css[drupal_get_path('module','addressfield').'/addressfield.css']);
+/*    unset($css[drupal_get_path('module','addressfield').'/addressfield.css']);*/
 }
 
 /**
@@ -55,12 +55,46 @@ function laliste_js_alter(&$javascript) {
  * from https://www.drupal.org/node/1167712#comment-5080586
  */
 function laliste_theme(&$existing, $type, $theme, $path) {
-   $hooks['user_login_block'] = array(
-     'template' => 'templates/user-login-block',
-     'render element' => 'form',
-   );
-   return $hooks;
- }
+  // user login block
+  $hooks['user_login_block'] = array(
+    'template' => 'templates/user-login-block',
+    'render element' => 'form',
+  );
+  // registration form page
+  //
+  $hooks['laliste_registration_form'] = array(
+    'template' => 'templates/laliste-registration-form',
+    'render element' => 'form',
+  );
+  // user login form page
+  $hooks['laliste_login_form'] = array(
+    'template' => 'templates/laliste-login-form',
+    'render element' => 'form',
+  );
+  // user edit page
+  $hooks['user_profile_form'] = array(
+    'template' => 'templates/laliste-user-profile-edit',
+    'render element' => 'form',
+  );
+  return $hooks;
+}
+
+/*
+ * HOOK_form_alter().
+ */
+function laliste_form_alter(&$form, &$form_state, $form_id)
+{
+  if ('user_register_form' == $form_id) {
+    // we set the user's language
+    global $language_content;
+    $language_current = $language_content->language;
+    $form['locale']['#value'] = $language_current;
+    $form['#theme'] = 'laliste_registration_form'; // @todo get the password field to show up!
+  }
+  elseif('user_login' == $form_id) {
+    $form['#theme'] = 'laliste_login_form';
+  }
+}
 
 /*
  * Theming the uer login block
@@ -93,6 +127,10 @@ function laliste_preprocess_block(&$vars) {
   }
   if ($vars['elements']['#block']->delta == 'language') {
     $vars['elements']['#block']->subject = NULL;
+  }
+  if ($vars['block']->module == 'system'
+   && $vars['block']->delta == 'user-menu') {
+      $vars['block']->subject = null;
   }
 }
 
@@ -131,10 +169,29 @@ function laliste_form_views_exposed_form_alter(&$form, &$form_state) {
   }
 }
 
+/**
+ * Customize panel output (removing panel separators)
+ */
+function laliste_panels_default_style_render_region($vars) {
+  $output = '';
+  $output .= implode('', $vars['panes']);
+  return $output;
+}
+
 function laliste_preprocess_page(&$vars) {
+  // front page
   if (drupal_is_front_page()) {
     unset($vars['page']['content']['system_main']['default_message']); // removes "No front page content has been created yet."
     drupal_set_title(''); //removes welcome message (page title)
+  }
+  // user page
+  if($panel_page = page_manager_get_current_page()) {
+    $suggestions[] = 'page-panel';
+    $suggestions[] = 'page-' . $panel_page['name'];
+    $variables['theme_hook_suggestions'] = array_merge($vars['theme_hook_suggestions'], $suggestions);
+  }
+  elseif($vars['theme_hook_suggestions'][0] == 'page__user') {
+    unset($vars['theme_hook_suggestions'][0]);
   }
 }
 
@@ -289,9 +346,9 @@ function laliste_preprocess_node(&$variables) {
   elseif($variables['type'] == 'liste') {
     //var_dump($variables);
     // let's get the name of the Liste author via a fast SQL call.
-    if(!empty($variables['field_liste_author'][0]['target_id'])) {
-      $variables['liste_author'] = db_query("SELECT name FROM {users} WHERE uid = :uid",
-        array(":uid"=>$variables['field_liste_author'][0]['target_id']))->fetchField();
+    if(!empty($variables['nid'])) {
+      $variables['liste_author'] = db_query("SELECT name FROM {users} LEFT JOIN node ON users.uid=node.uid WHERE node.nid = :nid",
+        array(":nid"=>$variables['nid']))->fetchField();
     }
   }
 }

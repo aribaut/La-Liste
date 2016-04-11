@@ -21,6 +21,13 @@ function laliste_liste_ct_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
         'type' => 'text_plain',
         'weight' => 0,
       ),
@@ -28,10 +35,10 @@ function laliste_liste_ct_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
-          'trim_length' => 250,
+          'trim_length' => 400,
         ),
         'type' => 'text_summary_or_trimmed',
-        'weight' => 3,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',
@@ -57,54 +64,6 @@ function laliste_liste_ct_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-liste-field_liste_author'
-  $field_instances['node-liste-field_liste_author'] = array(
-    'bundle' => 'liste',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Select the author of this list.',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'node',
-    'fences_wrapper' => 'div',
-    'field_name' => 'field_liste_author',
-    'label' => 'Author',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 2,
-    ),
-  );
-
   // Exported field_instance: 'node-liste-field_liste_image'
   $field_instances['node-liste-field_liste_image'] = array(
     'bundle' => 'liste',
@@ -112,6 +71,17 @@ function laliste_liste_ct_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'hidden',
+        'module' => 'flexslider_fields',
+        'settings' => array(
+          'caption' => '',
+          'image_style' => 'flexslider_full',
+          'optionset' => 'default',
+        ),
+        'type' => 'flexslider',
+        'weight' => 3,
+      ),
+      'search_result' => array(
         'label' => 'hidden',
         'module' => 'flexslider_fields',
         'settings' => array(
@@ -127,10 +97,10 @@ function laliste_liste_ct_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => 'content',
-          'image_style' => 'medium',
+          'image_style' => 'mid_size_thumb',
         ),
         'type' => 'image',
-        'weight' => 4,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
@@ -188,6 +158,15 @@ function laliste_liste_ct_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
+        'weight' => 4,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
         'weight' => 1,
       ),
       'teaser' => array(
@@ -230,31 +209,35 @@ function laliste_liste_ct_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
-      'teaser' => array(
-        'label' => 'hidden',
+      'search_result' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'node',
-    'fences_wrapper' => 'div',
     'field_name' => 'title_field',
     'label' => 'Title',
-    'required' => 1,
+    'required' => TRUE,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
-        'entity' => 0,
-        'page' => 0,
+        'entity' => FALSE,
+        'page' => FALSE,
       ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'size' => 60,
@@ -266,13 +249,11 @@ function laliste_liste_ct_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Author');
   t('Description');
   t('Image');
   t('Provides a list description to our users.');
   t('Restaurants');
   t('Select restaurants to be part of this Liste.');
-  t('Select the author of this list.');
   t('Title');
 
   return $field_instances;

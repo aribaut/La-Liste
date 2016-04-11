@@ -218,7 +218,7 @@ a:focus, a:hover {
 ol, ul {
     list-style: none;
     margin: 0 0 1.5rem;
-    padding: 0 0 0 1.5rem;
+    //padding: 0 0 0 1.5rem;
 }
 
 li {
@@ -433,6 +433,12 @@ strong {
     @include justify-content(flex-end);
     @include flex-wrap(nowrap);
     padding-right: 0.5rem;
+    padding-left: 2rem;
+}
+
+div.region-header {
+    margin: initial;
+    width: 72%;
 }
 
 .footer-main,
@@ -521,23 +527,44 @@ body > header > div.header-utils > div.region.region-header {
     @include justify-content(flex-end);
     margin-right: 0;
 }
-
+/*
+.header-utils .region-header {
+    position: absolute;
+    top:0;
+    right:0;
+}
+*/
 #block-search-form,
 #block-locale-language,
+#block-system-user-menu,
 #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
     @extend .Grid;
     @extend .Grid-cell;
 }
 
 .region-header {
-    position: relative; //added today
+    //position: relative; //added today
 }
 
 #block-locale-language { // added today
-    position: absolute;
-    top:0;
-    right:0;
+    height: 2rem;
 }
+
+.language-switcher-locale-url {
+    width: 3rem !important;
+}
+
+#block-system-user-menu {
+    height: 1.5rem !important;
+}
+
+ul.menu {
+    list-style-type: none;
+    li {
+        display: inline;
+    }
+}
+
 
 .language-switcher-locale-url {
     @extend .Grid;
@@ -679,6 +706,23 @@ body > header > div.header-utils > div.region.region-header {
     text-align: center;
 }
 
+.listes-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--full;
+    height: 100%;
+    width: 100%;
+    @include justify-content(flex-start);
+    margin: 0.5rem 0;
+    text-align: center;
+    @include flex-direction(column);
+}
+
+.group-left .field-body p {
+    text-align: left;
+}
+
 .guide-box {
     @extend .Grid;
     @extend .Grid-cell;
@@ -708,6 +752,18 @@ body > header > div.header-utils > div.region.region-header {
     @include justify-content(center);
     @include flex-direction(column);
     @include flex-wrap(nowrap);
+}
+
+.liste-title-container h2 {
+    font-family: "Mrs Eaves Italic",Serif;
+    font-size: 2rem;
+    color: #5d5d5d;
+}
+
+body > main.content-user > div > article > div:nth-child(2) > div.liste-title-container {
+    height: 4rem !important;
+    padding-top: 1rem;
+    margin-bottom: 0;
 }
 
 .view-laliste-liste-restaurants-view {
@@ -849,6 +905,11 @@ div.view-header > div.view-la-liste-country-map {
 // 320px :)
 @media screen and (min-width: 20rem) {
 
+    div.region-header {
+        margin: 0 auto !important;
+        width: 60%;
+    }
+
     .content-body,
     .content-body-home {
         padding-left: 2% !important;
@@ -877,13 +938,15 @@ div.view-header > div.view-la-liste-country-map {
         @include justify-content(center);
         img {
             width: 15rem;
-            height: 100%;
         }
     }
 
     .language-switcher-locale-url {
-        margin-top: 1rem;
         font-size: 0.8rem;
+    }
+
+    header.header-home #block-locale-language {
+        margin-top: 0rem !important;
     }
 
     .row-height-med {
@@ -1017,7 +1080,7 @@ div.view-header > div.view-la-liste-country-map {
 
     a.footer-link,
     a.nav-link {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 
     a.sub-footer-link {
@@ -1095,7 +1158,7 @@ div.view-header > div.view-la-liste-country-map {
         display: none !important;
     }
     .laliste-winners-result {
-        height: 2rem !important;
+        max-height: 2rem !important;
     }
     .laliste-winners-title {
         width: 77% !important;//17.675rem
@@ -1123,6 +1186,10 @@ div.view-header > div.view-la-liste-country-map {
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
         zoom: 0.5 !important;
+        -ms-zoom: 0.5;
+        -webkit-zoom: 0.5;
+        -moz-transform:  scale(0.5,0.5);
+        -moz-transform-origin: left center;
     }
     .content-body-home div:nth-child(n+6) > span.laliste-winners-rank,
     .content-body div:nth-child(n) > span.laliste-winners-rank{
@@ -1178,10 +1245,26 @@ div.view-header > div.view-la-liste-country-map {
     #edit-keys {
         width: 14.875rem !important;
     }
+
+    main.content-user div.view-laliste-listes-view .ds-2col > .group-left {
+        width: 55% !important;
+    }
+    main.content-user div.view-laliste-listes-view .ds-2col > .group-right {
+        width: 45% !important;
+    }
 }
 
 // 576px :)
 @media screen and (min-width: 36rem) {
+
+    div.region-header {
+        margin: initial;
+        width: 72%;
+    }
+
+    header.header-home #block-locale-language {
+        margin-top: -3rem !important;
+    }
 
     input.other-page-search-box, // today
     #edit-keys {
@@ -1440,13 +1523,17 @@ div.view-header > div.view-la-liste-country-map {
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
         zoom: 0.75 !important;
+            -ms-zoom: 0.75;
+            -webkit-zoom: 0.75;
+            -moz-transform:  scale(0.75,0.75);
+            -moz-transform-origin: left center;
     }
     .content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste > span,
     .content-body div:nth-child(n) > span.laliste-winners-score-laliste > span {
         font-size: 0.9rem !important;
     }
     .laliste-winners-result {
-        height: 2.5rem !important;
+        max-height: 2.5rem !important;
     }
     div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
         width: 77% !important;
@@ -1753,8 +1840,11 @@ div.view-header > div.view-la-liste-country-map {
         font-size: 1rem !important;
     }
     /*
-    .content-body div.content > div > div.view-content > div:nth-child(n) {
-        height: 2.5rem;
+    .content-body div.content > div > div.view-content > div:nth-child(-n+5) {
+        max-height: 3.5rem;
+    }
+    .content-body div.content > div > div.view-content > div:nth-child(n+6) {
+        max-height: 2.5rem;
     }
     */
     .content-body div.content > div > div.view-content > div:nth-child(n) > span.laliste-winners-title > span > a {
@@ -1794,13 +1884,17 @@ div.view-header > div.view-la-liste-country-map {
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
         zoom: 1 !important;
+        -ms-zoom: 1;
+        -webkit-zoom: 1;
+        -moz-transform:  scale(1,1);
+        -moz-transform-origin: left center;
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank{
         padding-right: 0 !important;
     }
     .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
         span {
-            font-size: 3rem !important;
+            font-size: 2.4rem !important;
             sup {
                 font-size: 0.8rem !important;
                 top: 0.3rem !important;
@@ -2482,7 +2576,15 @@ input.fpage-search-box {
 input.fpage-search-icon,
 input.other-page-search-icon,
 #edit-submit-laliste-search-view,
-#edit-submit {
+#edit-field-liste-restaurants-und-add-more,
+#edit-field-liste-restaurants-und-add-more--2,
+#edit-field-liste-image-und-0-remove-button,
+#edit-field-liste-image-und-0-upload,
+#edit-field-liste-image-und-0-upload-button,
+#edit-picture-upload,
+#edit-submit,
+#edit-delete,
+#edit-cancel {
     border: 0;
     font-family: 'FontAwesome';
     font-weight: 100;
@@ -2495,6 +2597,10 @@ input.other-page-search-icon,
     border-bottom-right-radius:0.3125rem;
 }
 
+#edit-cancel {
+    background: $gray;
+}
+
 input.fpage-search-icon,
 #edit-submit {
     width: 5.625rem;
@@ -2504,11 +2610,34 @@ input.fpage-search-icon,
 
 input.other-page-search-icon,
 #edit-submit-laliste-search-view,
-#edit-submit {
+#edit-submit,
+#edit-delete,
+#edit-cancel {
     width: 3.125rem;
     height: 2.625rem;
     font-size: 1.25rem;
 }
+
+#edit-field-liste-restaurants-und-add-more,
+#edit-field-liste-restaurants-und-add-more--2,
+#edit-field-liste-image-und-0-upload,
+#edit-picture-upload {
+    width: 11rem;
+    height: 1.625rem;
+    font-size: 0.8rem;
+}
+
+#edit-picture-upload {
+    height: 1.25rem;
+}
+
+#edit-field-liste-image-und-0-remove-button,
+#edit-field-liste-image-und-0-upload-button {
+    width: 5rem;
+    height: 1.625rem;
+    font-size: 0.8rem;
+}
+
 
 input[type=text].fpage-search-box,
 input[type=text].other-page-search-box,
@@ -2755,7 +2884,7 @@ div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title
 
 #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(n+6),
 div.view-content > div.laliste-winners-result {
-    height: 2.8rem;
+    max-height: 2.8rem;
     margin: 0;
 }
 
@@ -2825,7 +2954,6 @@ div.view-content > div.laliste-winners-result {
 // 1st five winners score
 .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
     font-family: 'Josefin Sans', sans-serif;
-    font-weight: bold;
     font-size: 2rem;
     color: $white;
 }
@@ -2880,18 +3008,26 @@ div.view-content > div.laliste-winners-result {
     max-width: 50%;
 }
 .content-body-home div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > li {
-    min-width: 64px;
-    min-height: 41px;
+    min-width: 60px;//64
+    min-height: 40px;//41
     zoom: 0.5;
+    -ms-zoom: 0.5;
+    -webkit-zoom: 0.5;
+    -moz-transform:  scale(0.5,0.5);
+    -moz-transform-origin: left center;
 }
 // all other pages
 .content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > img {
     max-width: 50%;
 }
 .content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > li {
-    min-width: 64px;
-    min-height: 41px;
+    min-width: 60px;//64
+    min-height: 40px;//41
     zoom: 0.5;
+    -ms-zoom: 0.5;
+    -webkit-zoom: 0.5;
+    -moz-transform:  scale(0.5,0.5);
+    -moz-transform-origin: left center;
 }
 // Remaining Winners restaurant title
 .content-body-home div:nth-child(n+6) > span.laliste-winners-title > span > a {
@@ -3189,7 +3325,7 @@ li.search-result {
     @extend .Grid-cell;
     @include justify-content(flex-start);
     @include flex-direction(column);
-    //padding-bottom: 2rem;
+    padding: 1rem;
 }
 
 .ds-2col > .group-left {
@@ -3203,6 +3339,19 @@ li.search-result {
     @extend .u-small-full;
     @extend .u-med-3of4;
     @extend .u-large-3of4;
+}
+
+div.view-laliste-listes-view .ds-2col > .group-left {
+    @include align-items(flex-start);
+}
+div.view-laliste-listes-view .ds-2col > .group-right {
+    @include align-items(flex-end);
+}
+
+
+div.listes-container div.views-row {
+    background: $light_grey;
+    margin: 0.25rem 0;
 }
 
 .view-laliste-multi-search-view .view-header {
@@ -3319,6 +3468,10 @@ p.score.no-ranking {
     @include align-self(flex-end);
     a > ul > li {
         zoom: 0.8;
+        -ms-zoom: 0.8;
+        -webkit-zoom: 0.8;
+        -moz-transform:  scale(0.8,0.8);
+        -moz-transform-origin: left center;
     }
 }
 
@@ -3459,4 +3612,256 @@ p.score.no-ranking {
 .field-geographic-zone {
     font-weight: bold;
     font-size: 1.3rem;
+}
+
+/**
+ * USER PAGES
+ */
+
+div.panel-panel.panel-col-first {
+    width: 330px !important;
+}
+
+div.panel-2col-stacked .panel-col-last {
+    float: inherit !important;
+    text-align: justify;
+    width: 80% !important;
+}
+
+div.panel-pane.pane-token.pane-user-field-first-name,
+div.panel-pane.pane-token.pane-user-field-user-address > div > div > span.locality {
+    float: left;
+}
+
+div.panel-pane.pane-token.pane-user-field-first-name {
+    padding-right: 0.4rem;
+}
+
+div.panel-pane.pane-token.pane-user-field-user-address > div > div > span.locality {
+    padding-right: 0.25rem;
+}
+
+div.addressfield-container-inline:after {
+    display: initial;
+}
+
+div.pane-user-field-user-bio {
+    padding-top: 1rem;
+}
+
+
+div.pane-user-field-first-name,
+div.pane-user-field-last-name {
+    font-family: 'Mrs Eaves Bold Italic';
+    font-size: 2.4rem;
+    color: $dark_grey;
+}
+
+main.content-user div.view-laliste-listes-view .ds-2col > .group-left {
+    width: 80%;
+}
+
+main.content-user div.view-laliste-listes-view .ds-2col > .group-right {
+    width: 20%;
+}
+
+div.view-laliste-listes-view .ds-2col > .group-left .field-title {
+    height: 2rem;
+}
+
+.add-liste-link,
+.edit-liste-link {
+    font-size: 1.6rem;
+}
+
+.add-liste-link {
+    padding-top: 1rem;
+}
+
+.edit-liste-link {
+    padding-bottom: 1rem;
+}
+
+/*
+** REGISTER
+ */
+#user-register-form > div > h1,
+#user-login > div > h1 {
+    font-family: 'Mrs Eaves Bold Italic';
+    font-size: 2.4rem;
+    color: $dark_grey;
+}
+
+.main-register-form,
+.main-login-form {
+    padding: 2rem;
+}
+
+.main-register-form + #edit-actions,
+.main-login-form + #edit-actions {
+    padding-left: 2rem;
+}
+
+form.user-info-from-cookie input#edit-name {
+    //margin-left: 3.1rem;
+}
+/*
+form.user-info-from-cookie input#edit-field-first-name-und-0-value {
+    margin-left: 2.1rem;
+}
+
+form.user-info-from-cookie input#edit-field-last-name-und-0-value,*/
+form.user-info-from-cookie input#edit-pass-pass1 {
+    //margin-left: 3.5rem;
+}
+
+form.user-info-from-cookie input#edit-mail {
+    //margin-left: 1.25rem;
+}
+
+div.main-login-form > div > div > input#edit-name {
+    //margin-left: 1.85rem;
+}
+
+div.main-login-form > div > div > input#edit-pass {
+    //margin-left : 2.2rem;
+}
+
+form.user-info-from-cookie input#edit-name,
+form.user-info-from-cookie input#edit-mail,
+form.user-info-from-cookie input#edit-field-first-name-und-0-value,
+form.user-info-from-cookie input#edit-field-last-name-und-0-value,
+form.user-info-from-cookie input#edit-pass-pass1,
+form.user-info-from-cookie input#edit-pass-pass2,
+div.main-login-form > div > div > input#edit-name,
+div.main-login-form > div > div > input#edit-pass {
+    width: 16rem;
+}
+
+form.user-info-from-cookie input#edit-submit {
+    width: 17.125rem;
+}
+
+#user-login > div > div#edit-actions > input#edit-submit {
+    width: 10.125rem;
+}
+
+div.password-strength,
+div.password-confirm {
+    display: none;
+}
+
+.form-item, .form-actions {
+    margin-top: initial !important;
+}
+
+/*
+** USER PROFILE EDIT
+ */
+.usereditborder,
+#user-edit-container #edit-actions {
+    //padding-left: 1.5rem;
+}
+
+#user-edit-container #edit-actions input {
+    width: 8rem;
+}
+
+.user-edit-form #edit-picture,
+.user-edit-form #edit-timezone {
+    display: none;
+}
+
+/**
+ * LISTE NODE FORM
+ */
+form.node-liste-form #edit-actions {
+    input {
+        margin-top: 2rem;
+        width: 8rem;
+    }
+}
+
+form.node-liste-form #edit-actions {
+    input#edit-delete,
+    input#edit-cancel {
+        margin-left: 2rem;
+    }
+}
+
+form.node-liste-form div.image-widget-data {
+    input#edit-field-liste-image-und-0-upload {
+        padding-top: 0.2rem;
+    }
+    input#edit-field-liste-image-und-0-upload-button {
+        margin-left: 1rem;
+    }
+}
+
+form#node-delete-confirm #edit-actions {
+    input {
+        width: 8rem;
+        margin-right: 2rem;
+    }
+}
+
+/**
+ * User menu block
+ */
+#block-system-user-menu li+li:before {
+  content: "|";
+  padding: 0 0.5rem;
+  color: #8A804F;
+}
+
+/**
+ * ERROR MSG BANNER
+ */
+
+div.status {
+    background-color: initial;
+}
+
+.error {
+    background: $dark_grey;
+    color: $white;
+}
+
+form .field-multiple-table td.field-multiple-drag {
+    width: initial !important;
+}
+
+ul.menu li {
+    margin: initial !important;
+}
+
+li.leaf {
+    padding: initial !important;
+}
+
+li.useredittab {
+    cursor: pointer;
+}
+
+/**
+ * LISTES
+ */
+div.view-laliste-listes-view {
+    width: 100%;
+}
+
+.form-item.form-type-textfield.form-item-search-api-views-fulltext {
+    margin: 0 !important;
+}
+
+/** HOME FIX */
+header.header-home #block-locale-language {
+    margin-top: -3rem;
+}
+
+/**
+ * Restaurant map height fix
+ */
+*[id^='ip-geoloc-map-of-view-restaurant_map-block-']{
+    height: 100% !important;
 }

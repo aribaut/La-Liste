@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the La Liste Users feature.
+ */
+
+include_once 'laliste_users.features.inc';

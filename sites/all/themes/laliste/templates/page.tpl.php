@@ -71,14 +71,13 @@
  *
  * @ingroup themeable
  */
-//dpm($language)
 ?>
 <header class="header-main header-page">
   <div class="header-branding">
     <a class="logo" href="<?php print url('<front>'); ?>"><img src="<?php print base_path() . path_to_theme() . '/img/logo_bheader.jpg'; ?>" alt="LA LISTE logo branding"><br/><span>OBJECTIVELY DELICIOUS &middot; DELICIOUSLY OBJECTIVE</span></a>
   </div>
   <div class="header-utils">
-    <?php if (user_is_logged_in() && ((isset($node) && $node->type =='restaurant'))): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+    <?php if (user_is_logged_in() && !isset($user->roles[6]) && ((isset($node) && $node->type =='restaurant'))): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
     <?php print render($page['header']); ?>
   </div>
 </header>
@@ -93,7 +92,7 @@
   </div>
 </nav>
 <?php else: ?>
-  <nav class="nav-main">
+<nav class="nav-main">
   <div class="nav-container">
     <a class="nav-link" href="/about"><?php print t('METHOD'); ?></a>
     <a class="nav-link" href="/our-team"><?php print t('TEAM'); ?></a>

@@ -40,13 +40,6 @@ function laliste_liste_ct_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Header: Global: View area */
-  $handler->display->display_options['header']['view']['id'] = 'view';
-  $handler->display->display_options['header']['view']['table'] = 'views';
-  $handler->display->display_options['header']['view']['field'] = 'view';
-  $handler->display->display_options['header']['view']['empty'] = TRUE;
-  $handler->display->display_options['header']['view']['view_to_insert'] = 'la_liste_country_map:block';
-  $handler->display->display_options['header']['view']['inherit_arguments'] = TRUE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['text']['id'] = 'area';
   $handler->display->display_options['empty']['text']['table'] = 'views';
@@ -149,6 +142,14 @@ function laliste_liste_ct_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Address (field_address:language) */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_address';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['relationship'] = 'field_liste_restaurants_target_id';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
   $translatables['laliste_liste_restaurants_view'] = array(
     t('Default'),
     t('See all restaurants in La Liste'),

@@ -25,10 +25,15 @@ function laliste_search_entity_property_info_alter(&$info) {
 function laliste_search_get_localized_country_callback($item) {
   $country_code = laliste_search_get_country_code($item->nid);
   // let's translate the 2 letter ISO code into the full country name
-  //include_once DRUPAL_ROOT . '/includes/locale.inc';
-  $country_localized_list = get_localized_country();
-  $country = $country_localized_list[strtoupper($country_code)];
-  return $country;
+  if (isset($country_code)) {
+    include_once DRUPAL_ROOT . '/includes/locale.inc';
+    $country_localized_list = get_localized_country();
+    $country = $country_localized_list[strtoupper($country_code)];
+    return $country;
+  }
+  else {
+    return null;
+  }
 }
 
 function laliste_search_get_country_code($nid) {

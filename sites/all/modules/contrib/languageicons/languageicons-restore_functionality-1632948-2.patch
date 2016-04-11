@@ -1,0 +1,116 @@
+diff --git a/languageicons.admin.inc b/languageicons.admin.inc
+index f99fc45..0e9fb5b 100644
+--- a/languageicons.admin.inc
++++ b/languageicons.admin.inc
+@@ -24,20 +24,11 @@ function languageicons_admin_settings() {
+     '#type' => 'checkbox',
+     '#title' => t('Node links'),
+     '#default_value' => variable_get('languageicons_show_node', 1),
+-    '#disabled' => TRUE,
+   );
+   $form['show']['languageicons_show_block'] = array(
+     '#type' => 'checkbox',
+     '#title' => t('Language switcher block'),
+     '#default_value' => variable_get('languageicons_show_block', 1),
+-    '#disabled' => TRUE,
+-  );
+-  $form['show']['disabled'] = array(
+-    '#prefix' => '<div class="messages error">',
+-    '#markup' => t('These options are currently disabled due to <a href="!issue_url">a bug</a> that cannot currently be resolved. They may be reintroduced at a later stage.', array(
+-      '!issue_url' => 'http://drupal.org/node/1005144',
+-    )),
+-    '#suffix' => '</div>',
+   );
+   $form['languageicons_placement'] = array(
+     '#type' => 'radios',
+diff --git a/languageicons.module b/languageicons.module
+index 33f7d9d..7aa1984 100644
+--- a/languageicons.module
++++ b/languageicons.module
+@@ -58,35 +58,68 @@ function languageicons_menu() {
+ }
+ 
+ /**
+- * Implements hook_language_switch_links_alter().
+- *
+- * Adds language icons to language switcher block links.
+- *
+- * @todo Figure out a way to either ignore node links or specifically target
+- *   them here. See http://drupal.org/node/1005144 for more info.
++ * Implements hook_node_view_alter().
+  */
+-function languageicons_language_switch_links_alter(array &$links, $type, $path) {
+-  if (variable_get('languageicons_show_block', 1) || variable_get('languageicons_show_node', 1)) {
+-    foreach (array_keys($links) as $langcode) {
+-      if (!isset($links[$langcode]['language'])) {
+-        $lang_obj['language'] = $langcode;
+-        $links[$langcode]['language'] = (object) $lang_obj;
++function languageicons_node_view_alter(&$build) {
++
++  if (!variable_get('languageicons_show_node', 1)) return;
++
++  // do nothing if there are no translations
++  if (!isset($build['links']['translation'])) return;
++  
++  foreach ($build['links']['translation']['#links'] as $key => $link) {
++    // when language detection is session there is no language property
++    // use the language in query property instead
++    // if no language, no query -should never happen- then we can't determine the language
++    $langcode = isset($link['language']->language) ? $link['language']->language : (isset($link['query']['language']) ? $link['query']['language'] : '');
++    languageicons_link_add($build['links']['translation']['#links'][$key], $langcode);
++  }
++
++}
++
++/**
++ * Implements hook_block_view_alter().
++ */
++function languageicons_block_view_alter(&$data, $block) {
++
++  if (!variable_get('languageicons_show_block', 1)) return;
++
++  if ($block->module == 'locale') {
++
++    $type = $block->delta;
++
++    if (drupal_multilingual()) {
++
++      $path = drupal_is_front_page() ? '<front>' : $_GET['q'];
++      $links = language_negotiation_get_switch_links($type, $path);
++
++      if ( !$links ) return;
++
++      foreach (array_keys($links->links) as $langcode) {
++        languageicons_link_add($links->links[$langcode], $langcode);
++      }
++
++      if (isset($links->links)) {
++        $class = "language-switcher-{$links->provider}";
++        $variables = array(
++          'links' => $links->links,
++          'attributes' => array('class' => array($class)),
++        );
++        $data['content'] = theme('links__locale_block', $variables);
+       }
+-      languageicons_link_add($links[$langcode]);
+     }
++
+   }
++
+ }
+ 
+ /**
+  * Add language icon to link.
+- *
+- * The language icon may be a different language as the destination page, can be passed in 'language_icon'.
+  */
+-function languageicons_link_add(&$link, $title = NULL) {
+-  $language = isset($link['language_icon']) ? $link['language_icon'] : $link['language'];
++function languageicons_link_add(&$link, $langcode, $title = NULL) {
+   $title = $title ? $title : $link['title'];
+   $icon = theme('languageicons_icon', array(
+-    'language' => $language,
++    'language' => (object) array('language' => $langcode),
+     'title' => check_plain($title),
+   ));
+   if ($icon) {

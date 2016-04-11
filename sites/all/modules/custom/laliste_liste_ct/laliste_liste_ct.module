@@ -5,3 +5,72 @@
  */
 
 include_once 'laliste_liste_ct.features.inc';
+
+/**
+ * HOOK_form_alter()
+ */
+function laliste_liste_ct_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  global $language_content;
+  // let's tweak the liste node form
+  if($form_id == 'liste_node_form' && $form['type']['#value'] == 'liste' && $user->uid != 1) {
+
+    // set the author to currently logged in user
+    $form['author']['name']['#default_value'] = !empty($user->name) ? $user->name : '';
+    // set the language to current language
+    $form['language']['#value'] = $language_content->language;
+
+    // create cancel button
+    $form['actions']['cancel'] = array(
+      '#type'   => 'submit',
+      '#weight' => 20,
+      '#value'  => t('Cancel'),
+      '#access' => TRUE,
+      '#submit' => array('cancel_button_form_cancel', 'node_form_submit_build_node'),
+      '#limit_validation_errors' => array(),
+    );
+
+    // disable admin fields
+    $form['body']['#after_build'][] = 'laliste_liste_ct_customize_body_node_form';
+    $form['#after_build'][] = 'laliste_liste_ct_customize_node_form';
+    //dpm($form);
+  }
+}
+
+/**
+ * cancel_button callback.
+ */
+function cancel_button_form_cancel($form, &$form_state) {
+    $path = 'user';
+    drupal_goto($path);
+}
+
+/**
+ * Customize the body field
+ */
+function laliste_liste_ct_customize_body_node_form(&$form) {
+  $form[LANGUAGE_NONE][0]['format']['guidelines']['#access'] = FALSE;
+  $form[LANGUAGE_NONE][0]['format']['format']['#access'] = FALSE;
+  $form[LANGUAGE_NONE][0]['format']['help']['#access'] = FALSE;
+  $form[LANGUAGE_NONE][0]['format']['#theme_wrappers'] = NULL;
+  return $form;
+}
+
+/**
+ * Customize other fields
+ */
+function laliste_liste_ct_customize_node_form(&$form) {
+  $form['language']['#access']=FALSE;
+  $form['additional_settings']['#access'] = false;
+  $form['revision_information']['#access'] = FALSE;
+  $form['author']['#access'] = FALSE;
+  $form['options']['#access'] = FALSE;
+  return $form;
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function laliste_liste_ct_js_alter(&$javascript) {
+  //unset($javascript['misc/tabledrag.js']);
+}

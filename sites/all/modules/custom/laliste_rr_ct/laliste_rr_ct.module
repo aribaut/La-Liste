@@ -24,10 +24,12 @@ function laliste_rr_ct_admin_paths() {
       'country/*/admin/*/view' => TRUE, //temp
       'country/*/admin2/*/view' => TRUE, //temp
       'countries' => TRUE,
-      'user' => TRUE,
-      'user/*' => TRUE,
+      'user' => FALSE,
+      'user/*' => FALSE,
       'search' => FALSE,
       'search/*' => FALSE,
+      'node/add/liste' => FALSE,
+      'node/*/edit' => FALSE,
   );
   return $paths;
 }
@@ -79,10 +81,12 @@ function laliste_rr_ct_node_form_after_build($form) {
  * Implements hook_field_widget_WIDGET_TYPE_form_alter().
  *
  */
-
 function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, &$form_state, $context) {
   if(is_object($element['#entity'])) {
-    if ($element['#entity']->type != 'node' && $element['#entity']->type != 'restaurant') return;
+    //dpm($element['#entity']);
+    if (isset($element['#entity']->type)) {
+      if ($element['#entity']->type != 'node' && $element['#entity']->type != 'restaurant') return;
+    }
   }
 }
 

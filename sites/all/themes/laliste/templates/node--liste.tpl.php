@@ -79,14 +79,24 @@
  *
  * @ingroup themeable
  */
+global $user;
 ?>
 <div class="liste-top-section">
   <?php print render($content['field_liste_image']); ?>
 </div>
 <div class="liste-container">
     <div class="liste-title-container">
-      <?php print format_date($node->changed, 'medium'); ?>
-      <?php if ($title): ?><h1 id="liste-title"><?php print $title; ?></h1><?php endif; ?>
+      <?php //print format_date($node->changed, 'medium'); ?>
+      <?php if ($title): ?>
+        <h1 id="liste-title"><?php print $title; ?></h1>
+        <?php
+        //dpm($node);
+        // compare the node author with current logged user
+        if (user_is_logged_in() && $node->uid == $user->uid) {
+          print "<a href='/node/".$node->nid."/edit' class='edit-liste-link'>Edit this Liste</a>";
+        }
+        ?>
+      <?php endif; ?>
       <?php if (isset($liste_author)): ?><h2 id="liste-author"><?php print t('Liste created by') . ' ' . $liste_author; ?></h2><?php endif; ?>
     </div>
     <div class='liste-highlight'>
