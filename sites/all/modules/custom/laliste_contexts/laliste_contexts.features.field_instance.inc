@@ -120,7 +120,7 @@ function laliste_contexts_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 14,
+      'weight' => 12,
     ),
   );
 

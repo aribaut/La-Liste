@@ -26,6 +26,12 @@ function laliste_contexts_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'system-user-menu' => array(
+          'module' => 'system',
+          'delta' => 'user-menu',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
         'locale-language' => array(
           'module' => 'locale',
           'delta' => 'language',
@@ -88,17 +94,23 @@ function laliste_contexts_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'system-user-menu' => array(
+          'module' => 'system',
+          'delta' => 'user-menu',
+          'region' => 'header',
+          'weight' => '-10',
+        ),
         'locale-language' => array(
           'module' => 'locale',
           'delta' => 'language',
           'region' => 'header',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'views-68034fa5b32e0ac3ea4ae93d4e474819' => array(
           'module' => 'views',
           'delta' => '68034fa5b32e0ac3ea4ae93d4e474819',
           'region' => 'header',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
       ),
     ),

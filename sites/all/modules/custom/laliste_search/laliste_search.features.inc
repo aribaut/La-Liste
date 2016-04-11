@@ -33,6 +33,7 @@ function laliste_search_default_search_api_index() {
       "cron_limit" : "200",
       "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
+        "country_localized" : { "type" : "text", "boost" : "3.0" },
         "field_address:country" : { "type" : "text", "boost" : "3.0" },
         "field_address:locality" : { "type" : "text", "boost" : "2.0" },
         "field_address:postal_code" : { "type" : "text", "boost" : "0.5" },

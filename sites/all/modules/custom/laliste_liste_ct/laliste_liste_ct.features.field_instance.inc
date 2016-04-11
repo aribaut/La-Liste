@@ -22,7 +22,7 @@ function laliste_liste_ct_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -47,7 +47,7 @@ function laliste_liste_ct_field_default_field_instances() {
     'label' => 'Description',
     'required' => 1,
     'settings' => array(
-      'display_summary' => 1,
+      'display_summary' => 0,
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
@@ -67,19 +67,19 @@ function laliste_liste_ct_field_default_field_instances() {
   // Exported field_instance: 'node-liste-field_liste_image'
   $field_instances['node-liste-field_liste_image'] = array(
     'bundle' => 'liste',
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'flexslider_fields',
+        'module' => 'image',
         'settings' => array(
-          'caption' => '',
-          'image_style' => 'flexslider_full',
-          'optionset' => 'default',
+          'image_link' => '',
+          'image_style' => 'large',
         ),
-        'type' => 'flexslider',
-        'weight' => 3,
+        'type' => 'image',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -122,10 +122,11 @@ function laliste_liste_ct_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'image',
       'settings' => array(
         'allowed_schemes' => array(
           'public' => 'public',
+          'youtube' => 0,
         ),
         'allowed_types' => array(
           'audio' => 0,
@@ -135,12 +136,15 @@ function laliste_liste_ct_field_default_field_instances() {
         ),
         'browser_plugins' => array(
           'media_default--media_browser_1' => 0,
-          'media_default--media_browser_my_files' => 0,
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 0,
           'upload' => 0,
         ),
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
-      'weight' => 4,
+      'type' => 'image_image',
+      'weight' => 2,
     ),
   );
 
@@ -149,7 +153,7 @@ function laliste_liste_ct_field_default_field_instances() {
     'bundle' => 'liste',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Select restaurants to be part of this Liste.',
+    'description' => 'To add a restaurant, start to type its name. To delete one, simply select and delete its name.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -158,7 +162,7 @@ function laliste_liste_ct_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 4,
+        'weight' => 2,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -209,7 +213,7 @@ function laliste_liste_ct_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 3,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -243,7 +247,7 @@ function laliste_liste_ct_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -253,8 +257,8 @@ function laliste_liste_ct_field_default_field_instances() {
   t('Image');
   t('Provides a list description to our users.');
   t('Restaurants');
-  t('Select restaurants to be part of this Liste.');
   t('Title');
+  t('To add a restaurant, start to type its name. To delete one, simply select and delete its name.');
 
   return $field_instances;
 }

@@ -18,7 +18,6 @@ dependencies[] = link
 dependencies[] = list
 dependencies[] = locale
 dependencies[] = media
-dependencies[] = node
 dependencies[] = number
 dependencies[] = options
 dependencies[] = taxonomy
