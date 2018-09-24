@@ -1,0 +1,19 @@
+Improving the plateform
+
+0 - SECURITY RISK : Change admin Drupal password. Update to latest Drupal version.
+1 - Instead of matching the taxonomy term string, find another mean to identify guides so as to not be prone to name change issue!
+2 - OO API instead of structured code for algorithm : check D8 guidelines
+3 - Make Guides' taxonomy terms linking to actual corresponding guide's list
+4 - Ask Jorg about White Guide ranking! => http://la-liste.sites.dev/restaurants/White-Guide/view
+    Any differences between countries? Should they be separate guides?
+5 - Remove "View/Edit rankings" from node.tpl. Alter the node form instead.
+
+Study delivery of theme in stages : 1st is the HTML5 CSS then is the custom markup for extended devices.
+
+Need to get the theme in 2 weeks. aka by end of october. Need a full month for tight integration of front-end + two weeks testing (last week of Novemeber and first week of December) Launch 2nd week of December.
+
+Load testing need to start 1st week of December. By end of first week, make decisions if need to bump up hardware or infrastructure or implement alternative caching strategy.
+
+Lookup app development requirements -> Android store & Apple store. Ask Radka.
+
+Find an SEO specialist => JLB

@@ -1,0 +1,285 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Restaurant Ranking Content Types feature.
+ */
+
+include_once 'laliste_rr_ct.features.inc';
+
+/**
+ * Implements hook_views_api().
+ */
+function laliste_rr_ct_views_api() {
+  return array(
+      'api' => 3,
+      'path' => drupal_get_path('module', 'laliste_rr_ct') . '/views',
+  );
+}
+
+function laliste_rr_ct_admin_paths() {
+  $paths = array(
+      'restaurants/*/view' => TRUE,
+      'restaurant/*/view' => TRUE,
+      'country/*/view' => FALSE,
+      'country/*/admin/*/view' => TRUE, //temp
+      'country/*/admin2/*/view' => TRUE, //temp
+      'countries' => TRUE,
+      'user' => FALSE,
+      'user/*' => FALSE,
+      'search' => FALSE,
+      'search/*' => FALSE,
+      'node/add/liste' => FALSE,
+      'node/*/edit' => FALSE,
+  );
+  return $paths;
+}
+
+/**
+ * Implements hook_form_alter().
+ * For Restaurant node.
+ */
+function laliste_rr_ct_form_alter(&$form, $form_state, $form_id) {
+  if ( $form_id == 'restaurant_node_form') {
+    drupal_add_css(drupal_get_path('module', 'laliste_rr_ct') . '/css/ .css', array('group' => CSS_DEFAULT, 'type' => 'file'));
+
+    // We force set the form variable (address_field bug?)
+    // address 1
+    if(isset($form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['thoroughfare'])) {
+      $form['field_address'][LANGUAGE_NONE][0]['#address']['thoroughfare'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['thoroughfare'];
+    }
+    // address 2
+    if(isset($form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['premise'])) {
+      $form['field_address'][LANGUAGE_NONE][0]['#address']['premise'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['premise'];
+    }
+    // postal code
+    if(isset($form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['postal_code'])) {
+      $form['field_address'][LANGUAGE_NONE][0]['#address']['postal_code'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['postal_code'];
+    }
+    // city
+    if(isset($form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['locality'])) {
+      $form['field_address'][LANGUAGE_NONE][0]['#address']['locality'] = $form_state['build_info']['args'][0]->field_address[LANGUAGE_NONE][0]['locality'];
+    }
+
+    //$form['additional_settings']['#access'] = false;
+    $form['#after_build'][] = 'laliste_rr_ct_node_form_after_build';
+
+    $form['actions']['submit']['#submit'][] = 'laliste_rr_ct_form_submit_callback';
+  }
+  return $form;
+}
+
+/**
+ * Implements a afterbuild form function to remove the body text format helper text
+ */
+function laliste_rr_ct_node_form_after_build($form) {
+  $form['body'][LANGUAGE_NONE]['0']['format']['#access'] = FALSE;
+  $form['field_phone'][LANGUAGE_NONE]['0']['format']['#access'] = FALSE;
+  return $form;
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ *
+ */
+function laliste_rr_ct_field_widget_addressfield_standard_form_alter(&$element, &$form_state, $context) {
+  if(is_object($element['#entity'])) {
+    //dpm($element['#entity']);
+    if (isset($element['#entity']->type)) {
+      if ($element['#entity']->type != 'node' && $element['#entity']->type != 'restaurant') return;
+    }
+  }
+}
+
+/**
+ * Submit handler : redirect to the proper list view (guide)
+ * @param $form
+ * @param $form_state
+ */
+function laliste_rr_ct_form_submit_callback($form, &$form_state) {
+  // Get last IDs
+  $nid = $form_state['nid'];
+  $last_id = db_query('SELECT MAX(ranking_id) FROM {ranking}')->fetchField();
+
+  $guides_values = $form_state['values']['field_restaurant_guides'][LANGUAGE_NONE];
+  // Get the guide name(s) from taxonomy
+  if(isset($guides_values)) {
+    foreach ($guides_values as $id => $gid) {
+      if(is_numeric($id) && is_numeric($gid['tid'])) {
+        // extract guide term name
+        $term = taxonomy_term_load($gid['tid']);
+        $guide = $term->name;
+
+        // Does the guide already linked to this restaurant? If so, skip it
+        $result = db_query("
+          SELECT * FROM restaurantguideranking
+          WHERE restaurant_id = ".$nid."
+          AND guide_id = ".$gid['tid']
+        );
+
+        if ($result->rowCount() == 0) {
+
+          // we insert entry into the DB
+          db_insert('ranking')
+              ->fields(array(
+                  'ranking_id' => ++$last_id,
+                  'created' => time(),
+                  'updated' => time(),
+              ))
+              ->execute();
+
+          // Save guide into the lookup table
+          db_insert('restaurantguideranking')
+              ->fields(array(
+                  'restaurant_id' => $nid,
+                  'guide_id' => $gid['tid'],
+                  'ranking_id' => $last_id,
+                  'created' => time(),
+                  'updated' => time(),
+              ))
+              ->execute();
+
+          }
+
+          //Find guide(s) that have been removed from this restaurant entry when editing the form
+          //We identify the orphan entry from the restaurantguideranking table
+          $ranking_id = db_query("
+            SELECT ranking_id FROM restaurantguideranking WHERE CONCAT(restaurant_id,guide_id) NOT IN (SELECT CONCAT(entity_id,field_restaurant_guides_tid) FROM field_data_field_restaurant_guides) AND restaurant_id = ".$nid)->fetchField();
+
+          if(!empty($ranking_id)) {
+
+            //We delete the orphan entry from the ranking table
+            $result = db_query("
+              DELETE FROM ranking
+              WHERE ranking_id = ".$ranking_id);
+
+            // We delete all entries for that restaurant not matched in the corresponding field table
+            $ranking_id = db_query("
+              DELETE FROM restaurantguideranking WHERE CONCAT(restaurant_id,guide_id) NOT IN (SELECT CONCAT(entity_id,field_restaurant_guides_tid) FROM field_data_field_restaurant_guides) AND restaurant_id = ".$nid);
+          }
+      }
+    }
+  }
+}
+
+function laliste_rr_ct_node_view($node, $view_mode, $langcode) {
+  // removing display for this field
+  $node->content['field_restaurant_disabled']['#access'] = FALSE;
+}
+
+function laliste_rr_ct_node_delete($node) {
+
+  if(isset($node->nid)) {
+    // let's find the ranking record
+    $result = db_query("
+      SELECT ranking_id FROM {restaurantguideranking}
+      WHERE restaurant_id = ".$node->nid);
+    // we delete the existing restaurant record in the stats table
+    db_delete("restaurant_stats")
+      ->condition('restaurant_id', $node->nid)
+      ->execute();
+    // now on to deleting the ranking itself
+    if(isset($result)) {
+      foreach($result as $row) {
+        db_delete("ranking")
+          ->condition('ranking_id', $row->ranking_id)
+          ->execute();
+      }
+    }
+    // now we delete the lookup table entry
+    db_delete("restaurantguideranking")
+      ->condition('restaurant_id', $node->nid)
+      ->execute();
+  }
+}
+
+function laliste_rr_ct_entity_info_alter(&$entity_info) {
+    $entity_info['taxonomy_term']['uri callback'] = 'laliste_rr_ct_taxonomy_term_uri';
+}
+
+function laliste_rr_ct_taxonomy_term_uri($term) {
+  $guide = taxonomy_term_load($term->tid);
+  $clean_name = preg_replace('#[ -]+#', '-', $guide->name);
+    // change the path...
+    return array(
+        'path' => 'restaurants/'. $clean_name .'/view',
+    );
+}
+
+/**
+ * helper function to get taxonomy term options for select widget
+ * @arguments string $machine_name: taxonomy machine name
+ * @return array of select options for form
+ */
+function laliste_rr_ct_get_tax_term_options($machine_name){
+  $options = array( '0' => 'Select One');
+
+  $vid = taxonomy_vocabulary_machine_name_load($machine_name)->vid;
+
+  $options_source = taxonomy_get_tree($vid);
+
+  foreach($options_source as $item ) {
+    $key = $item->tid;
+    $value = $item->name;
+    $options[$key] = $value;
+  }
+
+  return $options;
+}
+
+/**
+ * Modify the node editing administrative tabs
+ * Adds rankings link to access a restaurant scores
+ */
+function laliste_rr_ct_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  $node = menu_get_object();
+  if (isset($node) && ($node->type == 'restaurant') && isset($data['tabs'][0]['count'])) {
+    $count = $data['tabs'][0]['count'];
+    $data['tabs'][0]['output'][$count]['#theme'] = 'menu_local_task';
+    $data['tabs'][0]['output'][$count]['#link'] = array(
+      'title' => 'Rankings',
+      'href' => 'restaurant/' . arg(1) . '/view',
+      'path' => 'restaurant/' . arg(1) . '/view',
+      'localized_options' => array(
+        'html' => TRUE
+      )
+    );
+    $data['tabs'][0]['output'][$count]['#active'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_apachesolr_index_document_build_ENTITY_TYPE().
+ */
+function laliste_rr_ct_apachesolr_index_document_build_node(ApacheSolrDocument $document, $entity, $env_id) {
+  // while indexing restaurant node content
+  if ($entity->type == 'restaurant') {
+    //var_dump($entity);
+    if (isset($entity->field_restaurant_score[LANGUAGE_NONE][0]['value'])) {
+      $value = $entity->field_restaurant_score[LANGUAGE_NONE][0]['value'];
+       $document->setField('fts_field_restaurant_score', $value);
+       $document->setField('ftm_field_restaurant_score', $value);
+    }
+  }
+}
+
+/**
+ * Implements hook_apachesolr_query_prepare().
+ */
+function laliste_rr_ct_apachesolr_query_prepare(DrupalSolrQueryInterface $query) {
+  $query->addParam('fl', 'fts_field_restaurant_score');
+  $query->addParam('fl', 'ftm_field_restaurant_score');
+  // If no manual sort set in querystring, set default sort to created desc
+  if (!isset($_GET['solrsort'])) {
+    $query->setSolrSort('fts_field_restaurant_score', 'desc');
+  }
+}
+
+/**
+ * Implements hook_apachesolr_query_alter().
+ */
+/*
+function laliste_rr_ct_apachesolr_query_alter(&$query) {
+  //Set the sort default options.
+  $query->setSolrsort('ftm_field_restaurant_score', 'desc');     // by best score
+}
+*/

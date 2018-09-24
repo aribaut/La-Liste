@@ -1,0 +1,22 @@
+diff --git a/modules/ds_search/ds_search.module b/modules/ds_search/ds_search.module
+index 7367743..9860ec3 100644
+--- a/modules/ds_search/ds_search.module
++++ b/modules/ds_search/ds_search.module
+@@ -108,6 +108,17 @@ function ds_search_snippet($field) {
+   if (isset($field['entity']->search_snippet)) {
+     return $field['entity']->search_snippet;
+   }
++  // Search API Solr
++  elseif (module_exists('search_api_solr') && $current_searches = search_api_current_search()) {
++    // Let's assume for now that there is only one current search at any given time.
++    // @TODO: Figure out when this assumption will get us into trouble.
++    $current_search = reset($current_searches);
++    $entity_ids = entity_extract_ids($field['entity_type'], $field['entity']);
++    // Intimate knowledge: $current_search[1] contains the results.
++    if (($item = $current_search[1]['results'][$entity_ids[0]]) && (!empty($item['excerpt']))) {
++      return $item['excerpt'];
++    }
++  }
+   // Original node snippet
+   elseif (isset($field['entity']->snippet)) {
+     return $field['entity']->snippet;

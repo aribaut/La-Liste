@@ -5,5 +5,13 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
+# Ignore SASS generated content
+sites/all/themes/laliste/.sass-cache
+sites/all/themes/laliste/css/*
+
+# MacOS
 .DS_Store*
 *.swp
+
+# phpStorm
+.idea*

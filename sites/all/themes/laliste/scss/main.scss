@@ -1,0 +1,3873 @@
+
+@import "compass/reset";
+@import "_variables";
+@import "header";
+@import "footer";
+@import "_sprites";
+
+// colors
+$light_grey: #f0f0f0;
+$dark_grey : #5d5d5d;
+$gold : #8A804F;
+$gold_darker1: #7a7043;
+$gold_darker2: #615935;
+$gold_darker3: #474227;
+$gold_darker4: #2e2b19;
+$gray: #808080;
+$color_cape_cod_approx: #404040;
+$black: #110b09;
+$color_ocean_green_50_approx: rgba(70, 185, 128, .5);
+$color_ocean_green_approx: #46b980;
+$color_almond_frost_15_approx: rgba(146, 128, 108, .15);
+$color_storm_dust_approx: #666;
+$color_almond_frost_25_approx: rgba(146, 128, 108, .25);
+$white: #fff;
+$color_sea_green_approx: #389466;
+$color_almond_frost_10_approx: rgba(146, 128, 108, .1);
+$color_guardsman_red_approx: #c00;
+$color_alto_approx: #d9d9d9;
+$color_mountain_mist_approx: #999;
+$mercury: #e5e5e5;
+$color_almond_frost_approx: #93806c;
+$color_carla_approx: #edffdb;
+$black_60: rgba(0, 0, 0, .6);
+$color_cerulean_approx: #00aced;
+
+@font-face {
+  font-family: 'Mrs Eaves Roman';
+  src: url('../fonts/mrs-eaves-roman.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-roman.woff') format('woff'),
+       url('../fonts/mrs-eaves-roman.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mrs Eaves Bold';
+  src: url('../fonts/mrs-eaves-bold.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-bold.woff') format('woff'),
+       url('../fonts/mrs-eaves-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mrs Eaves Italic';
+  src: url('../fonts/mrs-eaves-italic.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-italic.woff') format('woff'),
+       url('../fonts/mrs-eaves-italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mrs Eaves Bold Italic';
+  src: url('../fonts/mrs-eaves-bold-italic.woff2') format('woff2'),
+       url('../fonts/mrs-eaves-bold-italic.woff') format('woff'),
+       url('../fonts/mrs-eaves-bold-italic.ttf') format('truetype');
+}
+
+/*
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.woff2') format('woff2'),
+       url('../fonts/fontawesome-webfont.woff') format('woff'),
+       url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+       url('../fonts/fontawesome-webfont.svg') format('svg');
+}
+*/
+.u-block {
+    display: block !important
+}
+
+.u-hidden {
+    display: none !important
+}
+
+.u-hiddenVisually {
+    position: absolute !important;
+    overflow: hidden !important;
+    width: 0.0625rem !important;
+    height: 0.0625rem !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem) !important
+}
+
+.u-inline {
+    display: inline !important
+}
+
+.u-inlineBlock {
+    display: inline-block !important;
+    max-width: 100%
+}
+
+.u-table {
+    display: table !important
+}
+
+.u-tableCell {
+    display: table-cell !important
+}
+
+.u-tableRow {
+    display: table-row !important
+}
+
+.u-textBreak {
+    word-wrap: break-word !important
+}
+
+.u-textCenter {
+    text-align: center !important
+}
+
+.u-textLeft {
+    text-align: left !important
+}
+
+.u-textRight {
+    text-align: right !important
+}
+
+.u-textInheritColor {
+    color: inherit !important
+}
+
+.u-textKern {
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern" 1, "kern";
+    -moz-font-feature-settings: "kern" 1, "kern";
+    font-feature-settings: kern\ 1, kern;
+    -webkit-font-kerning: normal;
+    -moz-font-kerning: normal;
+    font-kerning: normal
+}
+
+.u-textNoWrap, .u-textTruncate {
+    white-space: nowrap !important
+}
+
+.u-textTruncate {
+    max-width: 100%;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    word-wrap: normal !important
+}
+
+*, :after, :before {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+    color: $black;
+    font: 400 1em/1.4 'Josefin Sans', sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-size: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio:1.5), (min-resolution:1.5dppx), (min-resolution:144dpi) {
+    html {
+        font-weight: 300
+    }
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 3rem;
+    -webkit-font-kerning: normal;
+    letter-spacing: -.015rem;
+    line-height: 1;
+    //margin: .25rem 0 .75rem
+}
+
+// 768px :)
+@media (min-width:48rem) {
+    h1 {
+        font-size: 2.5rem;
+        //margin: .5rem 0 1rem
+    }
+}
+
+h2 {
+    font-size: 1.333rem;
+    margin: 0 0 1.12528rem
+}
+
+h2, h3 {
+    font-weight: 600
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 0 0 1.5rem
+}
+
+a {
+    color: $gold;
+    text-decoration: none
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    text-decoration: underline;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    //padding: 0 0 0 1.5rem;
+}
+
+li {
+    margin-bottom: .333rem
+}
+
+figure {
+    margin: 0
+}
+
+strong {
+    font-weight: 600
+}
+
+/*
+ * Flexbox grid structure
+ **/
+
+.Grid {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.Grid-cell {
+    @include flex(1);
+}
+
+.Grid--top {
+    @include align-items(flex-start);
+}
+
+.Grid--bottom {
+    @include align-items(flex-end);
+}
+
+.Grid--center {
+    @include align-items(center);
+}
+
+.Grid--justifyCenter {
+    @include justify-content(center);
+}
+
+.Grid-cell--top {
+    @include align-self(flex-start);
+}
+
+.Grid-cell--bottom {
+    @include align-self(flex-end);
+}
+
+.Grid-cell--center {
+    @include align-self(center);
+}
+
+.Grid-cell--autoSize {
+    @include flex(0);
+}
+
+.Grid--fit>.Grid-cell {
+    @include flex(1);
+}
+
+.Grid--full>.Grid-cell {
+    @include flex(0,0,100%);
+}
+
+.Grid--1of2>.Grid-cell {
+    @include flex(0,0,50%);
+}
+
+.Grid--1of3>.Grid-cell {
+    @include flex(0,0,33.3333%);
+}
+
+.Grid--1of4>.Grid-cell {
+    @include flex(0,0,25%);
+}
+
+.Grid--1of5>.Grid-cell
+ {
+    @include flex(0,0,10.5625rem); // guide-box
+}
+
+// 320px :)
+@media (min-width:20rem) {//23.4375rem
+    .small-Grid--fit>.Grid-cell {
+        @include flex(1);
+    }
+
+    .small-Grid--full>.Grid-cell {
+        @include flex(0,0,100%);
+    }
+
+    .small-Grid--1of2>.Grid-cell {
+        @include flex(0,0,50%);
+    }
+
+    .small-Grid--1of3>.Grid-cell {
+        @include flex(0,0,33.3333%);
+    }
+
+    .small-Grid--1of4>.Grid-cell {
+        @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,6.85rem); // guide-box
+    }
+}
+
+// 576px
+@media (min-width:36rem) {
+    .med-Grid--fit>.Grid-cell {
+        @include flex(1);
+    }
+
+    .med-Grid--full>.Grid-cell {
+        @include flex(0,0,100%);
+    }
+
+    .med-Grid--1of2>.Grid-cell {
+        @include flex(0,0,50%);
+    }
+
+    .med-Grid--1of3>.Grid-cell {
+        @include flex(0,0,33.3333%);
+    }
+
+    .med-Grid--1of4>.Grid-cell {
+        @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,7.5rem); // guide-box
+    }
+}
+
+// 768px :)
+@media (min-width:48rem) {
+    .large-Grid--fit>.Grid-cell {
+        @include flex(1);
+    }
+
+    .large-Grid--full>.Grid-cell {
+        @include flex(0,0,100%);
+    }
+
+    .large-Grid--1of2>.Grid-cell {
+        @include flex(0,0,50%);
+    }
+
+    .large-Grid--1of3>.Grid-cell {
+        @include flex(0,0,33.3333%);
+    }
+
+    .large-Grid--1of4>.Grid-cell {
+        @include flex(0,0,25%);
+    }
+
+    .Grid--1of5>.Grid-cell
+    {
+        @include flex(0,0,9.375rem); // guide-box
+    }
+}
+
+/*
+ * Site Specific
+ **/
+
+.laliste {
+    height: 100%;
+    @include flex-direction(column);
+}
+
+.footer-main, .header-main, .nav-main {
+    @include flexbox;
+    @include flex(0);
+}
+
+.nav-main {
+    margin: 1rem 0;
+}
+
+.header-main {
+    @extend .Grid;
+}
+
+.header-branding {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-2of3;
+    @extend .logo;
+}
+
+.header-utils {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @extend .u-small-full;
+    @extend .u-med-1of2;
+    @extend .u-large-1of3;
+    @include justify-content(flex-end);
+    @include flex-wrap(nowrap);
+    padding-right: 0.5rem;
+    padding-left: 2rem;
+}
+
+div.region-header {
+    margin: initial;
+    width: 72%;
+}
+
+.footer-main,
+.nav-main {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+}
+
+.footer-container,
+.nav-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    @include justify-content(space-around);
+}
+
+.sub-footer {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    @include justify-content(center);
+}
+
+.content-body,
+.content-body-home {
+    @include flex(1);
+    @include flex-direction(column);
+    min-height: 100vh;
+    padding: 1.5rem;
+    padding-top: 0;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.content {
+    @include flex(1);
+    margin-top: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.laliste-nav {
+    @include order(-1);
+}
+
+.laliste-ads, .laliste-nav {
+    padding: 1rem;
+    border-radius: 0.375rem;
+    background: #93806c;
+    background: hsla(31, 15%, 50%, .1)
+}
+
+.laliste-box {
+    margin: 0.5rem 0;
+    width: 100%;
+    font-weight: bold;
+}
+
+.laliste-box-bg {
+    background-color: $light_grey;
+}
+
+header.header-main {
+    width: 100%;
+    max-width: 88rem;
+    margin: 0 auto;
+}
+
+.logo {
+  margin-top: 0.5rem;
+  z-index: 80;
+}
+
+body > header > div.header-utils,
+body > header > div.header-utils > div.region.region-header {
+    @extend .Grid;
+    @extend .Grid--full;
+    @include flex-wrap(wrap);
+    @include justify-content(flex-end);
+    margin-right: 0;
+}
+/*
+.header-utils .region-header {
+    position: absolute;
+    top:0;
+    right:0;
+}
+*/
+#block-search-form,
+#block-locale-language,
+#block-system-user-menu,
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+    @extend .Grid;
+    @extend .Grid-cell;
+}
+
+.region-header {
+    //position: relative; //added today
+}
+
+#block-locale-language { // added today
+    height: 2rem;
+}
+
+.language-switcher-locale-url {
+    width: 3rem !important;
+}
+
+#block-system-user-menu {
+    height: 1.5rem !important;
+}
+
+ul.menu {
+    list-style-type: none;
+    li {
+        display: inline;
+    }
+}
+
+
+.language-switcher-locale-url {
+    @extend .Grid;
+    width: 65%;
+    li {
+       @extend .Grid;
+       @extend .Grid-cell;
+    }
+}
+
+.header-home .language-switcher-locale-url {
+    width: 90%;
+}
+
+#block-search-form,
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+    @include align-items(flex-end);
+    padding-bottom: 0.5rem;
+    padding-right: 2rem;
+}
+
+.content-container {
+    max-width: 88rem;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.node-page > div > div > p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.node-page > div > div > ul {
+    font-size: 1.2rem;
+    list-style: square outside none;
+}
+
+.restaurant-top-section,
+.liste-top-section {
+    @extend .Grid;
+    @extend .Grid--full;
+    @extend .large-Grid--fit;
+    position: relative;
+}
+
+.restaurant-media {
+    width: 100%;
+    height: 100%;
+    margin: 0.5rem 0;
+}
+
+.restaurant-info-container,
+.liste-container {
+    @extend .Grid;
+}
+
+.liste-container {
+    @include flex-direction(column);
+}
+
+.restaurant-info-map {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of3;
+    @include justify-content(flex-start);
+}
+
+.restaurant-info-right-pane {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include flex-direction(columns);
+}
+
+.restaurant-user-actions-container {
+    @extend .Grid;
+}
+
+.restaurant-user-action-share,
+.restaurant-user-action-add-list {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .laliste-box;
+    @extend .laliste-box-bg;
+    @extend .row-height-tall;
+}
+
+.restaurant-user-action-share {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of3;
+    @include flex-direction(column);
+}
+
+.restaurant-user-action-row1,
+.restaurant-user-action-row2 {
+    @extend .Grid;
+    @extend .Grid-cell;
+}
+.restaurant-user-action-row1 {
+    @include align-items(flex-end);
+}
+.restaurant-user-action-row2{
+    @include align-items(flex-start);
+}
+
+.liste-info-container {
+    @extend .Grid;
+}
+
+.liste-info {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    @include justify-content(center);
+    width: 100%;
+}
+
+.view-laliste-liste-restaurants-view {
+    margin-top: 1rem;
+    margin-bottom : 0.5rem;
+    width: 68.5%;
+}
+
+.guides-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of5;
+    height: 100%;
+    @include justify-content(flex-start);
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.listes-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--full;
+    height: 100%;
+    width: 100%;
+    @include justify-content(flex-start);
+    margin: 0.5rem 0;
+    text-align: center;
+    @include flex-direction(column);
+}
+
+.group-left .field-body p {
+    text-align: left;
+}
+
+.guide-box {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--1of5;
+}
+
+.guides-container > :first-child {
+    margin-left: 0;
+}
+
+.insider-footer {
+    @include justify-content(space-around);
+}
+
+.liste-title-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid-cell--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full ;
+    @extend .row-height-med;
+    @extend .laliste-box;
+    background-color: $light_grey;
+    @include justify-content(center);
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+}
+
+.liste-title-container h2 {
+    font-family: "Mrs Eaves Italic",Serif;
+    font-size: 2rem;
+    color: #5d5d5d;
+}
+
+body > main.content-user > div > article > div:nth-child(2) > div.liste-title-container {
+    height: 4rem !important;
+    padding-top: 1rem;
+    margin-bottom: 0;
+}
+
+.view-laliste-liste-restaurants-view {
+    width: 100%;
+}
+
+.liste-user-action-share {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    @extend .row-height-short;
+    @extend .laliste-box;
+    @extend .laliste-box-bg;
+    padding-bottom: 1rem;
+}
+
+.restaurant-country {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid-cell--center;
+    @include justify-content(center);
+    @include flex-direction(rows);
+    @include flex-wrap(nowrap);
+    min-width: 0; // FF bug fix
+    min-height: 0; // FF bug fix
+}
+
+.simple {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include align-items(baseline);
+}
+
+.restaurant-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include align-items(baseline);
+    @include justify-content(center);
+    @include flex-wrap(wrap);
+}
+
+.restaurant-rank-big {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full ;
+    @extend .row-height-med;
+    @extend .laliste-box;
+    background-color: $light_grey;
+    @include justify-content(center);
+    @include flex-direction(column);
+}
+
+.restaurant-details-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .laliste-box;
+    @extend .no-hcenter;
+    @extend .laliste-box-bg;
+    @extend .row-height-med;
+    @extend .u-textLeft;
+    @extend .u-small-full;
+}
+
+.restaurant-details ul li {
+     line-height: 1.9rem;
+     height: auto;
+     position: relative;
+}
+
+.restaurant-details ul li .info-title{
+    font-weight: 400;
+}
+
+span.info-title,
+.restaurant-details ul li .info-content {
+    font-size: 1.1rem;
+}
+
+.restaurant-details ul li .info-content,
+span.info-content > a {
+   color: $gold;
+}
+
+span.info-title {
+    position: absolute;
+}
+
+p.info-content {
+    padding-left: 8.75rem;
+}
+
+.guide-box {
+    color: $light_grey;
+    background: $gold;
+    height: 10.5625rem;
+    width: auto;
+    padding: 0.625rem;
+}
+
+.guide-box {
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    font-weight: normal;
+}
+
+.guide-box.first{
+    margin-left: 0;
+}
+
+.guide-box.last{
+    margin-right: 0;
+}
+
+// restaurant map view
+.view-restaurant-map {
+    width: 100%;
+    border: 2px solid $black;
+}
+
+// homepage world view
+div.view-header > div.view-la-liste-country-map {
+    height: 100% !important;
+    border: 2px solid $black;
+}
+
+/*
+ * Site specific Media Queries
+ **/
+
+// 320px :)
+@media screen and (min-width: 20rem) {
+
+    div.region-header {
+        margin: 0 auto !important;
+        width: 60%;
+    }
+
+    .content-body,
+    .content-body-home {
+        padding-left: 2% !important;
+        padding-right: 2% !important;
+    }
+
+    a.logo {
+        span {
+            font-size: 0.5rem !important;
+            padding-left: 0.4rem !important;
+        }
+    }
+
+    .header-main {
+        margin-bottom: 0;
+    }
+
+    body > header.header-page > div.header-utils,
+    body > header.header-page > div.header-utils > div.region.region-header {
+        @include justify-content(center);
+        //margin-right: 0;
+    }
+
+    .header-branding {
+        padding-left: 0 !important;
+        @include justify-content(center);
+        img {
+            width: 15rem;
+        }
+    }
+
+    .language-switcher-locale-url {
+        font-size: 0.8rem;
+    }
+
+    header.header-home #block-locale-language {
+        margin-top: 0rem !important;
+    }
+
+    .row-height-med {
+        height: 8rem;
+    }
+
+    .row-height-tall {
+        height: 5.625rem;
+    }
+
+    .restaurant-details {
+        font-size: 0.8rem;
+        ul {
+            margin: 0 0 -0.5rem !important;
+            li {
+                line-height: 0.95rem;
+            }
+        }
+    }
+
+    .restaurant-details-container {
+        font-size: 1.2rem;
+    }
+
+    .restaurant-user-actions-container p,
+    .liste-user-action-share p {
+        font-size: 1.5rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .restaurant-overlay {
+       display: none;
+    }
+
+    div.restaurant-rank-big {
+        position: relative;
+        @include justify-content(center);
+         padding: 0 2rem;
+    }
+
+    div.restaurant-rank-big > div > div > img {
+        max-width: 60% !important;
+    }
+
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 3rem;
+    }
+    .fa-angle-left {
+        top: 2.5rem;
+        left: 0.4rem;
+    }
+    .fa-angle-right {
+        bottom: 2.5rem;
+        right: 0.4rem;
+    }
+
+    span.tiny-rank {
+        font-size: 0.5rem !important;
+    }
+
+    .simple {
+        padding: 0 1rem;
+    }
+
+    p.rank {
+        font-size: 2.4rem !important;
+        position: relative;
+        margin-top: 0.5rem;
+        sup {
+            position: absolute;
+            font-size: 1rem;
+            top: 0.2rem;
+        }
+    }
+
+    p.score {
+        font-size: 1.6rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+        position: relative;
+            sup {
+                position: absolute;
+                font-size: 0.1rem;
+                top: -0.35rem;
+                left: 0;
+                letter-spacing: 0.1rem;
+            }
+    }
+
+    .restaurant-address span {
+        font-size: 0.6rem !important;
+    }
+
+    h1#node-title,
+    h1#liste-title,
+    h1#page-title {
+        font-size: 2rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    h1#node-title {
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    .guide-box {
+        font-size: 1rem;
+        height: 6.85rem !important;
+    }
+
+    a.guide-box {
+        font-weight: bold;
+    }
+
+    .footer-main {
+        height: 8.75rem;
+    }
+
+    a.footer-link,
+    a.nav-link {
+        font-size: 0.7rem;
+    }
+
+    a.sub-footer-link {
+        font-size: 0.6rem;
+    }
+
+    span.info-title,
+    .restaurant-details ul li .info-content {
+        font-size: 1.2rem !important;
+    }
+
+    p.info-content {
+        padding-left: 4.5rem !important;
+    }
+
+    .content {
+        margin-top: 0.5rem !important;
+    }
+
+    //homepage search box
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        margin: 0 auto !important;
+        width: 24rem !important;
+        //padding-left: 1rem;
+    }
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        position: inherit !important;
+    }
+    input.fpage-search-box {
+        height: 3.375rem !important;
+        width: 19.3rem !important;
+        padding-left: 0.5rem !important;
+    }
+    input.fpage-search-icon {
+        width: 3.625rem !important;
+        height: 3.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
+        font-size: 1.4rem !important;
+    }
+
+    //homepage highlight block
+    .highlight-container {
+        display: none !important;
+    }
+    .highlight-title {
+        font-size: 1.2rem  !important;
+    }
+    .highlight-content-column {
+        font-size: 0.6rem  !important;
+    }
+
+    // world map
+    #ip-geoloc-map-of-view-la_liste_country_map-block-00984e5137337583a3eba84f65f35cdd {
+        height: 250px !important;
+    }
+
+    // restaurant map
+    .restaurant-info-map {
+        margin-top: 0.125rem;
+    }
+    .view-restaurant-map > div.view-content > div {
+        height: 200px !important;
+    }
+
+    //homepage winner view
+    .content-body-home .block-views > h2 {
+        padding-top: 0 !important;
+        font-size: 2.1rem !important;
+        height: 100% !important;
+    }
+    .laliste-winners-score-laliste {
+        display: none !important;
+    }
+    .laliste-winners-result {
+        max-height: 2rem !important;
+        height: 2rem !important;
+    }
+    .laliste-winners-title {
+        width: 77% !important;//17.675rem
+        padding: 0 0.475rem !important;
+        span > a {
+            font-size: 1.1rem !important;
+            span.field-localization  {
+                display:none !important;
+            }
+        }
+    }
+    div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
+        width: 77% !important;
+    }
+
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
+        padding-right: 0 !important;
+        span {
+            font-size: 1.8rem !important;
+            sup {
+                font-size: 0.8rem !important;
+                top: 0.1rem !important;
+            }
+        }
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
+        zoom: 0.5 !important;
+        -ms-zoom: 0.5;
+        -webkit-zoom: 0.5;
+        -moz-transform:  scale(0.5,0.5);
+        -moz-transform-origin: left center;
+    }
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-rank,
+    .content-body div:nth-child(n) > span.laliste-winners-rank{
+        span {
+            font-size: 1rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.3rem !important;
+            }
+        }
+    }
+    // more link
+    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.more-link {
+        font-size: 1rem !important;
+        margin: 0.5rem auto !important;
+        width: 11rem !important;
+        padding: 0.5rem !important;
+    }
+    // pager page view
+    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
+    div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list ul li.pager-current,
+    div.view-laliste-multi-search-view > div.item-list,
+    div.view-laliste-multi-search-view > div.item-list ul li.pager-current {
+        font-size: 0.9rem !important;
+    }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    .content-body #leaflet-map {
+        height: 232px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
+    li.search-result h3.title {
+        font-size: 1.5rem !important;
+    }
+    .search-results-title {
+        font-size: 2rem !important;
+    }
+    #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+        color: $white;
+        font-family: 'Mrs Eaves Italic', sans-serif;
+        font-size: 2rem !important;
+    }
+
+    input.other-page-search-box, // today
+    #edit-keys {
+        width: 14.875rem !important;
+    }
+
+    main.content-user div.view-laliste-listes-view .ds-2col > .group-left {
+        width: 55% !important;
+    }
+    main.content-user div.view-laliste-listes-view .ds-2col > .group-right {
+        width: 45% !important;
+    }
+}
+
+// 576px :)
+@media screen and (min-width: 36rem) {
+
+    div.region-header {
+        margin: initial;
+        width: 72%;
+    }
+
+    header.header-home #block-locale-language {
+        margin-top: -3rem !important;
+    }
+
+    input.other-page-search-box, // today
+    #edit-keys {
+        width: 11.875rem !important;
+    }
+
+    // world map
+    #ip-geoloc-map-of-view-la_liste_country_map-block-00984e5137337583a3eba84f65f35cdd {
+        height: 21.875rem !important;
+    }
+
+    // restaurant map
+    .restaurant-info-map {
+        margin-top: 0.25rem;
+    }
+    .view-restaurant-map > div.view-content > div {
+        height: 18.75rem !important;
+    }
+
+    .content-body,
+    .content-body-home {
+        padding-left: 3% !important;
+        padding-right: 3% !important;
+    }
+
+    a.logo {
+        span {
+            font-size: 0.79rem !important;
+            padding-left: 1rem !important;
+        }
+    }
+
+    .header-branding {
+        padding-left: 0 !important;
+        @include justify-content(flex-start);
+        img {
+            width: 20rem;
+            height: 100%;
+            padding-left: 0.5rem;
+        }
+    }
+
+    body > header.header-page > div.header-utils,
+    body > header.header-page > div.header-utils > div.region.region-header {
+        @include justify-content(flex-end);
+        //margin-right: 0;
+    }
+
+    .language-switcher-locale-url {
+        margin-top: 0;
+        font-size: 1rem;
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12rem);
+    }
+
+    .row-height-med {
+        height: 7.5rem;
+    }
+
+    .row-height-tall {
+        height: 7.5rem;
+    }
+
+    .restaurant-overlay {
+        top: 8% !important;
+        width: 70% !important; //nogood
+        height: 78% !important;
+        padding: 2rem !important;
+    }
+
+    .restaurant-rank-big {
+        margin: 0.5rem;
+    }
+
+    div.restaurant-rank-big > div > div > img {
+        max-width: 80% !important;
+        padding: 1rem !important;
+    }
+
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 3rem;
+    }
+    .fa-angle-left {
+        top: 2.1rem;
+        left: 0.4rem;
+    }
+    .fa-angle-right {
+        bottom: 2.4rem;
+        right: 0.4rem;
+    }
+
+    .restaurant-details {
+        font-size: 1.1rem;
+        ul {
+            margin: 0 0 -0.5rem;
+            li {
+                line-height: 1.2rem;
+            }
+        }
+    }
+
+    .restaurant-user-actions-container p,
+    .liste-user-action-share p {
+        font-size: 2rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    span.tiny-rank {
+        font-size: 0.8rem !important;
+    }
+
+    .simple {
+        padding: 0 1rem;
+    }
+
+    p.rank {
+        font-size: 3rem !important;
+        position: relative;
+        margin-top: 0.5rem;
+        sup {
+            position: absolute;
+            font-size: 1.2rem;
+            top: 0.6rem;
+        }
+    }
+
+    p.score {
+        font-size: 2rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+            sup {
+                position: absolute;
+                font-size: 0.6rem;
+                top: -0.35rem;
+                right: 0.1rem;
+                letter-spacing: 0.1rem;
+            }
+    }
+
+    .restaurant-address {
+        padding-top: 0.4rem !important;
+        span {
+            font-size: 1rem !important;
+            line-height: 1rem !important;
+        }
+    }
+
+    h1#node-title,
+    h1#liste-title,
+    h1#page-title {
+        font-size: 2rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .guide-box {
+        font-size: 1rem;
+        height: 7.5rem !important;
+    }
+
+    a.guide-box {
+        font-weight: 400;
+    }
+
+    a.footer-link,
+    a.nav-link {
+        font-size: 1.5rem;
+    }
+
+    .footer-main {
+        height: 12.5rem;
+    }
+
+    .nav-main {
+        height: 4rem !important;
+    }
+
+    a.sub-footer-link {
+        font-size: 0.8rem;
+    }
+
+    span.info-title,
+    .restaurant-details ul li .info-content {
+        font-size: 1.4rem !important;
+    }
+
+
+    p.info-content {
+        padding-left: 5rem !important;
+    }
+
+    /*
+    * homepage
+    **/
+
+    //homepage search box
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        margin: 0 auto !important;
+        width: 24rem !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        top: 10.3125rem !important;
+    }
+    input.fpage-search-box {
+        height: 3.375rem !important;
+        width: 19.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 3.625rem !important;
+        height: 3.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
+        font-size: 1.4rem !important;
+    }
+
+    //homepage highlight block
+    .highlight-container {
+        display: inherit !important;
+    }
+    .highlight-title {
+        font-size: 2rem !important;
+    }
+    .highlight-content-column {
+        font-size: 1rem !important;
+    }
+
+    //homepage winner view
+    .content-body-home .block-views > h2 {
+        padding-top: 0 !important;
+        font-size: 3rem !important;
+        height: 100% !important;
+    }
+    .laliste-winners-score-laliste {
+        display: inherit !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
+        zoom: 0.75 !important;
+            -ms-zoom: 0.75;
+            -webkit-zoom: 0.75;
+            -moz-transform:  scale(0.75,0.75);
+            -moz-transform-origin: left center;
+    }
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste > span,
+    .content-body div:nth-child(n) > span.laliste-winners-score-laliste > span {
+        font-size: 0.9rem !important;
+    }
+    .laliste-winners-result {
+        height: 2.5rem !important;
+        max-height: 2.5rem !important;
+    }
+    div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
+        width: 77% !important;
+    }
+    .laliste-winners-title {
+        width: 64% !important;//17.675rem
+        padding: 0 0.875rem !important;
+        span > a {
+            font-size: 1.2rem !important;
+            span.field-localization {
+                display: inline !important;
+            }
+        }
+    }
+
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
+        padding-right: 0 !important;
+        span {
+            font-size: 2rem !important;
+            sup {
+                font-size: 0.8rem !important;
+                top: 0.2rem !important;
+            }
+        }
+    }
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-rank,
+    .content-body div:nth-child(n) > span.laliste-winners-rank {
+        span {
+            font-size: 1.4rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.4rem !important;
+            }
+        }
+    }
+
+        // more link
+    #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.more-link {
+        font-size: 1.2rem !important;
+        margin: 1rem auto !important;
+        width: 13rem !important;
+        padding: 0.5rem !important;
+    }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    .content-body #leaflet-map {
+        height: 232px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
+    li.search-result h3.title {
+        font-size: 1.75rem !important;
+    }
+    .search-results-title {
+        font-size: 2.5rem !important;
+    }
+    #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+        color: $white;
+        font-family: 'Mrs Eaves Italic', sans-serif;
+        font-size: 2.5rem !important;
+    }
+}
+
+// 768px
+@media screen and (min-width: 48rem) {
+
+    input.other-page-search-box, // today
+    #edit-keys {
+        width: 14.875rem !important;
+    }
+
+    // world map
+    #ip-geoloc-map-of-view-la_liste_country_map-block-00984e5137337583a3eba84f65f35cdd {
+        height: 31.875rem !important;
+    }
+    .content-body,
+    .content-body-home {
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
+    .header-branding {
+        padding-left: 2% !important;
+        @include justify-content(flex-start);
+        img {
+            width: 405px  !important;
+            height: 89px  !important;
+        }
+    }
+
+    a.logo {
+        span {
+            font-size: 0.993rem !important;
+            padding-left:1.2rem !important;
+        }
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12rem);
+    }
+    // restaurant map
+    .restaurant-info-map {
+        margin-top: 0.5rem;
+    }
+    .view-restaurant-map > div.view-content > div {
+        height: 336px !important;
+    }
+
+    .row-height-med {
+        height: 10.375rem !important;
+    }
+
+    .row-height-tall {
+        height: 15rem !important;
+    }
+
+    .restaurant-overlay {
+        display: none !important;
+        top: 17% !important;
+        width: 42% !important;
+        height: 65% !important;
+        padding: 1.875rem !important;
+    }
+
+    div.restaurant-rank-big > div > div > img {
+        max-width: 80% !important;
+        padding: 0.25rem !important;
+    }
+
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 4rem;
+    }
+    .fa-angle-left {
+        top: 3rem;
+        left: 0.4rem;
+    }
+    .fa-angle-right {
+        bottom: 2.6rem;
+        right: 0.4rem;
+    }
+
+    .restaurant-details {
+        width: 96%;
+        padding-top: 1.875rem;
+        font-size: 1.2rem !important;
+        ul {
+            margin: 0 0 1.5rem !important;
+            li {
+                line-height: 1.5rem;
+            }
+        }
+    }
+
+    .restaurant-user-actions-container p,
+    .liste-user-action-share p {
+        font-size: 2rem !important;
+    }
+
+    .simple {
+        padding: 0 1rem;
+    }
+
+    p.rank {
+        font-size: 3rem !important;
+        position: relative;
+        margin-top: 0.5rem;
+        sup {
+            position: absolute;
+            font-size: 1.2rem;
+            top: 0.6rem;
+        }
+    }
+
+    p.score {
+        font-size: 2rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+            sup {
+                position: absolute;
+                font-size: 0.6rem;
+                top: -0.35rem;
+                right: 0.1rem;
+                letter-spacing: 0.1rem;
+            }
+    }
+
+    .restaurant-address {
+        font-size: 1.5rem !important;
+    }
+
+    h1#node-title,
+    h1#liste-title,
+    h1#page-title {
+        font-size: 2.6rem !important;
+        //padding: 0 2.5rem;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .guide-box {
+        font-size: 1.2rem;
+        height: 9.375rem !important;
+    }
+
+    a.footer-link {
+        font-size: 2.2rem  !important;
+    }
+
+    a.nav-link {
+        font-size: 1.8rem !important;
+    }
+
+    .footer-main {
+        height: 18.75rem  !important;
+    }
+
+    .nav-main {
+        height: 8rem !important;
+    }
+
+    a.sub-footer-link {
+        font-size: 1rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0  !important;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-left: 0  !important;
+        margin-right : 0  !important;
+    }
+
+    span.info-title,
+    .restaurant-details ul li .info-content{
+        font-size: 1.4rem !important;
+    }
+
+    p.info-content {
+        padding-left: 6.5625rem !important;
+    }
+
+    /*
+    * homepage
+    **/
+    //homepage search box
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        margin: 0 auto !important;
+        width: 32rem !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        position: absolute !important;
+        top: 26.3rem !important;
+    }
+    input.fpage-search-box {
+        height: 4.375rem !important;
+        width: 24.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 4.625rem !important;
+        height: 4.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
+        font-size: 1.8rem !important;
+    }
+    //homepage highlight block
+    .highlight-container {
+        display: inherit !important;
+    }
+    .highlight-title {
+        font-size: 2.5rem !important;
+    }
+    .highlight-content-column {
+        font-size: 1.2rem !important;
+    }
+
+    // LA LISTE Winner Views
+    .content-body-home .block-views > h2 {
+        padding-top: 0 !important;
+        font-size: 4rem !important;
+        height: 100% !important;
+    }
+    .laliste-winners-score-laliste {
+        display: inherit !important;
+    }
+    .laliste-winners-title {
+        width: 64% !important;
+        padding: 0 0.875rem !important;
+    }
+    // regular page
+    .content-body div:nth-child(n) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    /*
+    .content-body div.content > div > div.view-content > div:nth-child(-n+5) {
+        max-height: 3.5rem;
+    }
+    .content-body div.content > div > div.view-content > div:nth-child(n+6) {
+        max-height: 2.5rem;
+    }
+    */
+    .content-body div.content > div > div.view-content > div:nth-child(n) > span.laliste-winners-title > span > a {
+        font-size: 1.4rem !important;
+    }
+    .content-body div:nth-child(n) > span.laliste-winners-rank {
+        span {
+            font-size: 1.4rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.4rem !important;
+            }
+        }
+    }
+    .content-body #block-system-main > div > div > div.view-header {
+        margin-bottom: 0.5rem;
+    }
+    // homepage specifics
+   .content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+        font-size: 1.5rem !important;
+    }
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste > span {
+        font-size: 1rem !important;
+    }
+    .content-body-home #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-content > div:nth-child(-n+5) {
+        height: 4rem !important;
+        max-height: 4rem !important;
+        margin: 0.1875rem 0;
+    }
+    .content-body-home #block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.view-content > div:nth-child(n+6) {
+        height: 2.5rem !important;
+        max-height: 2.5rem !important;
+    }
+    .content-body-home div.content > div > div.view-content > div:nth-child(-n+5) > span.laliste-winners-title > span > a {
+        font-size: 1.6rem !important;
+    }
+    .content-body-home div.content > div > div.view-content > div:nth-child(n+6) > span.laliste-winners-title > span > a {
+        font-size: 1.4rem !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-field-address-country-1 > a > li {
+        zoom: 1 !important;
+        -ms-zoom: 1;
+        -webkit-zoom: 1;
+        -moz-transform:  scale(1,1);
+        -moz-transform-origin: left center;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank{
+        padding-right: 0 !important;
+    }
+    .content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
+        span {
+            font-size: 2.4rem !important;
+            sup {
+                font-size: 0.8rem !important;
+                top: 0.3rem !important;
+            }
+        }
+    }
+    .content-body-home div:nth-child(n+6) > span.laliste-winners-rank {
+        span {
+            font-size: 1.4rem !important;
+            sup {
+                font-size: 0.6rem !important;
+                top: 0.4rem !important;
+            }
+        }
+    }
+
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    .content-body #leaflet-map {
+        height: 232px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
+    li.search-result h3.title {
+        font-size: 2rem !important;
+    }
+    .search-results-title {
+        font-size: 3rem !important;
+    }
+    #block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+        color: $white;
+        font-family: 'Mrs Eaves Italic', sans-serif;
+        font-size: 3rem !important;
+    }
+}
+
+// 1200 pixels!
+@media screen and (min-width: 75rem) {
+
+    .content-body,
+    .content-body-home {
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
+    .header-branding {
+        padding-left: 2.5% !important;
+        @include justify-content(flex-start);
+        img {
+            width: 405px;
+            height: 89px;
+        }
+    }
+
+    a.logo {
+        span {
+            font-size: 0.993rem !important;
+            padding-left:1.2rem !important;
+        }
+    }
+
+    .restaurant-info-map {
+        margin-top: 0.5rem;
+    }
+    .view-restaurant-map > div.view-content > div {
+        height: 413px !important;
+    }
+
+    .laliste-ads, .laliste-nav {
+        @include flex(0,0,12rem);
+    }
+
+    .row-height-short {
+        height: 8.375rem !important;
+    }
+
+    .row-height-med {
+        height: 12.775rem !important;
+    }
+
+    .row-height-tall {
+        height: 12.4375rem !important;
+    }
+
+    .restaurant-overlay {
+        //display: block !important;
+        top: 15% !important;
+        width: 37% !important;
+        height: 72% !important;
+        padding: 3rem !important;
+    }
+
+    .restaurant-details {
+        width: 96%;
+        //padding-top: 2.5rem;
+        font-size: 1.8rem !important;
+        ul {
+            margin: 0 0 1.5rem !important;
+            li {
+                line-height: 1.9rem;
+            }
+        }
+    }
+
+    div.restaurant-rank-big > div > div > img {
+        max-width: 100% !important;
+        padding: 1rem !important;
+    }
+
+    .fa-angle-left,
+    .fa-angle-right {
+        font-size: 5rem;
+    }
+    .fa-angle-left {
+        top: 4rem;
+        left: 1rem;
+    }
+    .fa-angle-right {
+        bottom: 3.75rem;
+        right: 1rem;
+    }
+
+    .restaurant-user-actions-container p,
+    .liste-user-action-share p {
+        font-size: 2rem !important;
+    }
+
+    .restaurant-country {
+        margin-top: 0.5rem
+    }
+
+    .simple {
+        padding: 0 1rem;
+    }
+
+    p.rank {
+        font-size: 4rem !important;
+        position: relative;
+        margin-top: 0.5rem;
+        sup {
+            position: absolute;
+            font-size: 1.2rem;
+            top: 0.6rem;
+        }
+    }
+
+    p.score {
+        font-size: 2.5rem !important;
+        margin-top: 1rem;
+        letter-spacing: 0.08rem;
+            sup {
+                position: absolute;
+                font-size: 0.8rem;
+                top: -0.6rem;
+                right: 0;
+                letter-spacing: 0.1rem;
+            }
+    }
+
+    .restaurant-address span {
+        font-size: 1.4rem !important;
+        line-height: 1;
+    }
+
+    h1#node-title,
+    h1#liste-title,
+    h1#page-title {
+        color: $white;
+        font-size: 4rem !important;
+        //padding: 0 4rem;
+    }
+
+    .content-container.page h1#page-title {
+        padding-left: 0;
+        margin-top : 2rem;
+    }
+
+    .guide-box {
+        font-size: 1.4rem;
+    }
+
+    .restaurant-info-container > :first-child,
+    .restaurant-user-actions-container > :first-child {
+        margin-left: 0;
+    }
+
+    .restaurant-info-container > :last-child,
+    .restaurant-user-actions-container > :last-child {
+        margin-right : 0;
+    }
+
+    span.info-title,
+    .restaurant-details ul li .info-content {
+        font-size: 1.8rem !important;
+    }
+
+    p.info-content {
+        padding-left: 8.5625rem !important;
+    }
+    //homepage search box
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        margin: 0 auto !important;
+        width: 50% !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        position: absolute !important;
+        top: 27.3125rem !important;
+    }
+    input.fpage-search-box {
+        height: 6.375rem !important;
+        width: 33.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 6.625rem !important;
+        height: 6.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
+        font-size: 1.8rem !important;
+    }
+
+    .highlight-title {
+        font-size: 2.5rem  !important;
+    }
+
+    .highlight-content-column {
+        font-size: 1.25rem  !important;
+    }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    // view title
+    .content-body-home .block-views > h2 {
+        font-size: 5rem !important;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    .content-body #leaflet-map {
+        height: 352px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        top: 15.3125rem;
+    }
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        margin: 0 auto !important;
+        width: 50% !important;
+    }
+}
+
+// 1438 pixels!
+@media screen and (min-width: 89.875rem) {
+
+    .content-body,
+    .content-body-home {
+        padding-left: 4% !important;
+        padding-right: 4% !important;
+    }
+
+    .header-branding {
+        padding-left: 0 !important;
+        @include justify-content(flex-start);
+        img {
+            width: 405px;
+            height: 89px;
+        }
+    }
+
+    .restaurant-overlay {
+        top: 15% !important;
+        width: 35% !important;
+        height: 60% !important;
+    }
+    // mapping
+    .restaurant-details-container {
+        margin: 0;
+    }
+    .field-restaurant-position {
+        border: 2px solid $black;
+        margin-top: 8px !important;
+    }
+    .content-body #leaflet-map {
+        height: 352px !important;
+    }
+    div.leaflet-control-container > div.leaflet-bottom.leaflet-right > div {
+        display: none;
+    }
+    //homepage search box
+    .content-body-home #block-search-form,
+    .content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        margin: 0 auto !important;
+        width: 37% !important;
+    }
+    #block-views-homepage-slider-block + #block-search-form,
+    #block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+        position: absolute !important;
+        top: 30.3125rem !important;
+    }
+    input.fpage-search-box {
+        height: 6.375rem !important;
+        width: 33.3rem !important;
+    }
+    input.fpage-search-icon {
+        width: 6.625rem !important;
+        height: 6.375rem !important;
+    }
+    input.fpage-search-box, input.other-page-search-box, #edit-keys {
+        font-size: 1.8rem !important;
+    }
+
+}
+// END MEDIA QUERIES
+
+.u-ieMinHeightBugFix {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.u-full {
+    width: 100% !important
+}
+
+.u-1of2, .u-full {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important
+}
+
+.u-1of2 {
+    width: 50% !important
+}
+
+.u-1of3 {
+    width: 39.2% !important
+}
+
+.u-1of3, .u-2of3 {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important
+}
+
+.u-2of3 {
+    width: 60% !important
+}
+
+.u-1of4 {
+    width: 25% !important
+}
+
+.u-1of4, .u-3of4 {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important
+}
+
+.u-3of4 {
+    width: 75% !important
+}
+
+// 320px :)
+@media (min-width:20rem) {
+    .u-small-full {
+        width: 100% !important
+    }
+
+    .u-small-1of2, .u-small-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-small-1of2 {
+        width: 50% !important
+    }
+
+    .u-small-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-small-1of3, .u-small-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-small-2of3 {
+        width: 60% !important
+    }
+
+    .u-small-1of4 {
+        width: 25% !important
+    }
+
+    .u-small-1of4, .u-small-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-small-3of4 {
+        width: 75% !important
+    }
+}
+
+// 576px!
+@media (min-width: 36rem) {
+    .u-med-full {
+        width: 100% !important
+    }
+
+    .u-med-1of2, .u-med-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-med-1of2 {
+        width: 50% !important
+    }
+
+    .u-med-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-med-1of3, .u-med-2of3 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-med-2of3 {
+        width: 60% !important
+    }
+
+    .u-med-1of4 {
+        width: 25% !important
+    }
+
+    .u-med-1of4, .u-med-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-med-3of4 {
+        width: 75% !important
+    }
+}
+
+@media (min-width:48rem) {
+    .u-large-full {
+        width: 100% !important
+    }
+
+    .u-large-1of2, .u-large-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-1of2 {
+        width: 50% !important
+    }
+
+    .u-large-1of3 {
+        width: 39.2% !important
+    }
+
+    .u-large-33 {
+        width: 33% !important
+    }
+
+    .u-large-1of3, .u-large-2of3, .u-large-33 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-2of3 {
+        width: 60% !important
+    }
+
+    .u-large-1of4 {
+        width: 25% !important
+    }
+
+    .u-large-1of4, .u-large-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-3of4 {
+        width: 75% !important
+    }
+}
+
+@media (min-width:75rem) {
+    .u-large-full {
+        width: 100% !important
+    }
+
+    .u-large-1of2, .u-large-full {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-1of2 {
+        width: 50% !important
+    }
+
+    .u-large-1of3 {
+        width: 40% !important
+    }
+
+    .u-large-33 {
+        width: 33.33333333% !important
+    }
+
+    .u-large-1of3, .u-large-2of3, .u-large-33 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-2of3 {
+        width: 60% !important
+    }
+
+    .u-large-1of4 {
+        width: 25% !important
+    }
+
+    .u-large-1of4, .u-large-3of4 {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -ms-flex: none !important;
+        flex: none !important
+    }
+
+    .u-large-3of4 {
+        width: 75% !important
+    }
+}
+
+.no-hcenter {
+    justify-content: left !important;
+}
+
+
+h1#node-title,
+h1#liste-title,
+h1#page-title
+ {
+    font-family: "Mrs Eaves Italic", Serif;
+    color: $gold;
+}
+
+p.rank, p.score {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
+
+p.score {
+    color: $gold;
+    sup {
+        color: $black;
+    }
+}
+
+#separator {
+    font-weight: 200;
+}
+
+.restaurant-info {
+    padding-left : 1.25rem;
+}
+
+.restaurant-user-actions-container p,
+.liste-user-action-share p {
+    font-family: "Mrs Eaves Italic", Serif;
+}
+
+sup {
+    vertical-align: text-bottom;
+}
+
+/**
+ * User login block in footer.
+ */
+#block-user-login, #block-search-form, #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+  width: 100%;
+  text-align: center;
+}
+.content-body-home #block-search-form,
+.content-body-home #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#block-user-login .block-title,
+#block-search-form .block-title,
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 .block-title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+#block-user-login .content *,
+#block-search-form .content *,
+#block-views-68034fa5b32e0ac3ea4ae93d4e474819 .content * {
+  @include flexbox;
+}
+
+input.fpage-search-box,
+input.other-page-search-box,
+#edit-keys {
+    font-family: 'Mrs Eaves Italic';
+    font-size:1.75rem;
+    padding-left: 1rem;
+    padding-right: 1.8rem;
+    background: $white;
+    border: 0;
+    color : $gray;
+    -webkit-appearance: none;
+    border-radius:0;
+    border-top-left-radius:0.3125rem;
+    border-bottom-left-radius:0.3125rem;
+}
+
+input.other-page-search-box,
+#edit-keys {
+    width: 14.875rem;
+    height: 2.625rem;
+    background: $light_grey;
+}
+
+input.fpage-search-box {
+    width: 34.9375rem;
+    height: 5.375rem;
+}
+
+input.fpage-search-icon,
+input.other-page-search-icon,
+#edit-submit-laliste-search-view,
+#edit-field-liste-restaurants-und-add-more,
+#edit-field-liste-restaurants-und-add-more--2,
+#edit-field-liste-image-und-0-remove-button,
+#edit-field-liste-image-und-0-upload,
+#edit-field-liste-image-und-0-upload-button,
+#edit-picture-upload,
+#edit-submit,
+#edit-delete,
+#edit-cancel {
+    border: 0;
+    font-family: 'FontAwesome';
+    font-weight: 100;
+    background: $black;
+    color: $white;
+    justify-content: center;
+    -webkit-appearance: none;
+    border-radius:0;
+    border-top-right-radius:0.3125rem;
+    border-bottom-right-radius:0.3125rem;
+}
+
+#edit-cancel {
+    background: $gray;
+}
+
+input.fpage-search-icon,
+#edit-submit {
+    width: 5.625rem;
+    height: 5.375rem;
+    font-size: 1.75rem;
+}
+
+input.other-page-search-icon,
+#edit-submit-laliste-search-view,
+#edit-submit,
+#edit-delete,
+#edit-cancel {
+    width: 3.125rem;
+    height: 2.625rem;
+    font-size: 1.25rem;
+}
+
+#edit-field-liste-restaurants-und-add-more,
+#edit-field-liste-restaurants-und-add-more--2,
+#edit-field-liste-image-und-0-upload,
+#edit-picture-upload {
+    width: 11rem;
+    height: 1.625rem;
+    font-size: 0.8rem;
+}
+
+#edit-picture-upload {
+    height: 1.25rem;
+}
+
+#edit-field-liste-image-und-0-remove-button,
+#edit-field-liste-image-und-0-upload-button {
+    width: 5rem;
+    height: 1.625rem;
+    font-size: 0.8rem;
+}
+
+
+input[type=text].fpage-search-box,
+input[type=text].other-page-search-box,
+input.fpage-search-icon,
+input.other-page-search-icon,
+#edit-submit {
+  -webkit-transition: all 0.0s ease-in-out;
+  -moz-transition: all 0.0s ease-in-out;
+  -ms-transition: all 0.0s ease-in-out;
+  -o-transition: all 0.0s ease-in-out;
+  outline: none;
+}
+
+input[type=text].fpage-search-box:focus,
+input[type=text].other-page-search-box:focus,
+input.fpage-search-icon:focus,
+input.other-page-search-icon:focus,
+#edit-submit:focus {
+  box-shadow: 0 0 0.25rem $gold;
+  border: 0.0625rem solid $gold;
+}
+
+// hide the search form title
+h2.element-invisible {
+    display: none !important;
+}
+
+.restaurant-overlay {
+  display:none !important;
+  background-image: url("../img/restaurant-panel-bg.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: 0 auto;
+  left: 0 !important;
+  right: 0 !important;
+  width: 42%;
+  height: 68%;
+  z-index: 80;
+  padding-top: 5% !important;;
+  color: white;
+}
+
+.restaurant-overlay hr.half-length,
+.restaurant-overlay hr.full-length {
+    display: inline-block;
+    padding: 0;
+    color: white;
+    border-width: 0.0625rem;
+}
+
+.restaurant-overlay hr.half-length {
+    width: 30%
+}
+
+.restaurant-overlay hr.full-length {
+    width: 60%
+}
+
+.restaurant-overlay .tiny-rank {
+    font-weight: normal;
+    margin: 0.3125rem;
+    font-size: 1.2rem;
+    position: relative;
+    top: -0.25rem;
+}
+
+img.countryicon.iconset-gosquared_flat_large,
+span.laliste-winners-field-address-country-1 > a > li {
+    /*
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    */
+}
+
+.restaurant-address {
+    line-height: 110%;
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-left: 5%;//nogood
+    margin-bottom: 2%;
+}
+
+/**
+ * Administration
+ */
+
+ul.tabs.primary {
+  display: flex;
+  margin-bottom: 0;
+  li {
+    margin-right: 1.25rem;
+  }
+}
+
+/**
+ * Slideshows
+ */
+
+.flexslider .slides img {
+  height: auto;
+}
+
+.highlight-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+}
+
+.highlight-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    color: $dark_grey;
+    font-family: "Mrs Eaves Bold", sans-serif;
+    font-size: 2rem;
+    @include justify-content(flex-start);
+}
+
+.highlight-content-container,
+.liste-container {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+}
+
+.highlight-content-column {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--justifyCenter;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-33;
+    background: $gold_darker1;
+    color: $light_grey;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.25rem;
+    padding: 1.25rem;
+    text-align: justify;
+    font-weight: 300;
+}
+
+.liste-highlight {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--justifyCenter;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-full;
+    background: $gold_darker1;
+    color: $light_grey;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1.25rem;
+    text-align: justify;
+    font-weight: 300;
+}
+
+
+/*
+ * Winners View
+ */
+
+
+#block-views-cbbe77509a0d5dfa927448406b230347 {
+    margin-top: 1.25rem;
+}
+
+.content-body-home .block-views > h2 {
+    padding-top: 1rem;
+    font-family: "Mrs Eaves Italic", Serif;
+    font-size: 5rem;
+    color: $dark_grey;
+    background: $light_grey;
+    font-weight: 100;
+    margin: 0;
+    text-align: center;
+}
+
+.view-content {
+    @extend .Grid;
+    @include flex-direction(column);
+}
+
+.laliste-winners-result {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--full;
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.laliste-winners-field-address-country-1 {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    @include align-items(center);
+    text-align: center;
+    width: 8%;
+}
+
+.laliste-winners-title {
+    @extend .Grid;
+    @extend .Grid-cell;//
+    @include align-items(center);
+    @include justify-content(flex-start);
+    width: 56.3rem;
+}
+
+div.view-laliste-liste-restaurants-view > div > div > span.laliste-winners-title {
+    width: 77%;
+}
+
+.laliste-winners-score-laliste {
+    @extend .Grid;
+    @extend .Grid-cell;//
+    @include align-items(center);
+    @include justify-content(flex-end);
+    width:13%;
+}
+
+.laliste-winners-rank,
+.views-field-counter span {
+    @extend .Grid;
+    @extend .Grid-cell;//
+    @include align-items(center);
+    @include justify-content(center);
+    width:15%;
+}
+
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(-n+5) {
+    height: 6.875rem;
+    max-height: 6.875rem;
+    margin: 0.1875rem 0;
+}
+
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div > div:nth-child(n+6),
+div.view-content > div.laliste-winners-result {
+    height: 2.8rem;
+    max-height: 2.8rem;
+    margin: 0;
+}
+
+// 1st five Winners restaurant title
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-title > span > a {
+    font-family: "Mrs Eaves Bold", sans-serif;
+    font-size: 2.5rem;
+    color: $white;
+}
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-title {
+    padding: 0 2.875rem;
+    text-align: left;
+    height: 6.875rem;
+}
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste {
+    height: 6.875rem;
+}
+// gold color gradient
+.content-body-home div:nth-child(1) > span.laliste-winners-title,
+.content-body-home div:nth-child(1) > span.laliste-winners-score-laliste {
+    background: $gold;
+}
+.content-body-home div:nth-child(2) > span.laliste-winners-title,
+.content-body-home div:nth-child(2) > span.laliste-winners-score-laliste {
+    background: $gold_darker1;
+}
+.content-body-home div:nth-child(3) > span.laliste-winners-title,
+.content-body-home div:nth-child(3) > span.laliste-winners-score-laliste {
+    background: $gold_darker2;
+}
+.content-body-home div:nth-child(4) > span.laliste-winners-title,
+.content-body-home div:nth-child(4) > span.laliste-winners-score-laliste {
+    background: $gold_darker3;
+}
+.content-body-home div:nth-child(5) > span.laliste-winners-title,
+.content-body-home div:nth-child(5) > span.laliste-winners-score-laliste {
+    background: $gold_darker4;
+}
+
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-rank {
+    background: $light_grey;
+    height: 6.875rem;
+    padding-right: 2rem;
+}
+
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste {
+    padding-right: 0.625rem
+}
+.content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste {
+    padding-right: 2.0625rem
+}
+.content-body div:nth-child(n) > span.laliste-winners-score-laliste {
+    padding-right: 2.0625rem
+}
+// 1st five winners rank
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-rank > span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 4rem;
+    position: relative;
+    sup {
+        font-size: 1.5rem;
+        position: absolute;
+        top: 0.3rem;
+    }
+}
+// 1st five winners score
+.content-body-home div:nth-child(-n+5) > span.laliste-winners-score-laliste > span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2rem;
+    color: $white;
+}
+// hack for winner score proportionnal to div length
+.content-body-home div:nth-child(2) > span.laliste-winners-score-laliste {
+    border-right: 0.25rem solid $light_grey;
+}
+.content-body-home div:nth-child(3) > span.laliste-winners-score-laliste {
+    border-right: 0.5453125rem solid $light_grey;
+}
+.content-body-home div:nth-child(4) > span.laliste-winners-score-laliste {
+    border-right: 0.921875rem solid $light_grey;
+}
+.content-body-home div:nth-child(5) > span.laliste-winners-score-laliste {
+    border-right: 1.5359375rem solid $light_grey;
+}
+
+// prizes icons
+.content-body-home div:nth-child(1) > span.laliste-winners-rank {
+  background-image: url("../img/1st_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.475rem 0.3rem;
+  background-size: contain;
+}
+.content-body-home div:nth-child(2) > span.laliste-winners-rank {
+  background-image: url("../img/2nd_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.625rem 0.3rem;
+  background-size: contain;
+}
+.content-body-home div:nth-child(3) > span.laliste-winners-rank {
+  background-image: url("../img/3rd_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.5rem 0.3rem;
+  background-size: contain;
+}
+.content-body-home div:nth-child(4) > span.laliste-winners-rank {
+  background-image: url("../img/4th_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.75rem 0.3rem;
+  background-size: contain;
+}
+.content-body-home div:nth-child(5) > span.laliste-winners-rank {
+  background-image: url("../img/4th_prize.png");
+  background-repeat: no-repeat;
+  background-position: 8.75rem 0.3rem;
+  background-size: contain;
+}
+
+// others winners country flag
+.content-body-home div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > img {
+    max-width: 50%;
+}
+.content-body-home div:nth-child(n+6) > span.laliste-winners-field-address-country-1 > a > li {
+    min-width: 60px;//64
+    min-height: 40px;//41
+    zoom: 0.5;
+    -ms-zoom: 0.5;
+    -webkit-zoom: 0.5;
+    -moz-transform:  scale(0.5,0.5);
+    -moz-transform-origin: left center;
+}
+// all other pages
+.content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > img {
+    max-width: 50%;
+}
+.content-body div:nth-child(n) > span.laliste-winners-field-address-country-1 > a > li {
+    min-width: 60px;//64
+    min-height: 40px;//41
+    zoom: 0.5;
+    -ms-zoom: 0.5;
+    -webkit-zoom: 0.5;
+    -moz-transform:  scale(0.5,0.5);
+    -moz-transform-origin: left center;
+}
+// Remaining Winners restaurant title
+.content-body-home div:nth-child(n+6) > span.laliste-winners-title > span > a {
+    font-family: "Mrs Eaves Italic", sans-serif;
+    font-size: 1.2rem;
+    color: $black;
+    span.field-localization {
+        color: $gray;
+    }
+}
+.content-body-home div:nth-child(n+6) > span.laliste-winners-title {
+    padding: 0 2.875rem;
+    text-align: left;
+    background: $light_grey;
+    height: 2.8rem
+}
+.content-body-home div:nth-child(n+6) > span.laliste-winners-score-laliste,
+.content-body-home div:nth-child(n+6) > span.laliste-winners-rank {
+    background: $light_grey;
+    height: 2.8rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+    sup {
+        font-size: 0.6rem;
+        position: absolute;
+        top: 0.875rem;
+    }
+}
+.content-body-home div:nth-child(n+7) > span.laliste-winners-title,
+.content-body-home div:nth-child(n+7) > span.laliste-winners-score-laliste,
+.content-body-home div:nth-child(n+7) > span.laliste-winners-rank {
+    border-top: 0.0625rem solid $dark_grey;
+}
+// all other pages
+ .content-body div:nth-child(n) > span.laliste-winners-title > span > a {
+    font-family: "Mrs Eaves Italic", sans-serif;
+    font-size: 1.2rem;
+    color: $black;
+    span.field-localization {
+        color: $gray;
+    }
+}
+.content-body div:nth-child(n) > span.laliste-winners-title {
+    padding: 0 2.875rem;
+    text-align: left;
+    background: $light_grey;
+    height: 2.8rem
+}
+.content-body div:nth-child(n) > span.laliste-winners-score-laliste,
+.content-body div:nth-child(n) > span.laliste-winners-rank {
+    background: $light_grey;
+    height: 2.8rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+    sup {
+        font-size: 0.6rem;
+        position: absolute;
+        top: 0.875rem;
+    }
+}
+.content-body div:nth-child(n+2) > span.laliste-winners-title,
+.content-body div:nth-child(n+2) > span.laliste-winners-score-laliste,
+.content-body div:nth-child(n+2) > span.laliste-winners-rank {
+    border-top: 0.0625rem solid $dark_grey;
+}
+// country flag border
+span.laliste-winners-field-address-country-1 > a > img.countryicon.iconset-gosquared_flat_large,
+span.laliste-winners-field-address-country-1 > a > li {
+    border: 0.0625rem solid $light_grey;
+}
+// end winners view
+
+.flexslider {
+    margin: 0;
+    border: 0;
+}
+
+.flex-control-paging {
+    display: none;
+}
+
+#block-views-homepage-slider-block {
+    position: relative;
+}
+
+#block-views-homepage-slider-block + #block-search-form,
+#block-views-homepage-slider-block + #block-views-68034fa5b32e0ac3ea4ae93d4e474819 {
+    position: absolute;
+    top: 17.3125rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 40.5625rem;
+    z-index: 80;
+}
+
+/*
+ * Admin section
+ */
+.tabs {
+    padding-top : 1.375rem;
+    background: $black;
+    a {
+        color: $white;
+    }
+}
+//body > header > div.header-branding > a > span
+a.logo {
+    span {
+        font-size: 0.993rem;
+        padding-left:1.2rem;
+    }
+}
+
+a:focus.logo, a:hover.logo {
+    text-decoration: none;
+}
+
+.fa-angle-left,
+.fa-angle-right {
+    position: absolute;
+    color: $gold;
+    font-weight: 100;
+}
+
+// LA LISTE view page pager
+div.view-id-laliste_rr_restaurants_country_winners_view > div.item-list,
+div.view-laliste-multi-search-view > div.item-list {
+    @extend .Grid;
+    margin: 0rem;
+    font-size: 1rem;
+    ul {
+        @extend .Grid;
+        @extend .Grid-cell;
+        @include justify-content(space-around);
+        @include flex-direction(rows);
+        @include align-items(baseline);
+        background: $black;
+        padding: 0.25rem 0 0 0;
+        color: $white;
+        a, a:active, a:hover, a:focus, a:visited {
+            color: $white;
+        }
+        li.pager-current {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}
+
+// La LISTE more link homepage
+#block-views-cbbe77509a0d5dfa927448406b230347 > div.content > div > div.more-link {
+    font-size: 1.4rem;
+    margin: 1rem auto;
+    width: 18rem;
+    padding: 1rem;
+    text-align: center;
+    background: $black;
+    a, a:active, a:hover, a:focus, a:visited {
+        color: $white;
+    }
+}
+
+// our method home block
+.method-container {
+    @extend .Grid;
+    text-align: center;
+    margin : 3rem auto;
+    width: 36rem;
+    @include flex-direction(column);
+}
+
+.method-main-title,
+.method-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--full;
+    color: $dark_grey;
+    font-family: 'Mrs Eaves Italic', sans-serif;
+    font-size: 3rem;
+}
+
+.method-content-block {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @extend .Grid--full;
+    font-size: 1.3rem;
+}
+
+.method-main-title {
+    font-family: 'Mrs Eaves Bold Italic';
+    font-size: 3rem;
+}
+
+.method-experts {
+    @include justify-content(flex-start);
+}
+
+.method-container {
+    position: relative;
+}
+.method-algorithm {
+    position: absolute;
+    top: 27rem;
+    left: 0;
+}
+
+.method-link {
+    font-size: 1.4rem;
+    margin: 1rem auto;
+    width: 22rem;
+    padding: 1rem;
+    text-align: center;
+    background: $black;
+    a, a:active, a:hover, a:focus, a:visited {
+        color: $white;
+    }
+}
+
+//language selector
+#block-locale-language > div.content > ul > li {
+    display: inline-block;
+}
+
+#block-locale-language > div.content > ul > li.fr {
+    background: none;
+}
+
+#block-locale-language > div.content > ul > li.active > a {
+    text-decoration: underline;
+}
+
+#block-locale-language > div.content > ul > li > a:hover {
+    text-decoration: none;
+}
+
+// main navigation user menu
+#navigation > div > h2 {
+    display: none;
+}
+#main-menu > li {
+    display: inline;
+}
+#main-menu > li:after {
+     content:" · ";
+}
+#main-menu > li.last:after {
+    content:"";
+}
+
+#edit-advanced {
+    display: none;
+}
+
+/**
+ * SEARCH RESULTS
+ */
+
+li.search-result {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid--center;
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    h3.title {
+        margin-left: 1rem;
+        font-size: 2rem;
+    }
+}
+
+.view-laliste-multi-search-view .view-content,
+.view-laliste-multi-search-view .view-content .views-row {
+    @extend .Grid;
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+}
+
+.ds-2col {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+}
+
+.ds-2col > .group-left,
+.ds-2col > .group-right {
+    @include align-items(flex-start);
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    @include flex-direction(column);
+    padding: 1rem;
+}
+
+.ds-2col > .group-left {
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of4;
+    width: 110px !important;
+}
+
+.ds-2col > .group-right {
+    @extend .u-small-full;
+    @extend .u-med-3of4;
+    @extend .u-large-3of4;
+}
+
+div.view-laliste-listes-view .ds-2col > .group-left {
+    @include align-items(flex-start);
+}
+div.view-laliste-listes-view .ds-2col > .group-right {
+    @include align-items(flex-end);
+}
+
+
+div.listes-container div.views-row {
+    background: $light_grey;
+    margin: 0.25rem 0;
+}
+
+.view-laliste-multi-search-view .view-header {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.view-laliste-multi-search-view > .view-content > .views-row {
+    //height: 10rem !important;
+}
+
+form.search-form {
+    display:none;
+}
+#block-system-main > div > h2 {
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}
+
+.search-result .guide-box {
+height: 4.375rem !important;
+width: 4.375rem !important;
+}
+
+li.search-result > h3 > p > a {
+    font-size: 2rem;
+}
+
+.guide-link {
+    margin: 0 0.25rem;
+}
+
+.search-container > .simple {
+    padding: 0;
+    margin-top: -0.5rem;
+    .search-country {
+        padding-top: 0.5rem;
+        @include align-self(baseline);
+    }
+    .countryicon {
+        border : 1px solid $light_grey;
+    }
+}
+
+li.search-result {
+    margin-bottom: 2rem;
+}
+.search-result p.rank > a {
+    margin-right: 0.5rem;
+}
+.search-result p.score,
+.group-right .field-restaurant-score {
+    font-size: 1.4rem !important;
+    color: $dark_grey;
+    sup {
+        color: $dark_grey;
+    }
+}
+
+p.score.no-ranking {
+    font-size: 1rem !important;
+    width: 8rem !important;
+    padding-left: 2rem;
+    color: $dark_grey;
+}
+
+.search-result h3 {
+    margin: 0;
+}
+
+#file-117 > div.content {
+    text-align: center;
+}
+
+.search-container {
+    @extend .Grid;
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    margin-top: -0.25rem;
+}
+
+.search-title {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+}
+
+.search-icons {
+    @extend .Grid;
+    @include flex-direction(row);
+    @include justify-content(flex-start);
+    @include align-items(center);
+    width: 8rem;
+}
+
+.search-score,
+.search-country {
+    @extend .Grid;
+    @extend .Grid-cell;
+    p {
+        margin-top : 0;
+    }
+    a > ul {
+        margin: 0 0 1rem;
+    }
+}
+
+.search-score > .score {
+    font-size: 1.7rem !important;
+    color: $black;
+}
+
+.search-country {
+    @include align-self(flex-end);
+    a > ul > li {
+        zoom: 0.8;
+        -ms-zoom: 0.8;
+        -webkit-zoom: 0.8;
+        -moz-transform:  scale(0.8,0.8);
+        -moz-transform-origin: left center;
+    }
+}
+
+.search-rank {
+    padding: 0 3rem 0 2rem;
+}
+
+.search-snippet-info {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    margin-left: 1rem;
+    p.search-snippet {
+        color: $gray;
+        strong {
+            font-weight: 600;
+            color: $black;
+        }
+    }
+}
+
+.search-results-title,
+.group-right .field-title {
+    margin : 0;
+    h2 {
+        font-size: 1.7rem !important;
+        margin : 0;
+    }
+}
+
+.group-right > .field-address {
+    @extend .Grid;
+    @extend .Grid-cell;
+    max-height: 80%;
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    @include align-content(flex-start);
+}
+
+.group-right > .field-address > * {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+}
+
+.group-right > .field-phone > * {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include flex-wrap(nowrap);
+    @include justify-content(flex-start);
+}
+
+/**
+ * Faceted Search
+ */
+.block-facetapi,
+.block-search-api-sorts {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(flex-start);
+    h2 {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: $dark_grey;
+    }
+    .content {
+        font-size: 0.8rem;
+        margin-top: -0.15rem !important;
+    }
+}
+
+.form-item-facetapi-select-facet-form-1 {
+    padding-left: 1.4rem;
+}
+
+.block-search-api-sorts .content {
+    font-size: 0.8rem;
+    padding-left: 2.5rem;
+    margin-top: -1rem;
+}
+
+.home-video {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @include justify-content(center);
+    background: $gold_darker4;
+    padding: 1.5% 1.5%;
+    margin: 0 0.25rem;
+}
+
+.home-video-title,
+.home-video-iframe {
+    @extend .Grid;
+    @extend .Grid-cell;
+    @extend .Grid-cell--center;
+    @extend .u-small-full;
+    @extend .u-med-full;
+    @extend .u-large-1of2;
+}
+
+.home-video-title {
+    @include align-self(flex-start);
+}
+
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title > h2 {
+    color: $white;
+    font-family: 'Mrs Eaves Italic', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+}
+
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title > p,
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title,
+#block-laliste-homepage-home-video > div.content > div > div.home-video-iframe a {
+    color: $white;
+}
+
+#block-laliste-homepage-home-video > div.content > div > div.home-video-title {
+    padding: 1.2rem;
+}
+
+
+.country-restaurant-flag {
+    padding-top: 1.5rem;
+}
+
+/* News page publications block view */
+.view-laliste-publications-view > div.view-content > div {
+    margin-bottom: 1rem;
+}
+
+.field-body > h2 {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+}
+
+.field-geographic-zone {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/**
+ * USER PAGES
+ */
+
+div.panel-panel.panel-col-first {
+    width: 330px !important;
+}
+
+div.panel-2col-stacked .panel-col-last {
+    float: inherit !important;
+    text-align: justify;
+    width: 80% !important;
+}
+
+div.panel-pane.pane-token.pane-user-field-first-name,
+div.panel-pane.pane-token.pane-user-field-user-address > div > div > span.locality {
+    float: left;
+}
+
+div.panel-pane.pane-token.pane-user-field-first-name {
+    padding-right: 0.4rem;
+}
+
+div.panel-pane.pane-token.pane-user-field-user-address > div > div > span.locality {
+    padding-right: 0.25rem;
+}
+
+div.addressfield-container-inline:after {
+    display: initial;
+}
+
+div.pane-user-field-user-bio {
+    padding-top: 1rem;
+}
+
+
+div.pane-user-field-first-name,
+div.pane-user-field-last-name {
+    font-family: 'Mrs Eaves Bold Italic';
+    font-size: 2.4rem;
+    color: $dark_grey;
+}
+
+main.content-user div.view-laliste-listes-view .ds-2col > .group-left {
+    width: 80%;
+}
+
+main.content-user div.view-laliste-listes-view .ds-2col > .group-right {
+    width: 20%;
+}
+
+div.view-laliste-listes-view .ds-2col > .group-left .field-title {
+    height: 2rem;
+}
+
+.add-liste-link,
+.edit-liste-link {
+    font-size: 1.6rem;
+}
+
+.add-liste-link {
+    padding-top: 1rem;
+}
+
+.edit-liste-link {
+    padding-bottom: 1rem;
+}
+
+/*
+** REGISTER
+ */
+#user-register-form > div > h1,
+#user-login > div > h1 {
+    font-family: 'Mrs Eaves Bold Italic';
+    font-size: 2.4rem;
+    color: $dark_grey;
+}
+
+.main-register-form,
+.main-login-form {
+    padding: 2rem;
+}
+
+.main-register-form + #edit-actions,
+.main-login-form + #edit-actions {
+    padding-left: 2rem;
+}
+
+form.user-info-from-cookie input#edit-name {
+    //margin-left: 3.1rem;
+}
+/*
+form.user-info-from-cookie input#edit-field-first-name-und-0-value {
+    margin-left: 2.1rem;
+}
+
+form.user-info-from-cookie input#edit-field-last-name-und-0-value,*/
+form.user-info-from-cookie input#edit-pass-pass1 {
+    //margin-left: 3.5rem;
+}
+
+form.user-info-from-cookie input#edit-mail {
+    //margin-left: 1.25rem;
+}
+
+div.main-login-form > div > div > input#edit-name {
+    //margin-left: 1.85rem;
+}
+
+div.main-login-form > div > div > input#edit-pass {
+    //margin-left : 2.2rem;
+}
+
+form.user-info-from-cookie input#edit-name,
+form.user-info-from-cookie input#edit-mail,
+form.user-info-from-cookie input#edit-field-first-name-und-0-value,
+form.user-info-from-cookie input#edit-field-last-name-und-0-value,
+form.user-info-from-cookie input#edit-pass-pass1,
+form.user-info-from-cookie input#edit-pass-pass2,
+div.main-login-form > div > div > input#edit-name,
+div.main-login-form > div > div > input#edit-pass {
+    width: 16rem;
+}
+
+form.user-info-from-cookie input#edit-submit {
+    width: 17.125rem;
+}
+
+#user-login > div > div#edit-actions > input#edit-submit {
+    width: 10.125rem;
+}
+
+div.password-strength,
+div.password-confirm {
+    display: none;
+}
+
+.form-item, .form-actions {
+    margin-top: initial !important;
+}
+
+/*
+** USER PROFILE EDIT
+ */
+.usereditborder,
+#user-edit-container #edit-actions {
+    //padding-left: 1.5rem;
+}
+
+#user-edit-container #edit-actions input {
+    width: 8rem;
+}
+
+.user-edit-form #edit-picture,
+.user-edit-form #edit-timezone {
+    display: none;
+}
+
+/**
+ * LISTE NODE FORM
+ */
+form.node-liste-form #edit-actions {
+    input {
+        margin-top: 2rem;
+        width: 8rem;
+    }
+}
+
+form.node-liste-form #edit-actions {
+    input#edit-delete,
+    input#edit-cancel {
+        margin-left: 2rem;
+    }
+}
+
+form.node-liste-form div.image-widget-data {
+    input#edit-field-liste-image-und-0-upload {
+        padding-top: 0.2rem;
+    }
+    input#edit-field-liste-image-und-0-upload-button {
+        margin-left: 1rem;
+    }
+}
+
+form#node-delete-confirm #edit-actions {
+    input {
+        width: 8rem;
+        margin-right: 2rem;
+    }
+}
+
+/**
+ * User menu block
+ */
+#block-system-user-menu li+li:before {
+  content: "|";
+  padding: 0 0.5rem;
+  color: #8A804F;
+}
+
+/**
+ * ERROR MSG BANNER
+ */
+
+div.status {
+    background-color: initial;
+}
+
+.error {
+    background: $dark_grey;
+    color: $white;
+}
+
+form .field-multiple-table td.field-multiple-drag {
+    width: initial !important;
+}
+
+ul.menu li {
+    margin: initial !important;
+}
+
+li.leaf {
+    padding: initial !important;
+}
+
+li.useredittab {
+    cursor: pointer;
+}
+
+/**
+ * LISTES
+ */
+div.view-laliste-listes-view {
+    width: 100%;
+}
+
+.form-item.form-type-textfield.form-item-search-api-views-fulltext {
+    margin: 0 !important;
+}
+
+/** HOME FIX */
+header.header-home #block-locale-language {
+    margin-top: -3rem;
+}
+
+/**
+ * Restaurant map height fix
+ */
+*[id^='ip-geoloc-map-of-view-restaurant_map-block-']{
+    height: 100% !important;
+}

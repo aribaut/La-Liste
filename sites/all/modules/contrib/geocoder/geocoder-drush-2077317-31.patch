@@ -1,0 +1,198 @@
+diff --git a/geocoder.drush.inc b/geocoder.drush.inc
+index caad478..3cc82ba 100644
+--- a/geocoder.drush.inc
++++ b/geocoder.drush.inc
+@@ -1,58 +1,145 @@
+ <?php
+ 
+ /**
+- * Implementation of hook_drush_command().
++ * @file
++ * File to define drush hooks for geocoder.
++ */
++
++/**
++ * Implements hook_drush_command().
+  */
+ function geocoder_drush_command() {
+   $items = array();
+ 
+-  // the key in the $items array is the name of the command.
++  // The key in the $items array is the name of the command.
+   $items['geocoder-backfill'] = array(
+-    'callback' => 'geocoder_drush_backfill',
+-    'description' => "Geocodes all nodes that have a geocoder widget but no geodata.",
++    'description' => "Geocodes all entities that have a geocoder widget but no geodata.",
+     'options' => array(
+       'force' => 'Force the geocode to run, even if there is already geodata',
++      'limit' => array(
++        'description' => 'Limit the number of entities to geocode at one time, per bundle',
++        'example-value' => 'LIMIT',
++        'value' => 'required',
++      ),
++      'only-entity' => array(
++        'description' => 'Limit geocoding to a specific entity type (node, user, etc.).',
++        'example-value' => 'node',
++      ),
++      'only-bundle' => array(
++        'description' => 'Limit geocoding to a single bundle type. Must be used in conjunction with the `only-entity` flag. (ex: node type, when node is the entity type).',
++        'example-value' => 'story',
++      ),
++      'idlist' => array(
++        'description' => 'Limit geocoding to a comma delimited list of ids.',
++        'example-value' => '123,456,789',
++      ),
++      'min-id' => array(
++        'description' => 'Limit geocoding to entity ids greater than or equal to this value.',
++        'example-value' => '100',
++      ),
++      'max-id' => array(
++        'description' => 'Limit geocoding to entity ids less than or equal to this value.',
++        'example-value' => '100000',
++      ),
+     ),
+   );
+ 
+   return $items;
+ }
+ 
+-function geocoder_drush_backfill() {
++/**
++ * Drush command callback.
++ */
++function drush_geocoder_backfill() {
+   $force_reload = drush_get_option('force');
+   $all_entity_info = entity_get_info();
++  $limit = drush_get_option('limit', 0);
++  $only_entity_type = drush_get_option('only-entity');
++  $only_bundle_type = drush_get_option('only-bundle');
++  $idlist = drush_get_option('idlist') ? explode(',', drush_get_option('idlist')) : array();
++  $min_id = drush_get_option('min-id');
++  $max_id = drush_get_option('max-id');
++  if ($only_bundle_type && !$only_entity_type) {
++    drush_set_error('geocoder-backfill', 'The `only-entity` flag must be specified if the `only-bundle` is specified.');
++  }
++  $current_limit = $limit;
++
+   foreach ($all_entity_info as $entity_type => $entity_info) {
+-    if ($entity_type == 'node') { //TODO: FIX THE LOGIC BELOW and implement for all entities
+-      if ($entity_info['fieldable']) {
++    // If the request was for a single entity type, make sure the current type matches.
++    if (!isset($only_entity_type) || (isset($only_entity_type) && $entity_type == $only_entity_type)) {
++      // Stop when $current_limit is zero, unless $limit is also zero.
++      if (isset($entity_info['fieldable']) && (!$limit || $current_limit > 0)) {
+         foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {
+           foreach (field_info_instances($entity_type, $bundle_name) as $field_name => $field_instance) {
+-            $field_info = field_info_field($field_name);
+-            if ($field_instance['widget']['type'] === 'geocoder') {
+-              $entity_load = $entity_info['load hook'];
+-
+-              $query = db_select($entity_info['base table'])
+-                         ->fields($entity_info['base table'], array($entity_info['entity keys']['id']))
+-                         ->condition($entity_info['entity keys']['bundle'], $bundle_name);
++            if (!isset($only_bundle_type) || isset($only_bundle_type) && $only_bundle_type == $bundle_name) {
++              $field_info = field_info_field($field_name);
++              if ($field_instance['widget']['type'] === 'geocoder') {
++                $entity_load = $entity_info['load hook'];
++                $query = db_select($entity_info['base table'], 'geo_ent')
++                  ->fields('geo_ent', array($entity_info['entity keys']['id']));
++                // Users don't have a column for the bundle.
++                if ($entity_type != 'user') {
++                  $query->condition($entity_info['entity keys']['bundle'], $bundle_name);
++                }
++                if (!$force_reload) {
++                  if(!empty($entity_info['entity keys']['revision'])) {
++                    $join_condition = 'geo_ent.' . $entity_info['entity keys']['revision'] . '=geo.revision_id';
++                  }
++                  else {
++                    $join_condition = 'geo_ent.' . $entity_info['entity keys']['id'] . '=geo.entity_id';
++                  }
++                  $query->leftJoin('field_data_' . $field_instance['field_name'], 'geo', $join_condition);
++                  $query->condition('geo.entity_id', NULL, 'IS NULL');
++                }
+ 
+-              $results = $query->execute();
+-              while ($id = $results->fetchField()) {
+-                $entity = $entity_load($id);
+-                $langcode = field_language($entity_type, $entity, $field_name);
+-                $items = field_get_items($entity_type, $entity, $field_name, $langcode);
++                if (!empty($idlist)) {
++                  $query->condition('geo_ent.' . $entity_info['entity keys']['id'], array(':ids' => $idlist));
++                }
+ 
+-                if ($force_reload) {
+-                  $entity->original = array();
++                if ($min_id) {
++                  $query->condition('geo_ent.' . $entity_info['entity keys']['id'], $min_id, '>=');
+                 }
+ 
+-                // Check for values and if there are no values, reload the entity
+-                if ($field_info['type'] == 'geofield') {
+-                  if ($force_reload || (empty($items['wkt']) && empty($items['geom']))) node_save($entity); //TODO: fix for all entities
++                if ($max_id) {
++                  $query->condition('geo_ent.' . $entity_info['entity keys']['id'], $max_id, '<=');
+                 }
+-                if ($field_info['type'] == 'location') {
+-                  if ($force_reload || empty($items['latitude'])) node_save($entity); //TODO: fix for all entities
++
++                $query->orderBy('geo_ent.' . $entity_info['entity keys']['id'], 'DESC');
++
++                if ($limit) {
++                  $query->range(0, $current_limit);
+                 }
+-                if ($field_info['type'] == 'geolocation') {
+-                  if ($force_reload || empty($items['lat'])) node_save($entity); //TODO: fix for all entities
++
++                $results = $query->execute();
++                while ($id = $results->fetchField()) {
++                  $entity = $entity_load($id);
++                  $langcode = field_language($entity_type, $entity, $field_name);
++                  $items = field_get_items($entity_type, $entity, $field_name, $langcode);
++
++                  // Check for values and if there are no values, reload the entity.
++                  $reload = FALSE;
++                  if ($field_info['type'] == 'geofield') {
++                    if ($force_reload || (empty($items['wkt']) && empty($items['geom']))) {
++                      $reload = TRUE;
++                    }
++                  }
++                  elseif ($field_info['type'] == 'location') {
++                    if ($force_reload || empty($items['latitude'])) {
++                      $reload = TRUE;
++                    }
++                  }
++                  elseif ($field_info['type'] == 'geolocation') {
++                    if ($force_reload || empty($items['lat'])) {
++                      $reload = TRUE;
++                    }
++                  }
++                  if ($reload) {
++                    $current_limit--;
++                    if ($entity_type != 'user') {
++                      $entity->original = array();
++                    }
++                    entity_save($entity_type, $entity);
++                  }
+                 }
+               }
+             }
+@@ -61,4 +148,4 @@ function geocoder_drush_backfill() {
+       }
+     }
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/geocoder.widget.inc b/geocoder.widget.inc
+index 63c8e95..a6dfe70 100644
+--- a/geocoder.widget.inc
++++ b/geocoder.widget.inc
+@@ -231,7 +231,7 @@ function geocoder_widget_get_field_value($entity_type, $field_instance, $entity
+ 
+     // For entities being updated, determine if another geocode is necessary
+     if ($entity) {
+-      if (!empty($entity->original)) {
++      if (!empty($entity->original) && !empty($entity->original->$field_instance['field_name'])) {
+         //@@TODO: Deal with entity-properties (non-fields)
+         //@@TODO: This isn't working with file fields. Should use some kind of lookup / map
+         $field_original = field_get_items($entity_type, $entity->original, $field_name, isset($entity->original->language) ? $entity->original->language : NULL);

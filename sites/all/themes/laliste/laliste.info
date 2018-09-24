@@ -1,0 +1,15 @@
+name = LA LISTE
+description = Base responsive theme for LA LISTE
+package = core
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = css/main.css
+
+regions[header] = Header
+regions[content] = Content
+regions[sidebar_first] = Nav sidebar
+regions[sidebar_second] = Ads sidebar
+regions[footer] = Footer
+
+features[] = main_menu

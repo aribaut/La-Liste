@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LaListe Video Settings feature.
+ */
+
+include_once 'laliste_video_settings.features.inc';

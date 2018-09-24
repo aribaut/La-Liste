@@ -1,0 +1,14 @@
+name = LaListe Homepage Content Type
+description = Provides homepage content type
+core = 7.x
+package = LA LISTE
+version = 7.x-1.0
+project = laliste_homepage_content_type
+dependencies[] = features
+dependencies[] = image
+dependencies[] = media
+dependencies[] = node
+features[features_api][] = api:2
+features[field_base][] = field_slideshow_image
+features[field_instance][] = node-homepage_featured_image-field_slideshow_image
+features[node][] = homepage_featured_image
